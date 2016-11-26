@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Restaurant Profile</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">MyProfile</a></li>
+        </ul>
+    </nav>
+    <section id="Main" >
+        <img src="vaiBuscarBD.jpg" alt="Photo that represents the restaurant"> <!-- falta alterar esta imagem -->
+        <h2>Nome do restaurante</h2>    <!-- vai ser mudadado pela bd -->
+    </section>
+    <section id="Details">
+        <ul id="tabs">
+            <li id="Informations">
+                <a href="#Informations">Informações</a>
+                <div>
+                    <form>
+                        <label>Nome do restaurante :
+                            <input type="text" name="name">
+                        </label>
+                        <label>Número de telefone :
+                            <input type="text" name="number">
+                        </label>
+                        <label>Tipo de cozinha :
+                            <input type="text" name="cuisine">
+                        </label>
+                        <label>Morada :
+                            <input type="text" name="adress">
+                        </label>
+                        <label>Custo :
+                            <input type="text" name="cust">
+                        </label>
+                        <label>Horário :
+                            <input type="text" name="schedule">
+                        </label>
+                        <input type="button" value="Submeter alterações">
+                    </form>
+                    <ul id="RequirementsAchived">
+                        <form>
+                            <fieldset>
+                                <legend>Informações sobre o restaurante</legend>
+                                <label>
+                                    <input type="checkbox" name="info" value="WiFi">Wi-fi
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="info" value="TakeAway">TakeAway
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="info" value="LiveMusic">Atuações ao vivo
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="info" value="Vegan">Opção vegetariana
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="info" value="Welchair">Acesso cadeira de rodas
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="info" value="Outside">Esplanada
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="info" value="Bar">Bar
+                                </label>
+                            </fieldset>
+                            <input type="button" value="Submeter alterações">
+                        </form>
+                    </ul>
+                    <ul id="OwnerView">
+                        <!-- Lista de destaques do restaurante -->
+                        <form>
+                            <label>Adicionar novo destaque :
+                                <textarea name="review" cols="40" rows="5"></textarea>
+                            </label>
+                            <input type="button" value="Submeter alterações">
+                        </form>
+                    </ul>
+                </div>
+            </li>
+            <li  id="Menu">
+                <a href="#Menu">Menu</a>
+                <div>
+                    <!-- pode eliminar as suas imagens ou adicionar novas-->
+                </div>
+            </li>
+            <li  id="Photos">
+                <a href="#Photos">Fotos</a>
+                <div>
+                    <!-- pode eliminar as suas imagens ou adicionar novas-->
+                </div>
+            </li>
+        </ul>
+    </section>
+    <footer>
+        <p> Andreia Rodrigues e Inês Gomes, LTW, MIEIC 2016/2017</p>
+    </footer>
+</body>
+</html>
