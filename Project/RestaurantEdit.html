@@ -9,6 +9,7 @@
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">MyProfile</a></li>
+            <li><a href="#">LogOut</a></li>
         </ul>
     </nav>
     <section id="Main" >
@@ -21,24 +22,51 @@
                 <a href="#Informations">Informações</a>
                 <div>
                     <form>
-                        <label>Nome do restaurante :
+                        <label>Nome:
                             <input type="text" name="name">
                         </label>
-                        <label>Número de telefone :
-                            <input type="text" name="number">
+                        <br>
+                        <label>Descrição:
+                            <textarea name="description" cols="60" rows="2"></textarea>
                         </label>
-                        <label>Tipo de cozinha :
-                            <input type="text" name="cuisine">
+                        <br>
+                        <label>Contacto:
+                            <input type="tel" name="number">
                         </label>
-                        <label>Morada :
+                        <br>
+                        <label>Tipos de cozinha: <!-- fazer inserts com isto na base de dados logo ao inicio. o "outro" insere um novo tipo na bd e passa a estar nesta lista-->
+                            <select name="cuisine" multiple = "multiple">
+                                <option value="portuguesa">Portuguesa</option>
+                                <option value="mediterranica">Mediterrânica</option>
+                                <option value="contemporanea">Contemporânea</option>
+                                <option value="vegetariana">Vegetariana</option>
+                                <option value="pizzaria">Pizzaria</option>
+                                <option value="hamburgeria">Hamburgeria</option>
+                                <option value="marisqueira">Marisqueira</option>
+                                <option value="internacional">Internacional</option>
+                                <option value="japonesa">Japonesa</option>
+                                <option value="francesa">Francesa</option>
+                                <option value="italiana">Italiana</option>
+                                <option value="chinesa">Chinesa</option>
+                                <option value="japonesa">Japonesa</option>
+                            </select>
+                            <label>Outro:
+                                 <input type="text" name="newCuisine">
+                            </label>
+                        </label>
+                        <br>
+                        <label>Localização:
                             <input type="text" name="adress">
                         </label>
-                        <label>Custo :
-                            <input type="text" name="cust">
+                        <br>
+                        <label>Custo médio por pessoa:
+                            <input type="text" name="cost">
                         </label>
-                        <label>Horário :
+                        <br>
+                        <label>Horário:
                             <input type="text" name="schedule">
                         </label>
+                        <br>
                         <input type="button" value="Submeter alterações">
                     </form>
                     <ul id="RequirementsAchived">
@@ -73,8 +101,8 @@
                     <ul id="OwnerView">
                         <!-- Lista de destaques do restaurante -->
                         <form>
-                            <label>Adicionar novo destaque :
-                                <textarea name="review" cols="40" rows="5"></textarea>
+                            <label>Observações:
+                                <textarea name="review" cols="60" rows="2"></textarea>
                             </label>
                             <input type="button" value="Submeter alterações">
                         </form>
@@ -84,12 +112,23 @@
             <li  id="Menu">
                 <a href="#Menu">Menu</a>
                 <div>
+                    <!-- <form action="upload.php" method="post" enctype="multipart/form-data">
+                      Select image to upload:
+                      <input type="file" name="fileToUpload" id="fileToUpload">
+                      <input type="submit" value="Upload Image" name="submit">
+                  </form>-->
                     <!-- pode eliminar as suas imagens ou adicionar novas-->
                 </div>
             </li>
             <li  id="Photos">
                 <a href="#Photos">Fotos</a>
                 <div>
+                   <!-- <form action="upload.php" method="post" enctype="multipart/form-data">
+                        Select image to upload:
+                        <input type="file" name="fileToUpload" id="fileToUpload">
+                        <input type="submit" value="Upload Image" name="submit">
+                    </form>-->
+
                     <!-- pode eliminar as suas imagens ou adicionar novas-->
                 </div>
             </li>
