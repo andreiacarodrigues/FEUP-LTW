@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant Profile</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">LogIn</a></li>
+            <li><a href="#">SignUp</a></li>
+        </ul>
+    </nav>
+    <section id="Main" >
+        <img src="vaiBuscarBD.jpg" alt="Photo that represents the restaurant">
+        <h2>Nome do restaurante</h2>    <!-- vai ser mudadado pela bd -->
+        <h3>Pontuação</h3>              <!-- vai ser mudadado pela bd -->
+        <ul>
+            <li><a href="#">Edit</a></li>           <!-- opcao apenas para owners -->
+            <li><a href="#LeaveReview">Deixar Opinião</a></li> <!-- envia para a section Reviews -->
+            <li><a href="#">Avaliar</a></li>    <!-- pop up para escolher uma pontucao ? -->
+        </ul>
+    </section>
+    <section id="Details">
+        <ul id="tabs">
+            <li id="Informations">
+                <a href="#Informations">Informações</a>
+                <div>
+                    <ul id="Base">
+                        <li>Número de telefone : </li>
+                        <li>Tipo de cozinha : </li>
+                        <li>Morada : </li>
+                        <li>Custo : </li>
+                        <li>Horário : </li>
+                    </ul>
+                    <ul id="RequirementsAchived">
+                        <!-- lista de requisitos alcançados interpretados pela bd -->
+                    </ul>
+                    <ul id="OwnerView">
+                        <!-- Lista de destaques do utilizador -->
+                    </ul>
+                </div>
+            </li>
+            <li  id="Menu">
+                <a href="#Menu">Menu</a>
+                <div>
+                    <!-- vai conter várias imagens em miniatura que vêm da bd-->
+                </div>
+            </li>
+            <li  id="Reviews">
+                <a href="#Reviews">Opiniões</a>
+                <div>
+                    <article>
+                        <img src="image.php?id=24345" alt="Image for post 24345"> <!-- foto da pessoa que fez a review-->
+                        <h4>Nome : </h4>
+                        <h4>Avalicao : </h4>
+                        <p>Conteudo da opiniao</p>
+                        <!-- vai ter aqui as fotos -->
+                        <footer>
+                            <a href="comments.php?id=24345">Comments (54)</a> <!-- efeito acordeão para ver as respostas -->
+                            <span class="date">@May 5th 2014</span>
+                        </footer>
+                    </article>
+                </div>
+            </li>
+            <li  id="Photos">
+                <a href="#Photos">Fotos</a>
+                <div>
+                    <!-- vai conter várias imagens em miniatura que vêm da bd-->
+                </div>
+            </li>
+        </ul>
+    </section>
+    <section id="LeaveReview">
+        <form>
+            <label>Avaliação:
+                <input type="text" name="Avaliacao">
+            </label>
+            <label>
+                Opinião:
+                <textarea name="review" cols="40" rows="5"></textarea>
+            </label>
+            <input type="button" value="Adicionar fotos">
+            <input type="button" value="Submeter">
+        </form>
+    </section>
+    <footer>
+        <p> Andreia Rodrigues e Inês Gomes, LTW, MIEIC 2016/2017</p>
+    </footer>
+</body>
+</html>
