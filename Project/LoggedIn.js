@@ -11,6 +11,7 @@ function setUp() {
 
 // Send message
 function submitUser(Event) {
+
     var name = $("input[name=name]").val();
     var email = $("input[name=email]").val();
     var birthdate = $("input[name=birthdate]").val();
@@ -21,10 +22,7 @@ function submitUser(Event) {
     if(profilePic == "")
         profilePic = "NULL";
 
- //  $.post("insertUser.php", {'username': username, 'name': name, 'email': email, 'birthdate': birthdate, 'postCode': postCode, 'password': password, 'profilePic': profilePic});
-}
+    var tmp = {'username': username, 'name': name, 'email': email, 'birthdate': birthdate, 'postCode': postCode, 'password': password, 'profilePic': profilePic};
 
-function messageSent(data)
-{
-    alert(data);
+  $.post("insertUser.php", tmp);
 }
