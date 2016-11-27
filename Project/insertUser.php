@@ -1,5 +1,4 @@
-﻿
-<?php
+﻿<?php
 include_once('Connection.php');
 
 	global $db;
@@ -19,5 +18,4 @@ include_once('Connection.php');
 	$stmt->execute();
 	$messages = $stmt->fetchAll();
 	echo json_encode($messages);
-
 ?>

@@ -1,8 +1,8 @@
 /**
  * Created by Andreia on 26/11/2016.
  * TODO: Remember me button
- * validUsername -> é preciso ir buscar á bd
- * validBirthdate => se está direita e se é > 18 anos
+ * validUsername -> e preciso ir buscar a bd
+ * validBirthdate => se esta direita e se e > 18 anos
  */
 
 $(document).ready(setUp);
@@ -25,7 +25,7 @@ function submitUser(Event) {
     if(profilePic == "")
         profilePic = "NULL";
 	
-	if(!(validPassword(password)validName(name) && validEmail(email) && validPostCode(postCode) ))
+	if(!(validPassword(password)&& validName(name) && validEmail(email) && validPostCode(postCode)))
 		return false;
 
     var tmp = {'username': username, 'name': name, 'email': email, 'birthdate': birthdate, 'postCode': postCode, 'password': password, 'profilePic': profilePic};
@@ -76,7 +76,7 @@ function validPostCode(postCode)
 	return true;
 }
 
-function validUsername(username) // ir buscar todos os da base de dados -> ver se não existe ou se não é ""
+function validUsername(username) // ir buscar todos os da base de dados -> ver se nao existe ou se nao ha ""
 {
 	return true;
 }
