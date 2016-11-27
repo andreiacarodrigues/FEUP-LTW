@@ -1,5 +1,8 @@
 /**
  * Created by Andreia on 26/11/2016.
+ * TODO: Remember me button
+ * validUsername -> é preciso ir buscar á bd
+ * validBirthdate => se está direita e se é > 18 anos
  */
 
 $(document).ready(setUp);
@@ -21,8 +24,76 @@ function submitUser(Event) {
     var profilePic = $("input[name=profilePic]").val();
     if(profilePic == "")
         profilePic = "NULL";
+	
+	if(!(validPassword(password)validName(name) && validEmail(email) && validPostCode(postCode) ))
+		return false;
 
     var tmp = {'username': username, 'name': name, 'email': email, 'birthdate': birthdate, 'postCode': postCode, 'password': password, 'profilePic': profilePic};
+    $.post("insertUser.php", tmp, submited);
+}
 
-  $.post("insertUser.php", tmp);
+function submited(data)
+{
+  alert('submited');
+}
+
+function validName(name)
+{
+	if(name == "")
+	{
+		alert("Name field is required");
+		return false;
+	}
+	return true;
+}
+
+function validEmail(email)
+{
+	if(!(email.includes('@') && email.includes('.')) || (email == ""))
+	{
+		alert("Email field is required");
+		return false;
+	}
+	return true;
+}
+
+function validPostCode(postCode)
+{
+	if(postCode.length != 8)
+	{
+		alert("Invalid PostCode");
+		return false;
+	}
+	
+	var first = str.substring(0, 4);
+	var second = str.substring(5, 8);
+	
+	if(first.isNaN() || second.isNaN())
+	{
+		alert("Invalid PostCode");
+		return false;
+	}
+	return true;
+}
+
+function validUsername(username) // ir buscar todos os da base de dados -> ver se não existe ou se não é ""
+{
+	return true;
+}
+
+function validPassword(password)
+{
+	if(password == "") 
+	{
+		alert("Password field required");
+		return false;
+	}
+	
+	if(password != $("input[name=confirmPassword]").val())
+	{
+		alert("'Password' field not coincident with 'Confirm password' field");
+		return false;
+	}
+	
+	return true;
 }
