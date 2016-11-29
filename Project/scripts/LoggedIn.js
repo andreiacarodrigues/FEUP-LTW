@@ -25,11 +25,12 @@ function submitUser(Event) {
     if(profilePic == "")
         profilePic = "NULL";
 	
-	if(!(validPassword(password)&& validName(name) && validEmail(email) && validPostCode(postCode)))
-		return false;
+	//if(!(validPassword(password)&& validName(name) && validEmail(email) && validPostCode(postCode)))
+		//return false;
 
     var tmp = {'username': username, 'name': name, 'email': email, 'birthdate': birthdate, 'postCode': postCode, 'password': password, 'profilePic': profilePic};
-    $.post("insertUser.php", tmp, submited);
+    $.post("./database/insertUser.php", tmp, submited);
+	  alert('submeti');
 }
 
 function submited(data)

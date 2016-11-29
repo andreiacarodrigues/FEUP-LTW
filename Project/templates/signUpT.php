@@ -1,6 +1,6 @@
 <h2>SignUp</h2>
 <div class="signUp">
-    <form action="../index.php"><!-- isto depois não pode ser assim -->   <!--  <form action="upload.php" method="post" enctype="multipart/form-data">-->
+    <form action="./index.php"><!-- isto depois não pode ser assim -->   <!--  <form action="upload.php" method="post" enctype="multipart/form-data">-->
         <label>Username:
             <input type="text" name="username" placeholder="..">
         </label>
@@ -42,5 +42,3 @@
         <input type="button" value="Cancel">
     </form>
 </div>
-
-<script type="text/javascript" src="../scripts/LoggedIn.js"></script>
