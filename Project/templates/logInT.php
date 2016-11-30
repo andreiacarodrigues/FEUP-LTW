@@ -1,3 +1,12 @@
+<?php
+include_once ("includes/autentication.php");
+
+    if (isset ( $_POST ['username'] ) && isset ( $_POST ['password'] ))
+    {
+        login ( $_POST ['username'], $_POST ['password'] );
+    }
+?>
+
 <h2>Login</h2>
 <div class="login">
     <form action="./index.php" method="post"><!-- isto depois não pode ser assim (ainda nao esta feito) -->
