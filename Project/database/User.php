@@ -46,5 +46,23 @@ include_once('database/Connection.php');
 		$stmt->execute(array($username, sha1($password)));  
 		return $stmt->fetch() !== false;
 	}
+
+    function getUserPhoto($userPhotoId)
+    {
+        global $db;
+
+        $stmt = $db->prepare('SELECT filename FROM Photo WHERE photoId = ?');
+        $stmt->execute(array($userPhotoId));
+        return $stmt->fetch();
+    }
+
+    function getAllReviews($userId)
+    {
+        global $db;
+
+        $stmt = $db->prepare('SELECT reviewId FROM Review WHERE userId = ?');
+        $stmt->execute(array($userId));
+        return $stmt->fetch();
+    }
 	
 ?>

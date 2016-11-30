@@ -1,15 +1,47 @@
+<?php
+//PASSAR TUDO PARA ID'S
+//este username é o username do utilizador a que pertence a pagina (FALTA enviar este username)
+    if (isset ( $_GET ["username"] )) {
+        $userId = getUserID ();
+
+        $username = $_GET ["username"];
+        $info = getUserInfo($username);
+        $filename = getUserPhoto($username);
+
+        $reviews = getAllReviews($userId);
+    }
+    else{
+        die();
+    }
+?>
+
 <section id="Main" >
-    <img src="vaiBuscarBD.jpg" alt="User photo">
-    <ul id="informacoes">   <!-- vao ser colocadas com php -->
-        <li>Username : </li>
-        <li>Descrição : </li>
-        <li>Nome : </li>        <!-- mostrar isto deve ser opcional -->
-        <li>Email : </li>
-        <li>Data de nascimento : </li>
-        <li>Código de postal : </li>
-    </ul>           <!-- vai ser mudadado pela bd -->
-    <a href="#">Editar</a>          <!-- opcao apenas para owners -->
-    <a href="#">Adicionar Amigo</a>          <!-- opcao caso nao seja o seu proprio perfil -->
+
+    <img src="vaiBuscarBD.jpg" alt="User photo"> <!-- FALTA -->
+    <ul id="informacoes">
+        <li> $info ["username"] </li>
+        <!-- <li> $idUser ["description"] </li> -->
+
+        <!-- mostrar isto deve ser opcional -->
+
+        <li> $info ["name"] </li>
+        <li> $info ["username"] </li>
+        <li> $info ["birthdate"] </li>
+        <li> $info ["postCode"] </li>
+    </ul>
+    <?php
+    if (isUserLoggedIn ()){
+        $idTempUser = getUserID ();
+        if($idTempUser !== idUser)  //opcao caso nao seja o seu proprio perfil
+        {
+            echo '<a href="#">Adicionar Amigo</a>';
+        }
+        else
+        {
+            echo ' <a href="../userProfileEdit.php">Editar</a> ';
+        }
+    }
+    ?>
 </section>
 <section id="Dashboard" >
     <ul>
