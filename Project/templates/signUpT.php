@@ -28,13 +28,20 @@ function emptyElement(x){
 
 function checkUsername(){
 	var u = _("username").value;
-	if(u != ""){
-		_("unamestatus").innerHTML = 'Checking...';
-	}
-	if(userExists(u))
-		_("unamestatus").innerHTML = 'Username accepted!';
-	else
-		_("unamestatus").innerHTML = 'Username already used!';
+	 if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+		xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+				_("unamestatus").innerHTML = this.responseText;
+			}
+        };
+        xmlhttp.open("GET","database/UserExists.php?username="+u,true);
+        xmlhttp.send();
 }
 	
 function signup(){
