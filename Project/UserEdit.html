@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li><!-- isto tem de ser mudado porque depende se alguem ja entrou no site ou não...-->
+            <li><a href="#">LogIn</a></li>
+            <li><a href="#">SignUp</a></li>
+        </ul>
+    </nav>
+    <section id="Main" >
+        <img src="vaiBuscarBD.jpg" alt="User photo">
+        <br>
+        <label>Change Profile Picture:
+            <input type="file" name="profilePic" id="profilePic">
+        </label>
+    </section>
+    <section id="dashboard" >
+        <ul>   <!-- vao ser colocadas com php -->
+            <li id="UserInformations">
+                <div>
+                    <form>
+                        <label>Username:
+                            <input type="text" name="username" placeholder="..">
+                        </label>
+                        <br>
+                        <label>My information:
+                            <textarea name="info" cols="40" rows="5"></textarea>
+                        </label>
+                        <br>
+                        <label>Name:
+                            <input type="text" name="name" placeholder="..">
+                        </label>
+                        <br>
+                        <label>Email:
+                            <input type="e-mail" name="email" placeholder="..">
+                        </label>
+                        <br>
+                        <label>PostCode:
+                            <input type="text" maxlength="4"  name="postCode1" placeholder=".."> <!-- javascript tem de ver se é numero -->
+                            <label> -
+                                <input type="text" maxlength="3" name="postCode2" placeholder="..">
+                            </label>
+                        </label>
+                        <br>
+                        <label>Birthdate:
+                            <input type="date" name="birthdate">
+                        </label>
+                        <br>
+                        <a href="#ChangePassword">Mudar Palavra-Pass</a>   <!-- ainda nao sei como isto fica -->
+                        <input type="submit" value="Send">
+                        <input type="button" value="Cancel">
+                    </form>
+                </div>
+            </li>
+            <li id="ChangePassword">
+                <div>
+                    <form>  <!-- mudar isto, talvez? -->
+                        <label>Password:
+                            <input type="password" name="password" placeholder="Insert your password..">
+                        </label>
+                        <br>
+                        <label>Confirm Password:
+                            <input type="password" name="confirmPassword" placeholder="Insert your password..">
+                        </label>
+                        <br>
+                        <input type="submit" value="Send">
+                        <input type="button" value="Cancel">
+                    </form>
+                </div>
+            </li>
+            <li id="ManageRestaurants">
+                <div>
+                    <!-- dá para eliminar restaurantes e adicionar novos -->
+                </div>
+            </li>
+        </ul>           <!-- vai ser mudadado pela bd -->
+    </section>
+    <section id="menu" > <!-- isto so existe se o utilizador for owner -->
+        <ul>
+            <a href="#UserInformations">Informações</a>
+            <br>
+            <a href="#ManageRestaurants">Restaurantes</a>
+        </ul>
+    </section>
+    <footer>
+        <p> Andreia Rodrigues e Inês Gomes, LTW, MIEIC 2016/2017</p>
+    </footer>
+</body>
+</html>
