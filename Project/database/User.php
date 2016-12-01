@@ -38,12 +38,21 @@ include_once('database/Connection.php');
 		return $stmt->execute(array($username));
 	}
 
-	function userExists($username, $password)
+	/*function userExists($username, $password)
 	{
 		global $db;
     
 		$stmt = $db->prepare('SELECT * FROM User WHERE username = ? AND password = ?');
 		$stmt->execute(array($username, sha1($password)));  
+		return $stmt->fetch() !== false;
+	}*/
+	
+	function userExists($username)
+	{
+		global $db;
+    
+		$stmt = $db->prepare('SELECT * FROM User WHERE username = ?');
+		$stmt->execute(array($username));  
 		return $stmt->fetch() !== false;
 	}
 
