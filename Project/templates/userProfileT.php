@@ -13,7 +13,7 @@
 	}
 
 	function getInfo(){
-			if (window.XMLHttpRequest) {
+        if (window.XMLHttpRequest) {
 			 xmlhttp = new XMLHttpRequest();
 		} else {
 			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
@@ -34,6 +34,69 @@
 		xmlhttp.open("GET","database/UserInfo.php?username="+ username,true);
 		xmlhttp.send();
 	}
+
+    function getHistory(){
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var reviews = eval("(" + this.responseText + ")"); // get's the php array whit all the reviews
+
+                for(var i = 0; i < reviews.length; i++){
+
+                    var info = reviews[i];
+
+                    _("name").innerHTML = info[1];
+                    _("rating").innerHTML = info[2];
+                    _("opinion").innerHTML = info[3];
+
+                    var allPhotos = "<br>";
+                    for(var j = 0; j < info[4].length; j++)  //info[4] é um array de filenames de fotos para colocar depois do texto
+                        allPhotos += "<img src=" +info[4][j]+ ">" ;
+
+                    document.getElementById("photos").innerHTML = allPhotos;
+                }
+            }
+        };
+        var username = <?php echo json_encode($username) ?>;
+        xmlhttp.open("GET","database/UserReviews.php?username="+ username,true);
+        xmlhttp.send();
+    }
+
+    function getRestaurants(){
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var reviews = eval("(" + this.responseText + ")"); // get's the php array whit all the reviews
+
+                for(var i = 0; i < reviews.length; i++){
+
+                    var info = reviews[i];
+
+                    _("name").innerHTML = info[1];
+                    _("rating").innerHTML = info[2];
+                    _("opinion").innerHTML = info[3];
+
+                    var allPhotos = "<br>";
+                    for(var j = 0; j < info[4].length; j++)  //info[4] é um array de filenames de fotos para colocar depois do texto
+                        allPhotos += "<img src=" +info[4][j]+ ">" ;
+
+                    document.getElementById("photos").innerHTML = allPhotos;
+                }
+            }
+        };
+        var username = <?php echo json_encode($username) ?>;
+        xmlhttp.open("GET","database/UserReviews.php?username="+ username,true);
+        xmlhttp.send();
+    }
+
 </script>
 
 <section id="Main" >
@@ -52,6 +115,7 @@
     if (isUserLoggedIn ()){   ?>
 		<script language="JavaScript">
 			getInfo();
+			getHistory();
 			var sessionUsername = <?php echo json_encode($_SESSION ["userid"]) ?>;
 			console.log(sessionUsername);
 			console.log(username != sessionUsername);
@@ -76,22 +140,7 @@
         <li id="History"> History
             <div>
                 <?php
-                    try {
-                        $reviews = getAllReviews($username);
-                    } catch (PDOException $e) {
-                        die($e->getMessage());
-                    }
-                    foreach ($reviews as $review) {
-                        try {
-                            $restaurant = getRestaurantInfo($review['restaurantId']);
-                        } catch (PDOException $e) {
-                            die($e->getMessage());
-                        }
-                        ?>
-                    <h3><?=$restaurant['name']?></h3>
-                <?php
-                        include("review.php");
-                    }
+                    include("review.php");
                 ?>
             </div>
         </li>
@@ -109,20 +158,21 @@
             <!-- tem de dar para selecionar e ir para a sua pagina (FALTA)-->
             <div>
                 <?php
-                foreach ($reviews as $review) {
+               /* foreach ($reviews as $review) {
                     try {
                         $restaurant = getRestaurantInfo($review['restaurantId']);
                     } catch (PDOException $e) {
                         die($e->getMessage());
                     }
+               }*/
                     include("restaurant.php");
-                }
                 ?>
             </div>
         </li>
         <li id="ManageRestaurants"> ManageRestaurants
             <div>
                 <?php
+                /*
                 try {
                     $restaurants = getAllRestaurantsOwner($username);
                 } catch (PDOException $e) {
@@ -136,7 +186,7 @@
                     }
 
                     include("restaurant.php");
-                }
+                }*/
                 ?>
             </div>
         </li>
@@ -152,12 +202,12 @@
         <a href="#VisitedPlaces">Sítios Visitados</a>
         <br>
         <?php
-        if(isOwner($username)) {
+      /*  if(isOwner($username)) {
             ?>
             <a href="#ManageRestaurants">Restaurantes</a>
             <br>
             <?php
-        }
+        }*/
         ?>
     </ul>
 </section>

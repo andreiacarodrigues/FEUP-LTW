@@ -1,28 +1,20 @@
 <article>
     <!-- <img src="" alt="user foto"> <!-- foto da pessoa que fez a review-->
-    <h4>Nome : <?=$username?></h4>
-    <h4>Avalicao : <?=$review['rating']?></h4>
-    <p><?=$review['text']?></p>
-
-    <!-- todas as fotos colocadas pelo utilizador no restaurante -->
-    <?php
-        $photos = getPhotoFromUserToRest($review['restaurantId'],$review['username']);  //da me todos os id's das fotos
-        foreach ($photos as $photo) {
-            ?>
-           <img src="<?$photo?>" alt="user foto of restaurant">
-    <?php
-        }
-    ?>
-
+    <ul>
+        <li id= "name"></li>    <!-- se for no historico do user, name = restaurantName ; se for no historico do restaurante, name = username -->
+        <li id= "rating"></li>
+        <li id= "opinion"></li>
+        <li id= "photos"></li> <!-- todas as fotos colocadas pelo utilizador no restaurante -->
+    </ul>
     <footer>
         <!-- efeito acordeão para ver os comentarios e para abrir a textarea -->
         <a href="#comments">Comments</a>
         <?php
-        if(isOwner($username)) {
+      /*  if(isOwner($username)) {
             ?>
             <a href="#review">Responder</a>
             <?php
-        }
+        }*/
         ?>
         <span class="date">@May 5th 2014</span> <!-- a data ainda nao esta implementada -->
     </footer>
