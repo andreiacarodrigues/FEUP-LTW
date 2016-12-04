@@ -13,12 +13,13 @@ include_once ('includes/autentication.php');
     <header>
         <h1><a href="./index.php">My WebPage</a></h1>
         <?php
-            if (isUserLoggedIn ()) {
+		
+            if (isUserLoggedIn()) {
         ?>
         <nav>
             <ul>
                 <li><a href="./userProfile.php">Perfil</a></li>
-                <li><a href="../logout.php">LogOut</a></li>
+                <li><a href="./Logout.php">LogOut</a></li>
             </ul>
         </nav>
                 <?php

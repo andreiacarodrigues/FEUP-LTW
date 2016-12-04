@@ -1,66 +1,94 @@
 <?php
-//PASSAR TUDO PARA ID'S
-//este username é o username do utilizador a que pertence a pagina (FALTA enviar este username)
-    if (isset ( $_GET ["username"] )) {
-        $userId = getUserID ();
-
-        $username = $_GET ["username"];
-        $info = getUserInfo($username);
-        $filename = getUserPhoto($username);
-
-        $reviews = getAllReviews($userId);
-    }
-    else{
-        die();
-    }
+	if (isset ( $_GET ["username"] )) 
+		$username = $_GET ["username"];
+    else if (isset ( $_SESSION ["userid"] )) 
+       $username = $_SESSION ["userid"];
+    else
+      die();
 ?>
 
+<script language="JavaScript">
+	function _(x){
+		return document.getElementById(x);
+	}
+
+	function getInfo(){
+			if (window.XMLHttpRequest) {
+			 xmlhttp = new XMLHttpRequest();
+		} else {
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var info = eval("(" + this.responseText + ")"); // get's the php array
+				
+				_("username").innerHTML = username;
+				_("name").innerHTML = info[0];
+				_("email").innerHTML = info[1];
+				_("birthdate").innerHTML = info[2];
+				_("postCode").innerHTML = info[3];
+				_("picId").innerHTML = info[4];
+			}
+		};
+		var username = <?php echo json_encode($username) ?>;
+		xmlhttp.open("GET","database/UserInfo.php?username="+ username,true);
+		xmlhttp.send();
+	}
+</script>
+
 <section id="Main" >
-
-    <img src="vaiBuscarBD.jpg" alt="User photo"> <!-- FALTA -->
+   <!-- <img src="vaiBuscarBD.jpg" alt="User photo"> <!-- aqui é ver se a photo é null => display de uma foto default ou se tenho de ir buscar uma foto da pessoa -->
     <ul id="informacoes">
-        <li> $info ["username"] </li>
-        <!-- <li> $idUser ["description"] </li> -->
-
+        <li id= "username"></li>
+		<li id= "name"></li>
         <!-- mostrar isto deve ser opcional -->
-
-        <li> $info ["name"] </li>
-        <li> $info ["username"] </li>
-        <li> $info ["birthdate"] </li>
-        <li> $info ["postCode"] </li>
+		<li id= "email"></li>
+		<li id= "birthdate"></li>
+		<li id= "postCode"></li>
+		<li id= "picId" style="display: none"></li>
     </ul>
+	<a id ="link1" href=""></a>;
     <?php
-    if (isUserLoggedIn ()){
-        $idTempUser = getUserID ();
-        if($idTempUser !== idUser)  //opcao caso nao seja o seu proprio perfil
-        {
-            echo '<a href="#">Adicionar Amigo</a>';
-        }
-        else
-        {
-            echo ' <a href="../userProfileEdit.php">Editar</a> ';
-        }
-    }
-    ?>
+    if (isUserLoggedIn ()){   ?>
+		<script language="JavaScript">
+			getInfo();
+			var sessionUsername = <?php echo json_encode($_SESSION ["userid"]) ?>;
+			console.log(sessionUsername);
+			console.log(username != sessionUsername);
+			if(username != sessionUsername)
+			{
+				$("#link1").attr('href', "#");
+				//$("#link1").outerHTML = "Adicionar Amigo";  <!-- eu vejo isto amanhã!! não tou  conseguir encontrar como tirar o nome de display do link -->
+			}
+			else
+			{
+				
+				$("#link1").attr('href', "../userProfileEdit.php");
+				//$("#link1").outerHTML = "Editar"; 
+			}
+				
+		</script>
+	 <?php  }   ?>
+
 </section>
 <section id="Dashboard" >
     <ul>
-        <li id="History">
+        <li id="History"> History
             <div>
                 <!-- historico das reviews todas -->
                 <!-- review esta no ficheiro review.php -->
             </div>
         </li>
-        <li id="Friends">
-            <!-- nome dos amigos todos -->
-            <!-- tem de dar para eliminar amigos -->
+       <!-- <li id="Friends">
+            <!-- nome dos amigos todos 
+            <!-- tem de dar para eliminar amigos 
             <div>
-                <!-- isto vai estar num foreach cada amigo -->
-                <img src="vaiBuscarBD.jpg" alt="User photo">
+                <!-- isto vai estar num foreach cada amigo
+               <!-- <img src="vaiBuscarBD.jpg" alt="User photo"> 
                 <h3>Nome</h3>
             </div>
-        </li>
-        <li id="VisitedPlaces">
+        </li>-->
+        <li id="VisitedPlaces"> VisitedPlaces
             <!-- nome dos restaurantes que foi feita uma review -->
             <!-- tem de dar para selecionar e ir para a sua pagina -->
             <div>
@@ -68,7 +96,7 @@
                 <!-- o restuarante esta no templates/retaurant.php -->
             </div>
         </li>
-        <li id="ManageRestaurants">
+        <li id="ManageRestaurants"> ManageRestaurants
             <div>
                 <!-- isto vai estar num foreach para cada restaurante -->
                 <!-- o restaurante esta no templates/retaurant.php -->

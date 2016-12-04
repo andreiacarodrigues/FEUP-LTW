@@ -11,6 +11,8 @@ include_once('Connection.php');
 	$password = $_GET["password"];
 	$profilePic = $_GET["profilePic"];
 	
+	 $options = ['cost' => 12];
+	
 	$stmt = $db->prepare("INSERT INTO user VALUES (null, ?, ?, ?, ?, ? ,?, ?)");
-	$stmt->execute(array($name, $email, $birthdate, $postCode,$username, $password , $profilePic));
+	$stmt->execute(array($name, $email, $birthdate, $postCode,$username, password_hash($password, PASSWORD_DEFAULT, $options) , $profilePic));
 ?>

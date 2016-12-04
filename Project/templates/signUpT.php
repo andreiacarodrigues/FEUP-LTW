@@ -37,14 +37,20 @@ function checkUsername(){
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
 		xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-				_("unamestatus").innerHTML = this.responseText;
+            if (this.readyState == 4 && this.status == 200) {	
+				var newResponseText = new String(this.responseText);
+				var newResponseText = newResponseText.trim();
+				_("unamestatus").innerHTML = newResponseText;
 			}
         };
         xmlhttp.open("GET","database/UserExists.php?username="+u,true);
         xmlhttp.send();
 }
 	
+function goback()
+{
+	window.location = 'index.php';
+}
 
 function signup(){
 	var u = _("username").value;
@@ -96,13 +102,14 @@ function signup(){
 		
 		xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-				window.location = 'index.php';
+				goback();
 			}
         };
         xmlhttp.open("GET","database/AddUser.php?username="+u + "&name="+n+"&email="+e+"&postCode="+postCode+"&birthdate="+b+"&password="+pass1+"&pic="+pic,true);
         xmlhttp.send();
 	}
 }
+
 
 </script>
 
@@ -148,6 +155,6 @@ function signup(){
 		<p id="status"></p>
 		<br>
         <button type="button" onclick="signup()"> Send
-        <button type="button"> Cancel
+        <button type="button" onclick="goback()"> Cancel
     </form>
 </div>
