@@ -57,7 +57,7 @@ CREATE TABLE RestaurantPhoto (
 
 CREATE TABLE Review (
 	reviewId INTEGER PRIMARY KEY AUTOINCREMENT,
-	userId INTEGER,
+	username INTEGER,
 	restaurantId INTEGER,
 	rating INTEGER NOT NULL CHECK (rating > 0 AND rating < 10),
 	text NVARCHAR(400),

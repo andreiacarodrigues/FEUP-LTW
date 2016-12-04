@@ -65,13 +65,58 @@ include_once('database/Connection.php');
         return $stmt->fetch();
     }
 
-    function getAllReviews($userId)
+    function getAllReviews($username)
     {
         global $db;
 
-        $stmt = $db->prepare('SELECT reviewId FROM Review WHERE userId = ?');
-        $stmt->execute(array($userId));
+        $stmt = $db->prepare('SELECT reviewId, restaurantId, rating, text FROM Review WHERE username = ?');
+        $stmt->execute(array($username));
         return $stmt->fetch();
+    }
+
+    function getRestaurantInfo($restId)
+    {
+        global $db;
+
+        $stmt = $db->prepare('SELECT name, location, photoId, rating_total FROM Restaurant WHERE restaurantId = ?');
+        $stmt->execute(array($restId));
+        return $stmt->fetch();
+    }
+
+    function getPhotoFromUserToRest($restId,$username)
+    {
+        global $db;
+
+        $stmt = $db->prepare('SELECT photoID FROM ReviewPhoto WHERE restaurantId = ? AND username = ?');
+        $stmt->execute(array($restId,$username));
+        return $stmt->fetch();
+    }
+
+    function getPhotoPath($photoId)
+    {
+        global $db;
+
+        $stmt = $db->prepare('SELECT filename FROM Photo WHERE photoId = ?');
+        $stmt->execute(array($photoId));
+        return $stmt->fetch();
+    }
+
+    function getAllRestaurantsOwner($username)
+    {
+        global $db;
+
+        $stmt = $db->prepare('SELECT restaurantId FROM Restaurant WHERE ownerId = ?');
+        $stmt->execute(array($username));
+        return $stmt->fetch();
+    }
+
+    function isOwner($username)
+    {
+        global $db;
+
+        $stmt = $db->prepare('SELECT restaurantId FROM Restaurant WHERE ownerId = ?');
+        $stmt->execute(array($username));
+        return $stmt->fetch() !== false;    //retorna true se for owner
     }
 	
 ?>

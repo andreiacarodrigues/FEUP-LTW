@@ -58,11 +58,11 @@
 			if(username != sessionUsername)
 			{
 				$("#link1").attr('href', "#");
-				//$("#link1").outerHTML = "Adicionar Amigo";  <!-- eu vejo isto amanhã!! não tou  conseguir encontrar como tirar o nome de display do link -->
+				//$("#link1").outerHTML = "Adicionar Amigo";  <!-- eu vejo isto amanhã!! não tou  conseguir encontrar como tirar o nome de display
+                // do link -->
 			}
 			else
-			{
-				
+            {
 				$("#link1").attr('href', "../userProfileEdit.php");
 				//$("#link1").outerHTML = "Editar"; 
 			}
@@ -75,8 +75,24 @@
     <ul>
         <li id="History"> History
             <div>
-                <!-- historico das reviews todas -->
-                <!-- review esta no ficheiro review.php -->
+                <?php
+                    try {
+                        $reviews = getAllReviews($username);
+                    } catch (PDOException $e) {
+                        die($e->getMessage());
+                    }
+                    foreach ($reviews as $review) {
+                        try {
+                            $restaurant = getRestaurantInfo($review['restaurantId']);
+                        } catch (PDOException $e) {
+                            die($e->getMessage());
+                        }
+                        ?>
+                    <h3><?=$restaurant['name']?></h3>
+                <?php
+                        include("review.php");
+                    }
+                ?>
             </div>
         </li>
        <!-- <li id="Friends">
@@ -90,29 +106,58 @@
         </li>-->
         <li id="VisitedPlaces"> VisitedPlaces
             <!-- nome dos restaurantes que foi feita uma review -->
-            <!-- tem de dar para selecionar e ir para a sua pagina -->
+            <!-- tem de dar para selecionar e ir para a sua pagina (FALTA)-->
             <div>
-                <!-- isto vai estar num foreach cada restaurante -->
-                <!-- o restuarante esta no templates/retaurant.php -->
+                <?php
+                foreach ($reviews as $review) {
+                    try {
+                        $restaurant = getRestaurantInfo($review['restaurantId']);
+                    } catch (PDOException $e) {
+                        die($e->getMessage());
+                    }
+                    include("restaurant.php");
+                }
+                ?>
             </div>
         </li>
         <li id="ManageRestaurants"> ManageRestaurants
             <div>
-                <!-- isto vai estar num foreach para cada restaurante -->
-                <!-- o restaurante esta no templates/retaurant.php -->
+                <?php
+                try {
+                    $restaurants = getAllRestaurantsOwner($username);
+                } catch (PDOException $e) {
+                    die($e->getMessage());
+                }
+                foreach ($restaurants as $restId) {
+                    try {
+                        $restaurant = getRestaurantInfo($restId);
+                    } catch (PDOException $e) {
+                        die($e->getMessage());
+                    }
+
+                    include("restaurant.php");
+                }
+                ?>
             </div>
         </li>
     </ul>
 </section>
+
 <section id="Menu" >
     <ul>
         <a href="#History">Histórico</a>
         <br>
-        <a href="#Friends">Amigos</a>
-        <br>
+        <!--<a href="#Friends">Amigos</a>
+        <br>-->
         <a href="#VisitedPlaces">Sítios Visitados</a>
         <br>
-        <a href="#ManageRestaurants">Restaurantes</a>   <!-- opcao apenas se for owner -->
-        <br>
+        <?php
+        if(isOwner($username)) {
+            ?>
+            <a href="#ManageRestaurants">Restaurantes</a>
+            <br>
+            <?php
+        }
+        ?>
     </ul>
 </section>
