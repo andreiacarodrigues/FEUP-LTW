@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eac5cd96-6c6e-4a8f-891e-bfa2ccc71f19" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project/templates/saveReview.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Project/.idea/ProjetoLTW.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Project/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Project/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Project/SignUp.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Project/UserEdit.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Projeto.iml" afterPath="$PROJECT_DIR$/.idea/Projeto.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database.sql" afterPath="$PROJECT_DIR$/Project/database.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/User.php" afterPath="$PROJECT_DIR$/Project/database/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/restaurant.php" afterPath="$PROJECT_DIR$/Project/templates/restaurant.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/review.php" afterPath="$PROJECT_DIR$/Project/templates/review.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/userProfileT.php" afterPath="$PROJECT_DIR$/Project/templates/userProfileT.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,58 +25,81 @@
       <file leaf-file-name="database.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Project/database.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-374">
-              <caret line="26" column="14" lean-forward="false" selection-start-line="26" selection-start-column="2" selection-end-line="26" selection-end-column="14" />
+            <state relative-caret-position="136">
+              <caret line="28" column="45" lean-forward="false" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Project/database/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="72" column="38" lean-forward="false" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="38" />
+            <state relative-caret-position="308">
+              <caret line="75" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="125" selection-end-column="2" />
               <folding>
-                <marker date="1480873150914" expanded="true" signature="180:231" ph="INSERT INTO user... " />
-                <marker date="1480873150914" expanded="true" signature="409:487" ph="SELECT name,... User" />
-                <marker date="1480873150914" expanded="true" signature="861:938" ph="SELECT name,... User" />
-                <marker date="1480873150914" expanded="true" signature="1234:1269" ph="DELETE FROM " />
-                <marker date="1480873150914" expanded="true" signature="1644:1681" ph="SELECT * FRO... User" />
-                <marker date="1480873150914" expanded="true" signature="1859:1903" ph="SELECT filen... Photo" />
-                <marker date="1480873150914" expanded="true" signature="2085:2159" ph="SELECT revie... Review" />
-                <marker date="1480873150914" expanded="true" signature="2340:2423" ph="SELECT name,... Restaurant" />
-                <marker date="1480873150914" expanded="true" signature="2617:2671" ph="SELECT photo... ReviewPhoto" />
-                <marker date="1480873150914" expanded="true" signature="2617:2688" ph="SELECT photo... ReviewPhoto" />
-                <marker date="1480873150914" expanded="true" signature="2617:2690" ph="SELECT photo... ReviewPhoto" />
-                <marker date="1480873150914" expanded="true" signature="2873:2917" ph="SELECT filen... Photo" />
-                <marker date="1480873150914" expanded="true" signature="3104:3157" ph="SELECT resta... Restaurant" />
-                <marker date="1480873150914" expanded="true" signature="3330:3383" ph="SELECT resta... Restaurant" />
+                <marker date="1480874308228" expanded="true" signature="180:231" ph="INSERT INTO user... " />
+                <marker date="1480874308228" expanded="true" signature="409:487" ph="SELECT name,... User" />
+                <marker date="1480874308228" expanded="true" signature="861:938" ph="SELECT name,... User" />
+                <marker date="1480874308228" expanded="true" signature="1234:1269" ph="DELETE FROM " />
+                <marker date="1480874308228" expanded="true" signature="1644:1681" ph="SELECT * FRO... User" />
+                <marker date="1480874308228" expanded="true" signature="1859:1903" ph="SELECT filen... Photo" />
+                <marker date="1480874308228" expanded="true" signature="2085:2159" ph="SELECT revie... Review" />
+                <marker date="1480874308228" expanded="true" signature="2340:2423" ph="SELECT name,... Restaurant" />
+                <marker date="1480874308228" expanded="true" signature="2681:2735" ph="SELECT photo... ReviewPhoto" />
+                <marker date="1480874308228" expanded="true" signature="2681:2752" ph="SELECT photo... ReviewPhoto" />
+                <marker date="1480874308228" expanded="true" signature="2681:2754" ph="SELECT photo... ReviewPhoto" />
+                <marker date="1480874308228" expanded="true" signature="2937:2981" ph="SELECT filen... Photo" />
+                <marker date="1480874308228" expanded="true" signature="3168:3221" ph="SELECT resta... Restaurant" />
+                <marker date="1480874308228" expanded="true" signature="3394:3447" ph="SELECT resta... Restaurant" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="userProfileT.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Project/templates/userProfileT.php">
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+        <entry file="file://C:/xampp/htdocs/database/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1343">
-              <caret line="79" column="58" lean-forward="false" selection-start-line="79" selection-start-column="58" selection-end-line="79" selection-end-column="58" />
+            <state relative-caret-position="1000">
+              <caret line="125" column="2" lean-forward="false" selection-start-line="125" selection-start-column="2" selection-end-line="125" selection-end-column="2" />
               <folding>
-                <marker date="1480873415075" expanded="true" signature="3025:3202" ph="..." />
-                <marker date="1480873415075" expanded="true" signature="3516:3534" ph="..." />
-                <marker date="1480873415075" expanded="true" signature="4000:4584" ph="..." />
-                <marker date="1480873415075" expanded="true" signature="4650:4667" ph="..." />
+                <marker date="1480874517502" expanded="true" signature="182:233" ph="INSERT INTO user... " />
+                <marker date="1480874517502" expanded="true" signature="414:492" ph="SELECT name,... User" />
+                <marker date="1480874517502" expanded="true" signature="883:960" ph="SELECT name,... User" />
+                <marker date="1480874517502" expanded="true" signature="1263:1298" ph="DELETE FROM " />
+                <marker date="1480874517502" expanded="true" signature="1670:1707" ph="SELECT * FRO... User" />
+                <marker date="1480874517502" expanded="true" signature="1870:1914" ph="SELECT filen... Photo" />
+                <marker date="1480874517502" expanded="true" signature="2068:2142" ph="SELECT revie... Review" />
+                <marker date="1480874517502" expanded="true" signature="2295:2378" ph="SELECT name,... Restaurant" />
+                <marker date="1480874517502" expanded="true" signature="2600:2671" ph="SELECT photo... ReviewPhoto" />
+                <marker date="1480874517502" expanded="true" signature="2828:2872" ph="SELECT filen... Photo" />
+                <marker date="1480874517502" expanded="true" signature="3031:3084" ph="SELECT resta... Restaurant" />
+                <marker date="1480874517502" expanded="true" signature="3229:3282" ph="SELECT resta... Restaurant" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="userProfileT.php" pinned="false" current-in-tab="false">
-        <entry file="file://C:/xampp/htdocs/templates/userProfileT.php">
+        <entry file="file://$PROJECT_DIR$/Project/templates/userProfileT.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="162" column="10" lean-forward="false" selection-start-line="162" selection-start-column="10" selection-end-line="162" selection-end-column="10" />
+            <state relative-caret-position="170">
+              <caret line="79" column="58" lean-forward="false" selection-start-line="79" selection-start-column="49" selection-end-line="79" selection-end-column="58" />
+              <folding>
+                <marker date="1480874155281" expanded="true" signature="3025:3202" ph="..." />
+                <marker date="1480874155281" expanded="true" signature="3516:3534" ph="..." />
+                <marker date="1480874155281" expanded="true" signature="4000:4584" ph="..." />
+                <marker date="1480874155281" expanded="true" signature="4650:4667" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userProfile.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Project/userProfile.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -108,19 +119,25 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>username</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Project/database.sql" />
         <option value="$PROJECT_DIR$/Project/templates/saveReview.php" />
         <option value="$PROJECT_DIR$/Project/templates/restaurant.php" />
-        <option value="$PROJECT_DIR$/Project/database/User.php" />
         <option value="$PROJECT_DIR$/Project/templates/review.php" />
         <option value="C:/xampp/htdocs/templates/userProfileT.php" />
+        <option value="$PROJECT_DIR$/Project/database.sql" />
         <option value="$PROJECT_DIR$/Project/templates/userProfileT.php" />
+        <option value="$PROJECT_DIR$/Project/database/User.php" />
+        <option value="C:/xampp/htdocs/database/User.php" />
       </list>
     </option>
   </component>
@@ -269,12 +286,12 @@
       <option name="presentableId" value="Default" />
       <updated>1480865352129</updated>
       <workItem from="1480865354865" duration="1411000" />
-      <workItem from="1480867214065" duration="6158000" />
+      <workItem from="1480867214065" duration="7276000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7569000" />
+    <option name="totallyTimeSpent" value="8687000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
@@ -306,7 +323,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -315,10 +334,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1480873415075" expanded="true" signature="3025:3202" ph="..." />
-            <marker date="1480873415075" expanded="true" signature="3516:3534" ph="..." />
-            <marker date="1480873415075" expanded="true" signature="4000:4584" ph="..." />
-            <marker date="1480873415075" expanded="true" signature="4650:4667" ph="..." />
+            <marker date="1480874155281" expanded="true" signature="3025:3202" ph="..." />
+            <marker date="1480874155281" expanded="true" signature="3516:3534" ph="..." />
+            <marker date="1480874155281" expanded="true" signature="4000:4584" ph="..." />
+            <marker date="1480874155281" expanded="true" signature="4650:4667" ph="..." />
           </folding>
         </state>
       </provider>
@@ -328,13 +347,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project/userProfile.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -388,37 +400,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Project/database.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-374">
-          <caret line="26" column="14" lean-forward="false" selection-start-line="26" selection-start-column="2" selection-end-line="26" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project/database/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="72" column="38" lean-forward="false" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="38" />
-          <folding>
-            <marker date="1480873150914" expanded="true" signature="180:231" ph="INSERT INTO user... " />
-            <marker date="1480873150914" expanded="true" signature="409:487" ph="SELECT name,... User" />
-            <marker date="1480873150914" expanded="true" signature="861:938" ph="SELECT name,... User" />
-            <marker date="1480873150914" expanded="true" signature="1234:1269" ph="DELETE FROM " />
-            <marker date="1480873150914" expanded="true" signature="1644:1681" ph="SELECT * FRO... User" />
-            <marker date="1480873150914" expanded="true" signature="1859:1903" ph="SELECT filen... Photo" />
-            <marker date="1480873150914" expanded="true" signature="2085:2159" ph="SELECT revie... Review" />
-            <marker date="1480873150914" expanded="true" signature="2340:2423" ph="SELECT name,... Restaurant" />
-            <marker date="1480873150914" expanded="true" signature="2617:2671" ph="SELECT photo... ReviewPhoto" />
-            <marker date="1480873150914" expanded="true" signature="2617:2688" ph="SELECT photo... ReviewPhoto" />
-            <marker date="1480873150914" expanded="true" signature="2617:2690" ph="SELECT photo... ReviewPhoto" />
-            <marker date="1480873150914" expanded="true" signature="2873:2917" ph="SELECT filen... Photo" />
-            <marker date="1480873150914" expanded="true" signature="3104:3157" ph="SELECT resta... Restaurant" />
-            <marker date="1480873150914" expanded="true" signature="3330:3383" ph="SELECT resta... Restaurant" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Project/templates/review.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -429,23 +410,83 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Project/userProfile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://C:/xampp/htdocs/templates/userProfileT.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="162" column="10" lean-forward="false" selection-start-line="162" selection-start-column="10" selection-end-line="162" selection-end-column="10" />
+        <state relative-caret-position="201">
+          <caret line="79" column="44" lean-forward="false" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Project/templates/userProfileT.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1343">
-          <caret line="79" column="58" lean-forward="false" selection-start-line="79" selection-start-column="58" selection-end-line="79" selection-end-column="58" />
+        <state relative-caret-position="170">
+          <caret line="79" column="58" lean-forward="false" selection-start-line="79" selection-start-column="49" selection-end-line="79" selection-end-column="58" />
           <folding>
-            <marker date="1480873415075" expanded="true" signature="3025:3202" ph="..." />
-            <marker date="1480873415075" expanded="true" signature="3516:3534" ph="..." />
-            <marker date="1480873415075" expanded="true" signature="4000:4584" ph="..." />
-            <marker date="1480873415075" expanded="true" signature="4650:4667" ph="..." />
+            <marker date="1480874155281" expanded="true" signature="3025:3202" ph="..." />
+            <marker date="1480874155281" expanded="true" signature="3516:3534" ph="..." />
+            <marker date="1480874155281" expanded="true" signature="4000:4584" ph="..." />
+            <marker date="1480874155281" expanded="true" signature="4650:4667" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project/database.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="28" column="45" lean-forward="false" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/xampp/htdocs/database/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1000">
+          <caret line="125" column="2" lean-forward="false" selection-start-line="125" selection-start-column="2" selection-end-line="125" selection-end-column="2" />
+          <folding>
+            <marker date="1480874517502" expanded="true" signature="182:233" ph="INSERT INTO user... " />
+            <marker date="1480874517502" expanded="true" signature="414:492" ph="SELECT name,... User" />
+            <marker date="1480874517502" expanded="true" signature="883:960" ph="SELECT name,... User" />
+            <marker date="1480874517502" expanded="true" signature="1263:1298" ph="DELETE FROM " />
+            <marker date="1480874517502" expanded="true" signature="1670:1707" ph="SELECT * FRO... User" />
+            <marker date="1480874517502" expanded="true" signature="1870:1914" ph="SELECT filen... Photo" />
+            <marker date="1480874517502" expanded="true" signature="2068:2142" ph="SELECT revie... Review" />
+            <marker date="1480874517502" expanded="true" signature="2295:2378" ph="SELECT name,... Restaurant" />
+            <marker date="1480874517502" expanded="true" signature="2600:2671" ph="SELECT photo... ReviewPhoto" />
+            <marker date="1480874517502" expanded="true" signature="2828:2872" ph="SELECT filen... Photo" />
+            <marker date="1480874517502" expanded="true" signature="3031:3084" ph="SELECT resta... Restaurant" />
+            <marker date="1480874517502" expanded="true" signature="3229:3282" ph="SELECT resta... Restaurant" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project/database/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="75" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="125" selection-end-column="2" />
+          <folding>
+            <marker date="1480874308228" expanded="true" signature="180:231" ph="INSERT INTO user... " />
+            <marker date="1480874308228" expanded="true" signature="409:487" ph="SELECT name,... User" />
+            <marker date="1480874308228" expanded="true" signature="861:938" ph="SELECT name,... User" />
+            <marker date="1480874308228" expanded="true" signature="1234:1269" ph="DELETE FROM " />
+            <marker date="1480874308228" expanded="true" signature="1644:1681" ph="SELECT * FRO... User" />
+            <marker date="1480874308228" expanded="true" signature="1859:1903" ph="SELECT filen... Photo" />
+            <marker date="1480874308228" expanded="true" signature="2085:2159" ph="SELECT revie... Review" />
+            <marker date="1480874308228" expanded="true" signature="2340:2423" ph="SELECT name,... Restaurant" />
+            <marker date="1480874308228" expanded="true" signature="2681:2735" ph="SELECT photo... ReviewPhoto" />
+            <marker date="1480874308228" expanded="true" signature="2681:2752" ph="SELECT photo... ReviewPhoto" />
+            <marker date="1480874308228" expanded="true" signature="2681:2754" ph="SELECT photo... ReviewPhoto" />
+            <marker date="1480874308228" expanded="true" signature="2937:2981" ph="SELECT filen... Photo" />
+            <marker date="1480874308228" expanded="true" signature="3168:3221" ph="SELECT resta... Restaurant" />
+            <marker date="1480874308228" expanded="true" signature="3394:3447" ph="SELECT resta... Restaurant" />
           </folding>
         </state>
       </provider>

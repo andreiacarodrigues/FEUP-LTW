@@ -25,8 +25,8 @@ CREATE TABLE Restaurant (
 	photoId INTEGER NOT NULL,
 	rating_sum REAL CHECK (rating_sum > 0),
 	rating_total REAL CHECK (rating_total > 0),
-	ownerId INTEGER,
-	FOREIGN KEY(ownerId) REFERENCES User(userId) ON DELETE CASCADE ON UPDATE CASCADE
+	owner NVARCHAR2(100),
+	FOREIGN KEY(owner) REFERENCES User(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE FoodType (
@@ -57,12 +57,12 @@ CREATE TABLE RestaurantPhoto (
 
 CREATE TABLE Review (
 	reviewId INTEGER PRIMARY KEY AUTOINCREMENT,
-	username INTEGER,
+	username NVARCHAR2(100),
 	restaurantId INTEGER,
 	rating INTEGER NOT NULL CHECK (rating > 0 AND rating < 10),
 	text NVARCHAR(400),
 	FOREIGN KEY(restaurantId) REFERENCES Restaurant(restaurantId) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY(userId) REFERENCES User(userId) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY(username) REFERENCES User(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 

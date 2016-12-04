@@ -80,6 +80,10 @@ include_once('database/Connection.php');
 
         $stmt = $db->prepare('SELECT name, location, photoId, rating_total FROM Restaurant WHERE restaurantId = ?');
         $stmt->execute(array($restId));
+
+        if($stmt->fetch() === false)
+            return null;
+
         return $stmt->fetch();
     }
 
