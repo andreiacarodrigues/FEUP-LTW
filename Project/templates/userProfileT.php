@@ -66,7 +66,7 @@
         xmlhttp.send();
     }
 
-    function getRestaurants(){
+    function getVisited(){
         if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
         } else {
@@ -74,26 +74,49 @@
         }
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                var reviews = eval("(" + this.responseText + ")"); // get's the php array whit all the reviews
+                var restaurants = eval("(" + this.responseText + ")"); // get's the php array whit all the reviews
 
-                for(var i = 0; i < reviews.length; i++){
+                for(var i = 0; i < restaurants.length; i++){
 
-                    var info = reviews[i];
+                    var info = restaurants[i];
 
-                    _("name").innerHTML = info[1];
-                    _("rating").innerHTML = info[2];
-                    _("opinion").innerHTML = info[3];
+                    document.getElementById("restPhoto").innerHTML = "<img src="+info[3]+">";
+                    _("rating").innerHTML = info[1];
+                    _("name").innerHTML = info[0];
+                    _("location").innerHTML = info[2];
 
-                    var allPhotos = "<br>";
-                    for(var j = 0; j < info[4].length; j++)  //info[4] é um array de filenames de fotos para colocar depois do texto
-                        allPhotos += "<img src=" +info[4][j]+ ">" ;
-
-                    document.getElementById("photos").innerHTML = allPhotos;
                 }
             }
         };
         var username = <?php echo json_encode($username) ?>;
-        xmlhttp.open("GET","database/UserReviews.php?username="+ username,true);
+        xmlhttp.open("GET","database/UserVisitedRest.php?username="+username,true);
+        xmlhttp.send();
+    }
+
+    function getMyRestaurants(){
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var restaurants = eval("(" + this.responseText + ")"); // get's the php array whit all the reviews
+
+                for(var i = 0; i < restaurants.length; i++){
+
+                    var info = restaurants[i];
+
+                    document.getElementById("restPhoto").innerHTML = "<img src="+info[3]+">";
+                    _("rating").innerHTML = info[1];
+                    _("name").innerHTML = info[0];
+                    _("location").innerHTML = info[2];
+
+                }
+            }
+        };
+        var username = <?php echo json_encode($username) ?>;
+        xmlhttp.open("GET","database/OwnerRestaurants.php?username="+username,true);
         xmlhttp.send();
     }
 
@@ -114,8 +137,11 @@
     <?php
     if (isUserLoggedIn ()){   ?>
 		<script language="JavaScript">
+
 			getInfo();
 			getHistory();
+            getVisited();
+
 			var sessionUsername = <?php echo json_encode($_SESSION ["userid"]) ?>;
 			console.log(sessionUsername);
 			console.log(username != sessionUsername);
@@ -128,7 +154,9 @@
 			else
             {
 				$("#link1").attr('href', "../userProfileEdit.php");
-				//$("#link1").outerHTML = "Editar"; 
+				//$("#link1").outerHTML = "Editar";
+
+                getMyRestaurants(); //só se for owner e se for o proprio perfil
 			}
 				
 		</script>
@@ -158,13 +186,6 @@
             <!-- tem de dar para selecionar e ir para a sua pagina (FALTA)-->
             <div>
                 <?php
-               /* foreach ($reviews as $review) {
-                    try {
-                        $restaurant = getRestaurantInfo($review['restaurantId']);
-                    } catch (PDOException $e) {
-                        die($e->getMessage());
-                    }
-               }*/
                     include("restaurant.php");
                 ?>
             </div>
@@ -172,21 +193,7 @@
         <li id="ManageRestaurants"> ManageRestaurants
             <div>
                 <?php
-                /*
-                try {
-                    $restaurants = getAllRestaurantsOwner($username);
-                } catch (PDOException $e) {
-                    die($e->getMessage());
-                }
-                foreach ($restaurants as $restId) {
-                    try {
-                        $restaurant = getRestaurantInfo($restId);
-                    } catch (PDOException $e) {
-                        die($e->getMessage());
-                    }
-
                     include("restaurant.php");
-                }*/
                 ?>
             </div>
         </li>
@@ -201,13 +208,7 @@
         <br>-->
         <a href="#VisitedPlaces">Sítios Visitados</a>
         <br>
-        <?php
-      /*  if(isOwner($username)) {
-            ?>
-            <a href="#ManageRestaurants">Restaurantes</a>
-            <br>
-            <?php
-        }*/
-        ?>
+        <a href="#ManageRestaurants">Restaurantes</a> <!-- so deve aparecer se o user for owner -->
+        <br>
     </ul>
 </section>
