@@ -1,11 +1,12 @@
 PRAGMA FOREIGN_KEYS = ON;
 
 CREATE TABLE User (
+	userId INTEGER PRIMARY KEY AUTOINCREMENT,
 	name NVARCHAR2(100) NOT NULL,
 	email NVARCHAR2(100) NOT NULL,
 	birthdate DATE NOT NULL,
 	postCode NVARCHAR2(8),
-	username NVARCHAR2(100) PRIMARY KEY NOT NULL,
+	username NVARCHAR2(100) UNIQUE NOT NULL,
 	password  NVARCHAR2(100) NOT NULL,
 	photoId INTEGER,
 	FOREIGN KEY(photoId) REFERENCES Photo(photoId) ON DELETE CASCADE ON UPDATE CASCADE
@@ -25,7 +26,6 @@ CREATE TABLE Restaurant (
 	rating_sum REAL CHECK (rating_sum > 0),
 	rating_total REAL CHECK (rating_total > 0),
 	owner NVARCHAR2(100)
-	--FOREIGN KEY(owner) REFERENCES User(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Review (
@@ -34,8 +34,8 @@ CREATE TABLE Review (
 	restaurantId INTEGER,
 	rating INTEGER NOT NULL CHECK (rating > 0 AND rating < 10),
 	text NVARCHAR(400),
-	-- FOREIGN KEY(username) REFERENCES User(username) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY(restaurantId) REFERENCES Restaurant(restaurantId) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY(restaurantId) REFERENCES Restaurant(restaurantId) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(username) REFERENCES User(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE FoodType (
@@ -69,11 +69,15 @@ CREATE TABLE ReviewPhoto (
 	restaurantId INTEGER,
 	username NVARCHAR2(100),
 	FOREIGN KEY(restaurantId) REFERENCES Restaurant(restaurantId) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY(photoId) REFERENCES Photo(photoId) ON DELETE CASCADE ON UPDATE CASCADE
-	--FOREIGN KEY(username) REFERENCES User(username) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY(photoId) REFERENCES Photo(photoId) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(username) REFERENCES User(username) ON DELETE CASCADE ON UPDATE CASCADE
+	
 );
 
 INSERT INTO Photo VALUES (1,'../css/Images/default.png');
+
+INSERT INTO User VALUES (NULL, 'ines','ola@a.com','01-01-2016','1234-123','ines','ines',1);
+INSERT INTO User VALUES (NULL, 'andreia','ola@a.com','01-01-2016','1234-123','andreia','andreia',1);
 
 INSERT INTO Restaurant VALUES (1,'montaditos','restaurante espanhol','Porto','123456789','5','24h',NULL,NULL,1,7,7,'andreia');
 
