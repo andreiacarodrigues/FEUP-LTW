@@ -1,5 +1,5 @@
 ﻿<?php
-include_once('Connection.php');
+    include_once('Connection.php');
 
 	global $db;
 	$username = $_GET["username"];

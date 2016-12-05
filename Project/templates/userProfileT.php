@@ -43,10 +43,12 @@ else
         }
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                var reviews = eval("(" + this.responseText + ")"); // get's the php array whit all the reviews
+                var reviews = eval("(" + this.responseText + ")"); // get's the php array
 
-                for(var i = 0; i < reviews.length; i++){
+                console.log("reviews : ");
+                console.log(reviews);
 
+                for (var i = 0; i < reviews.length; i++) {
                     var info = reviews[i];
 
                     _("name").innerHTML = info[1];
@@ -54,13 +56,13 @@ else
                     _("opinion").innerHTML = info[3];
 
                     var allPhotos = "<br>";
-                    for(var j = 0; j < info[4].length; j++)  //info[4] é um array de filenames de fotos para colocar depois do texto
-                        allPhotos += "<img src=" +info[4][j]+ ">" ;
-
+                    for (var j = 0; j < info[4].length; j++)  //info[4] é um array de filenames de fotos para colocar depois do text
+                        allPhotos += "<img src=" + info[4][j] + ">";
                     document.getElementById("photos").innerHTML = allPhotos;
                 }
             }
         };
+
         var username = <?php echo json_encode($username) ?>;
         xmlhttp.open("GET","database/UserReviews.php?username="+ username,true);
         xmlhttp.send();
@@ -76,15 +78,16 @@ else
             if (this.readyState == 4 && this.status == 200) {
                 var restaurants = eval("(" + this.responseText + ")"); // get's the php array whit all the reviews
 
-                for(var i = 0; i < restaurants.length; i++){
+                console.log("visited : ");
+                console.log(restaurants);
 
+                for (var i = 0; i < restaurants.length; i++) {
                     var info = restaurants[i];
 
-                    document.getElementById("restPhoto").innerHTML = "<img src="+info[3]+">";
+                    //document.getElementById("restPhoto").innerHTML = "<img src=" + info[3] + ">"
                     _("rating").innerHTML = info[1];
                     _("name").innerHTML = info[0];
                     _("location").innerHTML = info[2];
-
                 }
             }
         };
@@ -103,15 +106,17 @@ else
             if (this.readyState == 4 && this.status == 200) {
                 var restaurants = eval("(" + this.responseText + ")"); // get's the php array whit all the reviews
 
-                for(var i = 0; i < restaurants.length; i++){
+                console.log("My restaurants : ");
+                console.log(restaurants);
 
+                for (var i = 0; i < restaurants.length; i++)
+                {
                     var info = restaurants[i];
 
-                    document.getElementById("restPhoto").innerHTML = "<img src="+info[3]+">";
+                    document.getElementById("restPhoto").innerHTML = "<img src=" + info[3] + ">";
                     _("rating").innerHTML = info[1];
                     _("name").innerHTML = info[0];
                     _("location").innerHTML = info[2];
-
                 }
             }
         };
@@ -143,6 +148,7 @@ else
                 getInfo();
                 getHistory();
                 getVisited();
+                getMyRestaurants(); //só se for owner e se for o proprio perfil
 
                 var sessionUsername = <?php echo json_encode($_SESSION ["userid"]) ?>;
                 console.log(sessionUsername);
@@ -157,8 +163,6 @@ else
                 {
                     $("#link1").attr('href', "../userProfileEdit.php");
                     //$("#link1").outerHTML = "Editar";
-
-                    getMyRestaurants(); //só se for owner e se for o proprio perfil
                 }
 
             </script>
@@ -189,8 +193,14 @@ else
                 <!-- tem de dar para selecionar e ir para a sua pagina (FALTA)-->
                 <div>
                     <?php
-                    include("restaurant.php");
+                    //include("restaurant.php");
                     ?>
+                    <ul>
+                        <li id="restPhoto" />
+                        <li id="rating" />
+                        <li id="name" />
+                        <li id="location" />
+                    </ul>
                 </div>
             </li>
             <li id="ManageRestaurants">
