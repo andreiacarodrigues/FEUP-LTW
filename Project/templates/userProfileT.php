@@ -51,7 +51,7 @@ else
                 for (var i = 0; i < reviews.length; i++) {
                     var info = reviews[i];
 
-                    _("name").innerHTML = info[1];
+                    _("restName").innerHTML = info[1];
                     _("rating").innerHTML = info[2];
                     _("opinion").innerHTML = info[3];
 
@@ -86,7 +86,7 @@ else
 
                     //document.getElementById("restPhoto").innerHTML = "<img src=" + info[3] + ">"
                     _("rating").innerHTML = info[1];
-                    _("name").innerHTML = info[0];
+                    _("restName").innerHTML = info[0];
                     _("location").innerHTML = info[2];
                 }
             }
@@ -115,7 +115,7 @@ else
 
                     document.getElementById("restPhoto").innerHTML = "<img src=" + info[3] + ">";
                     _("rating").innerHTML = info[1];
-                    _("name").innerHTML = info[0];
+                    _("restName").innerHTML = info[0];
                     _("location").innerHTML = info[2];
                 }
             }
@@ -191,17 +191,15 @@ else
             <li id="VisitedPlaces">
                 <!-- nome dos restaurantes que foi feita uma review -->
                 <!-- tem de dar para selecionar e ir para a sua pagina (FALTA)-->
-                <div>
-                    <?php
-                    //include("restaurant.php");
-                    ?>
-                    <ul>
-                        <li id="restPhoto" />
-                        <li id="rating" />
-                        <li id="name" />
-                        <li id="location" />
-                    </ul>
-                </div>
+                <?php
+                //include("restaurant.php");
+                ?>
+                <ul>
+                    <li id= "restName"></li>
+                    <li id= "restPhoto"></li>
+                    <li id="rating"></li>
+                    <li id="location"></li>
+                </ul>
             </li>
             <li id="ManageRestaurants">
                 <div>
