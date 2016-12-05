@@ -8,15 +8,9 @@
     </ul>
     <footer>
         <!-- efeito acordeão para ver os comentarios e para abrir a textarea -->
-        <a href="#comments">Comments</a>
-        <?php
-      /*  if(isOwner($username)) {
-            ?>
-            <a href="#review">Responder</a>
-            <?php
-        }*/
-        ?>
-        <span class="date">@May 5th 2014</span> <!-- a data ainda nao esta implementada -->
+        <span class="date">@May 5th 2014</span><br> <!-- a data ainda nao esta implementada -->
+        <a href="#comments">Comentários</a>
+        <a href="#review">Responder</a> <!-- deve verificar se é ownwer -->
     </footer>
 </article>
 
@@ -25,7 +19,7 @@
 </section>
 
 <section id="review">
-    <form action="save_review.php" method="post"><!-- formulario vai para um sitio que cria uma nova review associada a inicial-->
+    <form action="save_review.php" method="post"> <!-- formulario vai para um sitio que cria uma nova review associada a inicial-->
 
         <label>
             Opinião:

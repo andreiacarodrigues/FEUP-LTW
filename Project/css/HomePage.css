@@ -4,3 +4,40 @@
     background-color: #cccccc;
     background-position: center;
 }
+
+#main
+{
+    border: 1px solid black;
+    float: left;
+    width: 250px;
+    height: 500px;
+}
+
+#dashboard
+{
+    border: 1px solid black;
+    float: left;
+    width: 800px;
+    height: 500px;
+}
+
+#dashboard li:target
+{
+    display: block;
+}
+
+#dashboard li{
+    display: none;
+}
+
+#menuProfile
+{
+    border: 1px solid black;
+    float: left;
+    width: 250px;
+    height: 500px;
+}
+
+#menuProfile a{
+    text-decoration: none;
+}
