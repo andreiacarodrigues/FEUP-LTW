@@ -194,14 +194,13 @@ else
 		
 			xmlhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
-					console.log('hey');
-				
+					$('#newReview' + i ).val('');
 				}
 			};
 			
 			xmlhttp.open("GET","database/AddReply.php?id="+r + "&username="+u+"&text="+t,true);
 			xmlhttp.send();
-				t = "";
+
 		}
 		// restrição de owner não poder fazer review do proprio restaurante - TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 	}
