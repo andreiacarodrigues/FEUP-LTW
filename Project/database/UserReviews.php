@@ -27,10 +27,10 @@ foreach ($reviews as $review)
     }
 
     $infoArray = array(0 => $review['reviewId'],
-        1 => $name,
+        1 => $name['name'],
         2 => $review['rating'],
         3 => $review['text'],
-        4 => $photosId);
+        4 => $photos);
 
     $result[] = $infoArray;
 }

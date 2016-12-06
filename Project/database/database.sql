@@ -82,7 +82,7 @@ CREATE TABLE ReviewReply (
 	FOREIGN KEY(reviewId) REFERENCES Review(reviewId) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(username) REFERENCES User(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
-INSERT INTO Photo VALUES (1,'./css/Images/default.png');
+INSERT INTO Photo VALUES (1,'../css/Images/default.png');
 INSERT INTO Photo VALUES (2,'./css/Images/teste1.gif');
 INSERT INTO Photo VALUES (3,'./css/Images/testeMenu.jpg');
 

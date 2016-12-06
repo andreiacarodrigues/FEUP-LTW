@@ -21,7 +21,7 @@ foreach ($restaurants as $restaurantId)
     $infoArray = array(0 => $restaurant['name'],
         1 => $restaurant['rating_sum'],
         2 => $restaurant['location'],
-        3 => $photo);
+        3 => $photo['filename']);
     $result[] = $infoArray;
 }
 

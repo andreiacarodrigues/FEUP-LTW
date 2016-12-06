@@ -51,8 +51,8 @@ else
                 for (var i = 0; i < reviews.length; i++) {
                     var info = reviews[i];
 
-                    _("restName").innerHTML = info[1];
-                    _("rating").innerHTML = info[2];
+                    _("nameC").innerHTML = info[1];
+                    _("ratingU").innerHTML = info[2];
                     _("opinion").innerHTML = info[3];
 
                     var allPhotos = "<br>";
@@ -84,9 +84,9 @@ else
                 for (var i = 0; i < restaurants.length; i++) {
                     var info = restaurants[i];
 
-                    //document.getElementById("restPhoto").innerHTML = "<img src=" + info[3] + ">"
-                    _("rating").innerHTML = info[1];
+                    document.getElementById("restPhoto").innerHTML = "<img src=" + info[3] + ">"
                     _("restName").innerHTML = info[0];
+                    _("rating").innerHTML = info[1];
                     _("location").innerHTML = info[2];
                 }
             }
@@ -114,8 +114,8 @@ else
                     var info = restaurants[i];
 
                     document.getElementById("restPhoto").innerHTML = "<img src=" + info[3] + ">";
-                    _("rating").innerHTML = info[1];
                     _("restName").innerHTML = info[0];
+                    _("rating").innerHTML = info[1];
                     _("location").innerHTML = info[2];
                 }
             }
@@ -132,13 +132,13 @@ else
     <section id="main" >
         <!-- <img src="vaiBuscarBD.jpg" alt="User photo"> <!-- aqui é ver se a photo é null => display de uma foto default ou se tenho de ir buscar uma foto da pessoa -->
         <ul id="informacoes">
-            <li id= "username"></li>
-            <li id= "name"></li>
+            <label>Username: <li id= "username"></li> </label>
+            <label>Name : <li id= "name"></li> </label>
             <!-- mostrar isto deve ser opcional -->
-            <li id= "email"></li>
-            <li id= "birthdate"></li>
-            <li id= "postCode"></li>
-            <li id= "picId" style="display: none"></li>
+            <label>Email :<li id= "email"></li></label>
+            <label>Birthday : <li id= "birthdate"></li></label>
+            <label>Post-code : <li id= "postCode"></li></label>
+            <label>(temporario, suponho)<li id= "picId" style="display: none"></li></label>
         </ul>
         <a id ="link1" href=""></a>;
         <?php
@@ -192,14 +192,8 @@ else
                 <!-- nome dos restaurantes que foi feita uma review -->
                 <!-- tem de dar para selecionar e ir para a sua pagina (FALTA)-->
                 <?php
-                //include("restaurant.php");
+                include("restaurant.php");
                 ?>
-                <ul>
-                    <li id= "restName"></li>
-                    <li id= "restPhoto"></li>
-                    <li id="rating"></li>
-                    <li id="location"></li>
-                </ul>
             </li>
             <li id="ManageRestaurants">
                 <div>

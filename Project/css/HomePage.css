@@ -21,13 +21,8 @@
     height: 500px;
 }
 
-#dashboard li:target
-{
+#dashboard li:target {
     display: block;
-}
-
-#dashboard li{
-    display: none;
 }
 
 #menuProfile
