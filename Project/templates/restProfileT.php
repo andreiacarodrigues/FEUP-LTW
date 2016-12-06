@@ -31,8 +31,7 @@ else
             if (this.readyState == 4 && this.status == 200) {
 				var info = new String(this.responseText);
 				info = info.trim();
-				
-				console.log(info);
+			
 				if(info == "INVALID")
 					return false;
 				else
@@ -49,19 +48,17 @@ else
                 _("schedule").innerHTML = info[5];
 				_("observations").innerHTML = info[6];
 				
-				var menuId = info[7]; // colocar menuId e photo Id
+				var menuId = info[7];
 				var photoId = info[8];
-				
-				console.log(menuId);
-				console.log(photoId);
-				if(photoId != "NULL")
+	
+				if(photoId != null)
 				{
 					getPhoto(parseInt(photoId), false);
 				}
 				else
 					$('#main').prepend('<img src="./css/Images/defaultRestaurant.jpg" alt="Photo that represents the restaurant">');
 				
-				if(menuId != "NULL")
+				if(menuId != null)
 				{
 					getPhoto(parseInt(menuId) , true);
 				}
@@ -82,9 +79,11 @@ else
 			    }
 			    else
 				{
-					$('#options').html('<li><a href="#LeaveReview">Leave Review</a></li>');
+					$('#options').html('<li><a href="#newReview">Leave Review</a></li>');
 					$('#options').append('<li><a href="#">Fast Review</a></li>');
 				}
+				
+				getReviews(owner);
 						   
 			   return true;
             }
@@ -103,30 +102,16 @@ else
         }
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-				console.log(this.responseText);
 				var filename = new String(this.responseText);
 				filename = filename.trim();
-				
-				console.log(filename);
+
 				if(filename == "INVALID")
 					return false;
 				
 				if(isMenu)
-				{
-					var s1 = '<img src="./css/Images/';
-					var s2 = 'alt="Photo that represents the restaurant">';
-					s1.concat(filename);
-					s1.concat(s2);
-					
-					alert(s1);
 					$('#menu').html('<img src='+ filename + 'alt="Photo that represents the restaurant">');
-					
-					alert($('#menu').html());
-				}
 				else
-				{
 					$('#main').prepend('<img src=' + filename + 'alt="Photo that represents the restaurant">');
-				}
 				
 			   return true;
             }
@@ -136,6 +121,66 @@ else
         xmlhttp.send();
 	}
 
+	
+	function getReviews(owner) // Reviews section and all photos taken by costumers go automatically to the Photos section
+	{
+		 if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+				var info = new String(this.responseText);
+				info = info.trim();
+
+				if(info == "INVALID")
+					return false;
+				else
+					info = eval("(" + this.responseText + ")"); 
+					
+				for(var i = 0; i < info.length; i++)
+				{
+							
+					$('#reviews').append('<article id=' + i + '>\n<ul>\n<li id="rev_username">' + info[i][0] + '</li>\n<label>Rating: <li id="rev_rating">' + info[i][1] + '</li></label>\n<label>Review: <li id="rev_opinion">' + info[i][2] + '</li>\n<li id="rev_photos">\n</li>\n</ul>\n');
+			
+					var photos = info[i][3];
+					for(var j = 0; j < photos.length; j++)
+					{
+						var photoInsertText = '<img src="'+ photos[j] + '"alt="Review Photo">';
+						$('#reviews > #' + i + ' #rev_photos').append(photoInsertText);
+						$('#photos').append(photoInsertText);
+					}
+					
+					$('#reviews').append('<footer>');
+					$('#reviews').append('<span class="date">' + info[i][4] + '</span><br>'); // date
+						
+					if(owner == username)
+					{
+						$('#reviews').append('<a href="#reply">Responder</a>');
+					}
+					$('#reviews').append('</footer>\n</article>\n');
+						
+					//alert($('#reviews').html());
+				}
+				return true;	
+            }
+        };
+
+        xmlhttp.open("GET","database/RestaurantReviews.php?restaurant="+ restaurant,true);
+        xmlhttp.send();
+	}
+
+/*	isto vai buscar a data -> quando for para adicionar uma review xD
+
+var d = new Date();
+
+var month = d.getMonth()+1;
+var day = d.getDate();
+
+var output = d.getFullYear() + '/' +
+    (month<10 ? '0' : '') + month + '/' +
+    (day<10 ? '0' : '') + day;*/
 </script>
 
 <section id="main" >
@@ -160,20 +205,33 @@ else
             </div>
         </li>
         <li>
-            <a href="#Menu">Menu</a>
+            <a href="#menu">Menu</a>
             <div id = "menu">
             </div>
         </li>
-        <li  id="reviews">
-            <a href="#Reviews">Opiniões</a>
-            <div>
-                <!-- lista de todas as revies -->
-                <!-- review esta no ficheiro review.php -->
+        <li>
+            <a href="#reviews">Opiniões</a>
+            <div  id="reviews">
+				<!--<article>
+					<img src="" alt="user foto">
+					<ul>
+						<li id= "name"></li>  
+						<li id= "rating"></li>
+						<li id= "opinion"></li>
+						<li id= "photos"></li>
+					</ul>
+					<footer>
+						<!-- efeito acordeão para ver os comentarios e para abrir a textarea 
+						<span class="date">@May 5th 2014</span><br> <!-- a data ainda nao esta implementada
+						<a href="#comments">Comentários</a>
+						<a href="#review">Responder</a> <!-- deve verificar se é ownwer
+					</footer>
+				</article> -->
             </div>
         </li>
-        <li  id="photos">
-            <a href="#Photos">Fotos</a>
-            <div>
+        <li>
+            <a href="#photos">Fotos</a>
+            <div id="photos">
                 <!-- vai conter várias imagens em miniatura que vêm da bd-->
             </div>
         </li>
