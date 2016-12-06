@@ -142,35 +142,68 @@ else
 				for(var i = 0; i < info.length; i++)
 				{
 							
-					$('#reviews').append('<article id=' + i + '>\n<ul>\n<li id="rev_username">' + info[i][0] + '</li>\n<label>Rating: <li id="rev_rating">' + info[i][1] + '</li></label>\n<label>Review: <li id="rev_opinion">' + info[i][2] + '</li>\n<li id="rev_photos">\n</li>\n</ul>\n');
+					$('#reviews').append('<article id=' + info[i][0] + '>\n<ul>\n<li id="rev_username">' + info[i][1] + '</li>\n<label>Rating: <li id="rev_rating">' + info[i][2] + '</li></label>\n<label>Review: <li id="rev_opinion">' + info[i][3] + '</li>\n<li id="rev_photos">\n</li>\n</ul>\n');
 			
-					var photos = info[i][3];
+					var photos = info[i][4];
 					for(var j = 0; j < photos.length; j++)
 					{
 						var photoInsertText = '<img src="'+ photos[j] + '"alt="Review Photo">';
-						$('#reviews > #' + i + ' #rev_photos').append(photoInsertText);
+						$('#reviews > #' + info[i][0] + ' #rev_photos').append(photoInsertText);
 						$('#photos').append(photoInsertText);
 					}
 					
 					$('#reviews').append('<footer>');
-					$('#reviews').append('<span class="date">' + info[i][4] + '</span><br>'); // date
+					$('#reviews').append('<span class="date">' + info[i][5] + '</span><br>'); // date
 						
-						console.log(owner);
-						console.log(username);
 					if(owner == username)
 					{
-						$('#reviews').append('<a href="#reply">Responder</a>');
+						$('#reviews').append('<a href="#reply' + info[i][0] + '">Responder</a><form id="reply' + info[i][0] + '" class= "reply"><textarea id="newReview' + info[i][0] + '" cols="40" rows="5"></textarea><br><input type="button" onclick="submitReply(' + info[i][0] +')" value="Submeter"><input type="button" onclick="" value="Cancelar"><br><span id="r_status' + info[i][0] + '"></span></form>'); // duvidas aqui em questão do link ser necessário para fazer o acordeão
+
 					}
 					$('#reviews').append('</footer>\n</article>\n');
 						
 					//alert($('#reviews').html());
 				}
+				console.log($('#reviews').html());
 				return true;	
             }
         };
 
         xmlhttp.open("GET","database/RestaurantReviews.php?restaurant="+ restaurant,true);
         xmlhttp.send();
+	}
+	
+	function submitReply(i)
+	{
+		var r = i;
+		var u = username; //owner
+		var t = _("newReview" + i).value;
+		var r_status = _("r_status" + i);
+
+		if(t == "")
+			r_status.innerHTML = "You can't submit an empty reply.";
+		else
+		{
+			r_status.innerHTML = "";
+		
+			if (window.XMLHttpRequest) {
+				xmlhttp = new XMLHttpRequest();
+			} else {
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+		
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					console.log('hey');
+				
+				}
+			};
+			
+			xmlhttp.open("GET","database/AddReply.php?id="+r + "&username="+u+"&text="+t,true);
+			xmlhttp.send();
+				t = "";
+		}
+		// restrição de owner não poder fazer review do proprio restaurante - TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 	}
 
 /*	isto vai buscar a data -> quando for para adicionar uma review xD
@@ -215,7 +248,7 @@ var output = d.getFullYear() + '/' +
             <a href="#reviews">Opiniões</a>
             <div  id="reviews">
 				<!--<article>
-					<img src="" alt="user foto">
+					<img src="" alt="user foto"> //  - TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 					<ul>
 						<li id= "name"></li>  
 						<li id= "rating"></li>
@@ -225,8 +258,13 @@ var output = d.getFullYear() + '/' +
 					<footer>
 						<!-- efeito acordeão para ver os comentarios e para abrir a textarea 
 						<span class="date">@May 5th 2014</span><br> <!-- a data ainda nao esta implementada
-						<a href="#comments">Comentários</a>
-						<a href="#review">Responder</a> <!-- deve verificar se é ownwer
+						<a href="#reply' + i + '">Responder</a>
+						<form id="reply' + i + '">
+							<textarea name="newReview" cols="40" rows="5"></textarea> <br>
+							<input type="button" onclick="" value="Submeter">
+							<input type="button" onclick="" value="Cancelar">
+							<br><span id="r_status + i'"></span>
+						</form>
 					</footer>
 				</article> -->
             </div>

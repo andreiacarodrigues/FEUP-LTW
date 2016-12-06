@@ -76,10 +76,10 @@ CREATE TABLE ReviewPhoto (
 );
 
 CREATE TABLE ReviewReply (
-	restaurantId INTEGER,
+	reviewId INTEGER,
 	username NVARCHAR2(100),
 	text NVARCHAR2(100),
-	FOREIGN KEY(restaurantId) REFERENCES Restaurant(restaurantId) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(reviewId) REFERENCES Review(reviewId) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(username) REFERENCES User(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 INSERT INTO Photo VALUES (1,'./css/Images/default.png');

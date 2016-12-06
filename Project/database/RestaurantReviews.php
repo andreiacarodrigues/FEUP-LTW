@@ -8,7 +8,7 @@ $stmt = $db->prepare('SELECT restaurantId FROM Restaurant WHERE name = ?');
 $stmt->execute(array($restaurant));
 $restaurantId = $stmt->fetch();
 
-$stmt = $db->prepare('SELECT username, rating, text, date FROM Review WHERE restaurantId = ?');
+$stmt = $db->prepare('SELECT reviewId, username, rating, text, date FROM Review WHERE restaurantId = ?');
 $stmt->execute(array($restaurantId['restaurantId']));
 $reviews = $stmt->fetchAll();
 
@@ -29,11 +29,12 @@ foreach ($reviews as $review)
     }
 
     $infoArray = array(
-		0 => $review['username'],
-        1 => $review['rating'],
-        2 => $review['text'],
-        3 => $photos,
-		4 => $review['date']);
+		0 => $review['reviewId'],
+		1 => $review['username'],
+        2 => $review['rating'],
+        3 => $review['text'],
+        4 => $photos,
+		5 => $review['date']);
 
     $result[] = $infoArray;
 }
