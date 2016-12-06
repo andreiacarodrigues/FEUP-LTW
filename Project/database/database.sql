@@ -34,8 +34,8 @@ CREATE TABLE Review (
 	restaurantId INTEGER,
 	rating INTEGER NOT NULL CHECK (rating > 0 AND rating < 10),
 	text NVARCHAR(400),
-	FOREIGN KEY(restaurantId) REFERENCES Restaurant(restaurantId) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY(username) REFERENCES User(username) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY(restaurantId) REFERENCES Restaurant(restaurantId) ON DELETE CASCADE ON UPDATE CASCADE
+	--FOREIGN KEY(username) REFERENCES User(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE FoodType (
@@ -69,15 +69,15 @@ CREATE TABLE ReviewPhoto (
 	restaurantId INTEGER,
 	username NVARCHAR2(100),
 	FOREIGN KEY(restaurantId) REFERENCES Restaurant(restaurantId) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY(photoId) REFERENCES Photo(photoId) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY(username) REFERENCES User(username) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY(photoId) REFERENCES Photo(photoId) ON DELETE CASCADE ON UPDATE CASCADE
+	--FOREIGN KEY(username) REFERENCES User(username) ON DELETE CASCADE ON UPDATE CASCADE
 	
 );
 
 INSERT INTO Photo VALUES (1,'../css/Images/default.png');
 
-INSERT INTO User VALUES (NULL, 'ines','ola@a.com','01-01-2016','1234-123','ines','ines',1);
-INSERT INTO User VALUES (NULL, 'andreia','ola@a.com','01-01-2016','1234-123','andreia','andreia',1);
+INSERT INTO User VALUES (NULL, 'a','ola@a.com','01-01-2016','1234-123','a','a',1);
+INSERT INTO User VALUES (NULL, 'b','ola@a.com','01-01-2016','1234-123','andreia','andreia',1);
 
 INSERT INTO Restaurant VALUES (1,'montaditos','restaurante espanhol','Porto','123456789','5','24h',NULL,NULL,1,7,7,'andreia');
 
