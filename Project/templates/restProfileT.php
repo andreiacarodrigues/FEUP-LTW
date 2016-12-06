@@ -155,6 +155,8 @@ else
 					$('#reviews').append('<footer>');
 					$('#reviews').append('<span class="date">' + info[i][4] + '</span><br>'); // date
 						
+						console.log(owner);
+						console.log(username);
 					if(owner == username)
 					{
 						$('#reviews').append('<a href="#reply">Responder</a>');

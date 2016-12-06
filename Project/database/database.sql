@@ -89,7 +89,7 @@ INSERT INTO Photo VALUES (3,'./css/Images/testeMenu.jpg');
 INSERT INTO User VALUES (NULL, 'ines','ola@a.com','01-01-2016','1234-123','ines','ines',1);
 INSERT INTO User VALUES (NULL, 'andreia','ola@a.com','01-01-2016','1234-123','andreia','andreia',1);
 
-INSERT INTO Restaurant VALUES (1,'montaditos','restaurante espanhol','Porto','123456789','5','24h',null,3,2,7,7,'andreia');
+INSERT INTO Restaurant VALUES (1,'montaditos','restaurante espanhol','Porto','123456789','5','24h',null,3,2,7,7,'ola');
 
 INSERT INTO Review VALUES (1,'ines',1,4,'rapido e bom','2016-05-01');
 INSERT INTO Review VALUES (2,'andreia',1,4,'foi fixe','2014-01-26');
