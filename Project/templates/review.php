@@ -30,3 +30,10 @@
         <input type="button" value="Submeter">
     </form>
 </section>
+
+
+<form id="reply">
+	<textarea name="newReview" cols="40" rows="5"></textarea>
+	<input type="button" onclick="" value="Submeter">
+	<input type="button" onclick="" value="Cancelar">
+</form>
