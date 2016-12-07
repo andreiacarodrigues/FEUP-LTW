@@ -8,6 +8,9 @@ else
 ?>
 
 <script language="JavaScript">
+
+    //this.len = 0;
+
     function _(x){
         return document.getElementById(x);
     }
@@ -27,7 +30,7 @@ else
                 _("email").innerHTML = info[1];
                 _("birthdate").innerHTML = info[2];
                 _("postCode").innerHTML = info[3];
-                _("picId").innerHTML = info[4];
+                //document.getElementById("pic").innerHTML = "<img src=" + info[4] + ">";
             }
         };
         var username = <?php echo json_encode($username) ?>;
@@ -48,6 +51,8 @@ else
                 console.log("reviews : ");
                 console.log(reviews);
 
+                var len = reviews.length;
+
                 for (var i = 0; i < reviews.length; i++) {
                     var info = reviews[i];
 
@@ -56,8 +61,8 @@ else
                     _("opinion").innerHTML = info[3];
 
                     var allPhotos = "<br>";
-                    for (var j = 0; j < info[4].length; j++)  //info[4] é um array de filenames de fotos para colocar depois do text
-                        allPhotos += "<img src=" + info[4][j] + ">";
+                    /*for (var j = 0; j < info[4].length; j++)  //info[4] é um array de filenames de fotos para colocar depois do text
+                     allPhotos += "<img src=" + info[4][j] + ">";*/
                     document.getElementById("photos").innerHTML = allPhotos;
                 }
             }
@@ -132,13 +137,13 @@ else
     <section id="main" >
         <!-- <img src="vaiBuscarBD.jpg" alt="User photo"> <!-- aqui é ver se a photo é null => display de uma foto default ou se tenho de ir buscar uma foto da pessoa -->
         <ul id="informacoes">
+            <li id= "picId" style="display: none"></li>
             <label>Username: <li id= "username"></li> </label>
             <label>Name : <li id= "name"></li> </label>
             <!-- mostrar isto deve ser opcional -->
             <label>Email :<li id= "email"></li></label>
             <label>Birthday : <li id= "birthdate"></li></label>
             <label>Post-code : <li id= "postCode"></li></label>
-            <label>(temporario, suponho)<li id= "picId" style="display: none"></li></label>
         </ul>
         <a id ="link1" href=""></a>;
         <?php
@@ -148,7 +153,6 @@ else
                 getInfo();
                 getHistory();
                 getVisited();
-                getMyRestaurants(); //só se for owner e se for o proprio perfil
 
                 var sessionUsername = <?php echo json_encode($_SESSION ["userid"]) ?>;
                 console.log(sessionUsername);
@@ -163,6 +167,8 @@ else
                 {
                     $("#link1").attr('href', "../userProfileEdit.php");
                     //$("#link1").outerHTML = "Editar";
+
+                    getMyRestaurants(); //só se for owner e se for o proprio perfil
                 }
 
             </script>
@@ -175,6 +181,10 @@ else
             <li id="History">
                 <div>
                     <?php
+                    $myLen = "<script>document.writeln(this.len);</script>";
+                    echo $myLen;
+
+                    // for($i = 0; $i < $myLen; $i++)
                     include("review.php");
                     ?>
                 </div>
