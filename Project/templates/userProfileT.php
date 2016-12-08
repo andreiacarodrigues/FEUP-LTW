@@ -45,7 +45,7 @@ else {
 
                 //document.getElementById("pic").innerHTML = "<img src=" + info[4] + ">"; //foto da pessoa
 
-                getReviews();
+                getReviews(null);
                 getVisited();
                 getMyRestaurants(); //só se for owner e se for o proprio perfil
             }
@@ -55,7 +55,7 @@ else {
         xmlhttp.send();
     }
 
-    function getReviews() // Reviews section and all photos taken by costumers go automatically to the Photos section
+    function getReviews(owner)
     {
         if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
@@ -78,30 +78,16 @@ else {
 
                 for(var i = 0; i < info.length; i++)
                 {
-                    $('#history').append('<article id=' + info[i][0] + '>\n<ul>\n<li id="rev_restaurant">' + info[i][1] +
-                        '</li>\n<label>Rating: <li id="rev_rating">' + info[i][2] +
-                        '</li></label>\n<label>Review: <li id="rev_opinion">' + info[i][3] +
-                        '</li>\n<li id="rev_photos">\n</li>\n</ul>\n');
-
-                    /*var photos = info[i][4];
-                     for(var j = 0; j < photos.length; j++)
-                     {
-                     var photoInsertText = '<img src="'+ photos[j] + '"alt="Review Photo">';
-                     $('#reviews > #' + info[i][0] + ' #rev_photos').append(photoInsertText);
-                     $('#photos').append(photoInsertText);
-                     }*/
-
-                    $('#history').append('<footer>');
-                    //$('#history').append('<span class="date">' + info[i][5] + '</span><br>'); // date
-
-
-                    $('#history').append('</footer>\n</article>\n');
-
+                    $.get('./templates/review.php',  {info: info[i], owner: owner , username: username}, function(data)
+                        {
+                            $('#history').append(data);
+                        }
+                    );
                 }
-                console.log($('#history').html());
                 return true;
             }
         };
+
         xmlhttp.open("GET","database/UserReviews.php?username="+ username,true);
         xmlhttp.send();
     }
