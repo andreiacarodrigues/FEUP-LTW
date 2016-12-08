@@ -143,8 +143,7 @@ else
 					return false;
 				else
 					info = eval("(" + this.responseText + ")"); 
-					
-					console.log(info[0][6]);
+				
 				for(var i = 0; i < info.length; i++)
 				{		
 					$.get('./templates/review.php',  {info: info[i], owner: owner , username: username}, function(data) 
