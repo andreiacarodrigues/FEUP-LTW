@@ -1,15 +1,18 @@
 <?php
-if (isset ( $_GET ["username"] ))
+if (isset ( $_GET ["username"] )) {
     $username = $_GET ["username"];
-else if (isset ( $_SESSION ["userid"] ))
+}
+else if (isset ( $_SESSION ["userid"] )) {
     $username = $_SESSION ["userid"];
-else
+}
+else {
     die();
+}
 ?>
 
 <script language="JavaScript">
 
-    //this.len = 0;
+    var username = <?php echo json_encode($username) ?>;
 
     function _(x){
         return document.getElementById(x);
@@ -22,53 +25,83 @@ else
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
         xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var info = eval("(" + this.responseText + ")"); // get's the php array
+            if (this.readyState == 4 && this.status == 200)
+            {
+                var info = new String(this.responseText);
+                info = info.trim();
+
+                if(info == "INVALID")
+                    return false;
+                else
+                    info = eval("(" + this.responseText + ")");
 
                 _("username").innerHTML = username;
                 _("name").innerHTML = info[0];
                 _("email").innerHTML = info[1];
                 _("birthdate").innerHTML = info[2];
                 _("postCode").innerHTML = info[3];
-                //document.getElementById("pic").innerHTML = "<img src=" + info[4] + ">";
+
+                //verificar aqui se é owner ?
+
+                //document.getElementById("pic").innerHTML = "<img src=" + info[4] + ">"; //foto da pessoa
+
+                getReviews();
+                getVisited();
+                getMyRestaurants(); //só se for owner e se for o proprio perfil
             }
         };
-        var username = <?php echo json_encode($username) ?>;
+
         xmlhttp.open("GET","database/UserInfo.php?username="+ username,true);
         xmlhttp.send();
     }
 
-    function getHistory(){
+    function getReviews() // Reviews section and all photos taken by costumers go automatically to the Photos section
+    {
         if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
         } else {
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
         xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var reviews = eval("(" + this.responseText + ")"); // get's the php array
+            if (this.readyState == 4 && this.status == 200)
+            {
+                var info = new String(this.responseText);
+                info = info.trim();
+
+                if(info == "INVALID")
+                    return false;
+                else
+                    info = eval("(" + this.responseText + ")");
 
                 console.log("reviews : ");
-                console.log(reviews);
+                console.log(info);
 
-                var len = reviews.length;
+                for(var i = 0; i < info.length; i++)
+                {
+                    $('#history').append('<article id=' + info[i][0] + '>\n<ul>\n<li id="rev_restaurant">' + info[i][1] +
+                        '</li>\n<label>Rating: <li id="rev_rating">' + info[i][2] +
+                        '</li></label>\n<label>Review: <li id="rev_opinion">' + info[i][3] +
+                        '</li>\n<li id="rev_photos">\n</li>\n</ul>\n');
 
-                for (var i = 0; i < reviews.length; i++) {
-                    var info = reviews[i];
+                    /*var photos = info[i][4];
+                     for(var j = 0; j < photos.length; j++)
+                     {
+                     var photoInsertText = '<img src="'+ photos[j] + '"alt="Review Photo">';
+                     $('#reviews > #' + info[i][0] + ' #rev_photos').append(photoInsertText);
+                     $('#photos').append(photoInsertText);
+                     }*/
 
-                    _("nameC").innerHTML = info[1];
-                    _("ratingU").innerHTML = info[2];
-                    _("opinion").innerHTML = info[3];
+                    $('#history').append('<footer>');
+                    //$('#history').append('<span class="date">' + info[i][5] + '</span><br>'); // date
 
-                    var allPhotos = "<br>";
-                    /*for (var j = 0; j < info[4].length; j++)  //info[4] é um array de filenames de fotos para colocar depois do text
-                     allPhotos += "<img src=" + info[4][j] + ">";*/
-                    document.getElementById("photos").innerHTML = allPhotos;
+
+                    $('#history').append('</footer>\n</article>\n');
+
                 }
+                console.log($('#history').html());
+                return true;
             }
         };
-
-        var username = <?php echo json_encode($username) ?>;
         xmlhttp.open("GET","database/UserReviews.php?username="+ username,true);
         xmlhttp.send();
     }
@@ -80,23 +113,31 @@ else
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
         xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var restaurants = eval("(" + this.responseText + ")"); // get's the php array whit all the reviews
+            if (this.readyState == 4 && this.status == 200)
+            {
+                var info = new String(this.responseText);
+                info = info.trim();
+
+                if(info == "INVALID")
+                    return false;
+                else
+                    info = eval("(" + this.responseText + ")");
 
                 console.log("visited : ");
-                console.log(restaurants);
+                console.log(info);
 
-                for (var i = 0; i < restaurants.length; i++) {
-                    var info = restaurants[i];
+                for (var i = 0; i < info.length; i++)
+                {
+                    $('#visitedPlaces').append('<article>\n<ul>\n<label>Restaurant : <li id="vis_restaurant">' + info[i][0] +
+                        '</li></label>\n<label>Rating: <li id="vis_rating">' + info[i][1] +
+                        '</li></label>\n<label>Location: <li id="vis_opinion">' + info[i][2] +
+                        '</li>\n<li id="vis_photos">\n</li>\n</ul>\n');
 
-                    document.getElementById("restPhoto").innerHTML = "<img src=" + info[3] + ">"
-                    _("restName").innerHTML = info[0];
-                    _("rating").innerHTML = info[1];
-                    _("location").innerHTML = info[2];
+                    document.getElementById("vis_photos").innerHTML = "<img src=" + info[i][3] + ">"
                 }
             }
         };
-        var username = <?php echo json_encode($username) ?>;
+
         xmlhttp.open("GET","database/UserVisitedRest.php?username="+username,true);
         xmlhttp.send();
     }
@@ -108,24 +149,31 @@ else
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
         xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var restaurants = eval("(" + this.responseText + ")"); // get's the php array whit all the reviews
+            if (this.readyState == 4 && this.status == 200)
+            {
+                var info = new String(this.responseText);
+                info = info.trim();
 
-                console.log("My restaurants : ");
-                console.log(restaurants);
+                if(info == "INVALID")
+                    return false;
+                else
+                    info = eval("(" + this.responseText + ")");
 
-                for (var i = 0; i < restaurants.length; i++)
+                console.log("my restaurants : ");
+                console.log(info);
+
+                for (var i = 0; i < info.length; i++)
                 {
-                    var info = restaurants[i];
+                    $('#manageRestaurants').append('<article>\n<ul>\n<label>Restaurant : <li id="my_restaurant">' + info[i][0] +
+                        '</li></label>\n<label>Rating: <li id="my_rating">' + info[i][1] +
+                        '</li></label>\n<label>Location: <li id="my_opinion">' + info[i][2] +
+                        '</li>\n<li id="my_photos">\n</li>\n</ul>\n');
 
-                    document.getElementById("restPhoto").innerHTML = "<img src=" + info[3] + ">";
-                    _("restName").innerHTML = info[0];
-                    _("rating").innerHTML = info[1];
-                    _("location").innerHTML = info[2];
+                    document.getElementById("my_photos").innerHTML = "<img src=" + info[i][3] + ">"
                 }
             }
         };
-        var username = <?php echo json_encode($username) ?>;
+
         xmlhttp.open("GET","database/OwnerRestaurants.php?username="+username,true);
         xmlhttp.send();
     }
@@ -150,10 +198,6 @@ else
         if (isUserLoggedIn ()){   ?>
             <script language="JavaScript">
 
-                getInfo();
-                getHistory();
-                getVisited();
-
                 var sessionUsername = <?php echo json_encode($_SESSION ["userid"]) ?>;
                 console.log(sessionUsername);
                 console.log(username != sessionUsername);
@@ -168,7 +212,6 @@ else
                     $("#link1").attr('href', "../userProfileEdit.php");
                     //$("#link1").outerHTML = "Editar";
 
-                    getMyRestaurants(); //só se for owner e se for o proprio perfil
                 }
 
             </script>
@@ -178,17 +221,7 @@ else
 
     <section id="dashboard" >
         <ul>
-            <li id="History">
-                <div>
-                    <?php
-                    $myLen = "<script>document.writeln(this.len);</script>";
-                    echo $myLen;
-
-                    // for($i = 0; $i < $myLen; $i++)
-                    include("review.php");
-                    ?>
-                </div>
-            </li>
+            <li id="history"></li>
             <!-- <li id="Friends">
                  <!-- nome dos amigos todos
                  <!-- tem de dar para eliminar amigos
@@ -198,33 +231,28 @@ else
                      <h3>Nome</h3>
                  </div>
              </li>-->
-            <li id="VisitedPlaces">
+            <li id="visitedPlaces">
                 <!-- nome dos restaurantes que foi feita uma review -->
                 <!-- tem de dar para selecionar e ir para a sua pagina (FALTA)-->
-                <?php
-                include("restaurant.php");
-                ?>
             </li>
-            <li id="ManageRestaurants">
-                <div>
-                    <?php
-                    include("restaurant.php");
-                    ?>
-                </div>
-            </li>
+            <li id="manageRestaurants"></li>
         </ul>
     </section>
 
     <section id="menuProfile" >
         <ul>
-            <a href="#History">Histórico</a>
+            <a href="#history">Histórico</a>
             <br>
             <!--<a href="#Friends">Amigos</a>
             <br>-->
-            <a href="#VisitedPlaces">Sítios Visitados</a>
+            <a href="#visitedPlaces">Sítios Visitados</a>
             <br>
-            <a href="#ManageRestaurants">Restaurantes</a> <!-- so deve aparecer se o user for owner -->
+            <a href="#manageRestaurants">Restaurantes</a> <!-- so deve aparecer se o user for owner -->
             <br>
         </ul>
     </section>
 </section>
+
+<script language="JavaScript">
+    $(document).ready(getInfo());
+</script>

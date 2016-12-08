@@ -21,6 +21,8 @@ foreach ($restaurants as $restaurant)
     $result[] = $infoArray;
 }
 
-echo json_encode($result);
-
+if(!empty($result))
+    echo json_encode($result);
+else
+    echo 'INVALID';
 ?>
