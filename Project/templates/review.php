@@ -1,40 +1,59 @@
-<article>
-    <!-- <img src="" alt="user foto"> <!-- foto da pessoa que fez a review-->
-    <ul>
-        <li id= "nameC"></li>    <!-- se for no historico do user, name = restaurantName ; se for no historico do restaurante, name = username -->
-        <li id= "ratingU"></li>
-        <li id= "opinion"></li>
-        <li id= "photos"></li> <!-- todas as fotos colocadas pelo utilizador no restaurante -->
-    </ul>
-    <footer>
-        <!-- efeito acordeão para ver os comentarios e para abrir a textarea -->
-        <span class="date"> </span><br> <!-- a data ainda nao esta implementada -->
-        <a href="#comments">Comentários</a>
-        <a href="#review">Responder</a> <!-- deve verificar se é ownwer -->
-    </footer>
-</article>
+<?php
+	$info = $_GET['info'];
+	$owner = $_GET['owner'];
+	$username = $_GET['username'];
+	
+	$review =
+	"<article id=\"" . $info[0] . "\">
+		<ul>
+			<li id=\"rev_username\">" . $info[1] . "</li>
+			<label>Rating: <li id=\"rev_rating\">" . $info[2]. "</li></label>
+			<label>Review: <li id=\"rev_opinion\">" . $info[3] . "</li>
+			<li id=\"rev_photos\">";
 
-<section id="comments">
-    <!-- discutir como é que vamos lidar com comentarios na bd -->
-</section>
+		 foreach ($info[4] as $photo)
+			$review = $review . "<img src=\"" . $photo . "\"alt=\"Review Photo\">";
 
-<section id="review">
-    <form action="save_review.php" method="post"> <!-- formulario vai para um sitio que cria uma nova review associada a inicial-->
+		 $review = $review .
+			"</li>
+		</ul>
+		
+		<footer>
+			<span class=\"date\">" . $info[5] . "</span><br>
+			<a href=\"#comments" . $info[0] . "\">Comentários</a>
+			<section id=\"comments" . $info[0] . "\">";
+			
+			if(!empty($info[6]))
+			{
+				foreach ($info[6] as $reply)
+				{
+					$review = $review . 
+						
+						"<ul class=\"comment\">
+							<li id=\"username\">" . $reply[0] . "</li>
+							<li id=\"text\">" . $reply[1] . "</li>
+						</ul>";
+					}
+			}
 
-        <label>
-            Opinião:
-            <textarea name="newReview" cols="40" rows="5"></textarea>
-        </label>
-
-        <input type="button" value="Cancelar"> <!-- cancelar fecha o efeito acordeao -->
-        <input type="button" value="Submeter">
-    </form>
-</section>
-
-<!--
-<form id="reply">
-	<textarea name="newReview" cols="40" rows="5"></textarea>
-	<input type="button" onclick="" value="Submeter">
-	<input type="button" onclick="" value="Cancelar">
-</form>
--->
+		 
+		$review = $review . "</section>";
+		
+		if($owner == $username)
+		{
+			$review = $review . 
+			"<a href=\"#reply" . $info[0] . "\">Responder</a>
+			<form id=\"reply" . $info[0] . "\" class= \"reply\">
+				<textarea id=\"newReview" . $info[0] . "\" cols=\"40\" rows=\"5\"></textarea><br>
+				<input type=\"button\" onclick=\"submitReply(" . $info[0] . ")\" value=\"Submeter\">
+				<input type=\"button\" onclick=\"cancelReply(" . $info[0] . ")\" value=\"Cancelar\"><br>
+				<span id=\"r_status" . $info[0] . "\"></span>
+			</form>";
+		}
+		
+		$review = $review .
+		"</footer>
+		</article>";
+		
+		echo $review;
+?>

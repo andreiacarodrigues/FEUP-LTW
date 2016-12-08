@@ -18,23 +18,26 @@ foreach ($reviews as $review)
     $stmt->execute(array($review['restaurantId'],$username));
     $photosId = $stmt->fetch();
 
-    /*   $photos = array();
-       foreach ($photosId as $photoId)
-       {
-           $stmt = $db->prepare('SELECT filename FROM Photo WHERE photoId = ?');
-           $stmt->execute(array($photoId));
-           $photos = $stmt->fetch();
-       }*/
+    $photos = array();
+    foreach ($photosId as $photoId)
+    {
+        $stmt = $db->prepare('SELECT filename FROM Photo WHERE photoId = ?');
+        $stmt->execute(array($photoId));
+        $photos[] = $stmt->fetch();
+    }
 
     $infoArray = array(0 => $review['reviewId'],
-        1 => $name['name'],
+        1 => $name,
         2 => $review['rating'],
-        3 => $review['text']);
-    //4 => $photos);
+        3 => $review['text'],
+        4 => $photosId);
 
     $result[] = $infoArray;
 }
 
-echo json_encode($result);
+if(!empty($reviews))
+    echo json_encode($result);
+else
+    echo 'INVALID';
 
 ?>

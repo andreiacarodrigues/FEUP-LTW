@@ -84,6 +84,12 @@ else
 				}
 				
 				getReviews(owner);
+				
+				if(owner != username)
+				{
+					console.log("vai mostrar:o");
+					showNewReview();
+				}
 						   
 			   return true;
             }
@@ -121,8 +127,7 @@ else
         xmlhttp.send();
 	}
 
-	
-	function getReviews(owner) // Reviews section and all photos taken by costumers go automatically to the Photos section
+	function getReviews(owner) 
 	{
 		 if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
@@ -139,38 +144,26 @@ else
 				else
 					info = eval("(" + this.responseText + ")"); 
 					
+					console.log(info[0][6]);
 				for(var i = 0; i < info.length; i++)
-				{
-							
-					$('#reviews').append('<article id=' + info[i][0] + '>\n<ul>\n<li id="rev_username">' + info[i][1] + '</li>\n<label>Rating: <li id="rev_rating">' + info[i][2] + '</li></label>\n<label>Review: <li id="rev_opinion">' + info[i][3] + '</li>\n<li id="rev_photos">\n</li>\n</ul>\n');
-			
-					var photos = info[i][4];
-					for(var j = 0; j < photos.length; j++)
+				{		
+					$.get('./templates/review.php',  {info: info[i], owner: owner , username: username}, function(data) 
 					{
-						var photoInsertText = '<img src="'+ photos[j] + '"alt="Review Photo">';
-						$('#reviews > #' + info[i][0] + ' #rev_photos').append(photoInsertText);
-						$('#photos').append(photoInsertText);
+						$('#reviews').append(data);
 					}
-					
-					$('#reviews').append('<footer>');
-					$('#reviews').append('<span class="date">' + info[i][5] + '</span><br>'); // date
-						
-					if(owner == username)
-					{
-						$('#reviews').append('<a href="#reply' + info[i][0] + '">Responder</a><form id="reply' + info[i][0] + '" class= "reply"><textarea id="newReview' + info[i][0] + '" cols="40" rows="5"></textarea><br><input type="button" onclick="submitReply(' + info[i][0] +')" value="Submeter"><input type="button" onclick="" value="Cancelar"><br><span id="r_status' + info[i][0] + '"></span></form>'); // duvidas aqui em questão do link ser necessário para fazer o acordeão
-
-					}
-					$('#reviews').append('</footer>\n</article>\n');
-						
-					//alert($('#reviews').html());
+					);
 				}
-				console.log($('#reviews').html());
 				return true;	
             }
         };
 
         xmlhttp.open("GET","database/RestaurantReviews.php?restaurant="+ restaurant,true);
         xmlhttp.send();
+	}
+	
+	function cancelReply(i)
+	{
+		$('#newReview' + i ).val('');
 	}
 	
 	function submitReply(i)
@@ -202,19 +195,77 @@ else
 			xmlhttp.send();
 
 		}
-		// restrição de owner não poder fazer review do proprio restaurante - TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+	}
+	
+	function radioListCheck(name) {
+		for (var x = 5; x >= 1; x--) { // 5 é o maior rating
+			if (document.getElementById(name + '-' + x).checked) {
+				return 6-x; // don't know why mas não me dá o valor certo de outra maneira
+			}
+		}
+		return -1;
 	}
 
-/*	isto vai buscar a data -> quando for para adicionar uma review xD
+	function submitReview()
+	{
+		var u = username;
+		var res = restaurant;
+		var t = _("review").value;
+		var pics = _("reviewPic").value; 
+		var rat = radioListCheck("star");
+/*<?php
+	if(isset($_POST['ok']))
+	foreach ($_FILES['file']['name'] as $filename) {
+    echo $filename.'<br/>';
+}
+?>*/
+		var d = new Date();
+		var month = d.getMonth()+1;
+		var day = d.getDate();
+		var date = d.getFullYear() + '/' + (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
+		
+		var r_status = _("r_status");
+		
+		console.log(u);
+		console.log(res);
+		console.log(t);
+		console.log(pics);
+		console.log(rat);
+		console.log(date);
+		
+		if(rat == -1)
+			r_status.innerHTML = "You need at least to leave a rating if you want to submit a review.";
+		else
+		{
+			r_status.innerHTML = "";
+		
+			if (window.XMLHttpRequest) {
+				xmlhttp = new XMLHttpRequest();
+			} else {
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+		
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					$('#review').val('');
+				}
+			};
+			
+			xmlhttp.open("GET","database/AddReview.php?username="+u+"&restaurant="+res+"&rating="+rat+"&text="+t+"&date="+date+"&pics="+pics,true);
+			xmlhttp.send();
 
-var d = new Date();
+		}
+	}
+		
+   function showNewReview()
+   {
+		$.get('./templates/newReview.php', function(data) 
+		{
+			$('#newReview').append(data);
+		}
+		);
+   }
 
-var month = d.getMonth()+1;
-var day = d.getDate();
-
-var output = d.getFullYear() + '/' +
-    (month<10 ? '0' : '') + month + '/' +
-    (day<10 ? '0' : '') + day;*/
 </script>
 
 <section id="main" >
@@ -246,32 +297,11 @@ var output = d.getFullYear() + '/' +
         <li>
             <a href="#reviews">Opiniões</a>
             <div  id="reviews">
-				<!--<article>
-					<img src="" alt="user foto"> //  - TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
-					<ul>
-						<li id= "name"></li>  
-						<li id= "rating"></li>
-						<li id= "opinion"></li>
-						<li id= "photos"></li>
-					</ul>
-					<footer>
-						<!-- efeito acordeão para ver os comentarios e para abrir a textarea 
-						<span class="date">@May 5th 2014</span><br> <!-- a data ainda nao esta implementada
-						<a href="#reply' + i + '">Responder</a>
-						<form id="reply' + i + '">
-							<textarea name="newReview" cols="40" rows="5"></textarea> <br>
-							<input type="button" onclick="" value="Submeter">
-							<input type="button" onclick="" value="Cancelar">
-							<br><span id="r_status + i'"></span>
-						</form>
-					</footer>
-				</article> -->
             </div>
         </li>
         <li>
             <a href="#photos">Fotos</a>
             <div id="photos">
-                <!-- vai conter várias imagens em miniatura que vêm da bd-->
             </div>
         </li>
     </ul>
@@ -280,35 +310,8 @@ var output = d.getFullYear() + '/' +
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"> <!-- para css das estrelas -->
 
 <section id="newReview">
-	<div class="stars">
-		<form>
-			<label>Rating: <br> <!-- só para não parecer estranho -> tirar no futuro quando se arranjar o css -->
-				<input class="star star-5" id="star-5" type="radio" name="star"/>
-				<label class="star star-5" for="star-5"></label>
-				<input class="star star-4" id="star-4" type="radio" name="star"/>
-				<label class="star star-4" for="star-4"></label>
-				<input class="star star-3" id="star-3" type="radio" name="star"/>
-				<label class="star star-3" for="star-3"></label>
-				<input class="star star-2" id="star-2" type="radio" name="star"/>
-				<label class="star star-2" for="star-2"></label>
-				<input class="star star-1" id="star-1" type="radio" name="star"/>	
-				<label class="star star-1" for="star-1"></label>
-			</label>
-			<label>
-				Opinion:
-				<textarea class="review" name="review" col="30" rows="5"></textarea>
-			</label>
-			</br>
-			<label>
-				Add Picture:
-				<input type="file" name="reviewPic" id="reviewPic">
-			</label>
-			<button type="button" onclick=""> Submit
-		</form>
-	</div>
 </section>
 
 <script language="JavaScript">
 $(document).ready(getInfo());
-
 </script>

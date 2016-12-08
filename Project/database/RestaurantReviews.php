@@ -27,14 +27,25 @@ foreach ($reviews as $review)
         $photo = $stmt->fetch();
 		$photos[] = $photo['filename'];
     }
+	
+	// ------------------------------------------------------
+	$stmt = $db->prepare('SELECT username, text FROM ReviewReply WHERE reviewId = ? ');
+    $stmt->execute(array($review['reviewId']));
+    $repliesRes = $stmt->fetchAll();
 
+	$replies = array();
+	 foreach ($repliesRes as $reply)
+	 {
+		 $replies[] = array($reply['username'], $reply['text']);
+	 }
     $infoArray = array(
 		0 => $review['reviewId'],
 		1 => $review['username'],
         2 => $review['rating'],
         3 => $review['text'],
         4 => $photos,
-		5 => $review['date']);
+		5 => $review['date'],
+		6 => $replies);
 
     $result[] = $infoArray;
 }
