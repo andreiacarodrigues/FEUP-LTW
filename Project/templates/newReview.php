@@ -1,6 +1,11 @@
 <?php
 $newReview ="<div class=\"stars\">
-			<form>
+			<form id=\"newReview\" action=\"./database/AddReview.php\" method=\"post\" enctype=\"multipart/form-data\">
+				<input id=\"nr_username\" type=\"hidden\" name=\"username\" value=\"\"/>
+				<input id=\"nr_restaurant\" type=\"hidden\" name=\"restaurant\" value=\"\"/>
+				<input id=\"nr_text\" type=\"hidden\" name=\"text\" value=\"\"/>
+				<input id=\"nr_rating\" type=\"hidden\" name=\"rating\" value=\"\"/>
+				<input id=\"nr_date\" type=\"hidden\" name=\"date\" value=\"\"/>
 				<label>Rating: <br> <!-- só para não parecer estranho -> tirar no futuro quando se arranjar o css -->
 					<input class=\"star star-5\" id=\"star-5\" type=\"radio\" name=\"star\"/>
 					<label class=\"star star-5\" for=\"star-5\"></label>
@@ -19,13 +24,13 @@ $newReview ="<div class=\"stars\">
 				</label>
 				</br>
 				<label>
-					 Select images: <input type=\"file\" name=\"reviewPic[]\" id=\"reviewPic\" multiple> <!-- not sure what to do here -->
+					 Select image: <input type=\"file\" name=\"image\" id=\"reviewPic\">
 				</label> <br>
-				<button type=\"button\" onclick=\"submitReview()\"> Submit <!-- erro aqui -->
+				<input type=\"submit\" onclick=\"submitReview()\" value=\"Submit Review\" > <!-- erro aqui -->
 				<br>
-				<span id=\"r_status\"></span>
 			</form>
-		</div>";
+		</div>
+		<span id=\"r_status\"></span>";
 		
 echo $newReview;
 ?>
