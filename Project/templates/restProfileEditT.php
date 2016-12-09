@@ -17,10 +17,15 @@ else
 var username = <?php echo json_encode($username) ?>;
 var restaurant = <?php echo json_encode($restaurant) ?>;
 	
-function _(x){
-	return document.getElementById(x);
-}
-function getInfo(){
+	function _(x){
+		return document.getElementById(x);
+	}
+	
+	function getInfo(){
+		$('#updateRestaurantPicture #val').attr("value", restaurant);
+		$('#updateRestaurantMenu #val').attr("value", restaurant);
+		$('#updateRestaurantPhotos #val').attr("value", restaurant);
+		
         if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
         } else {
@@ -50,44 +55,33 @@ function getInfo(){
 	
 				if(photoId != null)
 				{
-					getPhoto(parseInt(photoId), false);
+					getPhoto(parseInt(photoId), false, '#main','#menuPhoto', './css/images/');
 				}
 				else
-					$('#main').prepend('<img src="./css/Images/defaultRestaurant.jpg" alt="Photo that represents the restaurant">');/*
+					$('#main').prepend('<img src="./css/images/1.jpg" alt="Photo that represents the restaurant">');
 				
 				if(menuId != null)
 				{
-					getPhoto(parseInt(menuId) , true);
+					getPhoto(parseInt(menuId) , true, '#main','#menuPhoto', './css/images/');
 				}
 				else
-					$('#menu').html('<img src="./css/Images/defaultRestaurant.jpg" alt="Photo that represents the restaurant">');
-				*/
-			/*	var rating_sum = info[9];
-				var rating_total = info[10];
-				var rating = Math.round((parseFloat(rating_sum) / parseFloat(rating_total)) * 100) / 100
-                _("rating").innerHTML = rating; 
-             
-				var owner = info[11];
-			    _("owner").innerHTML = owner;
-			   
-			    if(username == owner)
-			    {
-					$('#options').html('<li><a href="restaurantProfileEdit.php?restaurant=' + restaurant +'">Edit</a></li>');
-			    }
-			    else
-				{
-					$('#options').html('<li><a href="#newReview">Leave Review</a></li>');
-					$('#options').append('<li><a href="#">Fast Review</a></li>');
-				}
+					$('#menuPhoto').html('<img src="./css/Images/defaultRestaurant.jpg" alt="Restaurant\'s Menu">');
 				
-				getReviews(owner);
-				
-				if(owner != username)
+				$.get('./database/RestaurantPhotos.php',  {restaurant: restaurant}, function(data) 
 				{
-					console.log("vai mostrar:o");
-					showNewReview();
+					
+					if(data != "INVALID")
+					{
+						var photos = eval("(" + data + ")"); 
+						for(var i = 0; i < photos.length; i++)
+						{
+							$('#restaurantPhotos').append('<img src="./css/images/'+ photos[i] + '"alt="Photo of the restaurant"><br>');
+							$('#restaurantPhotos').append('<form action="./database/DeleteRP.php" method="post"><input id="val" type="hidden" name="val" value="' + photos[i] + '"/><input type="submit" value="Delete Photo"></form><br>');
+						console.log($('#restaurantPhotos').html());
+						}
+					}
 				}
-						   */
+				);
 			   return true;
             }
         };
@@ -95,36 +89,8 @@ function getInfo(){
         xmlhttp.open("GET","database/RestaurantInfo.php?restaurant="+ restaurant,true);
         xmlhttp.send();
     }
-	
-	function getPhoto(id, isMenu)
-	{
-		 if (window.XMLHttpRequest) {
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-				var filename = new String(this.responseText);
-				filename = filename.trim();
-
-				if(filename == "INVALID")
-					return false;
-				
-				if(isMenu)
-					$('#menu').html('<img src='+ filename + 'alt="Photo that represents the restaurant">');
-				else
-					$('#main').prepend('<img src=' + filename + 'alt="Photo that represents the restaurant">');
-				
-			   return true;
-            }
-        };
-
-        xmlhttp.open("GET","database/GetPhoto.php?id="+ id,true);
-        xmlhttp.send();
-	}
-	
-	function myFunction() {
+		
+	function observationsPopUpAnimation() {
     var popup = document.getElementById('myPopup');
     popup.classList.toggle('show');
 }
@@ -132,8 +98,16 @@ function getInfo(){
 </script>
 
 <section id="main" >
-	<input type="button" onclick="submitChanges()" value="Change Picture"/>  
-	<input type="button" onclick="submitChanges()" value="Delete Picture"/>  
+	<form id="updateRestaurantPicture" action="./database/UploadPicture.php" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="method" value="2"/>
+		<input id="val" type="hidden" name="val" value=""/>
+		<input type="file" name="image"/>  
+		<input type="submit" value="Change Restaurant Photo">
+	</form>
+	<form id="updateRestaurantPicture" action="./database/DeleteRPP.php" method="post">
+		<input id="val" type="hidden" name="val" value=""/>
+		<input type="submit" value="Delete Photo">
+	</form>
 	<h2 id="name">Restaurant Name</h2>   
 </section>
 <section id="details">
@@ -149,40 +123,36 @@ function getInfo(){
                     <label>Average Price Per Person(€):<input id="r_avgPrice" type="text" name="cost" maxlength="4"></label> <br>
                     <label>Contact:<input id="r_contact" type="tel" name="number" maxlength="9"></label> <br>
 					<label>Observations: <textarea id="r_observations" name="review" cols="60" rows="2"></textarea></label> 
-					<div class="popup" onclick="myFunction()">?
+					<div class="popup" onclick="observationsPopUpAnimation()">?
 						<span class="popuptext" id="myPopup">You can allow your customers to know if your restaurant has: wi-fi, takeAway, live music, vegan menu options, wheelchair access, bar, etc.</span>
 					</div><br>
                     <input type="button" onclick="submitChanges()"/ value="Submit Changes">  
 					<input type="button" onclick="goBack()" value="Cancel"/>  
                 </form>
-				
-				
 			</div>
-			
-        </li>
-		
-		
+        </li>		
         <li  id="menu">
             <a href="#menu">Menu</a>
+			<div id="menuPhoto"> </div>
             <div>
-                <!-- <form action="upload.php" method="post" enctype="multipart/form-data">
-                  Select image to upload:
-                  <input type="file" name="fileToUpload" id="fileToUpload">
-                  <input type="submit" value="Upload Image" name="submit">
-              </form>-->
-                <!-- pode eliminar as suas imagens ou adicionar novas-->
+               <form id="updateRestaurantMenu" action="./database/UploadPicture.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="method" value="5"/>
+				<input id="val" type="hidden" name="val" value=""/>
+				<input type="file" name="image"/>  
+				<input type="submit" value="Upload New Menu Photo">
+			</form>
             </div>
         </li>
         <li  id="photos">
             <a href="#photos">Photos</a>
+            <div id="restaurantPhotos"> </div>
             <div>
-                <!-- <form action="upload.php" method="post" enctype="multipart/form-data">
-                     Select image to upload:
-                     <input type="file" name="fileToUpload" id="fileToUpload">
-                     <input type="submit" value="Upload Image" name="submit">
-                 </form>-->
-
-                <!-- pode eliminar as suas imagens ou adicionar novas-->
+               <form id="updateRestaurantPhotos" action="./database/UploadPicture.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="method" value="5"/>
+				<input id="val" type="hidden" name="val" value=""/>
+				<input type="file" name="image"/>  
+				<input type="submit" value="Upload New Photo">
+			</form>
             </div>
         </li>
     </ul>
@@ -191,24 +161,3 @@ function getInfo(){
 <script language="JavaScript">
 $(document).ready(getInfo());
 </script>
-
-<!--<label>Tipos de cozinha: <!-- fazer inserts com isto na base de dados logo ao inicio. o "outro" insere um novo tipo na bd e passa a estar nesta lista
-                        <select name="cuisine" multiple = "multiple">
-                            <option value="portuguesa">Portuguesa</option>
-                            <option value="mediterranica">Mediterrânica</option>
-                            <option value="contemporanea">Contemporânea</option>
-                            <option value="vegetariana">Vegetariana</option>
-                            <option value="pizzaria">Pizzaria</option>
-                            <option value="hamburgeria">Hamburgeria</option>
-                            <option value="marisqueira">Marisqueira</option>
-                            <option value="internacional">Internacional</option>
-                            <option value="japonesa">Japonesa</option>
-                            <option value="francesa">Francesa</option>
-                            <option value="italiana">Italiana</option>
-                            <option value="chinesa">Chinesa</option>
-                            <option value="japonesa">Japonesa</option>
-                        </select>
-                        <label>Outro:
-                            <input type="text" name="newCuisine">
-                        </label>
-                    </label>-->
