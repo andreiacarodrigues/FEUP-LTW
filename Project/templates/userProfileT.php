@@ -43,7 +43,7 @@ else {
                 _("email").innerHTML = info[1];
                 _("birthdate").innerHTML = info[2];
                 _("postCode").innerHTML = info[3];
-                document.getElementById("picId").innerHTML = "<img src=" + info[4] + ">"; //foto da pessoa
+                _("picId").innerHTML = "<img src=" + info[4] + ">"; //foto da pessoa
 
                 if(info[5])
                     getReviews(username);
@@ -124,7 +124,7 @@ else {
                         '\n<label>Location: <li id="vis_local">' + info[i][2] + '</li></label>' +
                         '\n<li id="vis_photo">\n</li>\n</ul>\n</article>\n');
 
-                    document.getElementById("vis_photo").innerHTML = "<img src=" + info[i][3] + ">";      //foto do restaurante
+                    _("vis_photo").innerHTML = "<img src=" + info[i][3] + ">";      //foto do restaurante
                 }
             }
         };
@@ -162,7 +162,7 @@ else {
                         '\n<label>Location: <li id="my_local">' + info[i][2] + '</li></label>' +
                         '\n<li id="my_photo">\n</li>\n</ul>\n</article>\n');
 
-                    document.getElementById("my_photo").innerHTML = "<img src=" + info[i][3] + ">"; //foto do restaurante
+                    _("my_photo").innerHTML = "<img src=" + info[i][3] + ">"; //foto do restaurante
                 }
             }
         };
@@ -173,7 +173,7 @@ else {
 
 </script>
 
-<section class="profile">
+<section id="profile">
 
     <section id="main" >
         <ul id="informacoes">
@@ -204,7 +204,7 @@ else {
                 {
                     getMyRestaurants(); //so pode mostrar os seus proprios restaurantes
 
-                    document.getElementById("edit").innerHTML = "<a href=\"./restaurantProfile.php?restaurant="+username+"\">Edit Profile</a><br>"; //foto do restaurante
+                    document.getElementById("edit").innerHTML = "<a href=\"./userProfileEdit.php?username="+username+"\">Edit Profile</a><br>"; //foto do restaurante
 
                     //$("#edit").attr('href', "../userProfileEdit.php");
                     //$("#link1").outerHTML = "Editar";
@@ -212,7 +212,6 @@ else {
 
             </script>
         <?php  }   ?>
-
     </section>
 
     <section id="dashboard" >
