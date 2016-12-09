@@ -35,19 +35,22 @@ else {
                 else
                     info = eval("(" + this.responseText + ")");
 
+                console.log("Informacaoes : ");
+                console.log(info);
+
                 _("username").innerHTML = username;
                 _("name").innerHTML = info[0];
                 _("email").innerHTML = info[1];
                 _("birthdate").innerHTML = info[2];
                 _("postCode").innerHTML = info[3];
+                document.getElementById("picId").innerHTML = "<img src=" + info[4] + ">"; //foto da pessoa
 
-                //verificar aqui se é owner ?
+                if(info[5])
+                    getReviews(username);
+                else
+                    getReviews(null);
 
-                //document.getElementById("pic").innerHTML = "<img src=" + info[4] + ">"; //foto da pessoa
-
-                getReviews(null);
                 getVisited();
-                getMyRestaurants(); //só se for owner e se for o proprio perfil
             }
         };
 
@@ -114,12 +117,14 @@ else {
 
                 for (var i = 0; i < info.length; i++)
                 {
-                    $('#visitedPlaces').append('<article>\n<ul>\n<label>Restaurant : <li id="vis_restaurant">' + info[i][0] +
-                        '</li></label>\n<label>Rating: <li id="vis_rating">' + info[i][1] +
-                        '</li></label>\n<label>Location: <li id="vis_opinion">' + info[i][2] +
-                        '</li>\n<li id="vis_photos">\n</li>\n</ul>\n');
+                    var name = info[i][0];
+                    $('#visitedPlaces').append('<article>\n<ul>' +
+                        '\n<a href="./restaurantProfile.php?restaurant='+ name +'">'+ name+'</a><br>' +
+                        '\n<label>Rating: <li id="vis_rating">' + info[i][1] + '</li></label>' +
+                        '\n<label>Location: <li id="vis_local">' + info[i][2] + '</li></label>' +
+                        '\n<li id="vis_photo">\n</li>\n</ul>\n</article>\n');
 
-                    document.getElementById("vis_photos").innerHTML = "<img src=" + info[i][3] + ">"
+                    document.getElementById("vis_photo").innerHTML = "<img src=" + info[i][3] + ">";      //foto do restaurante
                 }
             }
         };
@@ -150,12 +155,14 @@ else {
 
                 for (var i = 0; i < info.length; i++)
                 {
-                    $('#manageRestaurants').append('<article>\n<ul>\n<label>Restaurant : <li id="my_restaurant">' + info[i][0] +
-                        '</li></label>\n<label>Rating: <li id="my_rating">' + info[i][1] +
-                        '</li></label>\n<label>Location: <li id="my_opinion">' + info[i][2] +
-                        '</li>\n<li id="my_photos">\n</li>\n</ul>\n');
+                    var name = info[i][0];
+                    $('#manageRestaurants').append('<article>\n<ul>' +
+                        '\n<a href="./restaurantProfile.php?restaurant='+ name +'">'+ name+'</a><br>' +
+                        '\n<label>Rating: <li id="my_rating">' + info[i][1] + '</li></label>' +
+                        '\n<label>Location: <li id="my_local">' + info[i][2] + '</li></label>' +
+                        '\n<li id="my_photo">\n</li>\n</ul>\n</article>\n');
 
-                    document.getElementById("my_photos").innerHTML = "<img src=" + info[i][3] + ">"
+                    document.getElementById("my_photo").innerHTML = "<img src=" + info[i][3] + ">"; //foto do restaurante
                 }
             }
         };
@@ -169,35 +176,38 @@ else {
 <section class="profile">
 
     <section id="main" >
-        <!-- <img src="vaiBuscarBD.jpg" alt="User photo"> <!-- aqui é ver se a photo é null => display de uma foto default ou se tenho de ir buscar uma foto da pessoa -->
         <ul id="informacoes">
-            <li id= "picId" style="display: none"></li>
+            <li id= "picId" </li>
             <label>Username: <li id= "username"></li> </label>
             <label>Name : <li id= "name"></li> </label>
             <!-- mostrar isto deve ser opcional -->
             <label>Email :<li id= "email"></li></label>
             <label>Birthday : <li id= "birthdate"></li></label>
             <label>Post-code : <li id= "postCode"></li></label>
+            <li id="addFriend"></li>
+            <li id="edit"></li>
         </ul>
-        <a id ="link1" href=""></a>;
         <?php
         if (isUserLoggedIn ()){   ?>
             <script language="JavaScript">
 
                 var sessionUsername = <?php echo json_encode($_SESSION ["userid"]) ?>;
-                console.log(sessionUsername);
-                console.log(username != sessionUsername);
+
                 if(username != sessionUsername)
                 {
-                    $("#link1").attr('href', "#");
+                    //esta parte ainda é incerta
+                    $("#addFriend").attr('href', "#");
                     //$("#link1").outerHTML = "Adicionar Amigo";  <!-- eu vejo isto amanhã!! não tou  conseguir encontrar como tirar o nome de display
                     // do link -->
                 }
                 else
                 {
-                    $("#link1").attr('href', "../userProfileEdit.php");
-                    //$("#link1").outerHTML = "Editar";
+                    getMyRestaurants(); //so pode mostrar os seus proprios restaurantes
 
+                    document.getElementById("edit").innerHTML = "<a href=\"./restaurantProfile.php?restaurant="+username+"\">Edit Profile</a><br>"; //foto do restaurante
+
+                    //$("#edit").attr('href', "../userProfileEdit.php");
+                    //$("#link1").outerHTML = "Editar";
                 }
 
             </script>
@@ -207,7 +217,7 @@ else {
 
     <section id="dashboard" >
         <ul>
-            <li id="history"></li>
+            <li id="history"></li>  <!-- conjunto das reviews feitas pelo utilizador -->
             <!-- <li id="Friends">
                  <!-- nome dos amigos todos
                  <!-- tem de dar para eliminar amigos
@@ -217,11 +227,8 @@ else {
                      <h3>Nome</h3>
                  </div>
              </li>-->
-            <li id="visitedPlaces">
-                <!-- nome dos restaurantes que foi feita uma review -->
-                <!-- tem de dar para selecionar e ir para a sua pagina (FALTA)-->
-            </li>
-            <li id="manageRestaurants"></li>
+            <li id="visitedPlaces"></li>    <!-- nome dos restaurantes que foi feita uma review -->
+            <li id="manageRestaurants"></li>    <!-- restaurantes que pertencem ao utilizador -->
         </ul>
     </section>
 
