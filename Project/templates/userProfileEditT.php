@@ -30,45 +30,6 @@ else{
 
     var username = <?php echo json_encode($username) ?>;
 
-    //REPETIDA
-    function _(x){
-        return document.getElementById(x);
-    }
-
-    //REPETIDA
-    function restrict(elem){
-        var tf = _(elem);
-        console.log(tf);
-        var rx = new RegExp;
-        if(elem == "email"){
-            rx = /[' "]/gi;
-        } else if(elem == "username"){
-            rx = /[^a-z0-9]/gi;
-        }
-        tf.value = tf.value.replace(rx, "");
-    }
-
-    //REPETIDA
-    function checkUsername(){
-        var u = _("username").value;
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var newResponseText = new String(this.responseText);
-                var newResponseText = newResponseText.trim();
-                _("unamestatus").innerHTML = newResponseText;
-            }
-        };
-        xmlhttp.open("GET","database/UserExists.php?username="+u,true);
-        xmlhttp.send();
-    }
-
     function checkPassword(){
         var p = _("password").value;
 

@@ -14,10 +14,6 @@ else {
 
     var username = <?php echo json_encode($username) ?>;
 
-    function _(x){
-        return document.getElementById(x);
-    }
-
     function getInfo(){
         if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
