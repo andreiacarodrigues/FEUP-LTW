@@ -38,9 +38,6 @@ else
 					info = eval("(" + this.responseText + ")"); 
 				
                 _("name").innerHTML = restaurant;
-				
-				var restaurantId = info[0];
-				
                 _("description").innerHTML = info[1];
                 _("location").innerHTML = info[2];
                 _("contact").innerHTML = info[3];
@@ -75,7 +72,7 @@ else
 			   
 			    if(username == owner)
 			    {
-					$('#options').html('<li><a href="#">Edit</a></li>');
+					$('#options').html('<li><a href="restaurantProfileEdit.php?restaurant=' + restaurant +'">Edit</a></li>');
 			    }
 			    else
 				{
@@ -270,7 +267,7 @@ else
 <section id="main" >
     <h2 id="name">Restaurant Name</h2>  
     <h3 id="rating">Rating</h3>            
-    <div id = "options"> </div>
+    <div id ="options"> </div> <!-- what is this -->
 </section>
 <section id="Details">
     <ul id="tabs">
