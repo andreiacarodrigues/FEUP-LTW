@@ -72,8 +72,10 @@ else
 
                 $.get('./database/RestaurantPhotos.php',  {restaurant: restaurant}, function(data)
                     {
+						var info = new String(data);
+						info = info.trim();
 
-                        if(data != "INVALID")
+                        if(info != "INVALID")
                         {
                             var photos = eval("(" + data + ")");
                             for(var i = 0; i < photos.length; i++)
@@ -165,7 +167,10 @@ else
 		
 		$.get('./database/UpdateRI.php',  {id: $('#r_id').attr("value"), name: name , description: description, location: location, contact: contact, avgPrice: avgPrice, schedule: schedule, observation: observation}, function(data) 
 		{
-			if(!data)
+			var info = new String(data);
+			info = info.trim();
+
+			if(info == "0")
 				console.log("Error updating restaurant information.");
 			else
 				window.location = "restaurantProfileEdit.php?restaurant=" + restaurant;

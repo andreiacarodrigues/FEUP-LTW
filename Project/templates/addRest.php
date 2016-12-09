@@ -28,9 +28,12 @@ else
 
 	function submitInfo()
 	{
-		if(restaurant != "NULL")
+		/*if(restaurant != "NULL")
+		{
+			console.log("You can't submit the same restaurant twice.");
 			return false;
-		
+		}*/
+			
 		console.log(restaurant);
 		console.log(username);
 		var name = _("r_name").value;
@@ -44,7 +47,7 @@ else
       
         var status = _("status");
 
-	/*	if(((postCode.length != 4) ||(postCode.length != 8)) || (!postCode.match(/^[0-9]+$/)))
+	  /*if(((postCode.length != 4) ||(postCode.length != 8)) || (!postCode.match(/^[0-9]+$/)))
         {
             status.innerHTML = "Invalid postcode.";
 			return false;
@@ -55,11 +58,14 @@ else
 			
 			$.get('./database/AddRestaurant.php',  {name: name , description: description, location: location, postCode: postCode, contact: contact, avgPrice: avgPrice, schedule: schedule, observation: observations, owner: username}, function(data) 
 			{
-				if(!data)
+				var info = new String(data);
+                info = info.trim();
+				if(info == "INVALID")
+					console.log("Restaurant with that name already exists.");
+				if(info == "0")
 					console.log("Error inserting restaurant information.");
 				else
 				{
-					alert(data);
 					restaurant = name;
 					window.location = "addRestaurant.php?restaurant=" + restaurant;
 				}
