@@ -86,7 +86,7 @@ INSERT INTO Photo VALUES (3,'3.jpg');
 
 INSERT INTO User VALUES (NULL, 'ines','ola@a.com','01-01-2016','1234-123','ines','ines',1);
 INSERT INTO User VALUES (NULL, 'andreia','ola@a.com','01-01-2016','1234-123','andreia','andreia',1);
-INSERT INTO User VALUES (NULL, 'andre','ola@a.com','01-01-2016','1234-123','andre','andre',1);
+
 
 INSERT INTO Restaurant VALUES (1,'montaditos','restaurante espanhol','Porto','12345689','5','24h',null,3,2,4,4,'andre');
 INSERT INTO Restaurant VALUES (2,'mcdonalds','restaurante amaricano','Lisboa','123456789','4','12h',null,3,2,3,3,'andre');

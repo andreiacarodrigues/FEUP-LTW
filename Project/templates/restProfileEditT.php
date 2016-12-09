@@ -39,11 +39,18 @@ else
 
                 _("name").innerHTML = restaurant;
                 $('#r_name').attr("placeholder", restaurant);
+				$('#r_id').attr("value", info[0]);
+				if(info[1] == null) info[1] = "";
                 $('#r_description').attr("placeholder", info[1]);
+				if(info[2] == null) info[2] = "";
                 $('#r_location').attr("placeholder", info[2]);
+				if(info[3] == null) info[3] = "";
                 $('#r_contact').attr("placeholder", info[3]);
+				if(info[4] == null) info[4] = "";
                 $('#r_avgPrice').attr("placeholder", info[4]);
+				if(info[5] == null) info[5] = "";
                 $('#r_schedule').attr("placeholder", info[5]);
+				if(info[6] == null) info[6] = "";
                 $('#r_observations').attr("placeholder", info[6]);
 
                 var menuId = info[7];
@@ -71,9 +78,11 @@ else
                             var photos = eval("(" + data + ")");
                             for(var i = 0; i < photos.length; i++)
                             {
-                                $('#restaurantPhotos').append('<img src="./css/images/'+ photos[i] + '"alt="Photo of the restaurant"><br>');
-                                $('#restaurantPhotos').append('<form action="./database/DeleteRP.php" method="post"><input id="val" type="hidden" name="val" value="' + photos[i] + '"/><input type="submit" value="Delete Photo"></form><br>');
-                                console.log($('#restaurantPhotos').html());
+								if(photos[i] != null)
+								{
+									$('#restaurantPhotos').append('<img src="./css/images/'+ photos[i] + '"alt="Photo of the restaurant"><br>');
+									$('#restaurantPhotos').append('<form action="./database/DeleteRP.php" method="post"><input id="val" type="hidden" name="val" value="' + photos[i] + '"/><input type="hidden" name="restaurant" value="' + restaurant + '"/><input type="submit" value="Delete Photo"></form><br>');
+								}
                             }
                         }
                     }
@@ -90,6 +99,62 @@ else
         var popup = document.getElementById('myPopup');
         popup.classList.toggle('show');
     }
+	
+	function submitChanges()
+	{
+		var name, description, location, contact, avgPrice, schedule, observations;
+		
+		if($('#r_name').val() == "")
+			name = $('#r_name').attr("placeholder");
+		else
+			name = $('#r_name').val();
+		
+		if($('#r_description').val() == "")
+			description = $('#r_description').attr("placeholder");
+		else
+			description = $('#r_description').val();
+		
+		if($('#r_location').val() == "")
+			location = $('#r_location').attr("placeholder");
+		else
+			location = $('#r_location').val();
+		
+		if($('#r_contact').val() == "")
+			contact = $('#r_contact').attr("placeholder");
+		else
+			contact = $('#r_contact').val();
+		
+		if($('#r_avgPrice').val() == "")
+			avgPrice = $('#r_avgPrice').attr("placeholder");
+		else
+			avgPrice = $('#r_avgPrice').val();
+		
+		if($('#r_schedule').val() == "")
+			schedule = $('#r_schedule').attr("placeholder");
+		else
+			schedule = $('#r_schedule').val();
+		
+		if(($('#r_observations').val() == "")||($('#r_observations').val() == null))
+			observation = $('#r_observations').attr("placeholder");
+		else
+			observation = $('#r_observations').val();
+		
+		
+		$.get('./database/UpdateRI.php',  {id: $('#r_id').attr("value"), name: name , description: description, location: location, contact: contact, avgPrice: avgPrice, schedule: schedule, observation: observation}, function(data) 
+		{
+			if(!data)
+				console.log("Error updating restaurant information.");
+			else
+				window.location = "restaurantProfileEdit.php?restaurant=" + restaurant;
+		}
+		);
+	}
+	
+	function goBack()
+	{
+		window.location = window.history.back();
+	}
+	
 
 </script>
 
@@ -112,6 +177,7 @@ else
             <a href="#informations">Informations</a>
             <div>
                 <form>
+					<input id="r_id" type="hidden" value="" maxlength="6">
                     <label>Restaurant Name: <input id="r_name" type="text" maxlength="60"> </label><br>
                     <label>Description: <textarea  id="r_description"name="description" cols="60" rows="2"></textarea> </label> <br>
                     <label>Location:<input id="r_location" type="text" name="adress" maxlength="80"></label><br>
@@ -144,7 +210,7 @@ else
             <div id="restaurantPhotos"> </div>
             <div>
                 <form id="updateRestaurantPhotos" action="./database/UploadPicture.php" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="method" value="5"/>
+                    <input type="hidden" name="method" value="4"/>
                     <input id="val" type="hidden" name="val" value=""/>
                     <input type="file" name="image"/>
                     <input type="submit" value="Upload New Photo">

@@ -48,7 +48,11 @@
 	header('Location: UpdateRPP.php?val=' . $val . "&id=" . $id);
 	exit;
   }
-  if($method == 5)
+  if($method == 4)
+  {
+	  header('Location: UpdateRP.php?val=' . $val . "&id=" . $id);
+  }
+   if($method == 5)
   {
 	  header('Location: UpdateRM.php?val=' . $val . "&id=" . $id);
   }
