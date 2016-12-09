@@ -32,7 +32,7 @@ CREATE TABLE Review (
 	reviewId INTEGER PRIMARY KEY AUTOINCREMENT,
 	username NVARCHAR2(100),
 	restaurantId INTEGER,
-	rating INTEGER NOT NULL CHECK (rating > 0 AND rating < 5),
+	rating INTEGER NOT NULL CHECK (rating > 0 AND rating <= 5),
 	text NVARCHAR(400),
 	date Date,
 	FOREIGN KEY(restaurantId) REFERENCES Restaurant(restaurantId) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -66,12 +66,10 @@ CREATE TABLE RestaurantPhoto (
 );
 
 CREATE TABLE ReviewPhoto (
+	reviewId INTEGER,
 	photoId INTEGER,
-	restaurantId INTEGER,
-	username NVARCHAR2(100),
-	FOREIGN KEY(restaurantId) REFERENCES Restaurant(restaurantId) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(photoId) REFERENCES Photo(photoId) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY(username) REFERENCES User(username) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY(reviewId) REFERENCES Review(reviewId) ON DELETE CASCADE ON UPDATE CASCADE
 	
 );
 
@@ -96,10 +94,11 @@ INSERT INTO Restaurant VALUES (2,'mcdonalds','restaurante amaricano','Lisboa','1
 INSERT INTO Review VALUES (1,'ines',1,4,'rapido e bom','2016-05-01');
 INSERT INTO Review VALUES (2,'ines',2,3,'cheira muito a fritos','2016-05-01');
 INSERT INTO Review VALUES (3,'andreia',2,4,'foi fixe','2014-01-26');
+INSERT INTO Review VALUES (4,'andreia',1,4,'muito fixe','2016-05-01');
 
-INSERT INTO ReviewPhoto VALUES (1,1,'ines');
-INSERT INTO ReviewPhoto VALUES (2,1,'ines');
-INSERT INTO ReviewPhoto VALUES (1,2,'andreia');
+INSERT INTO ReviewPhoto VALUES (1,1);
+INSERT INTO ReviewPhoto VALUES (2,1);
+INSERT INTO ReviewPhoto VALUES (1,2);
 
 INSERT INTO RestaurantPhoto VALUES (1,1);
 INSERT INTO RestaurantPhoto VALUES (2,1);

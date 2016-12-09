@@ -1,5 +1,5 @@
 <?php
-$info = $_GET['info'];
+$info = json_decode(stripslashes($_GET['info']));
 $owner = $_GET['owner'];
 $username = $_GET['username'];
 
@@ -11,10 +11,10 @@ $review =
 			<label>Review: <li id=\"rev_opinion\">" . $info[3] . "</li>
 			<li id=\"rev_photos\">";
 
-if(!empty($info[4]))
+if(count($info[4]) != 0)
 {
     foreach ($info[4] as $photo)
-        $review = $review . "<img src=\"./css/images_small/" . $photo . "\"alt=\"Review Photo\">";
+       $review = $review . "<img src=\"./css/images_small/" . $photo . "\"alt=\"Review Photo\">";
 }
 
 $review = $review .
