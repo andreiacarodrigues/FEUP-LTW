@@ -43,23 +43,14 @@ else{
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200)
             {
-                var info = new String(this.responseText);
-                info = info.trim();
+                var newResponseText = new String(this.responseText);
+                var newResponseText = newResponseText.trim();
 
-                if(info == "INVALID")
-                    return false;
-                else
-                    info = eval("(" + this.responseText + ")");
-
-                console.log("p : "+p+"\ninfo : "+info);
-
-                if(p != info)
-                    _("passstatus").innerHTML = "Passwords don't match!";
-                else
-                    _("passstatus").innerHTML = "Passwords match!";
+                _("passstatus").innerHTML = newResponseText;
             }
         };
-        xmlhttp.open("GET","database/UserPassword.php?username="+username,true);
+
+        xmlhttp.open("GET","database/UserPassword.php?username="+username+"&password="+p,true);
         xmlhttp.send();
     }
 
@@ -96,8 +87,11 @@ else{
 
                 _("photo").innerHTML = "<img src=" + info[4] + ">"; //foto da pessoa
 
-                _("cancel_btn").onclick = function() {
+                _("cancel_btn1").onclick = function() {
                     window.location = 'userProfile.php?username='+username;
+                };
+                _("cancel_btn2").onclick = function() {
+                    window.location = 'userProfileEdit.php?username='+username;
                 };
             }
         };
@@ -143,16 +137,33 @@ else{
 
                 var b = _("birthdate").value;
 
-                /* var pass1 = _("password").value;
-                 var pass2 = _("confirmPassword").value;
-                 if(pass1 != pass2)
-                 status.innerHTML = "Your password fields do not match.";*/
+                window.location = 'userProfile.php?username='+username; //u
+            }
+        };
+
+        xmlhttp.open("GET","database/UpdateUser.php?username="+ username,true); //not sure se é assim
+        xmlhttp.send();
+    }
+
+    function savePassword(){
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                var pass1 = _("new_pass").value;
+                var pass2 = _("confirm_pass").value;
+                if(pass1 != pass2)
+                    status.innerHTML = "Your password fields do not match.";
 
                 window.location = 'userProfile.php?username='+username; //u
             }
         };
 
-        xmlhttp.open("GET","database/UpdateUser.php?username="+ username,true);
+        xmlhttp.open("GET","database/UpdateUserPassword.php?username="+ username,true); //not sure se é assim
         xmlhttp.send();
     }
 
@@ -203,8 +214,8 @@ else{
                     <br>
                     <p id="status"></p>
                     <a href="#ChangePassword">Mudar Pass</a><br>   <!-- clica e abre a opcao de mudar a password, no entanto pertence ao mesmo form-->
-                    <button type="button" onclick="save();"> Send
-                        <button id="cancel_btn" type="button"> Cancel
+                    <button type="button" onclick="save();"> Send</button>
+                    <button id="cancel_btn1" type="button"> Cancel</button>
                 </form>
             </div>
         </li>
@@ -218,13 +229,15 @@ else{
                     <span id="passstatus"></span>
                     <br>
                     <label>New Password:
-                        <input id="newpass" type="password" name="password" placeholder="Insert new password.." maxlength="30">
+                        <input id="new_pass" type="password" name="password" placeholder="Insert new password.." maxlength="30">
                     </label>
                     <br>
                     <label>Confirm Password:
                         <input id="confirm_pass" type="password" name="confirmPassword" placeholder="Insert again you new password.." maxlength="30">
                     </label>
                     <br>
+                    <button type="button" onclick="savePassword();">Send</button>
+                    <button id="cancel_btn2" type="button" >Cancel</button>
                 </form>
             </div>
         </li>
