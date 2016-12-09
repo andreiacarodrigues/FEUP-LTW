@@ -15,8 +15,8 @@ $reviews = $stmt->fetchAll();
 $result = array();
 foreach ($reviews as $review)
 {
-    $stmt = $db->prepare('SELECT photoId FROM ReviewPhoto WHERE restaurantId = ? AND username = ?');
-    $stmt->execute(array($restaurantId['restaurantId'], $review['username']));
+    $stmt = $db->prepare('SELECT photoId FROM ReviewPhoto WHERE reviewId = ?');
+    $stmt->execute(array($review['reviewId']));
     $photosId = $stmt->fetchAll();
 
     $photos = array();
@@ -34,10 +34,10 @@ foreach ($reviews as $review)
     $repliesRes = $stmt->fetchAll();
 
 	$replies = array();
-	 foreach ($repliesRes as $reply)
-	 {
-		 $replies[] = array($reply['username'], $reply['text']);
-	 }
+	foreach ($repliesRes as $reply)
+	{
+		$replies[] = array($reply['username'], $reply['text']);
+	}
     $infoArray = array(
 		0 => $review['reviewId'],
 		1 => $review['username'],

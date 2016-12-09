@@ -106,15 +106,19 @@ else
             if (this.readyState == 4 && this.status == 200) {
 				var info = new String(this.responseText);
 				info = info.trim();
-
+				
 				if(info == "INVALID")
 					return false;
 				else
 					info = eval("(" + this.responseText + ")"); 
-				
+					
+					
 				for(var i = 0; i < info.length; i++)
 				{		
-					$.get('./templates/review.php',  {info: info[i], owner: owner , username: username}, function(data) 
+					console.log(info[i]);
+					
+					var jsonString = JSON.stringify(info[i]);
+					$.get('./templates/review.php',  {info: jsonString, owner: owner , username: username}, function(data) 
 					{
 						$('#reviews').append(data);
 					}
@@ -186,7 +190,7 @@ else
 	{
 		for (var x = 5; x >= 1; x--) { // 5 é o maior rating
 			if (document.getElementById(name + '-' + x).checked) {
-				return 6-x; // don't know why mas não me dá o valor certo de outra maneira
+				return x; // don't know why mas não me dá o valor certo de outra maneira
 			}
 		}
 		return -1;
@@ -199,6 +203,8 @@ else
 		$('#newReview #nr_text').attr("value", _("review").value);
 		
 		var rat = radioListCheck("star");
+		
+		alert(rat);
 		var r_status = _("r_status");
 	
 		if(rat == -1)
@@ -213,10 +219,9 @@ else
 		var d = new Date();
 		var month = d.getMonth()+1;
 		var day = d.getDate();
-		var date = d.getFullYear() + '/' + (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
+		var date = d.getFullYear() + '-' + (month<10 ? '0' : '') + month + '-' + (day<10 ? '0' : '') + day;
 		
 		$('#newReview #nr_date').attr("value", date);
-
 	}
 		
    function showNewReview()
@@ -275,5 +280,5 @@ else
 </section>
 
 <script language="JavaScript">
-$(document).ready(getInfo());
+	$(document).ready(getInfo());
 </script>

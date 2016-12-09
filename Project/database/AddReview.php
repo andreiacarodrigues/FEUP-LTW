@@ -13,6 +13,20 @@ include_once('Connection.php');
 		die(header('Location: ../restaurantProfile.php?restaurant=' . $restaurant . '&errorReview="1"#newReview'));
 	else
 	{
+		// Restaurant ID
+		$stmt = $db->prepare("SELECT restaurantId FROM Restaurant WHERE name = ?");
+		$stmt->execute(array($restaurant));
+		$restaurantId = $stmt->fetch()['restaurantId'];
+			 
+		// Review
+		$stmt = $db->prepare("INSERT INTO Review VALUES (null, ?, ?, ?, ?, ?)");
+		$stmt->execute(array($username, $restaurantId, $rating, $text, $date));
+	
+	
+		$stmt = $db->prepare("SELECT reviewId FROM Review ORDER BY reviewId DESC LIMIT 1");
+		$stmt->execute();
+		$reviewId = $stmt->fetch()['reviewId'];
+		
 		$photo = null;
 		if ($_FILES['image']['tmp_name']){
 			// Photo
@@ -52,21 +66,14 @@ include_once('Connection.php');
 			$medium = imagecreatetruecolor($mediumwidth, $mediumheight); 
 			imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumwidth, $mediumheight, $width, $height);
 			imagejpeg($medium, $mediumFileName);
+			
+			// Review Photo
+			$stmt = $db->prepare("INSERT INTO ReviewPhoto VALUES (?, ?)");
+			$stmt->execute(array($reviewId, $photo));
+	
 		}
-		
-		// Restaurant ID
-		$stmt = $db->prepare("SELECT restaurantId FROM Restaurant WHERE name = ?");
-		$stmt->execute(array($restaurant));
-		$restaurantId = $stmt->fetch()['restaurantId'];
-		
-		// Review Photo
-		$stmt = $db->prepare("INSERT INTO ReviewPhoto VALUES (?, ?, ?)");
-		$stmt->execute(array($photo, $restaurantId, $username));
-		 
-		// Review
-		$stmt = $db->prepare("INSERT INTO Review VALUES (null, ?, ?, ?, ?, ?)");
-		$stmt->execute(array($username, $restaurantId, $rating, $text, $date));
-		
-		echo $restaurant . " " . $username . " " .  $text . " " .  $rating . " " . $date . " " . $photo;
 	}
+	
+	header('Location: ../restaurantProfile.php?restaurant=' . $restaurant);
+	exit;
 ?>
