@@ -22,7 +22,7 @@ CREATE TABLE Restaurant (
 	schedule NVARCHAR2(200) NOT NULL,
 	observation NVARCHAR2(200),
 	menuId INTEGER, 
-	photoId INTEGER NOT NULL,
+	photoId INTEGER,
 	rating_sum REAL CHECK (rating_sum > 0),
 	rating_total REAL CHECK (rating_total > 0),
 	owner NVARCHAR2(100)
@@ -54,7 +54,7 @@ CREATE TABLE RestaurantFoodType (
 
 CREATE TABLE Photo (
 	photoId INTEGER PRIMARY KEY AUTOINCREMENT,
-	filename NVARCHAR2(200) NOT NULL
+	filename NVARCHAR2(200)
 );
 
 CREATE TABLE RestaurantPhoto (
@@ -82,9 +82,9 @@ CREATE TABLE ReviewReply (
 	FOREIGN KEY(reviewId) REFERENCES Review(reviewId) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(username) REFERENCES User(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
-INSERT INTO Photo VALUES (1,'./css/Images/default.png');
-INSERT INTO Photo VALUES (2,'./css/Images/teste1.gif');
-INSERT INTO Photo VALUES (3,'./css/Images/testeMenu.jpg');
+INSERT INTO Photo VALUES (1,'1.jpg');
+INSERT INTO Photo VALUES (2,'2.jpg');
+INSERT INTO Photo VALUES (3,'3.jpg');
 
 INSERT INTO User VALUES (NULL, 'ines','ola@a.com','01-01-2016','1234-123','ines','ines',1);
 INSERT INTO User VALUES (NULL, 'andreia','ola@a.com','01-01-2016','1234-123','andreia','andreia',1);
@@ -100,3 +100,6 @@ INSERT INTO Review VALUES (3,'andreia',2,4,'foi fixe','2014-01-26');
 INSERT INTO ReviewPhoto VALUES (1,1,'ines');
 INSERT INTO ReviewPhoto VALUES (2,1,'ines');
 INSERT INTO ReviewPhoto VALUES (1,2,'andreia');
+
+INSERT INTO RestaurantPhoto VALUES (1,1);
+INSERT INTO RestaurantPhoto VALUES (2,1);

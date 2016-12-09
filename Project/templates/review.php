@@ -14,7 +14,7 @@ $review =
 if(!empty($info[4]))
 {
     foreach ($info[4] as $photo)
-        $review = $review . "<img src=\"" . $photo . "\"alt=\"Review Photo\">";
+        $review = $review . "<img src=\"./css/images_small/" . $photo . "\"alt=\"Review Photo\">";
 }
 
 $review = $review .

@@ -2,13 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eac5cd96-6c6e-4a8f-891e-bfa2ccc71f19" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project/database/UpdateUser.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project/database/UserPassword.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/css/HomePage.css" afterPath="$PROJECT_DIR$/Project/css/HomePage.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project/css/Images/1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project/css/Images/2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project/css/images_small/1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project/css/images_small/2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project/css/style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project/database/DeleteRP.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project/database/DeleteRPP.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project/database/RestaurantPhotos.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project/database/UpdateRM.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project/database/UpdateRPP.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project/database/UploadPicture.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project/scripts/script.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Project/css/Images/default.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Project/css/Images/teste1.gif" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/database.db" afterPath="$PROJECT_DIR$/Project/database/database.db" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/database.sql" afterPath="$PROJECT_DIR$/Project/database/database.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/header.php" afterPath="$PROJECT_DIR$/Project/templates/header.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/userProfileEditT.php" afterPath="$PROJECT_DIR$/Project/templates/userProfileEditT.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/userProfileT.php" afterPath="$PROJECT_DIR$/Project/templates/userProfileT.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/restProfileEditT.php" afterPath="$PROJECT_DIR$/Project/templates/restProfileEditT.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/restProfileT.php" afterPath="$PROJECT_DIR$/Project/templates/restProfileT.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/review.php" afterPath="$PROJECT_DIR$/Project/templates/review.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Project/css/Images/testeMenu.jpg" afterPath="$PROJECT_DIR$/Project/css/Images/3.jpg" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -36,7 +50,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="userProfileEditT.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="userProfileEditT.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Project/templates/userProfileEditT.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="168">
@@ -78,11 +92,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="header.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Project/templates/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="53" lean-forward="false" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="53" />
+            <state relative-caret-position="119">
+              <caret line="7" column="71" lean-forward="false" selection-start-line="7" selection-start-column="71" selection-end-line="7" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -97,6 +111,7 @@
       <find>product</find>
       <find>&lt;</find>
       <find>Photo</find>
+      <find>userU</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -122,11 +137,11 @@
         <option value="$PROJECT_DIR$/Project/database/database.sql" />
         <option value="$PROJECT_DIR$/Project/database/UserInfo.php" />
         <option value="$PROJECT_DIR$/Project/css/HomePage.css" />
-        <option value="$PROJECT_DIR$/Project/templates/header.php" />
         <option value="$PROJECT_DIR$/Project/templates/userProfileT.php" />
         <option value="$PROJECT_DIR$/Project/database/UserPassword.php" />
         <option value="$PROJECT_DIR$/Project/database/UpdateUser.php" />
         <option value="$PROJECT_DIR$/Project/templates/userProfileEditT.php" />
+        <option value="$PROJECT_DIR$/Project/templates/header.php" />
       </list>
     </option>
   </component>
@@ -304,15 +319,15 @@
       <workItem from="1481244084703" duration="437000" />
       <workItem from="1481281044199" duration="672000" />
       <workItem from="1481281738419" duration="97000" />
-      <workItem from="1481300207904" duration="205000" />
+      <workItem from="1481300207904" duration="369000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43081000" />
+    <option name="totallyTimeSpent" value="43245000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1749634" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -635,14 +650,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Project/templates/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="53" lean-forward="false" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Project/templates/userProfileT.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
@@ -673,6 +680,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="193" column="47" lean-forward="false" selection-start-line="193" selection-start-column="47" selection-end-line="193" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project/templates/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="71" lean-forward="false" selection-start-line="7" selection-start-column="71" selection-end-line="7" selection-end-column="71" />
           <folding />
         </state>
       </provider>

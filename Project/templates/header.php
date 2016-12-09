@@ -6,7 +6,9 @@ include_once ('includes/autentication.php');
 <head>
     <meta charset="UTF-8">
 	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <link rel="stylesheet" href="./css/HomePage.css">
+    <link rel="stylesheet" href="css/stars.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="scripts/script.js"></script>
     <title>My WebPage</title>
 </head>
 <body>

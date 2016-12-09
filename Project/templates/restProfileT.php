@@ -38,9 +38,6 @@ else
 					info = eval("(" + this.responseText + ")"); 
 				
                 _("name").innerHTML = restaurant;
-				
-				var restaurantId = info[0];
-				
                 _("description").innerHTML = info[1];
                 _("location").innerHTML = info[2];
                 _("contact").innerHTML = info[3];
@@ -52,16 +49,12 @@ else
 				var photoId = info[8];
 	
 				if(photoId != null)
-				{
-					getPhoto(parseInt(photoId), false);
-				}
+					getPhoto(parseInt(photoId), false, '#main', '#menu', './css/Images/');
 				else
 					$('#main').prepend('<img src="./css/Images/defaultRestaurant.jpg" alt="Photo that represents the restaurant">');
 				
 				if(menuId != null)
-				{
-					getPhoto(parseInt(menuId) , true);
-				}
+					getPhoto(parseInt(menuId) , true, '#main', '#menu', './css/Images/');
 				else
 					$('#menu').html('<img src="./css/Images/defaultRestaurant.jpg" alt="Photo that represents the restaurant">');
 				
@@ -74,22 +67,15 @@ else
 			    _("owner").innerHTML = owner;
 			   
 			    if(username == owner)
-			    {
-					$('#options').html('<li><a href="#">Edit</a></li>');
-			    }
+			    	$('#options').html('<li><a href="restaurantProfileEdit.php?restaurant=' + restaurant +'">Edit</a></li>');
 			    else
-				{
 					$('#options').html('<li><a href="#newReview">Leave Review</a></li>');
-					$('#options').append('<li><a href="#">Fast Review</a></li>');
-				}
 				
 				getReviews(owner);
+				getPhotos();
 				
 				if(owner != username)
-				{
-					console.log("vai mostrar:o");
 					showNewReview();
-				}
 						   
 			   return true;
             }
@@ -98,34 +84,6 @@ else
         xmlhttp.open("GET","database/RestaurantInfo.php?restaurant="+ restaurant,true);
         xmlhttp.send();
     }
-	
-	function getPhoto(id, isMenu)
-	{
-		 if (window.XMLHttpRequest) {
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-				var filename = new String(this.responseText);
-				filename = filename.trim();
-
-				if(filename == "INVALID")
-					return false;
-				
-				if(isMenu)
-					$('#menu').html('<img src='+ filename + 'alt="Photo that represents the restaurant">');
-				else
-					$('#main').prepend('<img src=' + filename + 'alt="Photo that represents the restaurant">');
-				
-			   return true;
-            }
-        };
-
-        xmlhttp.open("GET","database/GetPhoto.php?id="+ id,true);
-        xmlhttp.send();
-	}
 
 	function getReviews(owner) 
 	{
@@ -158,6 +116,24 @@ else
 
         xmlhttp.open("GET","database/RestaurantReviews.php?restaurant="+ restaurant,true);
         xmlhttp.send();
+	}
+	
+	function getPhotos()
+	{
+		$.get('./database/RestaurantPhotos.php',  {restaurant: restaurant}, function(data) 
+		{
+					
+			if(data != "INVALID")
+			{
+				var photos = eval("(" + data + ")"); 
+				for(var i = 0; i < photos.length; i++)
+				{
+					$('#photos').append('<img src="./css/images/'+ photos[i] + '"alt="Photo of the restaurant">');
+
+				}
+			}
+		}
+	);
 	}
 	
 	function cancelReply(i)
@@ -196,7 +172,8 @@ else
 		}
 	}
 	
-	function radioListCheck(name) {
+	function radioListCheck(name) 
+	{
 		for (var x = 5; x >= 1; x--) { // 5 é o maior rating
 			if (document.getElementById(name + '-' + x).checked) {
 				return 6-x; // don't know why mas não me dá o valor certo de outra maneira
@@ -212,26 +189,13 @@ else
 		var t = _("review").value;
 		var pics = _("reviewPic").value; 
 		var rat = radioListCheck("star");
-/*<?php
-	if(isset($_POST['ok']))
-	foreach ($_FILES['file']['name'] as $filename) {
-    echo $filename.'<br/>';
-}
-?>*/
 		var d = new Date();
 		var month = d.getMonth()+1;
 		var day = d.getDate();
 		var date = d.getFullYear() + '/' + (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
 		
 		var r_status = _("r_status");
-		
-		console.log(u);
-		console.log(res);
-		console.log(t);
-		console.log(pics);
-		console.log(rat);
-		console.log(date);
-		
+	
 		if(rat == -1)
 			r_status.innerHTML = "You need at least to leave a rating if you want to submit a review.";
 		else
@@ -270,12 +234,12 @@ else
 <section id="main" >
     <h2 id="name">Restaurant Name</h2>  
     <h3 id="rating">Rating</h3>            
-    <div id = "options"> </div>
+    <div id ="options"> </div>
 </section>
 <section id="Details">
     <ul id="tabs">
         <li id="informations">
-            <a href="#">Informations</a> <!-- isto é estatico portanto temos de fazer disable disto pelo css -->
+            <a href="#">Informations</a>
             <div>
                 <ul id="info">
 					<label>Description: <li id="description"></li></label>
