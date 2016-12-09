@@ -15,16 +15,17 @@ CREATE TABLE User (
 CREATE TABLE Restaurant (
 	restaurantId INTEGER PRIMARY KEY AUTOINCREMENT,
 	name NVARCHAR2(100) NOT NULL,
-	description NVARCHAR2(200) NOT NULL,
-	location NVARCHAR2(100) NOT NULL,
+	description NVARCHAR2(200),
+	location NVARCHAR2(100),
+	postCode NVARCHAR2(8),
 	contact INTEGER NOT NULL CHECK (contact > 0),
 	avgPrice REAL CHECK (avgPrice > 0),
-	schedule NVARCHAR2(200) NOT NULL,
+	schedule NVARCHAR2(200),
 	observation NVARCHAR2(200),
 	menuId INTEGER, 
 	photoId INTEGER,
-	rating_sum REAL CHECK (rating_sum > 0),
-	rating_total REAL CHECK (rating_total > 0),
+	rating_sum REAL CHECK (rating_sum >= 0),
+	rating_total REAL CHECK (rating_total >= 0),
 	owner NVARCHAR2(100)
 );
 
@@ -88,8 +89,8 @@ INSERT INTO User VALUES (NULL, 'ines','ola@a.com','01-01-2016','1234-123','ines'
 INSERT INTO User VALUES (NULL, 'andreia','ola@a.com','01-01-2016','1234-123','andreia','andreia',1);
 
 
-INSERT INTO Restaurant VALUES (1,'montaditos','restaurante espanhol','Porto','12345689','5','24h',null,3,2,4,4,'andre');
-INSERT INTO Restaurant VALUES (2,'mcdonalds','restaurante amaricano','Lisboa','123456789','4','12h',null,3,2,3,3,'andre');
+INSERT INTO Restaurant VALUES (1,'montaditos','restaurante espanhol','Porto','1234-123','12345689','5','24h',null,3,2,4,4,'andre');
+INSERT INTO Restaurant VALUES (2,'mcdonalds','restaurante amaricano','Lisboa','1234-123','123456789','4','12h',null,3,2,3,3,'andre');
 
 INSERT INTO Review VALUES (1,'ines',1,4,'rapido e bom','2016-05-01');
 INSERT INTO Review VALUES (2,'ines',2,3,'cheira muito a fritos','2016-05-01');

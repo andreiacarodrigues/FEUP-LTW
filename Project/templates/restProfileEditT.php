@@ -100,14 +100,37 @@ else
         popup.classList.toggle('show');
     }
 	
-	function submitChanges()
+	function is_phone_number(element) {
+		return /^\d{9}|\d{3}-\d{3}-\d{3}$/.test(element);
+	}
+	
+	function is_name(element) {
+		return "[^0-9\\|!&quot;@#£$§%&/()=?{[\]}'«»*+]+".test(element);
+	}
+
+	function is_username(element)
 	{
+		return "[a-zA-Z][\w]{3,8}[a-zA-Z]" .test(element);
+	}
+	
+	function is_postCode(element)
+	{
+		return "[0-9]{4}-[0-9]{3}|[0-9]{4}".test(element);
+	}
+	
+	function is_password(element)
+	{
+		return "(?=.*[0-9].*[0-9])(?=.*[;\.:].*[;\.:])([\w;\.:])[\w;\.:]{4,}(?!\1)[\w;\.:]".test(element);
+	}
+	function submitChanges()
+	{	
 		var name, description, location, contact, avgPrice, schedule, observations;
 		
 		if($('#r_name').val() == "")
 			name = $('#r_name').attr("placeholder");
 		else
 			name = $('#r_name').val();
+	
 		
 		if($('#r_description').val() == "")
 			description = $('#r_description').attr("placeholder");
@@ -180,7 +203,7 @@ else
 					<input id="r_id" type="hidden" value="" maxlength="6">
                     <label>Restaurant Name: <input id="r_name" type="text" maxlength="60"> </label><br>
                     <label>Description: <textarea  id="r_description"name="description" cols="60" rows="2"></textarea> </label> <br>
-                    <label>Location:<input id="r_location" type="text" name="adress" maxlength="80"></label><br>
+                    <label>Location:<input id="r_location" type="text" name="location" maxlength="80"></label><br>
                     <label>Schedule:<input id="r_schedule" type="text" name="schedule"></label><br>
                     <label>Average Price Per Person(€):<input id="r_avgPrice" type="text" name="cost" maxlength="4"></label> <br>
                     <label>Contact:<input id="r_contact" type="tel" name="number" maxlength="9"></label> <br>
