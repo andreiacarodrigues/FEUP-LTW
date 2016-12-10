@@ -6,6 +6,7 @@ include_once('Connection.php');
 	global $db;
 
     $val = $_POST['val'];
+	$res = $_POST['restaurant'];
 	
 	$stmt = $db->prepare("SELECT photoId from Photo WHERE filename = ?");
 	$stmt->execute(array($val));
@@ -19,6 +20,6 @@ include_once('Connection.php');
 	unlink("../css/images_small/$deleteId.jpg");
 	unlink("../css/images_medium/$deleteId.jpg");
 	
-	header('Location: ../restaurantProfileEdit.php?restaurant=' . $val);
-	exit;*/
+	header('Location: ../restaurantProfileEdit.php?restaurant=' . $res);
+	exit;
 ?>

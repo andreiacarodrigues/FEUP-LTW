@@ -54,16 +54,19 @@ else
 				if(photoId != null)
 					getPhoto(parseInt(photoId), false, '#main', '#menu', './css/Images/');
 				else
-					$('#main').prepend('<img src="./css/Images/defaultRestaurant.jpg" alt="Photo that represents the restaurant">');
+					$('#main').prepend('<img src="./css/Images/1.jpg" alt="Photo that represents the restaurant">');
 				
 				if(menuId != null)
 					getPhoto(parseInt(menuId) , true, '#main', '#menu', './css/Images/');
 				else
-					$('#menu').html('<img src="./css/Images/defaultRestaurant.jpg" alt="Photo that represents the restaurant">');
+					$('#menu').html('<img src="./css/Images/1.jpg" alt="Photo that represents the restaurant">');
 				
 				var rating_sum = info[9];
 				var rating_total = info[10];
-				var rating = Math.round((parseFloat(rating_sum) / parseFloat(rating_total)) * 100) / 100
+				if((rating_sum == 0) || (rating_total == 0))
+					var rating = 0;
+				else
+					var rating = Math.round((parseFloat(rating_sum) / parseFloat(rating_total)) * 100) / 100;
                 _("rating").innerHTML = rating; 
              
 				var owner = info[11];
@@ -120,6 +123,9 @@ else
 					var jsonString = JSON.stringify(info[i]);
 					$.get('./templates/review.php',  {info: jsonString, owner: owner , username: username}, function(data) 
 					{
+						var info = new String(data);
+						info = info.trim();
+				
 						$('#reviews').append(data);
 					}
 					);
@@ -136,10 +142,12 @@ else
 	{
 		$.get('./database/RestaurantPhotos.php',  {restaurant: restaurant}, function(data) 
 		{
-					
-			if(data != "INVALID")
+			var info = new String(data);
+            info = info.trim();
+			
+			if(info != "INVALID")
 			{
-				var photos = eval("(" + data + ")"); 
+				var photos = eval("(" + info + ")"); 
 				for(var i = 0; i < photos.length; i++)
 				{
 					$('#photos').append('<img src="./css/images/'+ photos[i] + '"alt="Photo of the restaurant">');
@@ -228,7 +236,10 @@ else
    {
 		$.get('./templates/newReview.php', function(data) 
 		{
-			$('#newReview').append(data);
+			var info = new String(data);
+            info = info.trim();
+			
+			$('#newReview').append(info);
 		}
 		);
    }
