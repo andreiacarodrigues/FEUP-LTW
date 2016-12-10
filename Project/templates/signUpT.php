@@ -8,11 +8,6 @@ if(isset($_SESSION["userid"])){
 
 <script language="JavaScript">
 
-    function goback()
-    {
-        window.location = 'index.php';
-    }
-
     function signup(){
         var u = _("username").value;
         var n = _("name").value;
@@ -22,7 +17,6 @@ if(isset($_SESSION["userid"])){
         var b = _("birthdate").value;
         var pass1 = _("password").value;
         var pass2 = _("confirmPassword").value;
-        var pic = _("profilePic").value;
         var status = _("status");
 
         var re =/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -49,10 +43,6 @@ if(isset($_SESSION["userid"])){
             status.innerHTML = "";
             var postCode = p1 + "-" + p2;
 
-            if(pic == "")
-                pic = "NULL";
-
-
             if (window.XMLHttpRequest) {
                 // code for IE7+, Firefox, Chrome, Opera, Safari
                 xmlhttp = new XMLHttpRequest();
@@ -63,17 +53,15 @@ if(isset($_SESSION["userid"])){
 
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    goback();
+                    goBack();
                 }
             };
-            xmlhttp.open("GET","database/AddUser.php?username="+u + "&name="+n+"&email="+e+"&postCode="+postCode+"&birthdate="+b+"&password="+pass1+"&pic="+pic,true);
+            xmlhttp.open("GET","database/AddUser.php?username="+u + "&name="+n+"&email="+e+"&postCode="+postCode+"&birthdate="+b+"&password="+pass1,true);
             xmlhttp.send();
         }
     }
 
-
 </script>
-
 <h2>SignUp</h2>
 <div class="signUp">
     <form>
@@ -87,9 +75,8 @@ if(isset($_SESSION["userid"])){
         <label>Birthdate:<input type="date" name="birthdate"  id="birthdate" onfocus="emptyElement('status');"></label> <br>
         <label>Password:<input type="password" name="password" id="password" onfocus="emptyElement('status');" maxlength="30"></label><br>
 		<label>Confirm Password: <input type="password" name="confirmPassword"  id="confirmPassword" onfocus="emptyElement('status');" maxlength="30"> </label><br>
-        <label>Profile Picture:<input type="file" name="profilePic" id="profilePic"> </label>
-        <p id="status"></p><br>
-        <button type="button" onclick="signup()"> Send
-        <button type="button" onclick="goback()"> Cancel
+        <span id="status"></span><br>
+        <input type="button" onclick="signup()" value="Submit Info"> 
+        <input type="button" onclick="goBack()" value="Cancel"> 
     </form>
 </div>
