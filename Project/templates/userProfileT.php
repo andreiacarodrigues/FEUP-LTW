@@ -174,6 +174,8 @@ else {
                         $('#manageRestaurants').append('<img src="./css/images_small/defaultRestaurant.jpg" alt="Photo that represents the restaurant">');
                     }
                 }
+				
+				$('#manageRestaurants').append ('<br><a href="addRestaurant.php">Add Restaurant');
             }
         };
 
@@ -204,18 +206,11 @@ else {
 
                 if(username != sessionUsername)
                 {
-                    //esta parte ainda é incerta
 					 _("addFriend").innerHTML = "<a href=\"./addFriend.php?username="+username+"&session=" + sessionUsername +"\">Add Friend</a><br>";
-                  //  $("#addFriend").attr('href', "#");
-                    //$("#link1").outerHTML = "Adicionar Amigo";  <!-- eu vejo isto amanhã!! não tou  conseguir encontrar como tirar o nome de display
-                    // do link -->
                 }
                 else
                 {
-                    _("edit").innerHTML = "<a href=\"./userProfileEdit.php?username="+username+"\">Edit Profile</a><br>"; //foto do restaurante
-
-                    //$("#edit").attr('href', "../userProfileEdit.php");
-                    //$("#link1").outerHTML = "Editar";
+                    _("edit").innerHTML = "<a href=\"./userProfileEdit.php?username="+username+"\">Edit Profile</a><br>"; //foto do restaurant
                 }
 
             </script>
