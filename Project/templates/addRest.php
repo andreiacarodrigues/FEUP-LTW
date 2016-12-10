@@ -31,11 +31,7 @@ else
 
 	function submitInfo()
 	{
-		/*if(restaurant != "NULL")
-		{
-			console.log("You can't submit the same restaurant twice.");
-			return false;
-		}*/
+		
 			
 		console.log(restaurant);
 		console.log(username);
@@ -87,12 +83,24 @@ else
         $('#updateRestaurantPhotos #val').attr("value", restaurant);
     }
 	
+	function restaurantExists()
+	{
+		var name = _("r_name").value;
+		$.get('./database/RestaurantExists.php',  {name: name}, function(data) 
+		{
+			var info = new String(data);
+            info = info.trim();
+			_("n_span").innerHTML = info;
+		});
+	}
+	
 </script>
 
 <h2>Add Restaurant</h2>
 <section id="informations">
     <form>
-        <label>Restaurant Name: <input id="r_name" type="text" maxlength="60" onfocus="emptyElement('status');" required> </label><br>
+        <label>Restaurant Name: <input id="r_name" type="text" onblur="restaurantExists();" maxlength="60" onfocus="emptyElement('n_span');" required> </label><br>
+		<span id="n_span"></span><br>
         <label>Description: <textarea  id="r_description"name="description" cols="60" rows="2"></textarea> </label> <br>
         <label>Location:<input id="r_location" type="text" name="location" maxlength="80" onfocus="emptyElement('status');"></label>
 		<label>PostCode: <input type="text" maxlength="8" name="postCode" id="r_postCode" onfocus="emptyElement('status');" ></label><br>
