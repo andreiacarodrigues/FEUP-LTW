@@ -198,8 +198,8 @@ else {
             <label>Email :<li id= "email"></li></label>
             <label>Birthday : <li id= "birthdate"></li></label>
             <label>Post-code : <li id= "postCode"></li></label>
-            <li id="addFriend"></li>
-            <li id="edit"></li>
+            <div id="addFriend"></div>
+            <div id="edit"></div>
         </ul>
         <?php
         if (isUserLoggedIn ()){   ?>
@@ -210,13 +210,14 @@ else {
                 if(username != sessionUsername)
                 {
                     //esta parte ainda é incerta
-                    $("#addFriend").attr('href', "#");
+					 _("addFriend").innerHTML = "<a href=\"./addFriend.php?username="+username+"&session=" + sessionUsername +"\">Add Friend</a><br>";
+                  //  $("#addFriend").attr('href', "#");
                     //$("#link1").outerHTML = "Adicionar Amigo";  <!-- eu vejo isto amanhã!! não tou  conseguir encontrar como tirar o nome de display
                     // do link -->
                 }
                 else
                 {
-                    document.getElementById("edit").innerHTML = "<a href=\"./userProfileEdit.php?username="+username+"\">Edit Profile</a><br>"; //foto do restaurante
+                    _("edit").innerHTML = "<a href=\"./userProfileEdit.php?username="+username+"\">Edit Profile</a><br>"; //foto do restaurante
 
                     //$("#edit").attr('href', "../userProfileEdit.php");
                     //$("#link1").outerHTML = "Editar";

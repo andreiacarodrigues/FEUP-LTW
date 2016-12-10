@@ -1,13 +1,3 @@
-<?php
-include_once ("includes/autentication.php");
-
-if (isset ( $_POST ['username'] ) && isset ( $_POST ['password'] ))
-{
-    echo "chegou aqui";
-    login ( $_POST ['username'], $_POST ['password'] );
-}
-?>
-
 <script language="JavaScript">
 
     function login()

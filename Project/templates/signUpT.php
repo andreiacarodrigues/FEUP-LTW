@@ -1,6 +1,6 @@
 <?php
 // If user is logged in, header them away
-if(isset($_SESSION["username"])){
+if(isset($_SESSION["userid"])){
     header("location: index.php");
     exit();
 }
@@ -77,45 +77,19 @@ if(isset($_SESSION["username"])){
 <h2>SignUp</h2>
 <div class="signUp">
     <form>
-        <label>Username:
-            <input type="text" name="username" id="username" onblur="checkUsername();" onkeyup="restrict('username');" maxlength="16">
-        </label>
-        <br>
-        <span id="unamestatus"></span>
-        <br>
-        <label>Name:
-            <input type="text" name="name" id="name" onfocus="emptyElement('status');" maxlength="88">
-        </label>
-        <br>
-        <label>Email:
-            <input type="email" name="email" id="email" placeholder="me@example.com" onfocus="emptyElement('status');" maxlength="30" >
-        </label>
-        <br>
-        <label>PostCode:
-            <input type="text" maxlength="4" name="postCode1"  id="postCode1" >
-            <label> -
-                <input type="text" maxlength="3" name="postCode2" id="postCode2" onfocus="emptyElement('status');" >
-            </label>
-        </label>
-        <br>
-        <label>Birthdate:
-            <input type="date" name="birthdate"  id="birthdate" onfocus="emptyElement('status');">
-        </label>
-        <br>
-        <label>Password:
-            <input type="password" name="password" id="password" onfocus="emptyElement('status');" maxlength="16">
-        </label>
-        <br>
-        <label>Confirm Password:
-            <input type="password" name="confirmPassword"  id="confirmPassword" onfocus="emptyElement('status');" maxlength="16">
-        </label>
-        <br>
-        <label>Profile Picture:
-            <input type="file" name="profilePic" id="profilePic">
-        </label>
-        <p id="status"></p>
-        <br>
+        <label>Username:<input type="text" name="username" id="username" onblur="checkUsername();" onkeyup="restrict('username');" maxlength="16"> </label> <br>
+        <span id="unamestatus"></span> <br> 
+		<label>Name: <input type="text" name="name" id="name" onfocus="emptyElement('status');" maxlength="88"></label> <br>
+        <label>Email:<input type="email" name="email" id="email" placeholder="me@example.com" onfocus="emptyElement('status');" maxlength="30" > </label><br>
+        <label>PostCode: <input type="text" maxlength="4" name="postCode1"  id="postCode1" >
+            <label> -<input type="text" maxlength="3" name="postCode2" id="postCode2" onfocus="emptyElement('status');" > </label>
+        </label> <br>
+        <label>Birthdate:<input type="date" name="birthdate"  id="birthdate" onfocus="emptyElement('status');"></label> <br>
+        <label>Password:<input type="password" name="password" id="password" onfocus="emptyElement('status');" maxlength="30"></label><br>
+		<label>Confirm Password: <input type="password" name="confirmPassword"  id="confirmPassword" onfocus="emptyElement('status');" maxlength="30"> </label><br>
+        <label>Profile Picture:<input type="file" name="profilePic" id="profilePic"> </label>
+        <p id="status"></p><br>
         <button type="button" onclick="signup()"> Send
-            <button type="button" onclick="goback()"> Cancel
+        <button type="button" onclick="goback()"> Cancel
     </form>
 </div>

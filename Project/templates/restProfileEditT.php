@@ -177,12 +177,6 @@ else
 		}
 		);
 	}
-	
-	function goBack()
-	{
-		window.location = window.history.back();
-	}
-	
 
 </script>
 

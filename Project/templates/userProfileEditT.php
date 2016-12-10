@@ -56,7 +56,7 @@ else{
 
     function getInfo(){
 
-        $('#updateProfilePhoto #val').attr("value", username);
+        $('#updateProfilePicture #val').attr("value", username);
 
         if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
@@ -73,10 +73,7 @@ else{
                     return false;
                 else
                     info = eval("(" + this.responseText + ")");
-
-                console.log("Informacaoes : ");
-                console.log(info);
-
+				
                 $('#username').attr("placeholder",username);
                 $('#name').attr("placeholder",info[0]);
                 $('#email').attr("placeholder",info[1]);
@@ -85,8 +82,8 @@ else{
                 _("birthdate").valueAsDate = new Date(date[2],date[1]-1,date[0]);
 
                 var res = info[3].split("-");
-                $('#postcode1').attr("placeholder",res[0]);
-                $('#postcode2').attr("placeholder",res[1]);
+                $('#postCode1').attr("placeholder",res[0]);
+                $('#postCode2').attr("placeholder",res[1]);
 
                 var photoId = info[4];
                 if(photoId != null)
@@ -95,13 +92,6 @@ else{
                 }
                 else
                     $('#main').prepend('<img src="./css/images/1.jpg" alt="Photo that represents the restaurant">');
-
-                _("cancel_btn1").onclick = function() {
-                    window.location = 'userProfile.php?username='+username;
-                };
-                _("cancel_btn2").onclick = function() {
-                    window.location = 'userProfileEdit.php?username='+username;
-                };
             }
         };
 
@@ -109,72 +99,89 @@ else{
         xmlhttp.send();
     }
 
-    function getVar(id) {
+    function submitInfo(){
+		
+		var previousUsername = username;
+		var u = getVar("username");
+        var n =  getVar("name");
+        var e = getVar("email");
+        var p1 = getVar("postCode1");
+        var p2 = getVar("postCode2");
+        var b =  getVar("birthdate");
+        var status = _("status");
 
-        var myVar = _(id).value;
-        if(myVar == "")
-            myVar = _(id).placeholder;
+        var re =/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        var validated = re.test(e);
 
-        return myVar;
+       if((p1.length != 4) || (p2.length != 3) || (!p1.match(/^[0-9]+$/)) || (!p2.match(/^[0-9]+$/)))
+            status.innerHTML = "Invalid postcode.";
+        else if(!validated)
+            status.innerHTML = "Invalid e-mail.";
+        else
+        {
+            status.innerHTML = "";
+            var postCode = p1 + "-" + p2;
+
+			$.get('./database/UpdateUI.php',  {username: u, name: n, email: e, postCode: postCode, birthdate: b, previousUsername: previousUsername}, function(data) 
+			{
+				var info = new String(data);
+				info = info.trim();
+
+				console.log(data);
+				if(info == "0")
+					console.log("Error updating username information.");
+				else
+				{
+					window.location = 'userProfile.php?username='+u; 
+				}
+			}
+			);
+		}
     }
 
-    function save(){
-        if (window.XMLHttpRequest) {
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200)
-            {
-                var status = _("status");
+   function submitPassword(){
+	    var status = _("p_status");
+	    
+		 var currentPass = _("password").value;
+		 
+		 var newPass = _("new_pass").value;
+		 var confirmNewPass = _("confirm_pass").value;
+		 
+		 // Vê se algum dos campos é vazio
+		 if((currentPass == "") || (newPass == "") || (confirmNewPass == ""))
+			 status.innerHTML = "Fill out all of the passworld form data";
+		 else
+		 {
+			// Vê se já aceitou a password atual
+			if(_("passstatus").innerHTML == "Password correct")
+			{
+				// Verifica se as duas novas passwords são iguais
+				if(newPass != confirmNewPass)
+				{
+					status.innerHTML = "Your new password and the confirmation don't match!";
+				}
+				else
+				{
+					// Altera a password para a nova password introduzida
+					$.get('./database/UpdateUP.php',  {username: username, password: newPass}, function(data) 
+					{
+						var info = new String(data);
+						info = info.trim();
 
-                var u = getVar("username");
-                var n = getVar("name");
-                var e = getVar("email");
-
-                var re =/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                var validated = re.test(e);
-                if(!validated)
-                    status.innerHTML = "Invalid e-mail.";
-
-                var p1 = getVar("postcode1");
-                var p2 = getVar("postcode2");
-
-                if((p1.length != 4) || (p2.length != 3) || (!p1.match(/^[0-9]+$/)) || (!p2.match(/^[0-9]+$/)))
-                    status.innerHTML = "Invalid postcode.";
-
-                var b = _("birthdate").value;
-
-                window.location = 'userProfile.php?username='+username; //u
-            }
-        };
-
-        xmlhttp.open("GET","database/UpdateUser.php?username="+ username,true); //not sure se é assim
-        xmlhttp.send();
-    }
-
-    function savePassword(){
-        if (window.XMLHttpRequest) {
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200)
-            {
-                var pass1 = _("new_pass").value;
-                var pass2 = _("confirm_pass").value;
-                if(pass1 != pass2)
-                    status.innerHTML = "Your password fields do not match.";
-
-                window.location = 'userProfile.php?username='+username; //u
-            }
-        };
-
-        xmlhttp.open("GET","database/UpdateUserPassword.php?username="+ username,true); //not sure se é assim
-        xmlhttp.send();
-    }
+						console.log(data);
+						if(info == "0")
+							console.log("Error updating username information.");
+						else
+						{
+							window.location = 'userProfile.php?username='+username; 
+						}
+					}
+					);
+				}
+			}
+		}
+   }
+ 
 
 </script>
 
@@ -193,13 +200,10 @@ else{
 
 <section id="dashboard" >
     <ul>
-        <li id="UserInformations">
+        <li id="userInformations">
             <div>
                 <form>
-                    <label>Username:
-                        <input id="username" type="text" name="username" onblur="checkUsername();" onkeyup="restrict('username');" maxlength="16">
-                    </label>
-                    <br>
+                    <label>Username:<input id="username" type="text" name="username" onblur="checkUsername();" onkeyup="restrict('username');" maxlength="16"></label> <br>
                     <span id="unamestatus"></span>
                     <br>
                     <!-- <br>
@@ -207,51 +211,29 @@ else{
                          <textarea id="my_info" name="info" cols="40" rows="5"></textarea>
                      </label>-->
                     <br>
-                    <label>Name:
-                        <input id="name" type="text" name="name" maxlength="88">
-                    </label>
-                    <br>
-                    <label>Email:
-                        <input id="email" type="e-mail" name="email" maxlength="30">
-                    </label>
-                    <br>
-                    <label>PostCode:
-                        <input id="postcode1" type="text" maxlength="4"  name="postCode1"> <!-- javascript tem de ver se é numero -->
-                        <label> -
-                            <input id="postcode2" type="text" maxlength="3" name="postCode2">
-                        </label>
-                    </label>
-                    <br>
-                    <label>Birthdate:
-                        <input id="birthdate" type="date" name="birthdate">
-                    </label>
-                    <br>
-                    <p id="status"></p>
-                    <a href="#ChangePassword">Mudar Pass</a><br>   <!-- clica e abre a opcao de mudar a password, no entanto pertence ao mesmo form-->
-                    <button type="button" onclick="save();"> Send</button>
-                    <button id="cancel_btn1" type="button"> Cancel</button>
+                    <label>Name:<input id="name" type="text" name="name" maxlength="88"></label><br>
+                    <label>Email: <input id="email" type="e-mail" name="email" maxlength="30"> </label> <br>
+                    <label>PostCode: <input id="postCode1" type="text" maxlength="4"  name="postCode1"> <!-- javascript tem de ver se é numero -->
+                        <label> -<input id="postCode2" type="text" maxlength="3" name="postCode2"></label>
+					</label><br>
+                    <label>Birthdate:<input id="birthdate" type="date" name="birthdate"></label><br>
+                    <input type="button" onclick="submitInfo();" value="Submit Information">
+                    <input type="button" onclick="goBack();" value="Cancel">
+					<p id="status"></p>
                 </form>
             </div>
+		<a href="#changePassword">Change Password</a><br>   <!-- clica e abre a opcao de mudar a password, no entanto pertence ao mesmo form-->
         </li>
-        <li id="ChangePassword">
+        <li id="changePassword">
             <div>
                 <form>
-                    <label>Actual Password:
-                        <input id="password" type="password" name="password" placeholder="Insert your password.." onblur="checkPassword();" maxlength="30">
-                    </label>
-                    <br>
-                    <span id="passstatus"></span>
-                    <br>
-                    <label>New Password:
-                        <input id="new_pass" type="password" name="password" placeholder="Insert new password.." maxlength="30">
-                    </label>
-                    <br>
-                    <label>Confirm Password:
-                        <input id="confirm_pass" type="password" name="confirmPassword" placeholder="Insert again you new password.." maxlength="30">
-                    </label>
-                    <br>
-                    <button type="button" onclick="savePassword();">Send</button>
-                    <button id="cancel_btn2" type="button" >Cancel</button>
+                    <label>Current Password:<input id="password" type="password" name="password" placeholder="Insert your current password.." onblur="checkPassword();" maxlength="30"></label><br>
+                    <span id="passstatus"></span><br>
+                    <label>New Password:<input id="new_pass" type="password" name="password" placeholder="Insert new password.." maxlength="30"></label><br>
+                    <label>Confirm New Password:<input id="confirm_pass" type="password" name="confirmPassword" placeholder="Insert again you new password.." maxlength="30"></label><br>
+                    <input type="button" onclick="submitPassword();" value="Submit New Password">
+                    <input type="button" onclick="goBack();" value="Cancel">
+					<p id="p_status"></p>
                 </form>
             </div>
         </li>

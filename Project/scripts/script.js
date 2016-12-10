@@ -66,3 +66,18 @@ function restrict(elem){
     }
     tf.value = tf.value.replace(rx, "");
 }
+
+function getVar(id) {
+
+   var myVar = _(id).value;
+   if(myVar == "")
+       myVar = _(id).placeholder;
+
+    return myVar;
+}
+
+function goBack()
+{
+	window.location = window.history.back();
+}
+	

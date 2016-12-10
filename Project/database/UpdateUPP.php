@@ -13,13 +13,15 @@ $stmt->execute(array($val));
 $deleteId = $stmt->fetch();
 $deleteId = $deleteId['photoId'];
 
-$stmt = $db->prepare("DELETE FROM Photo WHERE photoId = ?");
-$stmt->execute(array($deleteId));
+if($deleteId != null)
+{
+	$stmt = $db->prepare("DELETE FROM Photo WHERE photoId = ?");
+	$stmt->execute(array($deleteId));
 
-unlink("../css/images/$deleteId.jpg");
-unlink("../css/images_small/$deleteId.jpg");
-unlink("../css/images_medium/$deleteId.jpg");
-
+	unlink("../css/images/$deleteId.jpg");
+	unlink("../css/images_small/$deleteId.jpg");
+	unlink("../css/images_medium/$deleteId.jpg");
+}
 $stmt = $db->prepare("UPDATE User SET photoId = ? WHERE username = ?");
 $stmt->execute(array($id, $val));
 
