@@ -55,6 +55,9 @@ else{
     }
 
     function getInfo(){
+
+        $('#updateProfilePhoto #val').attr("value", username);
+
         if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
         } else {
@@ -85,7 +88,13 @@ else{
                 $('#postcode1').attr("placeholder",res[0]);
                 $('#postcode2').attr("placeholder",res[1]);
 
-                _("photo").innerHTML = "<img src=" + info[4] + ">"; //foto da pessoa
+                var photoId = info[4];
+                if(photoId != null)
+                {
+                    getPhoto(parseInt(photoId), false, '#main','', './css/images/');
+                }
+                else
+                    $('#main').prepend('<img src="./css/images/1.jpg" alt="Photo that represents the restaurant">');
 
                 _("cancel_btn1").onclick = function() {
                     window.location = 'userProfile.php?username='+username;
@@ -169,16 +178,21 @@ else{
 
 </script>
 
-<section id="Main" >
-    <li id="photo"></li>
-    <br>
-    <label>Change Profile Picture:
-        <input type="file" name="profilePic" id="profilePic">
-    </label>
+<section id="main" >
+    <form id="updateProfilePicture" action="./database/UploadPicture.php" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="method" value="1"/>
+        <input id="val" type="hidden" name="val" value=""/>
+        <input type="file" name="image"/>
+        <input type="submit" value="Upload New Photo">
+    </form>
+    <form id="updateProfilePicture" action="./database/DeleteUPP.php" method="post">
+        <input id="val" type="hidden" name="val" value=""/>
+        <input type="submit" value="Delete Photo">
+    </form>
 </section>
 
 <section id="dashboard" >
-    <ul>   <!-- vao ser colocadas com php -->
+    <ul>
         <li id="UserInformations">
             <div>
                 <form>

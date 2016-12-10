@@ -39,14 +39,21 @@ else {
                 _("email").innerHTML = info[1];
                 _("birthdate").innerHTML = info[2];
                 _("postCode").innerHTML = info[3];
-                _("picId").innerHTML = "<img src=" + info[4] + ">"; //foto da pessoa
 
+                var photoId = info[4];
+                if(photoId != null)
+                    getPhoto(parseInt(photoId), false, '#main', '', './css/Images/');
+                else
+                    $('#main').prepend('<img src="./css/Images/1.jpg" alt="Photo that represents the user">');
+
+                //qualquer pessoa pode ver as minhas reviews, os restaurantes que visitei, e os restaurantes que eu sou dono
                 if(info[5])
                     getReviews(username);
                 else
                     getReviews(null);
 
                 getVisited();
+                getMyRestaurants();
             }
         };
 
@@ -77,7 +84,8 @@ else {
 
                 for(var i = 0; i < info.length; i++)
                 {
-                    $.get('./templates/review.php',  {info: info[i], owner: owner , username: username}, function(data)
+                    var jsonString = JSON.stringify(info[i]);
+                    $.get('./templates/review.php',  {info: jsonString, owner: owner , username: username}, function(data)
                         {
                             $('#history').append(data);
                         }
@@ -117,10 +125,15 @@ else {
                     $('#visitedPlaces').append('<article>\n<ul>' +
                         '\n<a href="./restaurantProfile.php?restaurant='+ name +'">'+ name+'</a><br>' +
                         '\n<label>Rating: <li id="vis_rating">' + info[i][1] + '</li></label>' +
-                        '\n<label>Location: <li id="vis_local">' + info[i][2] + '</li></label>' +
-                        '\n<li id="vis_photo">\n</li>\n</ul>\n</article>\n');
+                        '\n<label>Location: <li id="vis_local">' + info[i][2] + '</li></label>\n' );
 
-                    _("vis_photo").innerHTML = "<img src=" + info[i][3] + ">";      //foto do restaurante
+                    var photo = info[i][3];
+                    if(photo != null){
+                        $('#visitedPlaces').append('<img src="./css/images_small/'+photo+'" alt="Photo that represents the restaurant">');
+                    }
+                    else{
+                        $('#visitedPlaces').append('<img src="./css/images_small/defaultRestaurant.jpg" alt="Photo that represents the restaurant">');
+                    }
                 }
             }
         };
@@ -158,7 +171,13 @@ else {
                         '\n<label>Location: <li id="my_local">' + info[i][2] + '</li></label>' +
                         '\n<li id="my_photo">\n</li>\n</ul>\n</article>\n');
 
-                    _("my_photo").innerHTML = "<img src=" + info[i][3] + ">"; //foto do restaurante
+                    var photo = info[i][3];
+                    if(photo != null){
+                        $('#manageRestaurants').append('<img src="./css/images_small/'+photo+'" alt="Photo that represents the restaurant">');
+                    }
+                    else{
+                        $('#manageRestaurants').append('<img src="./css/images_small/defaultRestaurant.jpg" alt="Photo that represents the restaurant">');
+                    }
                 }
             }
         };
@@ -173,7 +192,6 @@ else {
 
     <section id="main" >
         <ul id="informacoes">
-            <li id= "picId" </li>
             <label>Username: <li id= "username"></li> </label>
             <label>Name : <li id= "name"></li> </label>
             <!-- mostrar isto deve ser opcional -->
@@ -198,8 +216,6 @@ else {
                 }
                 else
                 {
-                    getMyRestaurants(); //so pode mostrar os seus proprios restaurantes
-
                     document.getElementById("edit").innerHTML = "<a href=\"./userProfileEdit.php?username="+username+"\">Edit Profile</a><br>"; //foto do restaurante
 
                     //$("#edit").attr('href', "../userProfileEdit.php");

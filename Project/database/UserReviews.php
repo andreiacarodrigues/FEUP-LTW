@@ -15,8 +15,8 @@ foreach ($reviews as $review)
     $stmt->execute(array($review['restaurantId']));
     $name = $stmt->fetch();
 
-    $stmt = $db->prepare('SELECT photoId FROM ReviewPhoto WHERE restaurantId = ? AND username = ?');
-    $stmt->execute(array($review['restaurantId'],$username));
+    $stmt = $db->prepare('SELECT photoId FROM ReviewPhoto WHERE reviewId = ?');
+    $stmt->execute(array($review['reviewId']));
     $photosId = $stmt->fetchAll();
 
     $photos = array();

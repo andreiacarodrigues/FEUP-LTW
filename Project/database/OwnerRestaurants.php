@@ -3,6 +3,7 @@ include_once('Connection.php');
 
 global $db;
 $username = $_GET["username"];
+
 $stmt = $db->prepare('SELECT name, rating_sum, location, photoId FROM Restaurant WHERE owner = ?');
 $stmt->execute(array($username));
 $restaurants = $stmt->fetchAll();
