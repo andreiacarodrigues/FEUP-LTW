@@ -14,7 +14,11 @@ if (isset ( $_GET ["restaurant"] ))
 		$errorReview = false;
 }
 else
-    die();
+{
+	 echo 'ACCESS DENIED : you must be logged in to acess this page';
+	 die();
+}
+  
 ?>
 
 <script language="JavaScript">
@@ -52,14 +56,14 @@ else
 				var photoId = info[8];
 	
 				if(photoId != null)
-					getPhoto(parseInt(photoId), false, '#main', '#menu', './css/Images/');
+					getPhoto(parseInt(photoId), false, '#main', '#menu', './css/images/');
 				else
-					$('#main').prepend('<img src="./css/Images/1.jpg" alt="Photo that represents the restaurant">');
+					$('#main').prepend('<img src="./css/images/1.jpg" alt="Photo that represents the restaurant">');
 				
 				if(menuId != null)
 					getPhoto(parseInt(menuId) , true, '#main', '#menu', './css/Images/');
 				else
-					$('#menu').html('<img src="./css/Images/1.jpg" alt="Photo that represents the restaurant">');
+					$('#menu').html('<img src="./css/images/1.jpg" alt="Photo that represents the restaurant">');
 				
 				var rating_sum = info[9];
 				var rating_total = info[10];

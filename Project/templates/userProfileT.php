@@ -6,6 +6,7 @@ else if (isset ( $_SESSION ["userid"] )) {
     $username = $_SESSION ["userid"];
 }
 else {
+    echo 'ACCESS DENIED : you must be logged in to acess this page';
     die();
 }
 ?>
@@ -30,9 +31,6 @@ else {
                     return false;
                 else
                     info = eval("(" + this.responseText + ")");
-
-                console.log("Informacaoes : ");
-                console.log(info);
 
                 _("username").innerHTML = username;
                 _("name").innerHTML = info[0];
@@ -115,9 +113,6 @@ else {
                     return false;
                 else
                     info = eval("(" + this.responseText + ")");
-
-                console.log("visited : ");
-                console.log(info);
 
                 for (var i = 0; i < info.length; i++)
                 {

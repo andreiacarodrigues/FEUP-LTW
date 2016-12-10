@@ -2,7 +2,7 @@
 // If user is logged in, header them away
 if(isset($_SESSION["userid"])){
     header("location: index.php");
-    exit();
+    die();
 }
 ?>
 

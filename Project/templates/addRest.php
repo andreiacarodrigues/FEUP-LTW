@@ -9,7 +9,10 @@ if (isset ( $_SESSION ["userid"] ))
 		$restaurant = "NULL";
 }
 else
+{
+	echo "ACCESS DENIED : you must be logged in to acess this page";
     die();
+}
 ?>
 
 <script language="JavaScript">

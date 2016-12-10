@@ -1,3 +1,12 @@
+<?php
+if (isset ( $_SESSION ["userid"] ))
+{
+	echo "ACCESS DENIED : you are already logged in.";
+    die();
+}
+	
+?>
+
 <script language="JavaScript">
 
     function login()

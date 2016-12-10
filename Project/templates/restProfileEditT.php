@@ -6,10 +6,17 @@ if (isset ( $_GET ["restaurant"] ))
     if (isset ( $_SESSION ["userid"] ))
         $username = $_SESSION ["userid"];
     else
-        $username = "NULL";
+	{
+		echo "ACCESS DENIED : you must be logged in to acess this page";
+		die();
+	}
 }
 else
-    die();
+{
+	echo "ACCESS DENIED : you can't acess this page";
+	die();
+}
+    
 ?>
 
 <script language="JavaScript">
@@ -37,6 +44,15 @@ else
                 else
                     info = eval("(" + this.responseText + ")");
 
+				var owner = info[11];
+				if(owner != username)
+				{
+					<?php
+						echo "ACCESS DENIED : you must be the owner of the restaurant to acess this page";
+						die();
+					?>
+				}
+				
                 _("name").innerHTML = restaurant;
                 $('#r_name').attr("placeholder", restaurant);
 				$('#r_id').attr("value", info[0]);

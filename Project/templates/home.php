@@ -1,35 +1,61 @@
+<script language="JavaScript">
+
+	function searchPostCode()
+	{
+		var status = _("pc_status");
+		var search = $('#searchPostCode #search').val();
+		
+		if(/^(\d{4}$)|(\d{4}-\d{3}$)/.test(search))
+		{
+			status.innerHTML ="";
+			window.location =  "restaurantSearch.php?search=" + search + "&mode=1";
+		}
+		else
+			status.innerHTML = 'The searched post/zip code is not valid. It should contain 4 digits followed or not by 3 other digits.';
+	}
+	
+	function searchRestaurantName()
+	{
+		var status = _("rn_status");
+		var search = $('#searchResName #search').val();
+		
+		console.log(search);
+		
+		if(/([a-fA-F\s])*/.test(search))
+		{
+			status.innerHTML ="";
+			
+			if(search != "")
+				window.location =  "restaurantSearch.php?search=" + search + "&mode=0";
+			else
+				status.innerHTML = 'The searched name is not valid. It should only contain characters and whitespace characters.';
+		}
+			// faz o get
+		else
+			status.innerHTML = 'The searched name is not valid. It should only contain characters and whitespace characters.';
+	}
+
+</script>
+
+
 <div class="menu">
-    <div id="search">
-        <h2>Nome do restaurante</h2><br>
-        <label>Região:
-            <select name="regiao">
-                <option value="aveiro">Aveiro</option>
-                <option value="beja">Beja</option>
-                <option value="braga">Braga</option>
-                <option value="braganca">Bragança</option>
-                <option value="casteloBranco">Castelo Branco</option>
-                <option value="coimbra">Coimbra</option>
-                <option value="evora">Évora</option>
-                <option value="faro">Faro</option>
-                <option value="guarda">Guarda</option>
-                <option value="leiria">Leiria</option>
-                <option value="lisboa">Lisboa</option>
-                <option value="portalegre">Portalegre</option>
-                <option value="porto">Porto</option>
-                <option value="santarem">Santarém</option>
-                <option value="setubal">Setúbal</option>
-                <option value="vianaDoCastelo">Viana do Castelo</option>
-                <option value="vilaReal">Vila Real</option>
-                <option value="viseu">Viseu</option>
-                <option value="acores">Açores</option>
-                <option value="madeira">Madeira</option>
-            </select>
+
+   <form id="searchPostCode">
+		<label>Search by Zip Code/Post Code:
+            <input type="text" id="search" placeholder="Post Code Search">
+            <input type="button" value="Search" onclick="searchPostCode();">
         </label>
-        <!-- <form action="upload_file.php" method="post" enctype="multipart/form-data"> -->
-        <label>Restaurante:
-            <input type="text" name="search" placeholder="Search..">
-            <input type="submit" value="Search">
+	</form>
+	<span id="pc_status"> </span>
+	<br>
+    <form id="searchResName">
+        <label>Search by Resturant Name:
+            <input type="text" id="search" placeholder="Restaurant Name Search" >
+            <input type="button" value="Search" onclick="searchRestaurantName();">
         </label>
-        <!--</form>-->
-    </div>
+	</form>
+	<span id="rn_status"> </span>
+    
 </div>
+
+<!--.*([a-fA-F\s]+).*-->

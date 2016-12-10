@@ -7,7 +7,6 @@ include_once('Connection.php');
 	$stmt->execute(array($restaurant));
 	$info = $stmt->fetch();
 	
-	
 	if(!empty($info))
 	{
 		$infoArray = array(0 => $info['restaurantId'],

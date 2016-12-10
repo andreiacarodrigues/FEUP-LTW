@@ -15,12 +15,12 @@ if (isUserLoggedIn ())
 
     //segundo verificar se o utilizador corresponde ao que fez login, só assim pode editar o seu perfil
     if($username != $_SESSION ["userid"]){
-        echo 'ACCESS DENIED : you do not have permission to see this page';
+        echo 'ACCESS DENIED : you do not have permission to acess this page';
         die();
     }
 }
 else{
-    echo 'ACCESS DENIED : the user must be logged in';
+    echo 'ACCESS DENIED : you must be logged in to acess this page';
     die();
 }
 
@@ -117,6 +117,9 @@ else{
             status.innerHTML = "Invalid postcode.";
         else if(!validated)
             status.innerHTML = "Invalid e-mail.";
+		else
+			if(_("unamestatus").innerHTML != "Username accepted!")
+				 status.innerHTML = "Invalid username.";
         else
         {
             status.innerHTML = "";
