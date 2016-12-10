@@ -51,6 +51,7 @@ else
                 _("avgPrice").innerHTML = info[4];
                 _("schedule").innerHTML = info[5];
 				_("observations").innerHTML = info[6];
+				_("postCode").innerHTML = info[12];
 				
 				var menuId = info[7];
 				var photoId = info[8];
@@ -262,7 +263,7 @@ else
             <div>
                 <ul id="info">
 					<label>Description: <li id="description"></li></label>
-					<label>Location: <li id = "location"> </li></label>
+					<label>Location: <li id = "location"> </li></label> <label>PostCode: <li id = "postCode"> </li></label>
 					<label>Schedule: <li id="schedule"></li></label>
 					<label>Average Price Per Person: <li id = "avgPrice"></li></label>
                     <label>Contact:<li id = "contact"> </li> </label>

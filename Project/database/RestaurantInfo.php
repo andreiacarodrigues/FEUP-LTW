@@ -3,7 +3,7 @@ include_once('Connection.php');
 
 	global $db;
 	$restaurant = $_GET["restaurant"];
-	$stmt = $db->prepare("SELECT restaurantId, description, location, contact, avgPrice, schedule, observation, menuId, photoId, rating_sum, rating_total, owner FROM Restaurant WHERE name = ?");
+	$stmt = $db->prepare("SELECT restaurantId, description, location, contact, avgPrice, schedule, observation, menuId, photoId, rating_sum, rating_total, owner, postCode FROM Restaurant WHERE name = ?");
 	$stmt->execute(array($restaurant));
 	$info = $stmt->fetch();
 	
@@ -20,7 +20,8 @@ include_once('Connection.php');
 						8 => $info['photoId'],
 						9 => $info['rating_sum'],
 						10 => $info['rating_total'],
-						11 => $info['owner']
+						11 => $info['owner'],
+						12 => $info['postCode']
 						);
 						
 		echo json_encode($infoArray);

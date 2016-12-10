@@ -38,20 +38,16 @@ else
             if (this.readyState == 4 && this.status == 200) {
                 var info = new String(this.responseText);
                 info = info.trim();
-
-                if(info == "INVALID")
+				
+               if(info == "INVALID")
                     return false;
                 else
                     info = eval("(" + this.responseText + ")");
 
 				var owner = info[11];
-				if(owner != username)
-				{
-					<?php
-						echo "ACCESS DENIED : you must be the owner of the restaurant to acess this page";
-						die();
-					?>
-				}
+				
+				if(owner != username) // não o deixa aceder á pagina
+					goBack();
 				
                 _("name").innerHTML = restaurant;
                 $('#r_name').attr("placeholder", restaurant);
@@ -60,6 +56,16 @@ else
                 $('#r_description').attr("placeholder", info[1]);
 				if(info[2] == null) info[2] = "";
                 $('#r_location').attr("placeholder", info[2]);
+				
+				if(info[12] == null) 
+					info[12] = "";
+				else
+				{
+					var res = info[12].split("-");
+					$('#r_postCode1').attr("placeholder",res[0]);
+					$('#r_postCode2').attr("placeholder",res[1]);
+				}
+				
 				if(info[3] == null) info[3] = "";
                 $('#r_contact').attr("placeholder", info[3]);
 				if(info[4] == null) info[4] = "";
@@ -142,14 +148,13 @@ else
 	}
 	function submitChanges()
 	{	
-		var name, description, location, contact, avgPrice, schedule, observations;
+		var name, description, location, postCode1, postCode2, postCode, contact, avgPrice, schedule, observations;
 		
 		if($('#r_name').val() == "")
 			name = $('#r_name').attr("placeholder");
 		else
 			name = $('#r_name').val();
 	
-		
 		if($('#r_description').val() == "")
 			description = $('#r_description').attr("placeholder");
 		else
@@ -159,6 +164,18 @@ else
 			location = $('#r_location').attr("placeholder");
 		else
 			location = $('#r_location').val();
+		
+		if($('#r_postCode1').val() == "")
+			postCode1 = $('#r_postCode1').attr("placeholder");
+		else
+			postCode1 = $('#r_postCode1').val();
+		
+		if($('#r_postCode2').val() == "")
+			postCode2 = $('#r_postCode2').attr("placeholder");
+		else
+			postCode2 = $('#r_postCode2').val();
+		
+		postCode = postCode1 +"-" +postCode2;
 		
 		if($('#r_contact').val() == "")
 			contact = $('#r_contact').attr("placeholder");
@@ -181,7 +198,7 @@ else
 			observation = $('#r_observations').val();
 		
 		
-		$.get('./database/UpdateRI.php',  {id: $('#r_id').attr("value"), name: name , description: description, location: location, contact: contact, avgPrice: avgPrice, schedule: schedule, observation: observation}, function(data) 
+		$.get('./database/UpdateRI.php',  {id: $('#r_id').attr("value"), name: name , description: description, location: location, contact: contact, avgPrice: avgPrice, schedule: schedule, observation: observation, postCode:postCode}, function(data) 
 		{
 			var info = new String(data);
 			info = info.trim();
@@ -219,6 +236,9 @@ else
                     <label>Restaurant Name: <input id="r_name" type="text" maxlength="60"> </label><br>
                     <label>Description: <textarea  id="r_description"name="description" cols="60" rows="2"></textarea> </label> <br>
                     <label>Location:<input id="r_location" type="text" name="location" maxlength="80"></label><br>
+					 <label>PostCode: <input type="text" maxlength="4" name="postCode1"  id="r_postCode1" >
+						<label> -<input type="text" maxlength="3" name="postCode2" id="r_postCode2" > </label>
+					</label> <br>
                     <label>Schedule:<input id="r_schedule" type="text" name="schedule"></label><br>
                     <label>Average Price Per Person(€):<input id="r_avgPrice" type="text" name="cost" maxlength="4"></label> <br>
                     <label>Contact:<input id="r_contact" type="tel" name="number" maxlength="9"></label> <br>

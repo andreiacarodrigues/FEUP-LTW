@@ -36,7 +36,6 @@ if(isset($_SESSION["userid"])){
         else if(!validated)
         {
             status.innerHTML = "Invalid e-mail.";
-
         }
         else
         {

@@ -16,10 +16,11 @@ include_once('Connection.php');
 	$selected_restaurants = array();
 	
 	foreach($result as $row) {
+		$searchPostCode = substr($search,0, 4);
 		$postCode = $row['postCode'];
 		
-		$zip = substr($postCode,0 4);
-		if(preg_match("#$search#i",$zip))
+		$zip = substr($postCode,0, 4);
+		if(preg_match("#$searchPostCode#i",$zip))
 		{
 			$selected_restaurants[] = $row['name'];
 		}
