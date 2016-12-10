@@ -2,13 +2,39 @@
   include_once('Connection.php');
   global $db;
 	
+  // possible PHP upload errors 
+  $errors = array(1 => 'php.ini max file size exceeded', 
+                2 => 'html form max file size exceeded', 
+                3 => 'file upload was only partial', 
+                4 => 'no file was attached'); 
+				
   $method = $_POST['method'];
   $val = $_POST['val'];
   
+  $filePath = realpath($_FILES["image"]["tmp_name"]);
+	 
+  echo $_FILES['image']['name'];
+
   if($val == "NULL")
 	  die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
   else
   {
+	 // check that the file we are working on really was the subject of an HTTP 
+	 if(!@is_uploaded_file($_FILES['image']['tmp_name']))
+	 {
+		die(header('Location: ' . $_SERVER["HTTP_REFERER"] ));
+	 }
+	 else
+	 // getimagesize() returns false if the file tested is not an image. 
+	if(!@getimagesize($filePath))
+	{
+		die(header('Location: ' . $_SERVER["HTTP_REFERER"] ));
+	}
+	 else if(exif_imagetype($filePath) != IMAGETYPE_JPEG) {
+		die(header('Location: ' . $_SERVER["HTTP_REFERER"] ));
+	 }
+	else
+	{
 	  $stmt = $db->prepare("INSERT INTO Photo VALUES(NULL,?)");
 	  $stmt->execute(array(""));
 	  $id = $db->lastInsertId();
@@ -63,6 +89,7 @@
 	  {
 		  header('Location: UpdateRM.php?val=' . $val . "&id=" . $id);
 	  }
+	}
   }
   //header('Location: ' . $_SERVER["HTTP_REFERER"] );
   //exit;
