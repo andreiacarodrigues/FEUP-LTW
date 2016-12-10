@@ -14,7 +14,8 @@ else {
 <script language="JavaScript">
 
     var username = <?php echo json_encode($username) ?>;
-
+	var sessionUsername = <?php echo json_encode($_SESSION ["userid"]) ?>;
+	
     function getInfo(){
         if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
@@ -52,6 +53,21 @@ else {
 
                 getVisited();
                 getMyRestaurants();
+				getFriends();
+				
+				if(username != sessionUsername)
+				{
+					 $.get('./database/CheckFriends.php',  {sessionUsername: sessionUsername, username: username}, function(data){
+						var info = new String(data);
+						info = info.trim();
+
+						if(info == "YES")
+							document.getElementById("addFriend").style.display = "none";
+						else
+							document.getElementById("deleteFriend").style.display = "none";
+						
+					 });
+				}
             }
         };
 
@@ -138,6 +154,18 @@ else {
     }
 
     function getMyRestaurants(){
+		
+		if(username != sessionUsername)
+		{
+			var elements = document.getElementsByClassName("justForOwner");
+			
+			for (var i = 0; i < elements.length; i++) {
+				elements[i].style.display = "none";
+			}
+			console.log("hello");
+			return;
+		}
+		
         if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
         } else {
@@ -183,6 +211,27 @@ else {
         xmlhttp.send();
     }
 
+	function getFriends()
+	{
+		 $.get('./database/GetFriends.php',  {username: username}, function(data){
+			  var info = new String(data);
+              info = info.trim();
+
+                if(info == "NO FRIENDS")
+                    return false;
+                else
+				{
+                    info = eval("(" + info + ")");
+					
+					for(var i = 0; i < info.length; i++)
+					{
+						 $('#friends').append('<a href="./userProfile.php?username='+ info[i] +'">'+ info[i]+'</a><br>');
+					}
+				}
+		 });
+	}
+	
+
 </script>
 
 <section id="profile">
@@ -196,6 +245,7 @@ else {
             <label>Birthday : <li id= "birthdate"></li></label>
             <label>Post-code : <li id= "postCode"></li></label>
             <div id="addFriend"></div>
+			<div id="deleteFriend"></div>
             <div id="edit"></div>
         </ul>
         <?php
@@ -206,7 +256,8 @@ else {
 
                 if(username != sessionUsername)
                 {
-					 _("addFriend").innerHTML = "<a href=\"./addFriend.php?username="+username+"&session=" + sessionUsername +"\">Add Friend</a><br>";
+					 _("addFriend").innerHTML = "<a href=\"./database/AddFriend.php?username="+username+"&sessionUsername=" + sessionUsername +"\">Follow</a><br>";
+					 _("deleteFriend").innerHTML = "<a href=\"./database/DeleteFriend.php?username="+username+"&sessionUsername=" + sessionUsername +"\">Unfollow</a><br>";
                 }
                 else
                 {
@@ -230,19 +281,22 @@ else {
                  </div>
              </li>-->
             <li id="visitedPlaces"></li>    <!-- nome dos restaurantes que foi feita uma review -->
-            <li id="manageRestaurants"></li>    <!-- restaurantes que pertencem ao utilizador -->
+            <li class="justForOwner" id="manageRestaurants"></li>    <!-- restaurantes que pertencem ao utilizador -->
+			<li id="friends"></li>
         </ul>
     </section>
 
     <section id="menuProfile" >
         <ul>
-            <a href="#history">Histórico</a>
+            <a href="#history">History</a>
             <br>
             <!--<a href="#Friends">Amigos</a>
             <br>-->
-            <a href="#visitedPlaces">Sítios Visitados</a>
+            <a href="#visitedPlaces">Visited Restaurants</a>
             <br>
-            <a href="#manageRestaurants">Restaurantes</a> <!-- so deve aparecer se o user for owner -->
+			<a href="#friends">Followers</a> 
+			<br>
+            <a class="justForOwner" href="#manageRestaurants">Manage Restaurants</a>
             <br>
         </ul>
     </section>
