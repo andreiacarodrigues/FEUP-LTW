@@ -79,7 +79,7 @@ else{
                 $('#email').attr("placeholder",info[1]);
 
                 var date = info[2].split("-");
-                _("birthdate").valueAsDate = new Date(date[2],date[1]-1,date[0]);
+                _("birthdate").valueAsDate = new Date(date[0],date[1]-1,date[2]);
 
                 var res = info[3].split("-");
                 $('#postCode1').attr("placeholder",res[0]);
@@ -108,7 +108,7 @@ else{
         var p1 = getVar("postCode1");
         var p2 = getVar("postCode2");
         var postcode = p1+"-"+p2;
-        var b =  getVar("birthdate");
+        var b = getVar("birthdate");
         var status = _("status");
 
         //regex validations
@@ -118,7 +118,7 @@ else{
             status.innerHTML = "Invalid name.";
         else if(!is_email(e))
             status.innerHTML = "Invalid email.";
-        else if(!is_postCode(postCode))
+        else if(!is_postCode(postcode))
             status.innerHTML = "Invalid postcode.";
         else
         {

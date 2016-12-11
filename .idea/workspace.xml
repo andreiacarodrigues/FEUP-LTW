@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eac5cd96-6c6e-4a8f-891e-bfa2ccc71f19" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/database.db" afterPath="$PROJECT_DIR$/Project/database/database.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/my_database/reviews.php" afterPath="$PROJECT_DIR$/Project/database/my_database/reviews.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/restProfileT.php" afterPath="$PROJECT_DIR$/Project/templates/restProfileT.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/userProfileEditT.php" afterPath="$PROJECT_DIR$/Project/templates/userProfileEditT.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,31 +21,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="restProfileT.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Project/templates/restProfileT.php">
+      <file leaf-file-name="userProfileT.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Project/templates/userProfileT.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="281" column="18" lean-forward="true" selection-start-line="281" selection-start-column="18" selection-end-line="281" selection-end-column="18" />
+            <state relative-caret-position="419">
+              <caret line="300" column="9" lean-forward="false" selection-start-line="300" selection-start-column="9" selection-end-line="300" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="reviews.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Project/database/my_database/reviews.php">
+      <file leaf-file-name="userProfileEditT.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Project/templates/userProfileEditT.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="501">
-              <caret line="69" column="2" lean-forward="false" selection-start-line="69" selection-start-column="2" selection-end-line="69" selection-end-column="2" />
-              <folding>
-                <marker date="1481483328390" expanded="true" signature="128:168" ph="INSERT INTO ReviewReply... " />
-                <marker date="1481483328390" expanded="true" signature="298:344" ph="SELECT revie... ReviewReply" />
-                <marker date="1481483328390" expanded="true" signature="487:544" ph="SELECT usern... ReviewReply" />
-                <marker date="1481483328390" expanded="true" signature="770:817" ph="INSERT INTO Review... " />
-                <marker date="1481483328390" expanded="true" signature="972:1030" ph="SELECT revie... Review" />
-                <marker date="1481483328390" expanded="true" signature="1177:1257" ph="SELECT revie... " />
-                <marker date="1481483328390" expanded="true" signature="1417:1497" ph="SELECT revie... " />
-                <marker date="1481483328390" expanded="true" signature="1677:1727" ph="SELECT photo... ReviewPhoto" />
-              </folding>
+            <state relative-caret-position="909">
+              <caret line="247" column="9" lean-forward="false" selection-start-line="247" selection-start-column="9" selection-end-line="247" selection-end-column="9" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -120,10 +109,10 @@
         <option value="$PROJECT_DIR$/Project/templates/restList.php" />
         <option value="$PROJECT_DIR$/Project/templates/restProfileEditT.php" />
         <option value="$PROJECT_DIR$/Project/templates/signUpT.php" />
-        <option value="$PROJECT_DIR$/Project/templates/userProfileEditT.php" />
-        <option value="$PROJECT_DIR$/Project/templates/userProfileT.php" />
         <option value="$PROJECT_DIR$/Project/templates/restProfileT.php" />
         <option value="$PROJECT_DIR$/Project/database/my_database/reviews.php" />
+        <option value="$PROJECT_DIR$/Project/templates/userProfileEditT.php" />
+        <option value="$PROJECT_DIR$/Project/templates/userProfileT.php" />
       </list>
     </option>
   </component>
@@ -195,29 +184,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Projeto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Projeto" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="my_database" />
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -335,15 +302,16 @@
       <workItem from="1481475639749" duration="588000" />
       <workItem from="1481476517060" duration="29000" />
       <workItem from="1481481780941" duration="79000" />
-      <workItem from="1481483192630" duration="136000" />
+      <workItem from="1481483192630" duration="165000" />
+      <workItem from="1481484780829" duration="58000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63610000" />
+    <option name="totallyTimeSpent" value="63697000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1727672" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -738,26 +706,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Project/templates/userProfileEditT.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="52" column="36" lean-forward="false" selection-start-line="52" selection-start-column="28" selection-end-line="52" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project/templates/userProfileT.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="59" column="37" lean-forward="false" selection-start-line="59" selection-start-column="29" selection-end-line="59" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Project/templates/restProfileT.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
-          <caret line="281" column="18" lean-forward="true" selection-start-line="281" selection-start-column="18" selection-end-line="281" selection-end-column="18" />
+          <caret line="281" column="18" lean-forward="false" selection-start-line="281" selection-start-column="18" selection-end-line="281" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -776,6 +728,22 @@
             <marker date="1481483328390" expanded="true" signature="1417:1497" ph="SELECT revie... " />
             <marker date="1481483328390" expanded="true" signature="1677:1727" ph="SELECT photo... ReviewPhoto" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project/templates/userProfileEditT.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="909">
+          <caret line="247" column="9" lean-forward="false" selection-start-line="247" selection-start-column="9" selection-end-line="247" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project/templates/userProfileT.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="300" column="9" lean-forward="false" selection-start-line="300" selection-start-column="9" selection-end-line="300" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
