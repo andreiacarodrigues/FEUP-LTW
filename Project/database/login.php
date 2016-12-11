@@ -1,5 +1,5 @@
 ﻿<?php
-include_once('my_database/User.php');
+include_once('my_database/user.php');
 
 session_start();
 session_regenerate_id(true);
