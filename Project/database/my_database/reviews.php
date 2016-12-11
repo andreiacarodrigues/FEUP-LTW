@@ -1,31 +1,70 @@
 <?php
-include_once('connection.php');
+include_once('Connection.php');
 
-function getPhoto($id)
+function addReviewReply($id,$username,$text)
 {
     global $db;
-    $stmt = $db->prepare("SELECT filename FROM Photo WHERE photoId = ?");
-    $stmt->execute(array($id));
+    $stmt = $db->prepare("INSERT INTO ReviewReply VALUES (?, ?, ?)");
+    $stmt->execute(array($id, $username, $text));
+}
+
+function getAllReviewReply()
+{
+    global $db;
+    $stmt = $db->prepare('SELECT reviewId,username,text FROM ReviewReply');
+    $stmt->execute(array());
+    return $stmt->fetchAll();
+}
+
+function getReviewReply($review)
+{
+    global $db;
+    $stmt = $db->prepare('SELECT username, text FROM ReviewReply WHERE reviewId = ? ');
+    $stmt->execute(array($review));
+    return $stmt->fetchAll();
+}
+
+//----------------------------------------
+
+function addReview($username,$restaurantId,$rating,$text,$date)
+{
+    global $db;
+    $stmt = $db->prepare("INSERT INTO Review VALUES (null, ?, ?, ?, ?, ?)");
+    $stmt->execute(array($username, $restaurantId, $rating, $text, $date));
+}
+
+function getFirstReviewId()
+{
+    global $db;
+    $stmt = $db->prepare("SELECT reviewId FROM Review ORDER BY reviewId DESC LIMIT 1");
+    $stmt->execute();
     return $stmt->fetch();
 }
 
-function getPhotoByFilename($filename)
+function getReviewsByRestaurant($restaurantId)
 {
     global $db;
-    $stmt = $db->prepare("SELECT photoId from Photo WHERE filename = ?");
-    $stmt->execute(array($filename));
-    return $stmt->fetch();
+    $stmt = $db->prepare('SELECT reviewId, username, rating, text, date FROM Review WHERE restaurantId = ?');
+    $stmt->execute(array($restaurantId));
+    return $stmt->fetchAll();
 }
 
-function deletePhoto($deleteId)
+function getReviewsByUser($username)
 {
     global $db;
-    $stmt = $db->prepare("DELETE FROM Photo WHERE photoId = ?");
-    $stmt->execute(array($deleteId));
+    $stmt = $db->prepare('SELECT reviewId, restaurantId, rating, text, date FROM Review WHERE username = ?');
+    $stmt->execute(array($username));
+    return $stmt->fetchAll();
+}
 
-    unlink("../../css/images/$deleteId.jpg");
-    unlink("../../css/images_small/$deleteId.jpg");
-    unlink("../../css/images_medium/$deleteId.jpg");
+//------------------------
+
+function getReviewPhoto($review)
+{
+    global $db;
+    $stmt = $db->prepare('SELECT photoId FROM ReviewPhoto WHERE reviewId = ?');
+    $stmt->execute(array($review));
+    return $stmt->fetchAll();
 }
 
 ?>
