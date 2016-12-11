@@ -1,8 +1,8 @@
 <?php
 //User Profile Photo
 
-include_once('my_database/User.php');
-include_once('my_database/Photo.php');
+include_once('my_database/user.php');
+include_once('my_database/photo.php');
 
 $val = $_POST['val'];
 
