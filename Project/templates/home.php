@@ -39,25 +39,22 @@
 
 </script>
 
-
-<div class="menu">
-
-    <form id="searchPostCode">
-        <label>Search by Zip Code/Post Code:
-            <input type="text" id="search" placeholder="Post Code Search">
-            <input type="button" value="Search" onclick="searchPostCode();">
-        </label>
-    </form>
-    <span id="pc_status"> </span>
-    <br>
-    <form id="searchResName">
-        <label>Search by Resturant Name:
-            <input type="text" id="search" placeholder="Restaurant Name Search" >
-            <input type="button" value="Search" onclick="searchRestaurantName();">
-        </label>
-    </form>
-    <span id="rn_status"> </span>
-
-</div>
-
-<!--.*([a-fA-F\s]+).*-->
+<section id="home">
+	<div class="homeform">
+		<p class="searchFormTitle">Search by Zip Code/Post Code:</p>
+		<div class="field">
+			<input type="text" id="search" placeholder="Post Code Search">
+			<input type="button" value="Search" onclick="searchPostCode();">
+			<span id="pc_status"> </span>
+			<br>
+		</div>
+	</div>
+	<div class="homeform">
+		<p class="searchFormTitle">Search by Resturant Name:</p>
+		<div class="field">
+			<input type="text" id="search" placeholder="Restaurant Name Search" >
+			<input type="button" value="Search" onclick="searchRestaurantName();">
+			<span id="rn_status"> </span>
+		</div>
+	</div>
+</section>

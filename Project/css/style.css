@@ -1,4 +1,120 @@
-/* Popup container */
+@import url(http://fonts.googleapis.com/css?family=Montserrat+Alternates);
+
+/* ---------------------------------------------------- Header ------------------------------------------------------ */
+
+header{
+    background-color:  rgb(18, 163, 205);
+    width:100%;
+    position:fixed;
+    top:0px;
+    left:0px;
+    padding-left: 2em;
+    border-bottom-style: solid;
+    border-width: 10px;
+    border-color: #1293bc;
+}
+
+a{
+    color: white;
+    font:1.2em 'Montserrat Alternates';
+    text-decoration: none;
+}
+
+.nav ul {
+    list-style: none;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+}
+.nav li {
+    text-align: center;
+}
+
+.nav a {
+    display: block;
+    transition: .3s background-color;
+}
+
+.nav a:hover {
+    background-color: #1293bc;
+}
+
+/* not working */
+.nav a.active {
+    background-color: #fff;
+    color: #444;
+    cursor: default;
+}
+
+@media screen and (min-width: 600px) {
+    .nav li {
+        width: 120px;
+        border-bottom: none;
+        height: 50px;
+        line-height: 50px;
+        font-size: 1.4em;
+    }
+
+    /* Option 1 - Display Inline */
+    .nav li {
+        display: inline-block;
+        margin-right: -4px;
+    }
+
+
+
+/* ----------------------------------------------- Home page forms -------------------------------------------------- */
+#home{
+    margin-top: 10em;
+}
+
+.homeForm
+{
+    margin: 6em auto;
+}
+.searchFormTitle{
+    margin: 1em auto;
+    width: 50%;
+    font:1.2em 'Montserrat Alternates';
+}
+
+.field {
+  display:flex;
+  position:relative;
+  margin:1em auto;
+  width:50%;
+  flex-direction:row;
+  box-shadow:
+   1px 1px 0 #1293bc,
+   2px 2px 0 #1293bc,
+   3px 3px 0 #1293bc,
+   4px 4px 0 #1293bc,
+   5px 5px 0 #1293bc,
+   6px 6px 0 #1293bc,
+   7px 7px 0 #1293bc
+  ;
+}
+
+.field>input[type=text],
+.field>input[type=button] {
+  display:block;
+  font:1.2em 'Montserrat Alternates';
+}
+
+.field>input[type=text] {
+  flex:1;
+  padding:0.6em;
+  border:0.2em solid rgb(18, 163, 205);
+}
+
+.field>input[type=button] {
+  padding:0.6em 0.8em;
+  background-color: rgb(18, 163, 205);
+  color:white;
+  border:none;
+}
+
+/* ---------------------------------------------- Pop up container -------------------------------------------------- */
 .popup {
     position: relative;
     display: inline-block;
