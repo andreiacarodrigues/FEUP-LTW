@@ -1,7 +1,7 @@
 ﻿<?php
 //Restaurant Menu
-include_once('my_database/Restaurant.php');
-include_once('my_database/Photo.php');
+include_once('my_database/restaurant.php');
+include_once('my_database/photo.php');
 
 $val = $_GET['val'];
 $id = $_GET['id'];
