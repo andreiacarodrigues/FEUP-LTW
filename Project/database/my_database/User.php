@@ -1,12 +1,30 @@
 ﻿<?php
-include_once('database/Connection.php');
+include_once('Connection.php');
 
-	function addUser($username, $name, $email, $postCode, $birthdate, $password, $profilePic)
-	{
-		global $db;
-		$stmt = $db->prepare("INSERT INTO user VALUES (null, ?, ?, ?, ?, ? ,?, ?)");
-		return $stmt->execute(array($name, $email, $birthdate, $postCode,$username, $password , $profilePic));
-	}
+    function getUserPassword($username)
+    {
+        global $db;
+        $stmt = $db->prepare("SELECT password FROM User WHERE username = ?");
+        $stmt->execute(array($username));
+        return $stmt->fetch();
+    }
+
+    function getUserInfo($username)
+    {
+        global $db;
+        $stmt = $db->prepare("SELECT name, email, birthdate, postCode, photoId FROM User WHERE username = ?");
+        $stmt->execute(array($username));
+        return $stmt->fetch();
+    }
+
+    function addUser($name, $email, $birthdate,$postCode, $username, $password, $options)
+    {
+        global $db;
+        $stmt = $db->prepare("INSERT INTO user VALUES (null, ?, ?, ?, ?, ? ,?, null)");
+        $stmt->execute(array($name, $email, $birthdate, $postCode,$username, password_hash($password, PASSWORD_DEFAULT, $options)));
+    }
+
+    //========================================================================
 
 	function getAllUsers()
 	{
@@ -15,20 +33,6 @@ include_once('database/Connection.php');
 		$stmt->execute();
 		$users = $stmt->fetchAll();
 		return $users;
-		/*foreach( $users as $user) {
-			echo $user['name'] . ' ' . $user['email'] . ' '.  $user['birthdate']. ' '. $user['postCode']. ' '. $user['username'].' '.$user['photoId'] . '<br>';
-		}*/
-	}
-	
-	function getUserInfo($username)
-	{
-		global $db;
-		//$username = $_GET["username"];
-		$stmt = $db->prepare("SELECT name, email, birthdate, postCode, photoId FROM User WHERE username = ?");
-		$stmt->execute(array($username));
-		$info = $stmt->fetch();
-		return $info;
-		//echo $info['name'] . ' ' . $info['email'] . ' '.  $info['birthdate']. ' '. $info['postCode']. ' '. $username.' '.$info['photoId'];	
 	}
 	
 	function deleteUser($username)
