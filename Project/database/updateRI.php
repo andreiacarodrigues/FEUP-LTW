@@ -1,5 +1,5 @@
 ﻿<?php
-include_once('my_database/Restaurant.php');
+include_once('my_database/restaurant.php');
 
 // Restaurant Info
 
