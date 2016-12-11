@@ -1,5 +1,5 @@
 ﻿<?php
-include_once('my_database/Photo.php');
+include_once('my_database/photo.php');
 
 $id = $_GET["id"];
 
