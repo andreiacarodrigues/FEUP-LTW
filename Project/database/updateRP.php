@@ -1,7 +1,7 @@
 ﻿<?php
 //Restaurant Profile Photo 
 
-include_once('my_database/Restaurant.php');
+include_once('my_database/restaurant.php');
 
 $val = $_GET['val'];
 $id = $_GET['id'];
