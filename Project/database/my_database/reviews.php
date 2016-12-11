@@ -67,4 +67,11 @@ function getReviewPhoto($review)
     return $stmt->fetchAll();
 }
 
+function addReviewPhoto($reviewId,$photo)
+{
+    global $db;
+    $stmt = $db->prepare("INSERT INTO ReviewPhoto VALUES (?, ?)");
+    $stmt->execute(array($reviewId, $photo));
+}
+
 ?>

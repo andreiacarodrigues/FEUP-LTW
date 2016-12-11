@@ -1,5 +1,5 @@
 <?php
-include_once('my_database/connection.php');
+include_once('my_database/photo.php');
 global $db;
 
 $method = $_POST['method'];
@@ -9,12 +9,7 @@ if($val == "NULL")
     die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
 else
 {
-    $stmt = $db->prepare("INSERT INTO Photo VALUES(NULL,?)");
-    $stmt->execute(array(""));
-    $id = $db->lastInsertId();
-
-    $stmt = $db->prepare("UPDATE Photo SET filename = ? WHERE photoId = ?");
-    $stmt->execute(array("$id.jpg", $id));
+    $id = addPhoto();
 
     $originalFileName = "../css/images/$id.jpg";
     $smallFileName = "../css/images_small/$id.jpg";

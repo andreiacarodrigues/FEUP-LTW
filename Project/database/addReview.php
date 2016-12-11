@@ -1,9 +1,7 @@
 ﻿<?php
 include_once('my_database/restaurant.php');
 include_once('my_database/reviews.php');
-include_once('my_database/connection.php');
-
-global $db;
+include_once('my_database/photo.php');
 
 $restaurant = $_POST["restaurant"];
 $username = $_POST["username"];
@@ -26,13 +24,7 @@ else
     $photo = null;
     if ($_FILES['image']['tmp_name']){
         // Photo
-
-        $stmt = $db->prepare("INSERT INTO Photo VALUES(NULL,?)");
-        $stmt->execute(array(""));
-        $photo = $db->lastInsertId();
-
-        $stmt = $db->prepare("UPDATE Photo SET filename = ? WHERE photoId = ?");
-        $stmt->execute(array("$photo.jpg", $photo));
+        $photo = addPhoto();
 
         $originalFileName = "../css/images/$photo.jpg";
         $smallFileName = "../css/images_small/$photo.jpg";
@@ -64,9 +56,7 @@ else
         imagejpeg($medium, $mediumFileName);
 
         // Review Photo
-        $stmt = $db->prepare("INSERT INTO ReviewPhoto VALUES (?, ?)");
-        $stmt->execute(array($reviewId['reviewId'], $photo));
-
+        addReviewPhoto($reviewId['reviewId'], $photo);
     }
 }
 
