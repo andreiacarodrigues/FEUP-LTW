@@ -1,5 +1,5 @@
 ﻿<?php
-include_once('my_database/Friends.php');
+include_once('my_database/friends.php');
 
 $sessionUsername = $_GET["sessionUsername"];
 $username = $_GET["username"];
