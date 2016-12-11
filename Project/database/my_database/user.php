@@ -1,5 +1,5 @@
 ﻿<?php
-include_once('Connection.php');
+include_once('connection.php');
 
 function addUser($name, $email, $birthdate,$postCode, $username, $password, $options)
 {
