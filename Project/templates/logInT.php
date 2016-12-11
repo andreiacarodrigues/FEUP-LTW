@@ -37,7 +37,9 @@ if (isset ( $_SESSION ["userid"] ))
     }
 </script>
 
-<h2>Login</h2>
+
+<section id="sectionBody">
+<h2>LogIn</h2>
 <div class="login">
     <form action="./index.php" method="post">
         <label>Username:
@@ -49,7 +51,9 @@ if (isset ( $_SESSION ["userid"] ))
         </label>
         <br>
         <p id="status"></p>
+		<br>
         <input type="button" value="Login" onclick="login()"/>
         <input type="button" value="Cancel" onclick="goBack()"/>
     </form>
 </div>
+</section>

@@ -39,7 +39,7 @@
 
 </script>
 
-<section id="home">
+<section id="sectionBody">
 	<div class="homeform">
 		<p class="searchFormTitle">Search by Zip Code/Post Code:</p>
 		<div class="field">
@@ -50,7 +50,7 @@
 		</div>
 	</div>
 	<div class="homeform">
-		<p class="searchFormTitle">Search by Resturant Name:</p>
+		<p class="searchFormTitle">Search by Restaurant Name:</p>
 		<div class="field">
 			<input type="text" id="search" placeholder="Restaurant Name Search" >
 			<input type="button" value="Search" onclick="searchRestaurantName();">

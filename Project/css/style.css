@@ -32,6 +32,7 @@ a{
 
 .nav a {
     display: block;
+    border-radius: 25px;
     transition: .3s background-color;
 }
 
@@ -39,11 +40,11 @@ a{
     background-color: #1293bc;
 }
 
-/* not working */
+/* Cursor em cima dos links */
 .nav a.active {
     background-color: #fff;
     color: #444;
-    cursor: default;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 600px) {
@@ -60,18 +61,38 @@ a{
         display: inline-block;
         margin-right: -4px;
     }
+}
 
+/* Cursor em cima dos botões */
+input[type=button]{
+    cursor: pointer;
+}
 
+/* ---------------------------------------------------- Footer ------------------------------------------------------ */
+
+footer{
+    position:absolute;
+    bottom:0;
+    width:99%;
+}
+
+footer p{
+    font:1em 'Montserrat Alternates';
+    float:right;
+    padding-right:15px;
+}
 
 /* ----------------------------------------------- Home page forms -------------------------------------------------- */
-#home{
-    margin-top: 10em;
+#sectionBody{
+    margin-top: 12em;
+    margin-bottom: 5em;
 }
 
-.homeForm
+.homeform
 {
-    margin: 6em auto;
+    margin: 5em auto;
 }
+
 .searchFormTitle{
     margin: 1em auto;
     width: 50%;
@@ -112,6 +133,95 @@ a{
   background-color: rgb(18, 163, 205);
   color:white;
   border:none;
+}
+
+/* ------------------------------------------------------- Login ---------------------------------------------------- */
+
+h2{
+    margin: 1em auto;
+    padding-left: 1em;
+    font:1.6em 'Montserrat Alternates';
+}
+
+.login{
+    max-width: 900px;
+    padding: 5px 12px 10px 20px;
+    font:1.2em 'Montserrat Alternates';
+}
+
+.login label{
+    margin: 2px;
+    display: block;
+}
+
+.login p{
+    margin: 5px;
+    font:0.8em 'Montserrat Alternates';
+    color:red;
+}
+
+.login input[type=password],
+.login input[type=text]{
+    width: 48%;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font:1.2em 'Montserrat Alternates';
+}
+::-moz-placeholder { /* Firefox 19+ */
+    font:1.2em 'Montserrat Alternates';
+}
+:-ms-input-placeholder { /* IE 10+ */
+    font:1.2em 'Montserrat Alternates';
+}
+:-moz-placeholder { /* Firefox 18- */
+    font:1.2em 'Montserrat Alternates';
+}
+
+.login input[type=text],
+.login input[type=password],
+.login textarea
+{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #C2C2C2;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding: 7px;
+    outline: none;
+}
+
+.login input[type=text]:focus,
+.login input[type=password]:focus,
+.login textarea:focus{
+    border: 1px solid #0C0;
+}
+.login .textarea{
+    height:100px;
+    width: 55%;
+}
+.login input[type=submit],
+.login input[type=button]{
+    border: none;
+    padding: 8px 15px 8px 15px;
+    background: #12a3cd;
+    color: #fff;
+    box-shadow: 1px 1px 4px #DADADA;
+    -moz-box-shadow: 1px 1px 4px #DADADA;
+    -webkit-box-shadow: 1px 1px 4px #DADADA;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+.login input[type=submit]:hover,
+.login input[type=button]:hover{
+    background: #1293bc;
+    color: #fff;
 }
 
 /* ---------------------------------------------- Pop up container -------------------------------------------------- */
