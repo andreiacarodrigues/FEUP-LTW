@@ -1,15 +1,12 @@
 ﻿<?php
-include_once('Connection.php');
+include_once('my_database/Photo.php');
 
-	global $db;
-	$id = $_GET["id"];
-	$stmt = $db->prepare("SELECT filename FROM Photo WHERE photoId = ?");
-	$stmt->execute(array($id));
-	$info = $stmt->fetch();
-	
-	
-	if(!empty($info))
-		echo json_encode($info['filename']);
-	else
-		echo 'INVALID';
+$id = $_GET["id"];
+
+$info = getPhoto($id);
+
+if(!empty($info))
+    echo json_encode($info['filename']);
+else
+    echo 'INVALID';
 ?>

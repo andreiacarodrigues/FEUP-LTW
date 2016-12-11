@@ -1,29 +1,22 @@
 ﻿<?php
-include_once('Connection.php');
+include_once('my_database/Restaurant.php');
+include_once('my_database/Photo.php');
 
-	global $db;
-	$restaurant = $_GET["restaurant"];
+$restaurant = $_GET["restaurant"];
 
-	$stmt = $db->prepare('SELECT restaurantId FROM Restaurant WHERE name = ?');
-	$stmt->execute(array($restaurant));
-	$restaurantId = $stmt->fetch();
+$restaurantId = getRestaurantId($restaurant);
 
-	
-	$stmt = $db->prepare('SELECT photoId FROM RestaurantPhoto WHERE restaurantId = ?');
-	$stmt->execute(array($restaurantId['restaurantId']));
-	$photos = $stmt->fetchAll();
-	
-	$result = array();
-	foreach ($photos as $photo)
-	{
-		$stmt = $db->prepare('SELECT filename FROM Photo WHERE photoId = ?');
-		$stmt->execute(array($photo['photoId']));
-		$photo = $stmt->fetch();
-		$result[] = $photo['filename'];
-	}
-	
-	if(!empty($result))
-		echo json_encode($result);
-	else
-		echo 'INVALID';
+$photos = getRestaurantPhotos($restaurantId['restaurantId']);
+
+$result = array();
+foreach ($photos as $photo)
+{
+    $myphoto = getPhoto($photo['photoId']);
+    $result[] = $myphoto['filename'];
+}
+
+if(!empty($result))
+    echo json_encode($result);
+else
+    echo 'INVALID';
 ?>
