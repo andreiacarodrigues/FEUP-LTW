@@ -1,16 +1,11 @@
 ﻿<?php
-include_once('Connection.php');
+include_once('my_database/User.php');
 
-global $db;
 $username = $_GET["username"];
 
-$stmt = $db->prepare("SELECT name, email, birthdate, postCode, photoId FROM User WHERE username = ?");
-$stmt->execute(array($username));
-$info = $stmt->fetch();
+$info = getUserInfo($username);
 
-$stmt = $db->prepare("SELECT * FROM Restaurant WHERE owner = ?");
-$stmt->execute(array($username));
-$myRest = $stmt->fetchAll();
+$myRest = getRestaurantsByOwner($username);
 
 if(empty($myRest))
     $isOwner = 0;
@@ -23,6 +18,7 @@ $infoArray = array(0 => $info['name'],
     3 => $info['postCode'],
     4 => $info['photoId'],
     5 => $isOwner);
+
 if(!empty($info))
     echo json_encode($infoArray);
 else

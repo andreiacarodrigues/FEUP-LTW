@@ -1,36 +1,24 @@
 <?php
-include_once('Connection.php');
+include_once('my_database/User.php');
 
-global $db;
 $username = $_GET["username"];
 
-$stmt = $db->prepare('SELECT reviewId, restaurantId, rating, text, date FROM Review WHERE username = ?');
-$stmt->execute(array($username));
-$reviews = $stmt->fetchAll();
+$reviews = getReviewsByUser($username);
 
 $result = array();
 foreach ($reviews as $review)
 {
-    $stmt = $db->prepare('SELECT name FROM Restaurant WHERE restaurantId = ?');
-    $stmt->execute(array($review['restaurantId']));
-    $name = $stmt->fetch();
-
-    $stmt = $db->prepare('SELECT photoId FROM ReviewPhoto WHERE reviewId = ?');
-    $stmt->execute(array($review['reviewId']));
-    $photosId = $stmt->fetchAll();
+    $name = getRestaurantName($review['restaurantId']);
+    $photosId = getReviewPhoto($review['reviewId']);
 
     $photos = array();
     foreach ($photosId as $photoId)
     {
-        $stmt = $db->prepare('SELECT filename FROM Photo WHERE photoId = ?');
-        $stmt->execute(array($photoId['photoId']));
-        $photo = $stmt->fetch();
+        $photo = getPhoto($photoId['photoId']);
         $photos[] = $photo['filename'];
     }
 
-    $stmt = $db->prepare('SELECT username, text FROM ReviewReply WHERE reviewId = ? ');
-    $stmt->execute(array($review['reviewId']));
-    $repliesRes = $stmt->fetchAll();
+    $repliesRes = getReviewReply($review['reviewId']);
 
     $replies = array();
     foreach ($repliesRes as $reply)

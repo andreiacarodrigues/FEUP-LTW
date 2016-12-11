@@ -1,23 +1,19 @@
 <?php
-include_once('Connection.php');
+include_once('my_database/Restaurant.php');
+include_once('my_database/Reviews.php');
+include_once('my_database/Photo.php');
 
 global $db;
 $username = $_GET["username"];
 
-$stmt = $db->prepare('SELECT restaurantId FROM Review WHERE username = ?');
-$stmt->execute(array($username));
-$restaurants = $stmt->fetchAll();
+$restaurants = getReviewsByUser($username);
 
 $result = array();
 foreach ($restaurants as $restaurantId)
 {
-    $stmt = $db->prepare('SELECT name , location, rating_sum, photoId FROM Restaurant WHERE restaurantId = ?');
-    $stmt->execute(array($restaurantId['restaurantId']));
-    $restaurant = $stmt->fetch();
-
-     $stmt = $db->prepare('SELECT filename FROM Photo WHERE photoId = ?');
-     $stmt->execute(array($restaurant['photoId']));
-     $photo = $stmt->fetch();
+    $name = getRestaurantName($restaurantId['restaurantId']);
+    $restaurant = getRestaurantsByName($name['name']);
+    $photo = getPhoto($restaurant['photoId']);
 
     $infoArray = array(0 => $restaurant['name'],
         1 => $restaurant['rating_sum'],

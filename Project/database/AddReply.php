@@ -10,4 +10,5 @@ addReviewReply($id, $username, $text);
 $info = getAllReviewReply();
 
 echo json_encode($info);
+
 ?>

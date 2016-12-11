@@ -1,13 +1,10 @@
 <?php
-include_once('Connection.php');
+include_once('my_database/User.php');
 
-global $db;
 $username = $_GET["username"];
 $password = $_GET["password"];
 
-$stmt = $db->prepare("SELECT password FROM User WHERE username = ?");
-$stmt->execute(array($username));
-$user = $stmt->fetch();
+$user = getUserPassword($username);
 
 if(empty($user))
     echo "Username doesn't exist!";

@@ -1,96 +1,59 @@
 <?php
-  include_once('Connection.php');
-  global $db;
-	
-  // possible PHP upload errors 
-  $errors = array(1 => 'php.ini max file size exceeded', 
-                2 => 'html form max file size exceeded', 
-                3 => 'file upload was only partial', 
-                4 => 'no file was attached'); 
-				
-  $method = $_POST['method'];
-  $val = $_POST['val'];
-  
-  $filePath = realpath($_FILES["image"]["tmp_name"]);
-	 
-  echo $_FILES['image']['name'];
+include_once('Connection.php');
+global $db;
 
-  if($val == "NULL")
-	  die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
-  else
-  {
-	 // check that the file we are working on really was the subject of an HTTP 
-	 if(!@is_uploaded_file($_FILES['image']['tmp_name']))
-	 {
-		die(header('Location: ' . $_SERVER["HTTP_REFERER"] ));
-	 }
-	 else
-	 // getimagesize() returns false if the file tested is not an image. 
-	if(!@getimagesize($filePath))
-	{
-		die(header('Location: ' . $_SERVER["HTTP_REFERER"] ));
-	}
-	 else if(exif_imagetype($filePath) != IMAGETYPE_JPEG) {
-		die(header('Location: ' . $_SERVER["HTTP_REFERER"] ));
-	 }
-	else
-	{
-	  $stmt = $db->prepare("INSERT INTO Photo VALUES(NULL,?)");
-	  $stmt->execute(array(""));
-	  $id = $db->lastInsertId();
-	  
-	  $stmt = $db->prepare("UPDATE Photo SET filename = ? WHERE photoId = ?");
-	  $stmt->execute(array("$id.jpg", $id));
-	  
-	  $originalFileName = "../css/images/$id.jpg";
-	  $smallFileName = "../css/images_small/$id.jpg";
-	  $mediumFileName = "../css/images_medium/$id.jpg";
-	  
-	  move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);
-	  
-	  $original = imagecreatefromjpeg($originalFileName);
-	  
-	  $width = imagesx($original);
-	  $height = imagesy($original);
-	  $square = min($width, $height);
+$method = $_POST['method'];
+$val = $_POST['val'];
 
-	  // Create small square thumbnail
-	  $small = imagecreatetruecolor(200, 200); 
-	  imagecopyresized($small, $original, 0, 0, ($width>$square)?($width-$square)/2:0, ($height>$square)?($height-$square)/2:0, 200, 200, $square, $square);
-	  imagejpeg($small, $smallFileName);
+if($val == "NULL")
+    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+else
+{
+    $stmt = $db->prepare("INSERT INTO Photo VALUES(NULL,?)");
+    $stmt->execute(array(""));
+    $id = $db->lastInsertId();
 
-	  $mediumwidth = $width;
-	  $mediumheight = $height;
+    $stmt = $db->prepare("UPDATE Photo SET filename = ? WHERE photoId = ?");
+    $stmt->execute(array("$id.jpg", $id));
 
-	  if ($mediumwidth > 400) {
-		$mediumwidth = 400;
-		$mediumheight = $mediumheight * ( $mediumwidth / $width );
-	  }
+    $originalFileName = "../css/images/$id.jpg";
+    $smallFileName = "../css/images_small/$id.jpg";
+    $mediumFileName = "../css/images_medium/$id.jpg";
 
-	  $medium = imagecreatetruecolor($mediumwidth, $mediumheight); 
-	  imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumwidth, $mediumheight, $width, $height);
-	  imagejpeg($medium, $mediumFileName);
+    move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);
 
-      if($method == 1)
-      {
-          header('Location: UpdateUPP.php?val=' . $val . "&id=" . $id);
-          exit;
-      }
-	  if($method == 2)
-	  {
-		header('Location: UpdateRPP.php?val=' . $val . "&id=" . $id);
-		exit;
-	  }
-	  if($method == 4)
-	  {
-		  header('Location: UpdateRP.php?val=' . $val . "&id=" . $id);
-	  }
-	   if($method == 5)
-	  {
-		  header('Location: UpdateRM.php?val=' . $val . "&id=" . $id);
-	  }
-	}
-  }
-  //header('Location: ' . $_SERVER["HTTP_REFERER"] );
-  //exit;
+    $original = imagecreatefromjpeg($originalFileName);
+
+    $width = imagesx($original);
+    $height = imagesy($original);
+    $square = min($width, $height);
+
+    // Create small square thumbnail
+    $small = imagecreatetruecolor(200, 200);
+    imagecopyresized($small, $original, 0, 0, ($width>$square)?($width-$square)/2:0, ($height>$square)?($height-$square)/2:0, 200, 200, $square, $square);
+    imagejpeg($small, $smallFileName);
+
+    $mediumwidth = $width;
+    $mediumheight = $height;
+
+    if ($mediumwidth > 400) {
+        $mediumwidth = 400;
+        $mediumheight = $mediumheight * ( $mediumwidth / $width );
+    }
+
+    $medium = imagecreatetruecolor($mediumwidth, $mediumheight);
+    imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumwidth, $mediumheight, $width, $height);
+    imagejpeg($medium, $mediumFileName);
+
+    if($method == 1)
+        header('Location: UpdateUPP.php?val=' . $val . "&id=" . $id);
+    else if($method == 2)
+        header('Location: UpdateRPP.php?val=' . $val . "&id=" . $id);
+    else if($method == 4)
+        header('Location: UpdateRP.php?val=' . $val . "&id=" . $id);
+    else if($method == 5)
+        header('Location: UpdateRM.php?val=' . $val . "&id=" . $id);
+}
+//header('Location: ' . $_SERVER["HTTP_REFERER"] );
+//exit;
 ?>

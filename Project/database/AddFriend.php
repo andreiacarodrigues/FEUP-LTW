@@ -7,9 +7,7 @@ $username = $_GET["username"];
 $result = addFriend($sessionUsername, $username);
 
 if($result)
-{
     header('Location: ../userProfile.php?username=' . $username);
-}
 else
     echo "INVALID";
 ?>

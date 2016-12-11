@@ -7,7 +7,7 @@ $restaurant = $_GET["restaurant"];
 
 $restaurantId = getRestaurantId($restaurant);
 
-$reviews = getReviews($restaurantId['restaurantId']);
+$reviews = getReviewsByRestaurant($restaurantId['restaurantId']);
 
 $result = array();
 foreach ($reviews as $review)
