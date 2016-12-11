@@ -39,21 +39,23 @@ if (isset ( $_SESSION ["userid"] ))
 
 
 <section id="sectionBody">
-<h2>LogIn</h2>
-<div class="login">
-    <form action="./index.php" method="post">
-        <label>Username:
-            <input type="text" name="username" id="username" placeholder="Insert your username..">
-        </label>
-        <br>
-        <label>Password:
-            <input type="password" name="password" id="password" placeholder="Insert your password..">
-        </label>
-        <br>
-        <p id="status"></p>
-		<br>
-        <input type="button" value="Login" onclick="login()"/>
-        <input type="button" value="Cancel" onclick="goBack()"/>
-    </form>
-</div>
+	<h2>LogIn</h2>
+	<div class="login">
+		<form action="./index.php" method="post">
+			<label>Username:
+				<input type="text" name="username" id="username" placeholder="">
+			</label>
+			<br>
+			<label>Password:
+				<input type="password" name="password" id="password" placeholder="">
+			</label>
+			<br>
+			<p id="status"></p>
+			<br>
+			<div id="buttons">
+				<input type="button" value="Login" onclick="login()"/>
+				<input type="button" value="Cancel" onclick="goBack()"/>
+			</div>
+		</form>
+	</div>
 </section>

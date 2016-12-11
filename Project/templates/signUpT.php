@@ -63,21 +63,25 @@ if(isset($_SESSION["userid"])){
     }
 
 </script>
-<h2>SignUp</h2>
-<div class="signUp">
-    <form>
-        <label>Username:<input type="text" name="username" id="username" onblur="checkUsername();" onkeyup="restrict('username');" maxlength="16"> </label> <br>
-        <span id="unamestatus"></span> <br>
-        <label>Name: <input type="text" name="name" id="name" onfocus="emptyElement('status');" maxlength="88"></label> <br>
-        <label>Email:<input type="email" name="email" id="email" placeholder="me@example.com" onfocus="emptyElement('status');" maxlength="30" > </label><br>
-        <label>PostCode: <input type="text" maxlength="4" name="postCode1"  id="postCode1" >
-            <label> -<input type="text" maxlength="3" name="postCode2" id="postCode2" onfocus="emptyElement('status');" > </label>
-        </label> <br>
-        <label>Birthdate:<input type="date" name="birthdate"  id="birthdate" onfocus="emptyElement('status');"></label> <br>
-        <label>Password:<input type="password" name="password" id="password" onfocus="emptyElement('status');" maxlength="30"></label><br>
-        <label>Confirm Password: <input type="password" name="confirmPassword"  id="confirmPassword" onfocus="emptyElement('status');" maxlength="30"> </label><br>
-        <span id="status"></span><br>
-        <input type="button" onclick="signup()" value="Submit Info">
-        <input type="button" onclick="goBack()" value="Cancel">
-    </form>
-</div>
+
+<section id="sectionBody">
+	<h2>SignUp</h2>
+	<div class="signUp">
+		<form>
+			<label>Username:<input type="text" name="username" id="username" onblur="checkUsername();" onkeyup="restrict('username');" maxlength="16"> </label> <br>
+			<p id="unamestatus"></p> <br>
+			<label>Name: <input type="text" name="name" id="name" onfocus="emptyElement('status');" maxlength="88"></label> <br>
+			<label>Email:<input type="email" name="email" id="email" placeholder="" onfocus="emptyElement('status');" maxlength="30" > </label><br>
+			<label>PostCode: <input type="text" maxlength="4" name="postCode1"  id="postCode1" > -<input type="text" maxlength="3" name="postCode2" id="postCode2" onfocus="emptyElement('status');" > </label>
+			</label> <br>
+			<label>Birthdate:<input type="date" name="birthdate"  id="birthdate" onfocus="emptyElement('status');"></label> <br>
+			<label>Password:<input type="password" name="password" id="password" onfocus="emptyElement('status');" maxlength="30"></label><br>
+			<label>Confirm Password: <input type="password" name="confirmPassword"  id="confirmPassword" onfocus="emptyElement('status');" maxlength="30"> </label><br>
+			<p id="status"></p><br>
+			<div id="buttons">
+				<input type="button" onclick="signup()" value="Submit Info">
+				<input type="button" onclick="goBack()" value="Cancel">
+			</div>
+		</form>
+	</div>
+</section>

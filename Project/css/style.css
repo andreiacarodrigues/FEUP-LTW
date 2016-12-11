@@ -71,9 +71,14 @@ input[type=button]{
 /* ---------------------------------------------------- Footer ------------------------------------------------------ */
 
 footer{
-    position:absolute;
+    /*position:absolute;
     bottom:0;
-    width:99%;
+    width:99%;*/
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    margin-top: -3em;
 }
 
 footer p{
@@ -138,31 +143,45 @@ footer p{
 /* ------------------------------------------------------- Login ---------------------------------------------------- */
 
 h2{
-    margin: 1em auto;
+    margin-left: 43%;
+    margin-bottom: 40px;
     padding-left: 1em;
-    font:1.6em 'Montserrat Alternates';
+    font:1.8em 'Montserrat Alternates';
 }
 
-.login{
+.login, .signUp{
+    margin-left:30%;
     max-width: 900px;
-    padding: 5px 12px 10px 20px;
+    /*padding: 5px 12px 10px 20px;*/
     font:1.2em 'Montserrat Alternates';
 }
 
-.login label{
+.login label, .signUp label{
     margin: 2px;
     display: block;
 }
 
-.login p{
+.login p, .signUp p{
     margin: 5px;
     font:0.8em 'Montserrat Alternates';
     color:red;
 }
 
 .login input[type=password],
-.login input[type=text]{
+.login input[type=text],
+.signUp input[type=password],
+.signUp input[type=text],
+.signUp input[type=email],
+.signUp input[type=date]{
     width: 48%;
+}
+
+.signUp #birthdate{
+    width: 20%;
+}
+.signUp #postCode1,
+.signUp #postCode2{
+    width:10%;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -180,7 +199,12 @@ h2{
 
 .login input[type=text],
 .login input[type=password],
-.login textarea
+.login textarea,
+.signUp input[type=text],
+.signUp input[type=password],
+.signUp textarea,
+.signUp input[type=email],
+.signUp input[type=date]
 {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -198,15 +222,24 @@ h2{
 
 .login input[type=text]:focus,
 .login input[type=password]:focus,
-.login textarea:focus{
+.login textarea:focus,
+.signUp input[type=text]:focus,
+.signUp input[type=password]:focus,
+.signUp textarea:focus,
+.signUp input[type=email]:focus,
+.signUp input[type=date]:focus{
     border: 1px solid #0C0;
 }
-.login .textarea{
+.login .textarea,
+.signUp .textarea{
     height:100px;
     width: 55%;
 }
 .login input[type=submit],
-.login input[type=button]{
+.login input[type=button],
+.signUp input[type=submit],
+.signUp input[type=button]{
+    font:0.9em 'Montserrat Alternates';
     border: none;
     padding: 8px 15px 8px 15px;
     background: #12a3cd;
@@ -218,10 +251,23 @@ h2{
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
 }
+
+#buttons{
+    margin-left:21%;
+
+}
 .login input[type=submit]:hover,
-.login input[type=button]:hover{
+.login input[type=button]:hover,
+.signUp input[type=submit]:hover,
+.signUp input[type=button]:hover{
     background: #1293bc;
     color: #fff;
+}
+
+.signUp .postCode1,
+.signUp .postCode2{
+    width: 40px;
+    text-align: center;
 }
 
 /* ---------------------------------------------- Pop up container -------------------------------------------------- */
