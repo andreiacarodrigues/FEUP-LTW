@@ -1,5 +1,5 @@
 ﻿<?php
-include_once('my_database/Connection.php');
+include_once('my_database/user.php');
 
 // User Info
 
