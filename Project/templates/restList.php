@@ -101,10 +101,11 @@ else
 
 </script>
 
-
+<section id="sectionBody">
 <section class="searchResults">
     <p id="stats"> </p>
     <div id="list"> </div>
+</section>
 </section>
 
 <script language="JavaScript">

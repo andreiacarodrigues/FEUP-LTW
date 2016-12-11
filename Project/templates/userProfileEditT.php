@@ -187,7 +187,7 @@ else{
 
 
 </script>
-
+<section id="sectionBody">
 <section id="main" >
     <form id="updateProfilePicture" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="method" value="1"/>
@@ -243,7 +243,7 @@ else{
         </li>
     </ul>
 </section>
-
+</section>
 <script language="JavaScript">
     $(document).ready(getInfo());
 </script>

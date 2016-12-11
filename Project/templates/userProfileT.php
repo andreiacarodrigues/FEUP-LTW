@@ -239,16 +239,31 @@ else {
 
 </script>
 
+<section id="sectionBody">
 <section id="profile">
+	 <section id="menuProfile" >
+        <ul>
+			<a href="#main">Informations</a>
+			<br>
+            <a href="#history">History</a>
+			<br>
+            <a href="#visitedPlaces">Visited Restaurants</a>
+			<br>
+            <a href="#friends">Followers</a>
+			<br>
+            <a class="justForOwner" href="#manageRestaurants">Manage Restaurants</a>
+        </ul>
+    </section>
+
 
     <section id="main" >
         <ul id="informacoes">
-            <label>Username: <li id= "username"></li> </label>
-            <label>Name : <li id= "name"></li> </label>
-            <!-- mostrar isto deve ser opcional -->
-            <label>Email :<li id= "email"></li></label>
-            <label>Birthday : <li id= "birthdate"></li></label>
-            <label>Post-code : <li id= "postCode"></li></label>
+			<li><label for="username">Username: <span id="username"></span></label></li>
+            <li><label for="name">Name: <span id="name"></span></label></li>
+			<li><label for="name">Email: <span id="email"></span></label></li>
+			<li><label for="name">Birthday: <span id="birthdate"></span></label></li>
+			<li><label for="name">Post-Code: <span id="postCode"></span></label></li>
+         
             <div id="addFriend"></div>
             <div id="deleteFriend"></div>
             <div id="edit"></div>
@@ -272,7 +287,7 @@ else {
             </script>
         <?php  }   ?>
     </section>
-
+	
     <section id="dashboard" >
         <ul>
             <li id="history"></li>  <!-- conjunto das reviews feitas pelo utilizador -->
@@ -282,20 +297,9 @@ else {
         </ul>
     </section>
 
-    <section id="menuProfile" >
-        <ul>
-            <a href="#history">History</a>
-            <br>
-            <a href="#visitedPlaces">Visited Restaurants</a>
-            <br>
-            <a href="#friends">Followers</a>
-            <br>
-            <a class="justForOwner" href="#manageRestaurants">Manage Restaurants</a>
-            <br>
-        </ul>
-    </section>
+   
 </section>
-
+</section>
 <script language="JavaScript">
     $(document).ready(getInfo());
 </script>

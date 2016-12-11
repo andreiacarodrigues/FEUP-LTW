@@ -14,41 +14,41 @@ header{
     border-color: #1293bc;
 }
 
-a{
+header a{
     color: white;
     font:1.2em 'Montserrat Alternates';
     text-decoration: none;
 }
 
-.nav ul {
+header .nav ul {
     list-style: none;
     text-align: left;
     padding: 0;
     margin: 0;
 }
-.nav li {
+header .nav li {
     text-align: center;
 }
 
-.nav a {
+header .nav a {
     display: block;
     border-radius: 25px;
     transition: .3s background-color;
 }
 
-.nav a:hover {
+header .nav a:hover {
     background-color: #1293bc;
 }
 
 /* Cursor em cima dos links */
-.nav a.active {
+header .nav a.active {
     background-color: #fff;
     color: #444;
     cursor: pointer;
 }
 
 @media screen and (min-width: 600px) {
-    .nav li {
+    header .nav li {
         width: 120px;
         border-bottom: none;
         height: 50px;
@@ -57,7 +57,7 @@ a{
     }
 
     /* Option 1 - Display Inline */
-    .nav li {
+    header .nav li {
         display: inline-block;
         margin-right: -4px;
     }
@@ -140,7 +140,7 @@ footer p{
   border:none;
 }
 
-/* ------------------------------------------------------- Login ---------------------------------------------------- */
+/* -------------------------------------------------- Login e SignUp ------------------------------------------------- */
 
 h2{
     margin-left: 43%;
@@ -267,6 +267,70 @@ h2{
 .signUp .postCode1,
 .signUp .postCode2{
     width: 40px;
+    text-align: center;
+}
+
+/* -------------------------------------------------- User Profile -------------------------------------------------- */
+
+#profile img {
+    border: 1px solid #12a3cd;
+    border-radius: 4px;
+    padding: 5px;
+    margin-left:2.5em;
+}
+
+#profile #main ul li{
+    list-style: none;
+    padding: 8px 0px 8px 0px;
+
+}
+
+#profile #main ul label{
+    font:1em 'Montserrat Alternates';
+
+}
+
+#profile #main ul div{
+    margin-top:2em;
+    margin-bottom:2em;
+}
+
+#profile #main ul a{
+    margin-top: 3em;
+    font:0.9em 'Montserrat Alternates';
+    border: none;
+    padding: 8px 15px 8px 15px;
+    background: #12a3cd;
+    color: #fff;
+    box-shadow: 1px 1px 4px #DADADA;
+    -moz-box-shadow: 1px 1px 4px #DADADA;
+    -webkit-box-shadow: 1px 1px 4px #DADADA;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+
+}
+
+#profile #menuProfile{
+    position: fixed;
+    right: 40px;
+    width: 250px;
+    padding: 10px;
+}
+
+#profile #menuProfile ul a{
+    font:0.9em 'Montserrat Alternates';
+    border: none;
+    padding: 8px 15px 8px 15px;
+    background: #12a3cd;
+    color: #fff;
+    box-shadow: 1px 1px 4px #DADADA;
+    -moz-box-shadow: 1px 1px 4px #DADADA;
+    -webkit-box-shadow: 1px 1px 4px #DADADA;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    display: block;
     text-align: center;
 }
 

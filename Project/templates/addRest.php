@@ -100,6 +100,7 @@ else
 
 </script>
 
+<section id="sectionBody">
 <h2>Add Restaurant</h2>
 <section id="informations">
     <form>
@@ -151,6 +152,7 @@ else
             <input type="submit" value="Upload Restaurant Photo">
         </form>
     </div>
+</section>
 </section>
 
 <script language="JavaScript">
