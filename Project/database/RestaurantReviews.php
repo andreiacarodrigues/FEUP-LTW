@@ -1,51 +1,41 @@
 <?php
-include_once('Connection.php');
+include_once('my_database/Restaurant.php');
+include_once('my_database/Reviews.php');
+include_once('my_database/Photo.php');
 
-global $db;
 $restaurant = $_GET["restaurant"];
 
-$stmt = $db->prepare('SELECT restaurantId FROM Restaurant WHERE name = ?');
-$stmt->execute(array($restaurant));
-$restaurantId = $stmt->fetch();
+$restaurantId = getRestaurantId($restaurant);
 
-$stmt = $db->prepare('SELECT reviewId, username, rating, text, date FROM Review WHERE restaurantId = ?');
-$stmt->execute(array($restaurantId['restaurantId']));
-$reviews = $stmt->fetchAll();
+$reviews = getReviews($restaurantId['restaurantId']);
 
 $result = array();
 foreach ($reviews as $review)
 {
-    $stmt = $db->prepare('SELECT photoId FROM ReviewPhoto WHERE reviewId = ?');
-    $stmt->execute(array($review['reviewId']));
-    $photosId = $stmt->fetchAll();
+    $photosId = getReviewPhoto($review['reviewId']);
 
     $photos = array();
     foreach ($photosId as $photoId)
     {
-        $stmt = $db->prepare('SELECT filename FROM Photo WHERE photoId = ?');
-        $stmt->execute(array($photoId['photoId']));
-        $photo = $stmt->fetch();
-		$photos[] = $photo['filename'];
+        $photo = getPhoto($photoId['photoId']);
+        $photos[] = $photo['filename'];
     }
-	
-	// ------------------------------------------------------
-	$stmt = $db->prepare('SELECT username, text FROM ReviewReply WHERE reviewId = ? ');
-    $stmt->execute(array($review['reviewId']));
-    $repliesRes = $stmt->fetchAll();
 
-	$replies = array();
-	foreach ($repliesRes as $reply)
-	{
-		$replies[] = array($reply['username'], $reply['text']);
-	}
+    $repliesRes = getReviewReply($review['reviewId']);
+
+    $replies = array();
+    foreach ($repliesRes as $reply)
+    {
+        $replies[] = array($reply['username'], $reply['text']);
+    }
     $infoArray = array(
-		0 => $review['reviewId'],
-		1 => $review['username'],
+        0 => $review['reviewId'],
+        1 => $review['username'],
         2 => $review['rating'],
         3 => $review['text'],
         4 => $photos,
-		5 => $review['date'],
-		6 => $replies);
+        5 => $review['date'],
+        6 => $replies);
 
     $result[] = $infoArray;
 }

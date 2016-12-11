@@ -1,21 +1,18 @@
 ﻿<?php
 //Restaurant Profile Photo 
 
-include_once('Connection.php');
+include_once('my_database/Restaurant.php');
 
-	global $db;
+global $db;
 
-    $val = $_GET['val'];
-	$id = $_GET['id'];
-	
-	$stmt = $db->prepare("SELECT restaurantId from Restaurant WHERE name = ?");
-	$stmt->execute(array($val));
-	$restaurantId = $stmt->fetch();
-	$restaurantId = $restaurantId['restaurantId'];
+$val = $_GET['val'];
+$id = $_GET['id'];
 
-	$stmt = $db->prepare("INSERT INTO RestaurantPhoto VALUES(?,?)");
-	$stmt->execute(array($id, $restaurantId));
+$restaurantId = getRestaurantId($val);
+$restaurantId = $restaurantId['restaurantId'];
 
-	header('Location: ../restaurantProfileEdit.php?restaurant=' . $val);
-	exit;
+addRestaurantPhoto($id,$restaurantId);
+
+header('Location: ../restaurantProfileEdit.php?restaurant=' . $val);
+exit;
 ?>
