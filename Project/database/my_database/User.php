@@ -1,130 +1,141 @@
 ﻿<?php
 include_once('Connection.php');
 
-    function getUserPassword($username)
-    {
-        global $db;
-        $stmt = $db->prepare("SELECT password FROM User WHERE username = ?");
-        $stmt->execute(array($username));
-        return $stmt->fetch();
-    }
+function addUser($name, $email, $birthdate,$postCode, $username, $password, $options)
+{
+    global $db;
+    $stmt = $db->prepare("INSERT INTO user VALUES (null, ?, ?, ?, ?, ? ,?, null)");
+    $stmt->execute(array($name, $email, $birthdate, $postCode,$username, password_hash($password, PASSWORD_DEFAULT, $options)));
+}
 
-    function getUserInfo($username)
-    {
-        global $db;
-        $stmt = $db->prepare("SELECT name, email, birthdate, postCode, photoId FROM User WHERE username = ?");
-        $stmt->execute(array($username));
-        return $stmt->fetch();
-    }
+function getUserPassword($username)
+{
+    global $db;
+    $stmt = $db->prepare("SELECT password FROM User WHERE username = ?");
+    $stmt->execute(array($username));
+    return $stmt->fetch();
+}
 
-    function addUser($name, $email, $birthdate,$postCode, $username, $password, $options)
-    {
-        global $db;
-        $stmt = $db->prepare("INSERT INTO user VALUES (null, ?, ?, ?, ?, ? ,?, null)");
-        $stmt->execute(array($name, $email, $birthdate, $postCode,$username, password_hash($password, PASSWORD_DEFAULT, $options)));
-    }
+function getUserInfo($username)
+{
+    global $db;
+    $stmt = $db->prepare("SELECT name, email, birthdate, postCode, photoId FROM User WHERE username = ?");
+    $stmt->execute(array($username));
+    return $stmt->fetch();
+}
 
-    //========================================================================
+function getUserPhoto($name)
+{
+    global $db;
+    $stmt = $db->prepare("SELECT photoId from User WHERE username = ?");
+    $stmt->execute(array($name));
+    return $stmt->fetch();
+}
 
-	function getAllUsers()
-	{
-		global $db;
-		$stmt = $db->prepare("SELECT name, email, birthdate, postCode, username, password, photoId FROM User");
-		$stmt->execute();
-		$users = $stmt->fetchAll();
-		return $users;
-	}
-	
-	function deleteUser($username)
-	{
-		global $db;
-		$stmt = $db->prepare("DELETE FROM User WHERE username = ?");
-		return $stmt->execute(array($username));
-	}
+function updateUser($name, $email, $birthdate, $postCode, $username, $previousUsername)
+{
+    global $db;
+    $stmt = $db->prepare("UPDATE User SET name = ? , email = ? , birthdate = ? , postCode = ?, username = ? WHERE username = ?");
+    $stmt->execute(array($name, $email, $birthdate, $postCode, $username, $previousUsername));
+}
 
-	/*function userExists($username, $password)
-	{
-		global $db;
-    
-		$stmt = $db->prepare('SELECT * FROM User WHERE username = ? AND password = ?');
-		$stmt->execute(array($username, sha1($password)));  
-		return $stmt->fetch() !== false;
-	}*/
-	
-	function userExists($username)
-	{
-		global $db;
-    
-		$stmt = $db->prepare('SELECT * FROM User WHERE username = ?');
-		$stmt->execute(array($username));  
-		return $stmt->fetch() !== false;
-	}
+function updateUserPassword($password,$options,$username)
+{
+    global $db;
+    $stmt = $db->prepare("UPDATE User SET password = ? WHERE username = ?");
+    $stmt->execute(array(password_hash($password, PASSWORD_DEFAULT, $options) , $username));
+}
 
-    function getUserPhoto($userPhotoId)
-    {
-        global $db;
+function updateUserPhoto($id,$name)
+{
+    global $db;
+    $stmt = $db->prepare("UPDATE User SET photoId = ? WHERE username = ?");
+    $stmt->execute(array($id, $name));
+}
 
-        $stmt = $db->prepare('SELECT filename FROM Photo WHERE photoId = ?');
-        $stmt->execute(array($userPhotoId));
-        return $stmt->fetch();
-    }
+//========================================================================
 
-    function getAllReviews($username)
-    {
-        global $db;
+/*function getAllUsers()
+{
+    global $db;
+    $stmt = $db->prepare("SELECT name, email, birthdate, postCode, username, password, photoId FROM User");
+    $stmt->execute();
+    $users = $stmt->fetchAll();
+    return $users;
+}
 
-        $stmt = $db->prepare('SELECT reviewId, restaurantId, rating, text FROM Review WHERE username = ?');
-        $stmt->execute(array($username));
-        return $stmt->fetch();
-    }
+function deleteUser($username)
+{
+    global $db;
+    $stmt = $db->prepare("DELETE FROM User WHERE username = ?");
+    return $stmt->execute(array($username));
+}
 
-    function getRestaurantInfo($restId)
-    {
-        global $db;
+function userExists($username)
+{
+    global $db;
 
-        $stmt = $db->prepare('SELECT name, location, photoId, rating_total FROM Restaurant WHERE restaurantId = ?');
-        $stmt->execute(array($restId));
+    $stmt = $db->prepare('SELECT * FROM User WHERE username = ?');
+    $stmt->execute(array($username));
+    return $stmt->fetch() !== false;
+}
 
-        if($stmt->fetch() === false)
-            return null;
+function getAllReviews($username)
+{
+    global $db;
 
-        return $stmt->fetch();
-    }
+    $stmt = $db->prepare('SELECT reviewId, restaurantId, rating, text FROM Review WHERE username = ?');
+    $stmt->execute(array($username));
+    return $stmt->fetch();
+}
 
-    function getPhotoFromUserToRest($restId,$username)
-    {
-        global $db;
+function getRestaurantInfo($restId)
+{
+    global $db;
 
-        $stmt = $db->prepare('SELECT photoID FROM ReviewPhoto WHERE restaurantId = ? AND username = ?');
-        $stmt->execute(array($restId,$username));
-        return $stmt->fetch();
-    }
+    $stmt = $db->prepare('SELECT name, location, photoId, rating_total FROM Restaurant WHERE restaurantId = ?');
+    $stmt->execute(array($restId));
 
-    function getPhotoPath($photoId)
-    {
-        global $db;
+    if($stmt->fetch() === false)
+        return null;
 
-        $stmt = $db->prepare('SELECT filename FROM Photo WHERE photoId = ?');
-        $stmt->execute(array($photoId));
-        return $stmt->fetch();
-    }
+    return $stmt->fetch();
+}
 
-    function getAllRestaurantsOwner($username)
-    {
-        global $db;
+function getPhotoFromUserToRest($restId,$username)
+{
+    global $db;
 
-        $stmt = $db->prepare('SELECT restaurantId FROM Restaurant WHERE ownerId = ?');
-        $stmt->execute(array($username));
-        return $stmt->fetch();
-    }
+    $stmt = $db->prepare('SELECT photoID FROM ReviewPhoto WHERE restaurantId = ? AND username = ?');
+    $stmt->execute(array($restId,$username));
+    return $stmt->fetch();
+}
 
-    function isOwner($username)
-    {
-        global $db;
+function getPhotoPath($photoId)
+{
+    global $db;
 
-        $stmt = $db->prepare('SELECT restaurantId FROM Restaurant WHERE ownerId = ?');
-        $stmt->execute(array($username));
-        return $stmt->fetch() !== false;    //retorna true se for owner
-    }
-	
+    $stmt = $db->prepare('SELECT filename FROM Photo WHERE photoId = ?');
+    $stmt->execute(array($photoId));
+    return $stmt->fetch();
+}
+
+function getAllRestaurantsOwner($username)
+{
+    global $db;
+
+    $stmt = $db->prepare('SELECT restaurantId FROM Restaurant WHERE ownerId = ?');
+    $stmt->execute(array($username));
+    return $stmt->fetch();
+}
+
+function isOwner($username)
+{
+    global $db;
+
+    $stmt = $db->prepare('SELECT restaurantId FROM Restaurant WHERE ownerId = ?');
+    $stmt->execute(array($username));
+    return $stmt->fetch() !== false;    //retorna true se for owner
+}
+*/
 ?>

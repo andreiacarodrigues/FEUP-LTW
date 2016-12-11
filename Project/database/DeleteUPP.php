@@ -1,28 +1,19 @@
 <?php
 //User Profile Photo
 
-include_once('Connection.php');
-
-global $db;
+include_once('my_database/User.php');
+include_once('my_database/Photo.php');
 
 $val = $_POST['val'];
 
-$stmt = $db->prepare("SELECT photoId from User WHERE username = ?");
-$stmt->execute(array($val));
-$deleteId = $stmt->fetch();
+$deleteId = getUserPhoto($val);
 $deleteId = $deleteId['photoId'];
 
 if($deleteId != null)
 {
-	$stmt = $db->prepare("UPDATE User SET photoId = NULL WHERE username = ?");
-	$stmt->execute(array($val));
+    updateUserPhoto(NULL,$val);
 
-	$stmt = $db->prepare("DELETE FROM Photo WHERE photoId = ?");
-	$stmt->execute(array($deleteId));
-
-	unlink("../css/images/$deleteId.jpg");
-	unlink("../css/images_small/$deleteId.jpg");
-	unlink("../css/images_medium/$deleteId.jpg");
+    deletePhoto($deleteId);
 }
 
 header('Location: ../userProfileEdit.php?user=' . $val);

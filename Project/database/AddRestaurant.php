@@ -14,9 +14,7 @@ $observation = $_GET["observation"];
 $info = getRestaurantId($name);
 
 if(empty($info))
-{
-    echo addRestaurant($name,$description,$location,$postCode,$schedule,$avgPrice,$contact,$observation,$owner);
-}
+    addRestaurant($name,$description,$location,$postCode,$schedule,$avgPrice,$contact,$observation,$owner); //tinha echo
 else
     echo 'INVALID';
 ?>

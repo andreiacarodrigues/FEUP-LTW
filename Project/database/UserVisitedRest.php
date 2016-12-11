@@ -3,7 +3,6 @@ include_once('my_database/Restaurant.php');
 include_once('my_database/Reviews.php');
 include_once('my_database/Photo.php');
 
-global $db;
 $username = $_GET["username"];
 
 $restaurants = getReviewsByUser($username);

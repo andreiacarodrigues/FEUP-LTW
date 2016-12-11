@@ -3,8 +3,6 @@
 
 include_once('my_database/Restaurant.php');
 
-global $db;
-
 $val = $_GET['val'];
 $id = $_GET['id'];
 

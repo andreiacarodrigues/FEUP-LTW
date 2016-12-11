@@ -1,5 +1,5 @@
 ﻿<?php
-include_once('database/Connection.php');
+include_once('my_database/Connection.php');
 
 	global $db;
 		$stmt = $db->prepare("SELECT userId, name, email, birthdate, postCode, username, password, photoId FROM User");

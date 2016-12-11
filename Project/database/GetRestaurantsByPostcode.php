@@ -1,30 +1,27 @@
 ﻿<?php
-include_once('Connection.php');
+include_once('my_database/Restaurant.php');
 
-	global $db;
-	$search = $_GET["search"];
-	
-	$stmt = $db->prepare("SELECT restaurantId, name, postCode FROM Restaurant");
-	$stmt->execute();
-	$result = $stmt->fetchAll();
+$search = $_GET["search"];
 
-	if(empty($result))
-	{
-		echo 'No restaurants match the search.';
-		exit;
-	}
-	$selected_restaurants = array();
-	
-	foreach($result as $row) {
-		$searchPostCode = substr($search,0, 4);
-		$postCode = $row['postCode'];
-		
-		$zip = substr($postCode,0, 4);
-		if(preg_match("#$searchPostCode#i",$zip))
-		{
-			$selected_restaurants[] = $row['name'];
-		}
-	}
+$result = getAllRestaurants();
 
-    echo json_encode($selected_restaurants);
+if(empty($result))
+{
+    echo 'No restaurants match the search.';
+    exit;
+}
+$selected_restaurants = array();
+
+foreach($result as $row) {
+    $searchPostCode = substr($search,0, 4);
+    $postCode = $row['postCode'];
+
+    $zip = substr($postCode,0, 4);
+    if(preg_match("#$searchPostCode#i",$zip))
+    {
+        $selected_restaurants[] = $row['name'];
+    }
+}
+
+echo json_encode($selected_restaurants);
 ?>

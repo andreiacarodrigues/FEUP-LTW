@@ -1,5 +1,8 @@
 <?php
 include_once('my_database/User.php');
+include_once('my_database/Restaurant.php');
+include_once('my_database/Reviews.php');
+include_once('my_database/Photo.php');
 
 $username = $_GET["username"];
 

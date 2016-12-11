@@ -1,6 +1,7 @@
 ﻿<?php
 include_once('my_database/Restaurant.php');
 include_once('my_database/Reviews.php');
+include_once('my_database/Connection.php');
 
 global $db;
 

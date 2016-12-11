@@ -3,7 +3,6 @@ include_once('my_database/Restaurant.php');
 
 $restaurant = $_GET["restaurant"];
 
-$stmt->execute(array($restaurant));
 $info = getRestaurantsByName($restaurant);
 
 if(!empty($info))
