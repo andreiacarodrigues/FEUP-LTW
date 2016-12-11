@@ -1,7 +1,7 @@
 ﻿<?php
-include_once('my_database/Restaurant.php');
-include_once('my_database/Reviews.php');
-include_once('my_database/Connection.php');
+include_once('my_database/restaurant.php');
+include_once('my_database/reviews.php');
+include_once('my_database/connection.php');
 
 global $db;
 
