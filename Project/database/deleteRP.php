@@ -1,7 +1,7 @@
 ﻿<?php
 //delete Restaurant Photo
 
-include_once('my_database/Photo.php');
+include_once('my_database/photo.php');
 
 $val = $_POST['val'];
 $res = $_POST['restaurant'];
