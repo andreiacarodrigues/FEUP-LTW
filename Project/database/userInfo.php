@@ -1,6 +1,6 @@
 ﻿<?php
-include_once('my_database/User.php');
-include_once('my_database/Restaurant.php');
+include_once('my_database/user.php');
+include_once('my_database/restaurant.php');
 
 $username = $_GET["username"];
 
