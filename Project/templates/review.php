@@ -6,7 +6,7 @@ $username = $_GET['username'];
 $review =
     "<article id=\"" . $info[0] . "\">
 		<ul>
-			<li id=\"rev_username\">" . $info[1] . "</li>
+			<a href=\"userProfile.php?username=" . $info[1] . "\" id=\"rev_username\">" . $info[1] . "</a><br>
 			<label>Rating: <li id=\"rev_rating\">" . $info[2]. "</li></label>
 			<label>Review: <li id=\"rev_opinion\">" . $info[3] . "</li>
 			<li id=\"rev_photos\">";
@@ -14,7 +14,7 @@ $review =
 if(count($info[4]) != 0)
 {
     foreach ($info[4] as $photo)
-       $review = $review . "<img src=\"./css/images_small/" . $photo . "\"alt=\"Review Photo\">";
+        $review = $review . "<img src=\"./css/images_small/" . $photo . "\"alt=\"Review Photo\">";
 }
 
 $review = $review .

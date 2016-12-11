@@ -6,7 +6,7 @@ else if (isset ( $_SESSION ["userid"] )) {
     $username = $_SESSION ["userid"];
 }
 else {
-    echo 'ACCESS DENIED : you must be logged in to acess this page';
+    echo 'ACCESS DENIED : you must be logged in to access this page';
     die();
 }
 ?>
@@ -14,8 +14,8 @@ else {
 <script language="JavaScript">
 
     var username = <?php echo json_encode($username) ?>;
-	var sessionUsername = <?php echo json_encode($_SESSION ["userid"]) ?>;
-	
+    var sessionUsername = <?php echo json_encode($_SESSION ["userid"]) ?>;
+
     function getInfo(){
         if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
@@ -52,22 +52,22 @@ else {
                     getReviews(null);
 
                 getVisited();
+                getFriends();
                 getMyRestaurants();
-				getFriends();
-				
-				if(username != sessionUsername)
-				{
-					 $.get('./database/CheckFriends.php',  {sessionUsername: sessionUsername, username: username}, function(data){
-						var info = new String(data);
-						info = info.trim();
 
-						if(info == "YES")
-							document.getElementById("addFriend").style.display = "none";
-						else
-							document.getElementById("deleteFriend").style.display = "none";
-						
-					 });
-				}
+                if(username != sessionUsername)
+                {
+                    $.get('./database/CheckFriends.php',  {sessionUsername: sessionUsername, username: username}, function(data){
+                        var info = new String(data);
+                        info = info.trim();
+
+                        if(info == "YES")
+                            document.getElementById("addFriend").style.display = "none";
+                        else
+                            document.getElementById("deleteFriend").style.display = "none";
+
+                    });
+                }
             }
         };
 
@@ -136,7 +136,7 @@ else {
                     $('#visitedPlaces').append('<article>\n<ul>' +
                         '\n<a href="./restaurantProfile.php?restaurant='+ name +'">'+ name+'</a><br>' +
                         '\n<label>Rating: <li id="vis_rating">' + info[i][1] + '</li></label>' +
-                        '\n<label>Location: <li id="vis_local">' + info[i][2] + '</li></label>\n' );
+                        '\n<label>Location: <li id="vis_local">' + info[i][2] + '</li></label>\n');
 
                     var photo = info[i][3];
                     if(photo != null){
@@ -145,6 +145,8 @@ else {
                     else{
                         $('#visitedPlaces').append('<img src="./css/images_small/defaultRestaurant.jpg" alt="Photo that represents the restaurant">');
                     }
+
+                    $('#visitedPlaces').append('\n</ul>\n</article>');
                 }
             }
         };
@@ -154,18 +156,18 @@ else {
     }
 
     function getMyRestaurants(){
-		
-		if(username != sessionUsername)
-		{
-			var elements = document.getElementsByClassName("justForOwner");
-			
-			for (var i = 0; i < elements.length; i++) {
-				elements[i].style.display = "none";
-			}
-			console.log("hello");
-			return;
-		}
-		
+
+        if(username != sessionUsername)
+        {
+            var elements = document.getElementsByClassName("justForOwner");
+
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].style.display = "none";
+            }
+            console.log("hello");
+            return;
+        }
+
         if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
         } else {
@@ -177,8 +179,10 @@ else {
                 var info = new String(this.responseText);
                 info = info.trim();
 
-                if(info == "INVALID")
+                if(info == "INVALID"){
+                    $('#manageRestaurants').append ('<br><a href="addRestaurant.php">Add Restaurant');
                     return false;
+                }
                 else
                     info = eval("(" + this.responseText + ")");
 
@@ -191,8 +195,7 @@ else {
                     $('#manageRestaurants').append('<article>\n<ul>' +
                         '\n<a href="./restaurantProfile.php?restaurant='+ name +'">'+ name+'</a><br>' +
                         '\n<label>Rating: <li id="my_rating">' + info[i][1] + '</li></label>' +
-                        '\n<label>Location: <li id="my_local">' + info[i][2] + '</li></label>' +
-                        '\n<li id="my_photo">\n</li>\n</ul>\n</article>\n');
+                        '\n<label>Location: <li id="my_local">' + info[i][2] + '</li></label>\n');
 
                     var photo = info[i][3];
                     if(photo != null){
@@ -201,9 +204,11 @@ else {
                     else{
                         $('#manageRestaurants').append('<img src="./css/images_small/defaultRestaurant.jpg" alt="Photo that represents the restaurant">');
                     }
+
+                    $('#manageRestaurants').append('\n</ul>\n</article>');
                 }
-				
-				$('#manageRestaurants').append ('<br><a href="addRestaurant.php">Add Restaurant');
+
+                $('#manageRestaurants').append ('<br><a href="addRestaurant.php">Add Restaurant');
             }
         };
 
@@ -211,26 +216,26 @@ else {
         xmlhttp.send();
     }
 
-	function getFriends()
-	{
-		 $.get('./database/GetFriends.php',  {username: username}, function(data){
-			  var info = new String(data);
-              info = info.trim();
+    function getFriends()
+    {
+        $.get('./database/GetFriends.php',  {username: username}, function(data){
+            var info = new String(data);
+            info = info.trim();
 
-                if(info == "NO FRIENDS")
-                    return false;
-                else
-				{
-                    info = eval("(" + info + ")");
-					
-					for(var i = 0; i < info.length; i++)
-					{
-						 $('#friends').append('<a href="./userProfile.php?username='+ info[i] +'">'+ info[i]+'</a><br>');
-					}
-				}
-		 });
-	}
-	
+            if(info == "NO FRIENDS")
+                return false;
+            else
+            {
+                info = eval("(" + info + ")");
+
+                for(var i = 0; i < info.length; i++)
+                {
+                    $('#friends').append('<a href="./userProfile.php?username='+ info[i] +'">'+ info[i]+'</a><br>');
+                }
+            }
+        });
+    }
+
 
 </script>
 
@@ -245,7 +250,7 @@ else {
             <label>Birthday : <li id= "birthdate"></li></label>
             <label>Post-code : <li id= "postCode"></li></label>
             <div id="addFriend"></div>
-			<div id="deleteFriend"></div>
+            <div id="deleteFriend"></div>
             <div id="edit"></div>
         </ul>
         <?php
@@ -256,8 +261,8 @@ else {
 
                 if(username != sessionUsername)
                 {
-					 _("addFriend").innerHTML = "<a href=\"./database/AddFriend.php?username="+username+"&sessionUsername=" + sessionUsername +"\">Follow</a><br>";
-					 _("deleteFriend").innerHTML = "<a href=\"./database/DeleteFriend.php?username="+username+"&sessionUsername=" + sessionUsername +"\">Unfollow</a><br>";
+                    _("addFriend").innerHTML = "<a href=\"./database/AddFriend.php?username="+username+"&sessionUsername=" + sessionUsername +"\">Follow</a><br>";
+                    _("deleteFriend").innerHTML = "<a href=\"./database/DeleteFriend.php?username="+username+"&sessionUsername=" + sessionUsername +"\">Unfollow</a><br>";
                 }
                 else
                 {
@@ -271,18 +276,9 @@ else {
     <section id="dashboard" >
         <ul>
             <li id="history"></li>  <!-- conjunto das reviews feitas pelo utilizador -->
-            <!-- <li id="Friends">
-                 <!-- nome dos amigos todos
-                 <!-- tem de dar para eliminar amigos
-                 <div>
-                     <!-- isto vai estar num foreach cada amigo
-                    <!-- <img src="vaiBuscarBD.jpg" alt="User photo">
-                     <h3>Nome</h3>
-                 </div>
-             </li>-->
             <li id="visitedPlaces"></li>    <!-- nome dos restaurantes que foi feita uma review -->
             <li class="justForOwner" id="manageRestaurants"></li>    <!-- restaurantes que pertencem ao utilizador -->
-			<li id="friends"></li>
+            <li id="friends"></li>
         </ul>
     </section>
 
@@ -290,12 +286,10 @@ else {
         <ul>
             <a href="#history">History</a>
             <br>
-            <!--<a href="#Friends">Amigos</a>
-            <br>-->
             <a href="#visitedPlaces">Visited Restaurants</a>
             <br>
-			<a href="#friends">Followers</a> 
-			<br>
+            <a href="#friends">Followers</a>
+            <br>
             <a class="justForOwner" href="#manageRestaurants">Manage Restaurants</a>
             <br>
         </ul>

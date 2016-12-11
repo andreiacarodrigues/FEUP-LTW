@@ -1,10 +1,10 @@
 <?php
 if (isset ( $_SESSION ["userid"] ))
 {
-	echo "ACCESS DENIED : you are already logged in.";
+    echo "ACCESS DENIED : you are already logged in.";
     die();
 }
-	
+
 ?>
 
 <script language="JavaScript">
@@ -39,7 +39,7 @@ if (isset ( $_SESSION ["userid"] ))
 
 <h2>Login</h2>
 <div class="login">
-    <form action="./index.php" method="post"><!-- isto depois não pode ser assim (ainda nao esta feito) -->
+    <form action="./index.php" method="post">
         <label>Username:
             <input type="text" name="username" id="username" placeholder="Insert your username..">
         </label>
@@ -49,7 +49,7 @@ if (isset ( $_SESSION ["userid"] ))
         </label>
         <br>
         <p id="status"></p>
-        <button type="button" onclick="login()">Login
-            <button type="button">Cancel
+        <input type="button" value="Login" onclick="login()"/>
+        <input type="button" value="Cancel" onclick="goBack()"/>
     </form>
 </div>

@@ -69,15 +69,46 @@ function restrict(elem){
 
 function getVar(id) {
 
-   var myVar = _(id).value;
-   if(myVar == "")
-       myVar = _(id).placeholder;
+    var myVar = _(id).value;
+    if(myVar == "")
+        myVar = _(id).placeholder;
 
     return myVar;
 }
 
 function goBack()
 {
-	window.location = window.history.back();
+    window.location = window.history.back();
 }
-	
+
+function is_price(element) {
+    return /^-?\d+\.?\d*$/.test(element);
+}
+
+function is_phone_number(element) {
+    return /^\d{9}|\d{3}-\d{3}-\d{3}$/.test(element);
+}
+
+function is_name(element) {
+    return /^[^0-9\\|!&;@#£$§%&/()=?{[\]}'«»*+]+$/.test(element);
+}
+
+function is_username(element)
+{
+    return /^[a-zA-Z][\w]{3,8}[a-zA-Z]$/.test(element);
+}
+
+function is_postCode(element)
+{
+    return /^[0-9]{4}-[0-9]{3}|[0-9]{4}$/.test(element);
+}
+
+function is_password(element)
+{
+    return /^[a-zA-Z0-9]{6,}$/.test(element);
+}
+
+function is_email(element) {
+    var re =/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(element);
+}

@@ -6,17 +6,17 @@ if (isset ( $_GET ["restaurant"] ))
     if (isset ( $_SESSION ["userid"] ))
         $username = $_SESSION ["userid"];
     else
-	{
-		echo "ACCESS DENIED : you must be logged in to acess this page";
-		die();
-	}
+    {
+        echo "ACCESS DENIED : you must be logged in to acess this page";
+        die();
+    }
 }
 else
 {
-	echo "ACCESS DENIED : you can't acess this page";
-	die();
+    echo "ACCESS DENIED : you can't acess this page";
+    die();
 }
-    
+
 ?>
 
 <script language="JavaScript">
@@ -24,6 +24,7 @@ else
     var username = <?php echo json_encode($username) ?>;
     var restaurant = <?php echo json_encode($restaurant) ?>;
 
+    //coloca a informaçao na página
     function getInfo(){
         $('#updateRestaurantPicture #val').attr("value", restaurant);
         $('#updateRestaurantMenu #val').attr("value", restaurant);
@@ -38,41 +39,41 @@ else
             if (this.readyState == 4 && this.status == 200) {
                 var info = new String(this.responseText);
                 info = info.trim();
-				
-               if(info == "INVALID")
+
+                if(info == "INVALID")
                     return false;
                 else
                     info = eval("(" + this.responseText + ")");
 
-				var owner = info[11];
-				
-				if(owner != username) // não o deixa aceder á pagina
-					goBack();
-				
+                var owner = info[11];
+
+                if(owner != username) // nao o deixa aceder a pagina
+                    goBack();
+
                 _("name").innerHTML = restaurant;
                 $('#r_name').attr("placeholder", restaurant);
-				$('#r_id').attr("value", info[0]);
-				if(info[1] == null) info[1] = "";
+                $('#r_id').attr("value", info[0]);
+                if(info[1] == null) info[1] = "";
                 $('#r_description').attr("placeholder", info[1]);
-				if(info[2] == null) info[2] = "";
+                if(info[2] == null) info[2] = "";
                 $('#r_location').attr("placeholder", info[2]);
-				
-				if(info[12] == null) 
-					info[12] = "";
-				else
-				{
-					var res = info[12].split("-");
-					$('#r_postCode1').attr("placeholder",res[0]);
-					$('#r_postCode2').attr("placeholder",res[1]);
-				}
-				
-				if(info[3] == null) info[3] = "";
+
+                if(info[12] == null)
+                    info[12] = "";
+                else
+                {
+                    var res = info[12].split("-");
+                    $('#r_postCode1').attr("placeholder",res[0]);
+                    $('#r_postCode2').attr("placeholder",res[1]);
+                }
+
+                if(info[3] == null) info[3] = "";
                 $('#r_contact').attr("placeholder", info[3]);
-				if(info[4] == null) info[4] = "";
+                if(info[4] == null) info[4] = "";
                 $('#r_avgPrice').attr("placeholder", info[4]);
-				if(info[5] == null) info[5] = "";
+                if(info[5] == null) info[5] = "";
                 $('#r_schedule').attr("placeholder", info[5]);
-				if(info[6] == null) info[6] = "";
+                if(info[6] == null) info[6] = "";
                 $('#r_observations').attr("placeholder", info[6]);
 
                 var menuId = info[7];
@@ -94,19 +95,19 @@ else
 
                 $.get('./database/RestaurantPhotos.php',  {restaurant: restaurant}, function(data)
                     {
-						var info = new String(data);
-						info = info.trim();
+                        var info = new String(data);
+                        info = info.trim();
 
                         if(info != "INVALID")
                         {
                             var photos = eval("(" + data + ")");
                             for(var i = 0; i < photos.length; i++)
                             {
-								if(photos[i] != null)
-								{
-									$('#restaurantPhotos').append('<img src="./css/images/'+ photos[i] + '"alt="Photo of the restaurant"><br>');
-									$('#restaurantPhotos').append('<form action="./database/DeleteRP.php" method="post"><input id="val" type="hidden" name="val" value="' + photos[i] + '"/><input type="hidden" name="restaurant" value="' + restaurant + '"/><input type="submit" value="Delete Photo"></form><br>');
-								}
+                                if(photos[i] != null)
+                                {
+                                    $('#restaurantPhotos').append('<img src="./css/images/'+ photos[i] + '"alt="Photo of the restaurant"><br>');
+                                    $('#restaurantPhotos').append('<form action="./database/DeleteRP.php" method="post"><input id="val" type="hidden" name="val" value="' + photos[i] + '"/><input type="hidden" name="restaurant" value="' + restaurant + '"/><input type="submit" value="Delete Photo"></form><br>');
+                                }
                             }
                         }
                     }
@@ -123,93 +124,60 @@ else
         var popup = document.getElementById('myPopup');
         popup.classList.toggle('show');
     }
-	
-	function is_phone_number(element) {
-		return /^\d{9}|\d{3}-\d{3}-\d{3}$/.test(element);
-	}
-	
-	function is_name(element) {
-		return "[^0-9\\|!&quot;@#£$§%&/()=?{[\]}'«»*+]+".test(element);
-	}
 
-	function is_username(element)
-	{
-		return "[a-zA-Z][\w]{3,8}[a-zA-Z]" .test(element);
-	}
-	
-	function is_postCode(element)
-	{
-		return "[0-9]{4}-[0-9]{3}|[0-9]{4}".test(element);
-	}
-	
-	function is_password(element)
-	{
-		return "(?=.*[0-9].*[0-9])(?=.*[;\.:].*[;\.:])([\w;\.:])[\w;\.:]{4,}(?!\1)[\w;\.:]".test(element);
-	}
-	function submitChanges()
-	{	
-		var name, description, location, postCode1, postCode2, postCode, contact, avgPrice, schedule, observations;
-		
-		if($('#r_name').val() == "")
-			name = $('#r_name').attr("placeholder");
-		else
-			name = $('#r_name').val();
-	
-		if($('#r_description').val() == "")
-			description = $('#r_description').attr("placeholder");
-		else
-			description = $('#r_description').val();
-		
-		if($('#r_location').val() == "")
-			location = $('#r_location').attr("placeholder");
-		else
-			location = $('#r_location').val();
-		
-		if($('#r_postCode1').val() == "")
-			postCode1 = $('#r_postCode1').attr("placeholder");
-		else
-			postCode1 = $('#r_postCode1').val();
-		
-		if($('#r_postCode2').val() == "")
-			postCode2 = $('#r_postCode2').attr("placeholder");
-		else
-			postCode2 = $('#r_postCode2').val();
-		
-		postCode = postCode1 +"-" +postCode2;
-		
-		if($('#r_contact').val() == "")
-			contact = $('#r_contact').attr("placeholder");
-		else
-			contact = $('#r_contact').val();
-		
-		if($('#r_avgPrice').val() == "")
-			avgPrice = $('#r_avgPrice').attr("placeholder");
-		else
-			avgPrice = $('#r_avgPrice').val();
-		
-		if($('#r_schedule').val() == "")
-			schedule = $('#r_schedule').attr("placeholder");
-		else
-			schedule = $('#r_schedule').val();
-		
-		if(($('#r_observations').val() == "")||($('#r_observations').val() == null))
-			observation = $('#r_observations').attr("placeholder");
-		else
-			observation = $('#r_observations').val();
-		
-		
-		$.get('./database/UpdateRI.php',  {id: $('#r_id').attr("value"), name: name , description: description, location: location, contact: contact, avgPrice: avgPrice, schedule: schedule, observation: observation, postCode:postCode}, function(data) 
-		{
-			var info = new String(data);
-			info = info.trim();
+    function submitChanges()
+    {
+        var name, description, location, postCode1, postCode2, postCode, contact, avgPrice, schedule, observations;
+        var status = _("status");
 
-			if(info == "0")
-				console.log("Error updating restaurant information.");
-			else
-				window.location = "restaurantProfileEdit.php?restaurant=" + restaurant;
-		}
-		);
-	}
+        name = getVar("r_name");
+        description = getVar("r_description");
+        location = getVar("r_location");
+        postCode1 = getVar("r_postCode1");
+        postCode2 = getVar("r_postCode2");
+        postCode = postCode1 +"-" +postCode2;
+        contact = getVar("r_contact");
+        avgPrice = getVar("r_avgPrice");
+        schedule = getVar("r_schedule");
+        if($('#r_observations').val() == null)
+            observations = $('#r_observations').attr("placeholder");
+        else
+            observations = getVar("r_observations");
+
+        //avaliacao com expressoes regulares dos valores atribuidos
+        if(!is_name(name))
+            status.innerHTML = "Invalid name.";
+        else if(!is_postCode(postCode))
+            status.innerHTML = "Invalid postcode.";
+        else if(!is_price(avgPrice))
+            status.innerHTML = "Invalid average price.";
+        else if(!is_phone_number(contact))
+            status.innerHTML = "Invalid contact.";
+        else {
+            $.get('./database/UpdateRI.php', {
+                    id: $('#r_id').attr("value"),
+                    name: name,
+                    description: description,
+                    location: location,
+                    contact: contact,
+                    avgPrice: avgPrice,
+                    schedule: schedule,
+                    observation: observations,
+                    postCode: postCode
+                }, function (data) {
+                    var info = new String(data);
+                    info = info.trim();
+
+                    if (info == "0")
+                        console.log("Error updating restaurant information.");
+                    else
+                        window.location = "restaurantProfileEdit.php?restaurant=" + restaurant;
+                }
+            );
+            return true;
+        }
+        return false;
+    }
 
 </script>
 
@@ -232,13 +200,13 @@ else
             <a href="#informations">Informations</a>
             <div>
                 <form>
-					<input id="r_id" type="hidden" value="" maxlength="6">
+                    <input id="r_id" type="hidden" value="" maxlength="6">
                     <label>Restaurant Name: <input id="r_name" type="text" maxlength="60"> </label><br>
                     <label>Description: <textarea  id="r_description"name="description" cols="60" rows="2"></textarea> </label> <br>
                     <label>Location:<input id="r_location" type="text" name="location" maxlength="80"></label><br>
-					 <label>PostCode: <input type="text" maxlength="4" name="postCode1"  id="r_postCode1" >
-						<label> -<input type="text" maxlength="3" name="postCode2" id="r_postCode2" > </label>
-					</label> <br>
+                    <label>PostCode: <input type="text" maxlength="4" name="postCode1"  id="r_postCode1" >
+                        <label> -<input type="text" maxlength="3" name="postCode2" id="r_postCode2" > </label>
+                    </label> <br>
                     <label>Schedule:<input id="r_schedule" type="text" name="schedule"></label><br>
                     <label>Average Price Per Person(€):<input id="r_avgPrice" type="text" name="cost" maxlength="4"></label> <br>
                     <label>Contact:<input id="r_contact" type="tel" name="number" maxlength="9"></label> <br>
@@ -246,6 +214,8 @@ else
                     <div class="popup" onclick="observationsPopUpAnimation()">?
                         <span class="popuptext" id="myPopup">You can allow your customers to know if your restaurant has: wi-fi, takeAway, live music, vegan menu options, wheelchair access, bar, etc.</span>
                     </div><br>
+                    <span id="status"></span>
+                    <br>
                     <input type="button" onclick="submitChanges()"/ value="Submit Changes">
                     <input type="button" onclick="goBack()" value="Cancel"/>
                 </form>
