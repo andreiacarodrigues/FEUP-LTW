@@ -32,7 +32,7 @@ else
         var stats = _("stats");
         if(mode == 0)
         {
-            $.get('./database/GetRestaurantsByName.php',  {search: search}, function(data)
+            $.get('./database/getRestaurantsByName.php',  {search: search}, function(data)
                 {
                     var restaurants = new String(data);
                     restaurants = restaurants.trim();
@@ -58,7 +58,7 @@ else
         }
         else if(mode == 1)
         {
-            $.get('./database/GetRestaurantsByPostCode.php',  {search: search}, function(data)
+            $.get('./database/getRestaurantsByPostCode.php',  {search: search}, function(data)
                 {
                     var restaurants = new String(data);
                     restaurants = restaurants.trim();
@@ -86,7 +86,7 @@ else
 
     function getInfo(restaurant, i)
     {
-        $.get('./database/RestaurantInfo.php',  {restaurant: restaurant}, function(data)
+        $.get('./database/restaurantInfo.php',  {restaurant: restaurant}, function(data)
         {
             console.log(restaurant);
             var info = new String(data);

@@ -57,7 +57,7 @@ else {
 
                 if(username != sessionUsername)
                 {
-                    $.get('./database/CheckFriends.php',  {sessionUsername: sessionUsername, username: username}, function(data){
+                    $.get('./database/checkFriends.php',  {sessionUsername: sessionUsername, username: username}, function(data){
                         var info = new String(data);
                         info = info.trim();
 
@@ -71,7 +71,7 @@ else {
             }
         };
 
-        xmlhttp.open("GET","database/UserInfo.php?username="+ username,true);
+        xmlhttp.open("GET","database/userInfo.php?username="+ username,true);
         xmlhttp.send();
     }
 
@@ -109,7 +109,7 @@ else {
             }
         };
 
-        xmlhttp.open("GET","database/UserReviews.php?username="+ username,true);
+        xmlhttp.open("GET","database/userReviews.php?username="+ username,true);
         xmlhttp.send();
     }
 
@@ -151,7 +151,7 @@ else {
             }
         };
 
-        xmlhttp.open("GET","database/UserVisitedRest.php?username="+username,true);
+        xmlhttp.open("GET","database/userVisitedRest.php?username="+username,true);
         xmlhttp.send();
     }
 
@@ -212,13 +212,13 @@ else {
             }
         };
 
-        xmlhttp.open("GET","database/OwnerRestaurants.php?username="+username,true);
+        xmlhttp.open("GET","database/ownerRestaurants.php?username="+username,true);
         xmlhttp.send();
     }
 
     function getFriends()
     {
-        $.get('./database/GetFriends.php',  {username: username}, function(data){
+        $.get('./database/getFriends.php',  {username: username}, function(data){
             var info = new String(data);
             info = info.trim();
 
@@ -261,8 +261,8 @@ else {
 
                 if(username != sessionUsername)
                 {
-                    _("addFriend").innerHTML = "<a href=\"./database/AddFriend.php?username="+username+"&sessionUsername=" + sessionUsername +"\">Follow</a><br>";
-                    _("deleteFriend").innerHTML = "<a href=\"./database/DeleteFriend.php?username="+username+"&sessionUsername=" + sessionUsername +"\">Unfollow</a><br>";
+                    _("addFriend").innerHTML = "<a href=\"./database/addFriend.php?username="+username+"&sessionUsername=" + sessionUsername +"\">Follow</a><br>";
+                    _("deleteFriend").innerHTML = "<a href=\"./database/deleteFriend.php?username="+username+"&sessionUsername=" + sessionUsername +"\">Unfollow</a><br>";
                 }
                 else
                 {

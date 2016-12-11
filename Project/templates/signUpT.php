@@ -54,7 +54,7 @@ if(isset($_SESSION["userid"])){
                     goBack();
                 }
             };
-            xmlhttp.open("GET","database/AddUser.php?username="+u + "&name="+n+"&email="+e+"&postCode="+postCode+"&birthdate="+b+"&password="+pass1,true);
+            xmlhttp.open("GET","database/addUser.php?username="+u + "&name="+n+"&email="+e+"&postCode="+postCode+"&birthdate="+b+"&password="+pass1,true);
             xmlhttp.send();
 
             return true;

@@ -1,6 +1,6 @@
 <?php
 $newReview ="<div class=\"stars\">
-			<form id=\"newReview\" action=\"./database/AddReview.php\" method=\"post\" enctype=\"multipart/form-data\">
+			<form id=\"newReview\" action=\"./database/addReview.php\" method=\"post\" enctype=\"multipart/form-data\">
 				<input id=\"nr_username\" type=\"hidden\" name=\"username\" value=\"\"/>
 				<input id=\"nr_restaurant\" type=\"hidden\" name=\"restaurant\" value=\"\"/>
 				<input id=\"nr_text\" type=\"hidden\" name=\"text\" value=\"\"/>

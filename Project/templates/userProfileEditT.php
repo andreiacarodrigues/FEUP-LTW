@@ -50,7 +50,7 @@ else{
             }
         };
 
-        xmlhttp.open("GET","database/UserPassword.php?username="+username+"&password="+p,true);
+        xmlhttp.open("GET","database/userPassword.php?username="+username+"&password="+p,true);
         xmlhttp.send();
     }
 
@@ -95,7 +95,7 @@ else{
             }
         };
 
-        xmlhttp.open("GET","database/UserInfo.php?username="+ username,true);
+        xmlhttp.open("GET","database/userInfo.php?username="+ username,true);
         xmlhttp.send();
     }
 
@@ -125,7 +125,7 @@ else{
             status.innerHTML = "";
             var postCode = p1 + "-" + p2;
 
-            $.get('./database/UpdateUI.php',  {username: u, name: n, email: e, postCode: postCode, birthdate: b, previousUsername: previousUsername}, function(data)
+            $.get('./database/updateUI.php',  {username: u, name: n, email: e, postCode: postCode, birthdate: b, previousUsername: previousUsername}, function(data)
                 {
                     var info = new String(data);
                     info = info.trim();
@@ -166,7 +166,7 @@ else{
                     status.innerHTML = "Your new password and the confirmation don't match!";
                 else {
                     // Altera a password para a nova password introduzida
-                    $.get('./database/UpdateUP.php', {username: username, password: newPass}, function (data) {
+                    $.get('./database/updateUP.php', {username: username, password: newPass}, function (data) {
                             var info = new String(data);
                             info = info.trim();
 
@@ -189,13 +189,13 @@ else{
 </script>
 
 <section id="main" >
-    <form id="updateProfilePicture" action="./database/UploadPicture.php" method="post" enctype="multipart/form-data">
+    <form id="updateProfilePicture" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="method" value="1"/>
         <input id="val" type="hidden" name="val" value=""/>
         <input type="file" name="image"/>
         <input type="submit" value="Upload New Photo">
     </form>
-    <form id="updateProfilePicture" action="./database/DeleteUPP.php" method="post">
+    <form id="updateProfilePicture" action="./database/deleteUPP.php" method="post">
         <input id="val" type="hidden" name="val" value=""/>
         <input type="submit" value="Delete Photo">
     </form>

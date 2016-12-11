@@ -93,7 +93,7 @@ else
                 else
                     $('#menuPhoto').html('<img src="./css/Images/defaultRestaurant.jpg" alt="Restaurant\'s Menu">');
 
-                $.get('./database/RestaurantPhotos.php',  {restaurant: restaurant}, function(data)
+                $.get('./database/restaurantPhotos.php',  {restaurant: restaurant}, function(data)
                     {
                         var info = new String(data);
                         info = info.trim();
@@ -106,7 +106,7 @@ else
                                 if(photos[i] != null)
                                 {
                                     $('#restaurantPhotos').append('<img src="./css/images/'+ photos[i] + '"alt="Photo of the restaurant"><br>');
-                                    $('#restaurantPhotos').append('<form action="./database/DeleteRP.php" method="post"><input id="val" type="hidden" name="val" value="' + photos[i] + '"/><input type="hidden" name="restaurant" value="' + restaurant + '"/><input type="submit" value="Delete Photo"></form><br>');
+                                    $('#restaurantPhotos').append('<form action="./database/deleteRP.php" method="post"><input id="val" type="hidden" name="val" value="' + photos[i] + '"/><input type="hidden" name="restaurant" value="' + restaurant + '"/><input type="submit" value="Delete Photo"></form><br>');
                                 }
                             }
                         }
@@ -116,7 +116,7 @@ else
             }
         };
 
-        xmlhttp.open("GET","database/RestaurantInfo.php?restaurant="+ restaurant,true);
+        xmlhttp.open("GET","database/restaurantInfo.php?restaurant="+ restaurant,true);
         xmlhttp.send();
     }
 
@@ -154,7 +154,7 @@ else
         else if(!is_phone_number(contact))
             status.innerHTML = "Invalid contact.";
         else {
-            $.get('./database/UpdateRI.php', {
+            $.get('./database/updateRI.php', {
                     id: $('#r_id').attr("value"),
                     name: name,
                     description: description,
@@ -182,13 +182,13 @@ else
 </script>
 
 <section id="main" >
-    <form id="updateRestaurantPicture" action="./database/UploadPicture.php" method="post" enctype="multipart/form-data">
+    <form id="updateRestaurantPicture" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="method" value="2"/>
         <input id="val" type="hidden" name="val" value=""/>
         <input type="file" name="image"/>
         <input type="submit" value="Change Restaurant Photo">
     </form>
-    <form id="updateRestaurantPicture" action="./database/DeleteRPP.php" method="post">
+    <form id="updateRestaurantPicture" action="./database/deleteRPP.php" method="post">
         <input id="val" type="hidden" name="val" value=""/>
         <input type="submit" value="Delete Photo">
     </form>
@@ -225,7 +225,7 @@ else
             <a href="#menu">Menu</a>
             <div id="menuPhoto"> </div>
             <div>
-                <form id="updateRestaurantMenu" action="./database/UploadPicture.php" method="post" enctype="multipart/form-data">
+                <form id="updateRestaurantMenu" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="method" value="5"/>
                     <input id="val" type="hidden" name="val" value=""/>
                     <input type="file" name="image"/>
@@ -237,7 +237,7 @@ else
             <a href="#photos">Photos</a>
             <div id="restaurantPhotos"> </div>
             <div>
-                <form id="updateRestaurantPhotos" action="./database/UploadPicture.php" method="post" enctype="multipart/form-data">
+                <form id="updateRestaurantPhotos" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="method" value="4"/>
                     <input id="val" type="hidden" name="val" value=""/>
                     <input type="file" name="image"/>

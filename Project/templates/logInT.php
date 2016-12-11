@@ -32,7 +32,7 @@ if (isset ( $_SESSION ["userid"] ))
                     _("status").innerHTML = newResponseText;
             }
         };
-        xmlhttp.open("GET","database/Login.php?username="+u + "&password="+p,true);
+        xmlhttp.open("GET","database/login.php?username="+u + "&password="+p,true);
         xmlhttp.send();
     }
 </script>

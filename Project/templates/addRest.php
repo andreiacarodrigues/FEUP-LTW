@@ -58,7 +58,7 @@ else
             //passou todas as expressoes regulares, adiciona o restaurante
             status.innerHTML = "";
 
-            $.get('./database/AddRestaurant.php',  {name: name , description: description, location: location, postCode: postCode, contact: contact, avgPrice: avgPrice, schedule: schedule, observation: observations, owner: username}, function(data)
+            $.get('./database/addRestaurant.php',  {name: name , description: description, location: location, postCode: postCode, contact: contact, avgPrice: avgPrice, schedule: schedule, observation: observations, owner: username}, function(data)
                 {
                     var info = new String(data);
                     info = info.trim();
@@ -90,7 +90,7 @@ else
     function restaurantExists()
     {
         var name = _("r_name").value;
-        $.get('./database/RestaurantExists.php',  {name: name}, function(data)
+        $.get('./database/restaurantExists.php',  {name: name}, function(data)
         {
             var info = new String(data);
             info = info.trim();
@@ -123,7 +123,7 @@ else
 </section>
 <p id="info"> Only upload images after making sure you submited the previous required information. </p>
 <section id="restaurantPhoto">
-    <form id="updateRestaurantPicture" action="./database/UploadPicture.php" method="post" enctype="multipart/form-data">
+    <form id="updateRestaurantPicture" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="method" value="2"/>
         <input id="val" type="hidden" name="val" value="NULL"/>
         <input type="file" name="image"/>
@@ -133,7 +133,7 @@ else
 <section id="menu">
     <div id="menuPhoto"> </div>
     <div>
-        <form id="updateRestaurantMenu" action="./database/UploadPicture.php" method="post" enctype="multipart/form-data">
+        <form id="updateRestaurantMenu" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="method" value="5"/>
             <input id="val" type="hidden" name="val" value="NULL"/>
             <input type="file" name="image"/>
@@ -144,7 +144,7 @@ else
 <section id="photos">
     <div id="restaurantPhotos"> </div>
     <div>
-        <form id="updateRestaurantPhotos" action="./database/UploadPicture.php" method="post" enctype="multipart/form-data">
+        <form id="updateRestaurantPhotos" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="method" value="4"/>
             <input id="val" type="hidden" name="val" value="NULL"/>
             <input type="file" name="image"/>

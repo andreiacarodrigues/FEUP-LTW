@@ -23,7 +23,7 @@
         }
     };
 
-    xmlhttp.open("GET","database/GetPhoto.php?id="+ id,true);
+    xmlhttp.open("GET","database/getPhoto.php?id="+ id,true);
     xmlhttp.send();
 }
 
@@ -51,7 +51,7 @@ function checkUsername(){
             _("unamestatus").innerHTML = newResponseText;
         }
     };
-    xmlhttp.open("GET","database/UserExists.php?username="+u,true);
+    xmlhttp.open("GET","database/userExists.php?username="+u,true);
     xmlhttp.send();
 }
 

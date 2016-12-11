@@ -99,7 +99,7 @@ else
             }
         };
 
-        xmlhttp.open("GET","database/RestaurantInfo.php?restaurant="+ restaurant,true);
+        xmlhttp.open("GET","database/restaurantInfo.php?restaurant="+ restaurant,true);
         xmlhttp.send();
     }
 
@@ -139,13 +139,13 @@ else
             }
         };
 
-        xmlhttp.open("GET","database/RestaurantReviews.php?restaurant="+ restaurant,true);
+        xmlhttp.open("GET","database/restaurantReviews.php?restaurant="+ restaurant,true);
         xmlhttp.send();
 	}
 	
 	function getPhotos()
 	{
-		$.get('./database/RestaurantPhotos.php',  {restaurant: restaurant}, function(data) 
+		$.get('./database/restaurantPhotos.php',  {restaurant: restaurant}, function(data)
 		{
 			var info = new String(data);
             info = info.trim();
@@ -193,7 +193,7 @@ else
 				}
 			};
 			
-			xmlhttp.open("GET","database/AddReply.php?id="+r + "&username="+u+"&text="+t,true);
+			xmlhttp.open("GET","database/addReply.php?id="+r + "&username="+u+"&text="+t,true);
 			xmlhttp.send();
 
 		}
