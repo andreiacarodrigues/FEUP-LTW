@@ -30,58 +30,30 @@ else
     function getRestaurants()
     {
         var stats = _("stats");
-        if(mode == 0)
-        {
-            $.get('./database/getRestaurantsByName.php',  {search: search}, function(data)
+
+        $.get('./database/getRestaurants.php',  {search: search , mode: mode}, function(data)
+            {
+                var restaurants = new String(data);
+                restaurants = restaurants.trim();
+                console.log(data);
+
+                if(restaurants == "No restaurants match the search.")
+                    console.log("Error updating restaurant information."); // meter span com isto
+                else
                 {
-                    var restaurants = new String(data);
-                    restaurants = restaurants.trim();
-                    console.log(data);
+                    restaurants = eval("(" + data + ")");
+                    stats.innerHTML = "Total of restaurants found matching the search \"" + search + "\": " + restaurants.length + ".";
 
-                    if(restaurants == "No restaurants match the search.")
-                        console.log("Error updating restaurant information."); // meter span com isto
-                    else
+                    for(var i = 0; i < restaurants.length; i++)
                     {
-                        restaurants = eval("(" + data + ")");
-                        stats.innerHTML = "Total of restaurants found matching the search \"" + search + "\": " + restaurants.length + ".";
+                        var restaurant = restaurants[i];
+                        console.log(".!" + restaurant);
 
-                        for(var i = 0; i < restaurants.length; i++)
-                        {
-                            var restaurant = restaurants[i];
-                            console.log(".!" + restaurant);
-
-                            getInfo(restaurant, i);
-                        }
+                        getInfo(restaurant, i);
                     }
                 }
-            );
-        }
-        else if(mode == 1)
-        {
-            $.get('./database/getRestaurantsByPostCode.php',  {search: search}, function(data)
-                {
-                    var restaurants = new String(data);
-                    restaurants = restaurants.trim();
-                    console.log(data);
-
-                    if(restaurants == "No restaurants match the search.")
-                        console.log("Error updating restaurant information."); // meter span com isto
-                    else
-                    {
-                        restaurants = eval("(" + data + ")");
-                        stats.innerHTML = "Total of restaurants found matching the search \"" + search + "\": " + restaurants.length + ".";
-
-                        for(var i = 0; i < restaurants.length; i++)
-                        {
-                            var restaurant = restaurants[i];
-                            console.log(".!" + restaurant);
-
-                            getInfo(restaurant, i);
-                        }
-                    }
-                }
-            );
-        }
+            }
+        );
     }
 
     function getInfo(restaurant, i)

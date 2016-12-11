@@ -10,7 +10,7 @@ $postCode = $_GET["postCode"];
 $username = $_GET["username"];
 $previousUsername = $_GET["previousUsername"];
 
-if($u != $previousUsername)
+if($username != $previousUsername)
 {
     session_start();
 

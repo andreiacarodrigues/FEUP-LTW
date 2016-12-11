@@ -45,10 +45,8 @@ else
     imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumwidth, $mediumheight, $width, $height);
     imagejpeg($medium, $mediumFileName);
 
-    if($method == 1)
-        header('Location: UpdateUPP.php?val=' . $val . "&id=" . $id);
-    else if($method == 2)
-        header('Location: UpdateRPP.php?val=' . $val . "&id=" . $id);
+    if($method == 1 || $method == 2)
+        header('Location: UpdatePP.php?val=' . $val . "&id=" . $id . "&mode=" . $method);
     else if($method == 4)
         header('Location: UpdateRP.php?val=' . $val . "&id=" . $id);
     else if($method == 5)

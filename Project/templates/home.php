@@ -3,9 +3,8 @@
     function searchPostCode()
     {
         var status = _("pc_status");
-        var search = $('#searchPostCode #search').val();
+        var search = $('#searchPost').val();
 
-        //if(/^(\d{4}$)|(\d{4}-\d{3}$)/.test(search))
         if(is_postCode(search))
         {
             status.innerHTML ="";
@@ -18,11 +17,8 @@
     function searchRestaurantName()
     {
         var status = _("rn_status");
-        var search = $('#searchResName #search').val();
+        var search = $('#searchName').val();
 
-        console.log(search);
-
-        //if(/([a-fA-F\s])*/.test(search))
         if(is_name(search))
         {
             status.innerHTML ="";
@@ -40,21 +36,21 @@
 </script>
 
 <section id="sectionBody">
-	<div class="homeform">
-		<p class="searchFormTitle">Search by Zip Code/Post Code:</p>
-		<div class="field">
-			<input type="text" id="search" placeholder="Post Code Search">
-			<input type="button" value="Search" onclick="searchPostCode();">
-			<span id="pc_status"> </span>
-			<br>
-		</div>
-	</div>
-	<div class="homeform">
-		<p class="searchFormTitle">Search by Restaurant Name:</p>
-		<div class="field">
-			<input type="text" id="search" placeholder="Restaurant Name Search" >
-			<input type="button" value="Search" onclick="searchRestaurantName();">
-			<span id="rn_status"> </span>
-		</div>
-	</div>
+    <div class="homeform">
+        <p class="searchFormTitle">Search by Zip Code/Post Code:</p>
+        <div class="field">
+            <input type="text" id="searchPost" placeholder="Post Code Search">
+            <input type="button" value="Search" onclick="searchPostCode();">
+            <span id="pc_status"> </span>
+            <br>
+        </div>
+    </div>
+    <div class="homeform">
+        <p class="searchFormTitle">Search by Restaurant Name:</p>
+        <div class="field">
+            <input type="text" id="searchName" placeholder="Restaurant Name Search" >
+            <input type="button" value="Search" onclick="searchRestaurantName();">
+            <span id="rn_status"> </span>
+        </div>
+    </div>
 </section>

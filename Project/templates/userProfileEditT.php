@@ -195,8 +195,9 @@ else{
         <input type="file" name="image"/>
         <input type="submit" value="Upload New Photo">
     </form>
-    <form id="updateProfilePicture" action="./database/deleteUPP.php" method="post">
+    <form id="updateProfilePicture" action="./database/deletePP.php" method="post">
         <input id="val" type="hidden" name="val" value=""/>
+        <input name="mode" type="hidden" value="0"/>
         <input type="submit" value="Delete Photo">
     </form>
 </section>
