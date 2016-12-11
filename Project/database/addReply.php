@@ -1,5 +1,5 @@
 ﻿<?php
-include_once('my_database/Reviews.php');
+include_once('my_database/reviews.php');
 
 $id = $_GET["id"];
 $username = $_GET["username"];
