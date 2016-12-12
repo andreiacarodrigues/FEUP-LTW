@@ -159,12 +159,18 @@ h2{
     font:1.2em 'Montserrat Alternates';
 }
 
-.login label, .signUp label{
+#userEdit{
+    max-width: 900px;
+    /*padding: 5px 12px 10px 20px;*/
+    font:1em 'Montserrat Alternates';
+}
+
+.login label, .signUp label, #userEdit label{
     margin: 2px;
     display: block;
 }
 
-.login p, .signUp p{
+.login p, .signUp p, #userEdit p{
     margin: 5px;
     font:0.8em 'Montserrat Alternates';
     color:red;
@@ -175,15 +181,23 @@ h2{
 .signUp input[type=password],
 .signUp input[type=text],
 .signUp input[type=email],
-.signUp input[type=date]{
+.signUp input[type=date],
+#userEdit input[type=password],
+#userEdit input[type=text],
+#userEdit input[type=email],
+#userEdit input[type=date]
+{
     width: 48%;
 }
 
-.signUp #birthdate{
+.signUp #birthdate,
+#userEdit #birthdate{
     width: 20%;
 }
 .signUp #postCode1,
-.signUp #postCode2{
+.signUp #postCode2,
+#userEdit #postCode1,
+#userEdit #postCode2{
     width:10%;
 }
 
@@ -207,7 +221,12 @@ h2{
 .signUp input[type=password],
 .signUp textarea,
 .signUp input[type=email],
-.signUp input[type=date]
+.signUp input[type=date],
+#userEdit input[type=text],
+#userEdit input[type=password],
+#userEdit textarea,
+#userEdit input[type=email],
+#userEdit input[type=date]
 {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -247,7 +266,12 @@ h2{
 .signUp input[type=password]:focus,
 .signUp textarea:focus,
 .signUp input[type=email]:focus,
-.signUp input[type=date]:focus{
+.signUp input[type=date]:focus,
+#userEdit input[type=text]:focus,
+#userEdit input[type=password]:focus,
+#userEdit textarea:focus,
+#userEdit input[type=email]:focus,
+#userEdit input[type=date]:focus{
     border: 1px solid #0C0;
 }
 
@@ -264,7 +288,9 @@ h2{
 .login input[type=submit],
 .login input[type=button],
 .signUp input[type=submit],
-.signUp input[type=button]{
+.signUp input[type=button],
+#userEdit input[type=submit],
+#userEdit input[type=button]{
     font:0.9em 'Montserrat Alternates';
     border: none;
     padding: 8px 15px 8px 15px;
@@ -301,14 +327,18 @@ h2{
 .login input[type=submit]:hover,
 .login input[type=button]:hover,
 .signUp input[type=submit]:hover,
-.signUp input[type=button]:hover{
+.signUp input[type=button]:hover,
+#userEdit input[type=submit]:hover,
+#userEdit input[type=button]:hover{
     background: #1293bc;
     color: #fff;
 }
 
 .signUp .postCode1,
-.signUp .postCode2{
-    width: 40px;
+.signUp .postCode2,
+#userEdit #postCode1,
+#userEdit #postCode2{
+    width: 60px;
     text-align: center;
 }
 
@@ -507,6 +537,47 @@ article img{
     border-color: #1293bc;
 }
 
+/* ----------------------------------------------- User Edit Profile ------------------------------------------------ */
+
+#main img{
+    border: 1px solid #12a3cd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+#userEdit #main{
+    margin-left: 2.5em;
+}
+
+#dashboard li{
+    list-style: none;
+    margin-bottom: 2.5em;
+    margin-top: 2.5em;
+}
+
+#dashboard #changePassword form{
+
+    padding-top: 2em;
+}
+
+#userEdit #dashboard a{
+      background: rgb(18, 163, 205);
+      font:1em 'Montserrat Alternates';
+      text-color:white;
+      border: 5px;
+      padding: 8px 15px 8px 15px;
+      box-shadow: 1px 1px 4px #DADADA;
+      -moz-box-shadow: 1px 1px 4px #DADADA;
+      -webkit-box-shadow: 1px 1px 4px #DADADA;
+      border-radius: 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      color:white;
+      margin-bottom: 5em;
+  }
+
 /* ----------------------------------------------- Restaurant Profile ----------------------------------------------- */
 
 
@@ -598,6 +669,8 @@ article img{
     border-radius: 4px;
     border-color: #1293bc;
 }
+
+
 
 
 /* ---------------------------------------------- Pop up container -------------------------------------------------- */
