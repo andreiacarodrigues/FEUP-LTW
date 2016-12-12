@@ -91,10 +91,11 @@ else
                 var avgPrice = info[4];
                 var schedule = info[5];
 
-                $('#result' + i).append('<ul>\n<label>Rating: <li id="rating">' +rating+ '</li></label>' +
-                    '<label>Location: <li id="loca">' +location+ '</li></label>' +
-                    '<label>Average Price/Person: <li id="avgPrice">' +avgPrice+ '</li></label>' +
-                    '<label>Schedule: <li id="schedule">' +schedule+ '</li></label>\n</ul>');
+
+                $('#result' + i).append('<ul>\n<li><label for="rating">Rating: <span id="rating">' +rating+ '</span></label></li>' +
+                    '<li><label for="loca">Location: <span id="loca">' +location+ '</span></label></li>' +
+                    '<li><label for="avgPrice">Average Price/Person: <span id="avgPrice">' +avgPrice+ '</span></label></li>' +
+                    '<li><label for="schedule">Schedule: <span id="schedule">' +schedule+ '</span></label></li>\n</ul>');
                 $('#list').append('</div>');
             }
         });
