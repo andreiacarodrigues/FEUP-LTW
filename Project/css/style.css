@@ -89,7 +89,7 @@ footer p{
 
 /* ----------------------------------------------- Home page forms -------------------------------------------------- */
 #sectionBody{
-    margin-top: 12em;
+    margin-top: 15em;
     margin-bottom: 5em;
 }
 
@@ -143,9 +143,10 @@ footer p{
 /* -------------------------------------------------- Login e SignUp ------------------------------------------------- */
 
 h2{
-    margin-left: 43%;
-    margin-bottom: 40px;
-    padding-left: 1em;
+    position: absolute;
+    top:25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font:1.8em 'Montserrat Alternates';
 }
 
@@ -282,7 +283,6 @@ h2{
 #profile #main ul li{
     list-style: none;
     padding: 8px 0px 8px 0px;
-
 }
 
 #profile #main ul label{

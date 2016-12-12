@@ -51,7 +51,7 @@ if(isset($_SESSION["userid"])){
 
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    goBack();
+                    goHomePage();
                 }
             };
             xmlhttp.open("GET","database/addUser.php?username="+u + "&name="+n+"&email="+e+"&postCode="+postCode+"&birthdate="+b+"&password="+pass1,true);
@@ -61,6 +61,7 @@ if(isset($_SESSION["userid"])){
         }
         return false;
     }
+	
 
 </script>
 
@@ -80,7 +81,7 @@ if(isset($_SESSION["userid"])){
 			<p id="status"></p><br>
 			<div id="buttons">
 				<input type="button" onclick="signup()" value="Submit Info">
-				<input type="button" onclick="goBack()" value="Cancel">
+				<input type="button" onclick="goHomePage()" value="Cancel">
 			</div>
 		</form>
 	</div>
