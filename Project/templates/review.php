@@ -21,7 +21,7 @@ $review = $review .
     "</li>
 		</ul>
 		
-		<footer>
+		<div id=\"footer\">
 			<span class=\"date\">" . $info[5] . "</span><br>
 			<a href=\"#comments" . $info[0] . "\">Comentários</a>
 			<section id=\"comments" . $info[0] . "\">";
@@ -55,7 +55,7 @@ if($owner == $username)
 }
 
 $review = $review .
-    "</footer>
+    "</div>
 		</article>";
 
 echo $review;
