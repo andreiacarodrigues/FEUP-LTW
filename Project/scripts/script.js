@@ -15,7 +15,7 @@
 
             var trimmedFilename =  filename.slice(1, -1);
             if(isMenu)
-                $(idMenu).html('<img src="' + path + trimmedFilename + '"alt="Photo that represents the restaurant">');
+                $(idMenu).append('<img src="' + path + trimmedFilename + '"alt="Photo that represents the restaurant">');
             else
                 $(idPhoto).prepend('<img src="' + path + trimmedFilename + '"alt="Photo that represents the restaurant">');
 

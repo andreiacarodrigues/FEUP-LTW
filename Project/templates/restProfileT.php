@@ -28,6 +28,8 @@ else
 	var errorReview = <?php echo json_encode($errorReview) ?>;
     function getInfo(){
 		
+		openTab('informations');
+		
         if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
         } else {
@@ -56,12 +58,12 @@ else
 				var photoId = info[8];
 	
 				if(photoId != null)
-					getPhoto(parseInt(photoId), false, '#res', '#menu', './css/images/');
+					getPhoto(parseInt(photoId), false, '#informations', '#menu', './css/images/');
 				else
-					$('#res').prepend('<img src="./css/images/1.jpg" alt="Photo that represents the restaurant">');
+					$('#informations').prepend('<img src="./css/images/1.jpg" alt="Photo that represents the restaurant">');
 				
 				if(menuId != null)
-					getPhoto(parseInt(menuId) , true, '#res', '#menu', './css/Images/');
+					getPhoto(parseInt(menuId) , true, '#informations', '#menu', './css/images/');
 				else
 					$('#menu').html('<img src="./css/images/1.jpg" alt="Photo that represents the restaurant">');
 				
@@ -94,6 +96,7 @@ else
 					}
 				}
 				
+				console.log(document.getElementById("menu").innerHTML);
 			   return true;
             }
         };
@@ -241,18 +244,32 @@ else
 		}
 		);
    }
+   
+   var tabList = ['informations', 'menu', 'reviews', 'photos'];
 </script>
 
 <section id="sectionBody">
+	
 <section id="res" >
-    <h2 id="name">Restaurant Name</h2>  
-    <h3 id="rating">Rating</h3>            
-    <div id ="options"> </div>
-</section>
+	 <section id="menuProfile" >
+		<ul>
+		<a href="#informations" onclick="openTab('informations')">Informations</a>
+		<br>
+		<a href="#menu" onclick="openTab('menu')">Menu</a>
+		<br>
+		<a href="#reviews" onclick="openTab('reviews')">Reviews</a>
+		<br>
+		<a href="#photos" onclick="openTab('photos')">Photos</a>
+		</ul>
+	</section>
+
 <section id="Details">
-    <ul id="tabs">
+  
         <li id="informations">
-            <a href="#">Informations</a>
+		 <h2>Informations</h2>
+		 <h3 id="name">Restaurant Name</h3>  
+		<h3 id="rating">Rating</h3>            
+		<div id ="options"> </div>
             <div>
                 <ul id="info">
                     <li><label for="description">Description: <span id="description"></span></label></li>
@@ -263,25 +280,23 @@ else
                     <li><label for="contact">Contact: <span id="contact"></span></label></li>
                     <li><label for="observations">Observations: <span id="observations"></span></label></li>
                     <li><label for="owner">Owner: <span id="owner"></span></label></li>
-                </ul
+                </ul>
             </div>
         </li>
-        <li>
-            <a href="#menu">Menu</a>
-            <div id = "menu">
-            </div>
-        </li>
-        <li>
-            <a href="#reviews">Opiniões</a>
-            <div  id="reviews">
-            </div>
-        </li>
-        <li>
-            <a href="#photos">Fotos</a>
-            <div id="photos">
-            </div>
-        </li>
-    </ul>
+        
+        <div id = "menu">
+			<h2>Menu</h2>
+         </div>
+        
+        <div  id="reviews">
+			<h2>Reviews</h2>
+        </div>
+       
+        <div id="photos">
+			<h2>Photos</h2>
+        </div>
+       
+	</section>
 </section>
 
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"> <!-- para css das estrelas -->
