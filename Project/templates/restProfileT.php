@@ -254,13 +254,14 @@ else
             <a href="#">Informations</a>
             <div>
                 <ul id="info">
-					<label>Description: <li id="description"></li></label>
-					<label>Location: <li id = "location"> </li></label> <label>PostCode: <li id = "postCode"> </li></label>
-					<label>Schedule: <li id="schedule"></li></label>
-					<label>Average Price Per Person: <li id = "avgPrice"></li></label>
-                    <label>Contact:<li id = "contact"> </li> </label>
-					<label>Observations: <li id="observations"></li></label>
-					<label>Owner: <li id="owner"></li></label>
+                    <li><label for="description">Description: <span id="description"></span></label></li>
+                    <li><label for="location">Location: <span id="location"></span></label></li>
+                    <li><label for="postCode">PostCode: <span id="postCode"></span></label></li>
+                    <li><label for="schedule">Schedule: <span id="schedule"></span></label></li>
+                    <li><label for="avgPrice">Average Price Per Person: <span id="avgPrice"></span></label></li>
+                    <li><label for="contact">Contact: <span id="contact"></span></label></li>
+                    <li><label for="observations">Observations: <span id="observations"></span></label></li>
+                    <li><label for="owner">Owner: <span id="owner"></span></label></li>
                 </ul
             </div>
         </li>
