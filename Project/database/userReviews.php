@@ -8,8 +8,6 @@ $username = $_GET["username"];
 
 $reviews = getReviewsByUser($username);
 
-$reviews = array_unique($reviews);
-
 $result = array();
 foreach ($reviews as $review)
 {
