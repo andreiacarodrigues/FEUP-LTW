@@ -54,7 +54,7 @@ if (isset ( $_SESSION ["userid"] ))
 			<br>
 			<div id="buttons">
 				<input type="button" value="Login" onclick="login()"/>
-				<input type="button" value="Cancel" onclick="goBack()"/>
+				<input type="button" value="Cancel" onclick="goHomePage()"/>
 			</div>
 		</form>
 	</div>

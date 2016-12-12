@@ -12,6 +12,7 @@ header{
     border-bottom-style: solid;
     border-width: 10px;
     border-color: #1293bc;
+    z-index:10;
 }
 
 header a{
@@ -89,8 +90,9 @@ footer p{
 
 /* ----------------------------------------------- Home page forms -------------------------------------------------- */
 #sectionBody{
-    margin-top: 12em;
+    margin-top: 15em;
     margin-bottom: 5em;
+    z-index:0;
 }
 
 .homeform
@@ -143,9 +145,10 @@ footer p{
 /* -------------------------------------------------- Login e SignUp ------------------------------------------------- */
 
 h2{
-    margin-left: 43%;
-    margin-bottom: 40px;
-    padding-left: 1em;
+    position: absolute;
+    top:25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font:1.8em 'Montserrat Alternates';
 }
 
@@ -253,7 +256,9 @@ h2{
 }
 
 #buttons{
-    margin-left:21%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
 }
 .login input[type=submit]:hover,
@@ -282,7 +287,6 @@ h2{
 #profile #main ul li{
     list-style: none;
     padding: 8px 0px 8px 0px;
-
 }
 
 #profile #main ul label{
@@ -308,7 +312,8 @@ h2{
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
-
+    cursor: pointer;
+    text-decoration:none;
 }
 
 #profile #menuProfile{
@@ -332,8 +337,42 @@ h2{
     -moz-border-radius: 3px;
     display: block;
     text-align: center;
+    cursor: pointer;
+    text-decoration: none;
 }
 
+
+#profile #manageRestaurants a{
+    background: rgb(18, 163, 205);
+    font:1em 'Montserrat Alternates';
+    text-color:white;
+    border: 5px;
+    padding: 8px 15px 8px 15px;
+    box-shadow: 1px 1px 4px #DADADA;
+    -moz-box-shadow: 1px 1px 4px #DADADA;
+    -webkit-box-shadow: 1px 1px 4px #DADADA;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    color:white;
+}
+
+#profile #manageRestaurants li
+{
+    font:0.9em 'Montserrat Alternates';
+    list-style: none;
+    margin:1em;
+}
+
+#profile #manageRestaurants img{
+    margin-bottom:3em;
+}
+
+#profile #manageRestaurants #buttons{
+    margin: 2em;
+}
 /* ---------------------------------------------- Pop up container -------------------------------------------------- */
 .popup {
     position: relative;

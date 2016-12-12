@@ -16,7 +16,12 @@ else {
     var username = <?php echo json_encode($username) ?>;
     var sessionUsername = <?php echo json_encode($_SESSION ["userid"]) ?>;
 
+	var tabList = ['main', 'friends', 'manageRestaurants', 'visitedPlaces', 'history'];
+	
     function getInfo(){
+		
+		 openTab('main');
+		
         if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
         } else {
@@ -41,9 +46,9 @@ else {
 
                 var photoId = info[4];
                 if(photoId != null)
-                    getPhoto(parseInt(photoId), false, '#main', '', './css/Images/');
+                    getPhoto(parseInt(photoId), false, '#informacoes', '', './css/Images/');
                 else
-                    $('#main').prepend('<img src="./css/Images/1.jpg" alt="Photo that represents the user">');
+                    $('#informacoes').prepend('<img src="./css/Images/1.jpg" alt="Photo that represents the user">');
 
                 //qualquer pessoa pode ver as minhas reviews, os restaurantes que visitei, e os restaurantes que eu sou dono
                 if(info[5])
@@ -191,11 +196,12 @@ else {
 
                 for (var i = 0; i < info.length; i++)
                 {
+	
                     var name = info[i][0];
                     $('#manageRestaurants').append('<article>\n<ul>' +
                         '\n<a href="./restaurantProfile.php?restaurant='+ name +'">'+ name+'</a><br>' +
-                        '\n<label>Rating: <li id="my_rating">' + info[i][1] + '</li></label>' +
-                        '\n<label>Location: <li id="my_local">' + info[i][2] + '</li></label>\n');
+                        '\n<li><label for id="my_rating">Rating: <span id="my_rating">' + info[i][1] + '</span></label></li>' +
+                        '\n<li><label for id="my_local">Location: <span id="my_local">' + info[i][2] + '</span></label></li>\n');
 
                     var photo = info[i][3];
                     if(photo != null){
@@ -208,7 +214,7 @@ else {
                     $('#manageRestaurants').append('\n</ul>\n</article>');
                 }
 
-                $('#manageRestaurants').append ('<br><a href="addRestaurant.php">Add Restaurant');
+                $('#manageRestaurants').append ('<br><a href="addRestaurant.php" id="buttons">Add Restaurant');
             }
         };
 
@@ -236,27 +242,38 @@ else {
         });
     }
 
-
+	function openTab(tab)
+	{
+		for(var i=0; i < tabList.length; i++)
+		{
+			if(tabList[i] != tab)
+				document.getElementById(tabList[i]).style.display = "none";
+		}
+		document.getElementById(tab).style.display = "inline";
+		
+		
+	}	
+	
 </script>
 
 <section id="sectionBody">
-<section id="profile">
-	 <section id="menuProfile" >
-        <ul>
-			<a href="#main">Informations</a>
-			<br>
-            <a href="#history">History</a>
-			<br>
-            <a href="#visitedPlaces">Visited Restaurants</a>
-			<br>
-            <a href="#friends">Followers</a>
-			<br>
-            <a class="justForOwner" href="#manageRestaurants">Manage Restaurants</a>
-        </ul>
-    </section>
-
+	<section id="profile">
+		 <section id="menuProfile" >
+			<ul>
+				<a href="#main" onclick="openTab('main')">Informations</a>
+				<br>
+				<a href="#history" onclick="openTab('history')">History</a>
+				<br>
+				<a href="#visitedPlaces" onclick="openTab('visitedPlaces')">Visited Restaurants</a>
+				<br>
+				<a href="#friends" onclick="openTab('friends')">Followers</a>
+				<br>
+				<a class="justForOwner" href="#manageRestaurants" onclick="openTab('manageRestaurants')">Manage Restaurants</a>
+			</ul>
+		</section>
 
     <section id="main" >
+	<h2>Informations</h2>
         <ul id="informacoes">
 			<li><label for="username">Username: <span id="username"></span></label></li>
             <li><label for="name">Name: <span id="name"></span></label></li>
@@ -290,15 +307,13 @@ else {
 	
     <section id="dashboard" >
         <ul>
-            <li id="history"></li>  <!-- conjunto das reviews feitas pelo utilizador -->
-            <li id="visitedPlaces"></li>    <!-- nome dos restaurantes que foi feita uma review -->
-            <li class="justForOwner" id="manageRestaurants"></li>    <!-- restaurantes que pertencem ao utilizador -->
-            <li id="friends"></li>
+            <li id="history"><h2>History</h2></li>  <!-- conjunto das reviews feitas pelo utilizador -->
+            <li id="visitedPlaces"><h2>Visited Places</h2></li>    <!-- nome dos restaurantes que foi feita uma review -->
+            <li class="justForOwner" id="manageRestaurants"><h2>Manage Restaurants</h2></li>    <!-- restaurantes que pertencem ao utilizador -->
+            <li id="friends"><h2>Followers</h2></li>
         </ul>
     </section>
-
-   
-</section>
+	</section>
 </section>
 <script language="JavaScript">
     $(document).ready(getInfo());

@@ -21,7 +21,7 @@ include_once ('includes/autentication.php');
         <div class="nav">
             <ul>
 				<li><a href="./index.php">Home</a></li>
-                <li><a href="./userProfile.php">Perfil</a></li>
+                <li><a href="./userProfile.php">Profile</a></li>
 				 <li><a href="./logout.php">LogOut</a></li>
             </ul>
         </div>
