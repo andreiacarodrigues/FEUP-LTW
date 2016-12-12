@@ -58,12 +58,12 @@ $review = $review . "</section>";
 //if($owner == $username)
 //{
     $review = $review .
-        "<a href=\"#reply" . $info[0] . "\" onclick=\"openReply(" . $info[0] . ")\">Reply</a>
+        "<a href=\"#reply" . $info[0] . "\" onclick=\"openReply(" . $info[0] . ")\">Reply</a><br>
 			<form id=\"reply" . $info[0] . "\" class= \"reply\" style=\"display:none\">
 				<textarea id=\"newReview" . $info[0] . "\" cols=\"40\" rows=\"5\"></textarea><br>
 				<input type=\"button\" onclick=\"submitReply(" . $info[0] . ")\" value=\"Submit Reply\">
-				<input type=\"button\" onclick=\"cancelReply(" . $info[0] . ")\" value=\"Cancel\"><br>
-				<span id=\"r_status" . $info[0] . "\"></span>
+				<input type=\"button\" onclick=\"openReply(" . $info[0] . ")\" value=\"Cancel\"><br>
+				<p id=\"r_status" . $info[0] . "\"></p>
 			</form>";
 //}
 

@@ -223,6 +223,23 @@ h2{
     outline: none;
 }
 
+.reply textarea
+{
+    margin-top:0.7em;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #C2C2C2;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding: 7px;
+    outline: none;
+    border-color: #12a3cd;
+}
 .login input[type=text]:focus,
 .login input[type=password]:focus,
 .login textarea:focus,
@@ -233,8 +250,14 @@ h2{
 .signUp input[type=date]:focus{
     border: 1px solid #0C0;
 }
+
+.reply textarea:focus{
+    border: 1px solid #12a3cd;
+}
+
 .login .textarea,
-.signUp .textarea{
+.signUp .textarea,
+.reply textarea{
     height:100px;
     width: 55%;
 }
@@ -253,6 +276,20 @@ h2{
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
+}
+
+.reply input[type=button]{
+    font:0.9em 'Montserrat Alternates';
+    border: none;
+    padding: 8px 15px 8px 15px;
+    background: #12a3cd;
+    color: #fff;
+    box-shadow: 1px 1px 4px #DADADA;
+    -moz-box-shadow: 1px 1px 4px #DADADA;
+    -webkit-box-shadow: 1px 1px 4px #DADADA;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
 }
 
 #buttons{
@@ -279,7 +316,7 @@ h2{
 
 /* --------- Info -------- */
 #profile #main img,
-#res img{
+#res #informations img{
     border: 1px solid #12a3cd;
     border-radius: 4px;
     padding: 5px;
@@ -360,7 +397,8 @@ h2{
 
 #profile #manageRestaurants a,
 #profile #visitedPlaces a,
-#profile #friends a{
+#profile #friends a,
+#res #informations a{
     background: rgb(18, 163, 205);
     font:1em 'Montserrat Alternates';
     text-color:white;
@@ -379,7 +417,9 @@ h2{
 
 #profile #manageRestaurants li,
 #profile #history li,
-#profile #visitedPlaces li
+#profile #visitedPlaces li,
+#res #informations li,
+#res #reviews li
 {
     font:0.9em 'Montserrat Alternates';
     list-style: none;
@@ -466,8 +506,82 @@ article img{
 
 /* --------- Info -------- */
 
+#res #informations #name{
+    margin-left:1.4em;
+    font:1.8em 'Montserrat Alternates';
+}
+
+#res #informations #rating {
+    margin-left:2em;
+    font:1.4em 'Montserrat Alternates';
+}
+
+#res #informations #options{
+    margin:2em;
+}
+
+#res #reviews a{
+    background: rgb(18, 163, 205);
+    font:1em 'Montserrat Alternates';
+    text-color:white;
+    border: 5px;
+    padding: 8px 15px 8px 15px;
+    box-shadow: 1px 1px 4px #DADADA;
+    -moz-box-shadow: 1px 1px 4px #DADADA;
+    -webkit-box-shadow: 1px 1px 4px #DADADA;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    color:white;
+    margin-bottom: 5em;
+}
 
 
+#res #reviews article{
+    margin-top: 2em;
+    padding: 30px 0px 0px 0px;
+    border-top: 0.1em;
+    border-top-style: dotted;
+    border-color: #12a3cd;
+}
+
+#res #reviews #footer {
+    margin-left:3.5em;
+    font:0.8em 'Montserrat Alternates';
+}
+
+#res #reviews article img{
+    margin-top:0.1em;
+    margin-bottom:0.1em;
+    border: 1px solid #12a3cd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+#res #reviews .date{
+    margin-left:1em;
+}
+
+#res #reviews article #rev_username{
+    margin-left:0.7em;
+    margin-bottom:1.5em;
+}
+
+#res #reviews .comment{
+    margin-top:0.2em;
+    padding: 2px 0px 2px 0px;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 100%;
+    border: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    border-color: #1293bc;
+}
 
 
 /* ---------------------------------------------- Pop up container -------------------------------------------------- */

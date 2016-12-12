@@ -49,7 +49,7 @@ else
                 _("description").innerHTML = info[1];
                 _("location").innerHTML = info[2];
                 _("contact").innerHTML = info[3];
-                _("avgPrice").innerHTML = info[4];
+                _("avgPrice").innerHTML = info[4] + '€';
                 _("schedule").innerHTML = info[5];
 				_("observations").innerHTML = info[6];
 				_("postCode").innerHTML = info[12];
@@ -73,7 +73,7 @@ else
 					var rating = 0;
 				else
 					var rating = Math.round((parseFloat(rating_sum) / parseFloat(rating_total)) * 100) / 100;
-                _("rating").innerHTML = rating; 
+                _("rating").innerHTML = "Rating: " + rating +  ' ⭐'; 
              
 				var owner = info[11];
 			    _("owner").innerHTML = owner;
@@ -268,7 +268,7 @@ else
         <li id="informations">
 		 <h2>Informations</h2>
 		 <h3 id="name">Restaurant Name</h3>  
-		<h3 id="rating">Rating</h3>            
+		<h3 id="rating">Rating</h3>      
 		<div id ="options"> </div>
             <div>
                 <ul id="info">
