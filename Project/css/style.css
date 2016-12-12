@@ -315,12 +315,18 @@ h2{
 /* --------------------------------------------- User Profile/ Restaurant ------------------------------------------- */
 
 /* --------- Info -------- */
-#profile #main img,
+
 #res #informations img{
     border: 1px solid #12a3cd;
     border-radius: 4px;
     padding: 5px;
     margin-left:2.5em;
+}
+
+#profile #main img{
+    border: 1px solid #12a3cd;
+    border-radius: 4px;
+    padding: 5px;
 }
 
 #profile #main ul li,
@@ -506,6 +512,14 @@ article img{
 
 /* --------- Info -------- */
 
+#res img{
+    border: 1px solid #12a3cd;
+    border-radius: 4px;
+    padding: 5px;
+    margin-right: 1em;
+}
+
+
 #res #informations #name{
     margin-left:1.4em;
     font:1.8em 'Montserrat Alternates';
@@ -538,7 +552,9 @@ article img{
     margin-bottom: 5em;
 }
 
+#res img{
 
+}
 #res #reviews article{
     margin-top: 2em;
     padding: 30px 0px 0px 0px;

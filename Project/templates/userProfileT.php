@@ -48,7 +48,7 @@ else {
                 if(photoId != null)
                     getPhoto(parseInt(photoId), false, '#informacoes', '', './css/Images/');
                 else
-                    $('#informacoes').prepend('<img src="./css/Images/1.jpg" alt="Photo that represents the user">');
+                    $('#informacoes').prepend('<img src="./css/images/1.jpg" alt="Photo that represents the user">');
 
                 //qualquer pessoa pode ver as minhas reviews, os restaurantes que visitei, e os restaurantes que eu sou dono
                 if(info[5])
