@@ -139,11 +139,11 @@ else {
 
                 for (var i = 0; i < info.length; i++)
                 {
-                    var name = info[i][0];
+					var name = info[i][0];
                     $('#visitedPlaces').append('<article>\n<ul>' +
                         '\n<a href="./restaurantProfile.php?restaurant='+ name +'">'+ name+'</a><br>' +
-                        '\n<label>Rating: <li id="vis_rating">' + info[i][1] + '</li></label>' +
-                        '\n<label>Location: <li id="vis_local">' + info[i][2] + '</li></label>\n');
+                        '\n<li><label for="vis_rating">Rating: <span id="vis_rating">' + info[i][1] + '</span></label></li>' +
+                        '\n<li><label for="vis_local">Location: <span id="vis_local">' + info[i][2] + '</span></label></li>\n');
 
                     var photo = info[i][3];
                     if(photo != null){
@@ -256,7 +256,7 @@ else {
 				<br>
 				<a href="#visitedPlaces" onclick="openTab('visitedPlaces')">Visited Restaurants</a>
 				<br>
-				<a href="#friends" onclick="openTab('friends')">Followers</a>
+				<a href="#friends" onclick="openTab('friends')">Following</a>
 				<br>
 				<a class="justForOwner" href="#manageRestaurants" onclick="openTab('manageRestaurants')">Manage Restaurants</a>
 			</ul>
@@ -300,7 +300,7 @@ else {
             <li id="history"><h2>History</h2></li>  <!-- conjunto das reviews feitas pelo utilizador -->
             <li id="visitedPlaces"><h2>Visited Places</h2></li>    <!-- nome dos restaurantes que foi feita uma review -->
             <li class="justForOwner" id="manageRestaurants"><h2>Manage Restaurants</h2></li>    <!-- restaurantes que pertencem ao utilizador -->
-            <li id="friends"><h2>Followers</h2></li>
+            <li id="friends"><h2>Following</h2></li>
         </ul>
     </section>
 	</section>
