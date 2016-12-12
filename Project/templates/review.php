@@ -33,8 +33,8 @@ $review = $review .
 		</ul>
 		
 		<div id=\"footer\">
-			<span class=\"date\">" . $info[5] . "</span><br>
-			<a href=\"#comments" . $info[0] . "\" onclick=\"openComments(" . $info[0] . ")\">Comentários(" . $n_comments . ")</a>
+			<p class=\"date\">" . $info[5] . "</p><br>
+			<a href=\"#comments" . $info[0] . "\" onclick=\"openComments(" . $info[0] . ")\" id = \"r_comments\">Comments(" . $n_comments . ")</a>
 			<section id=\"comments" . $info[0] . "\" style=\"display:none\">";
 
 if(!empty($info[6])) 
@@ -44,8 +44,8 @@ if(!empty($info[6]))
         $review = $review .
 
             "<ul class=\"comment\">
-							<li id=\"username\">" . $reply[0] . "</li>
-							<li id=\"text\">" . $reply[1] . "</li>
+							<li><label for=\"username\">Username: <span id=\"username\">" . $reply[0] . "</span></label></li>
+							<li><label for=\"text\">Comment: <span id=\"text\">" . $reply[1] . "</span></label></li>
 						</ul>";
     }
 }
@@ -56,11 +56,11 @@ $review = $review . "</section>";
 if($owner == $username)
 {
     $review = $review .
-        "<a href=\"#reply" . $info[0] . "\">Responder</a>
-			<form id=\"reply" . $info[0] . "\" class= \"reply\">
+        "<a href=\"#reply" . $info[0] . "\" onclick=\"openReply(" . $info[0] . ")\">Reply</a>
+			<form id=\"reply" . $info[0] . "\" class= \"reply\" style=\"display:none\">
 				<textarea id=\"newReview" . $info[0] . "\" cols=\"40\" rows=\"5\"></textarea><br>
-				<input type=\"button\" onclick=\"submitReply(" . $info[0] . ")\" value=\"Submeter\">
-				<input type=\"button\" onclick=\"cancelReply(" . $info[0] . ")\" value=\"Cancelar\"><br>
+				<input type=\"button\" onclick=\"submitReply(" . $info[0] . ")\" value=\"Submit Reply\">
+				<input type=\"button\" onclick=\"cancelReply(" . $info[0] . ")\" value=\"Cancel\"><br>
 				<span id=\"r_status" . $info[0] . "\"></span>
 			</form>";
 }
