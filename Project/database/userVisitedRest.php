@@ -25,6 +25,8 @@ foreach ($reviews as $review)
     $result[] = $infoArray;
 }
 
+$result = array_map("unserialize", array_unique(array_map("serialize", $result)));
+
 if(!empty($result))
     echo json_encode($result);
 else
