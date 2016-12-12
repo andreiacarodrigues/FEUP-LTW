@@ -117,3 +117,23 @@ function goHomePage()
 {
 	window.location = "index.php";
 }
+
+function openComments(index)
+{
+	var style = document.getElementById("comments"+ index).style.display;
+	
+	if(!(style == "") && !(style == "inline"))
+		document.getElementById("comments"+ index).style.display = "inline";
+	else
+		document.getElementById("comments"+ index).style.display = "none";		
+}
+
+function openTab(tab)
+{
+	for(var i=0; i < tabList.length; i++)
+	{
+		if(tabList[i] != tab)
+			document.getElementById(tabList[i]).style.display = "none";
+	}
+	document.getElementById(tab).style.display = "inline";	
+}	

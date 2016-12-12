@@ -11,15 +11,22 @@ $review =
     "<article id=\"" . $info[0] . "\">
 		<ul>
 			<a href=\"restaurantProfile.php?restaurant=" . $info[1] . "\" id=\"rev_username\">" . $info[1] . "</a><br>
-			<label>Rating: <li id=\"rev_rating\">" . $info[2]. "</li></label>
-			<label>Review: <li id=\"rev_opinion\">" . $info[3] . "</li>
-			<li id=\"rev_photos\">";
+			<li><label for=\"rev_rating\">Rating: <span id=\"rev_rating\">" . $info[2]. "</span></label></li>";
+			
+	if($info[3] != "")
+		$review = $review ."<li><label for=\"rev_opinion\">Review: <span id=\"rev_opinion\">" . $info[3] . "</span></label></li>";
 
 if(count($info[4]) != 0)
 {
+	$review = $review . "<li id=\"rev_photos\">";
     foreach ($info[4] as $photo)
         $review = $review . "<img src=\"./css/images_small/" . $photo . "\"alt=\"Review Photo\">";
 }
+
+if(!empty($info[6])) 
+	$n_comments = count($info[6]);
+else
+	$n_comments = 0;
 
 $review = $review .
     "</li>
@@ -27,10 +34,10 @@ $review = $review .
 		
 		<div id=\"footer\">
 			<span class=\"date\">" . $info[5] . "</span><br>
-			<a href=\"#comments" . $info[0] . "\">Comentários</a>
-			<section id=\"comments" . $info[0] . "\">";
+			<a href=\"#comments" . $info[0] . "\" onclick=\"openComments(" . $info[0] . ")\">Comentários(" . $n_comments . ")</a>
+			<section id=\"comments" . $info[0] . "\" style=\"display:none\">";
 
-if(!empty($info[6]))
+if(!empty($info[6])) 
 {
     foreach ($info[6] as $reply)
     {

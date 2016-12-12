@@ -277,6 +277,7 @@ h2{
 
 /* -------------------------------------------------- User Profile -------------------------------------------------- */
 
+/* --------- Info -------- */
 #profile img {
     border: 1px solid #12a3cd;
     border-radius: 4px;
@@ -341,6 +342,7 @@ h2{
     text-decoration: none;
 }
 
+/* --------- Manage Restaurants -------- */
 
 #profile #manageRestaurants a{
     background: rgb(18, 163, 205);
@@ -373,6 +375,11 @@ h2{
 #profile #manageRestaurants #buttons{
     margin: 2em;
 }
+
+/* --------- History -------- */
+
+
+
 /* ---------------------------------------------- Pop up container -------------------------------------------------- */
 .popup {
     position: relative;
