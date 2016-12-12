@@ -14,19 +14,19 @@ else
     $username = NULL;
 
 if (isset ($_POST["text"] ))
-    $owner = trim(strip_tags($_POST["text"]));
+    $text = trim(strip_tags($_POST["text"]));
 else
-    $owner = NULL;
+    $text = NULL;
 
 if (isset ($_POST["rating"] ))
-    $owner = trim(strip_tags($_POST["rating"]));
+    $rating = trim(strip_tags($_POST["rating"]));
 else
-    $owner = NULL;
+    $rating = NULL;
 
 if (isset ($_POST["date"] ))
-    $owner = trim(strip_tags($_POST["date"]));
+    $date = trim(strip_tags($_POST["date"]));
 else
-    $owner = NULL;
+    $date = NULL;
 
 if($rating == -1)
     die(header('Location: ../restaurantProfile.php?restaurant=' . $restaurant . '&errorReview="1"#newReview'));

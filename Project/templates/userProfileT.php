@@ -196,11 +196,12 @@ else {
 
                 for (var i = 0; i < info.length; i++)
                 {
+	
                     var name = info[i][0];
                     $('#manageRestaurants').append('<article>\n<ul>' +
                         '\n<a href="./restaurantProfile.php?restaurant='+ name +'">'+ name+'</a><br>' +
-                        '\n<label>Rating: <li id="my_rating">' + info[i][1] + '</li></label>' +
-                        '\n<label>Location: <li id="my_local">' + info[i][2] + '</li></label>\n');
+                        '\n<li><label for id="my_rating">Rating: <span id="my_rating">' + info[i][1] + '</span></label></li>' +
+                        '\n<li><label for id="my_local">Location: <span id="my_local">' + info[i][2] + '</span></label></li>\n');
 
                     var photo = info[i][3];
                     if(photo != null){
@@ -213,7 +214,7 @@ else {
                     $('#manageRestaurants').append('\n</ul>\n</article>');
                 }
 
-                $('#manageRestaurants').append ('<br><a href="addRestaurant.php">Add Restaurant');
+                $('#manageRestaurants').append ('<br><a href="addRestaurant.php" id="buttons">Add Restaurant');
             }
         };
 
@@ -250,7 +251,9 @@ else {
 		}
 		document.getElementById(tab).style.display = "inline";
 		
+		
 	}	
+	
 </script>
 
 <section id="sectionBody">
