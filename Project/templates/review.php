@@ -1,11 +1,13 @@
 <?php
 $info = json_decode(stripslashes($_GET['info']));
 
+/*
 if ((isset ( $_GET ["owner"] )) && (isset ( $_GET ["username"] )))
 {
     $owner = trim(strip_tags($_GET["owner"]));
     $username = trim(strip_tags($_GET["username"]));
 }
+*/
 
 $review =
     "<article id=\"" . $info[0] . "\">
@@ -53,8 +55,8 @@ if(!empty($info[6]))
 
 $review = $review . "</section>";
 
-if($owner == $username)
-{
+//if($owner == $username)
+//{
     $review = $review .
         "<a href=\"#reply" . $info[0] . "\">Responder</a>
 			<form id=\"reply" . $info[0] . "\" class= \"reply\">
@@ -63,7 +65,7 @@ if($owner == $username)
 				<input type=\"button\" onclick=\"cancelReply(" . $info[0] . ")\" value=\"Cancelar\"><br>
 				<span id=\"r_status" . $info[0] . "\"></span>
 			</form>";
-}
+//}
 
 $review = $review .
     "</div>

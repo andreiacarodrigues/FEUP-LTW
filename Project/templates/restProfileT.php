@@ -123,7 +123,8 @@ else
 					console.log(info[i]);
 					
 					var jsonString = JSON.stringify(info[i]);
-					$.get('./templates/review.php',  {info: jsonString, owner: owner , username: username}, function(data) 
+					//$.get('./templates/review.php',  {info: jsonString, owner: owner , username: username}, function(data)
+					$.get('./templates/review.php',  {info: jsonString}, function(data)
 					{
 						var info = new String(data);
 						info = info.trim();
