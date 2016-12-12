@@ -137,3 +137,13 @@ function openTab(tab)
 	}
 	document.getElementById(tab).style.display = "inline";	
 }	
+
+function openReply(index)
+{
+	var style = document.getElementById("reply"+ index).style.display;
+	
+	if(!(style == "") && !(style == "inline"))
+		document.getElementById("reply"+ index).style.display = "inline";
+	else
+		document.getElementById("reply"+ index).style.display = "none";		
+}

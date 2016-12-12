@@ -278,7 +278,7 @@ h2{
 /* -------------------------------------------------- User Profile -------------------------------------------------- */
 
 /* --------- Info -------- */
-#profile img {
+#profile #main img {
     border: 1px solid #12a3cd;
     border-radius: 4px;
     padding: 5px;
@@ -344,7 +344,7 @@ h2{
 
 /* --------- Manage Restaurants -------- */
 
-#profile #manageRestaurants a{
+#profile #manageRestaurants a {
     background: rgb(18, 163, 205);
     font:1em 'Montserrat Alternates';
     text-color:white;
@@ -361,7 +361,8 @@ h2{
     color:white;
 }
 
-#profile #manageRestaurants li
+#profile #manageRestaurants li,
+#profile #history li
 {
     font:0.9em 'Montserrat Alternates';
     list-style: none;
@@ -369,8 +370,8 @@ h2{
 }
 
 #profile #manageRestaurants img{
-    margin-bottom:3em;
-}
+     margin-bottom:3em;
+ }
 
 #profile #manageRestaurants #buttons{
     margin: 2em;
@@ -378,6 +379,67 @@ h2{
 
 /* --------- History -------- */
 
+#profile #history a{
+    background: rgb(18, 163, 205);
+    font:1em 'Montserrat Alternates';
+    text-color:white;
+    border: 5px;
+    padding: 8px 15px 8px 15px;
+    box-shadow: 1px 1px 4px #DADADA;
+    -moz-box-shadow: 1px 1px 4px #DADADA;
+    -webkit-box-shadow: 1px 1px 4px #DADADA;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    color:white;
+    margin-bottom: 5em;
+}
+
+article{
+    margin-top: 2em;
+    padding: 30px 0px 0px 0px;
+    border-top: 0.1em;
+    border-top-style: dotted;
+
+    border-color: #12a3cd;
+}
+
+#footer {
+    margin-left:3.5em;
+    font:0.8em 'Montserrat Alternates';
+}
+
+article img{
+    margin-top:0.1em;
+    margin-bottom:0.1em;
+    border: 1px solid #12a3cd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.date{
+    margin-left:1em;
+}
+
+#r_comments{
+
+}
+
+.comment{
+    margin-top:0.2em;
+    padding: 2px 0px 2px 0px;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 100%;
+    border: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    border-color: #1293bc;
+}
 
 
 /* ---------------------------------------------- Pop up container -------------------------------------------------- */
