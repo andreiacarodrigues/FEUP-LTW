@@ -135,6 +135,8 @@ else {
                 else
                     info = eval("(" + this.responseText + ")");
 
+                console.log("visited : "+info);
+
                 for (var i = 0; i < info.length; i++)
                 {
                     var name = info[i][0];

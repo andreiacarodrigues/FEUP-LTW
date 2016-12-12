@@ -8,16 +8,16 @@ if (isset ($_GET["username"] ))
 else
     $username = NULL;
 
-$restaurants = getReviewsByUser($username);
+$reviews = getReviewsByUser($username);
 
 $result = array();
-foreach ($restaurants as $restaurantId)
+foreach ($reviews as $review)
 {
-    $name = getRestaurantName($restaurantId['restaurantId']);
+    $name = getRestaurantName($review['restaurantId']);
     $restaurant = getRestaurantsByName($name['name']);
     $photo = getPhoto($restaurant['photoId']);
 
-    $infoArray = array(0 => $restaurant['name'],
+    $infoArray = array(0 => $name['name'],
         1 => $restaurant['rating_sum'],
         2 => $restaurant['location'],
         3 => $photo['filename']);
