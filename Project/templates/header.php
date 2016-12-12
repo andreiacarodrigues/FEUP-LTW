@@ -19,17 +19,17 @@ include_once ('includes/autentication.php');
             if (isUserLoggedIn()) {
         ?>
         <div class="nav">
-            <ul id>
+            <ul>
 				<li><a href="./index.php">Home</a></li>
                 <li><a href="./userProfile.php">Perfil</a></li>
-				 <li><a href="./Logout.php">LogOut</a></li>
+				 <li><a href="./logout.php">LogOut</a></li>
             </ul>
         </div>
                 <?php
             }else{
         ?>
 		 <div class="nav">
-            <ul id>
+            <ul>
 				<li><a href="./index.php">Home</a></li>
                 <li><a href="./logIn.php">LogIn</a></li>
                 <li><a href="./signUp.php">SignUp</a></li>
