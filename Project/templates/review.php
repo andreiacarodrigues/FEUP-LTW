@@ -10,7 +10,7 @@ if ((isset ( $_GET ["owner"] )) && (isset ( $_GET ["username"] )))
 $review =
     "<article id=\"" . $info[0] . "\">
 		<ul>
-			<a href=\"userProfile.php?username=" . $info[1] . "\" id=\"rev_username\">" . $info[1] . "</a><br>
+			<a href=\"restaurantProfile.php?restaurant=" . $info[1] . "\" id=\"rev_username\">" . $info[1] . "</a><br>
 			<label>Rating: <li id=\"rev_rating\">" . $info[2]. "</li></label>
 			<label>Review: <li id=\"rev_opinion\">" . $info[3] . "</li>
 			<li id=\"rev_photos\">";
@@ -25,7 +25,7 @@ $review = $review .
     "</li>
 		</ul>
 		
-		<footer>
+		<div id=\"footer\">
 			<span class=\"date\">" . $info[5] . "</span><br>
 			<a href=\"#comments" . $info[0] . "\">Comentários</a>
 			<section id=\"comments" . $info[0] . "\">";
@@ -59,7 +59,7 @@ if($owner == $username)
 }
 
 $review = $review .
-    "</footer>
+    "</div>
 		</article>";
 
 echo $review;

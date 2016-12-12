@@ -3,33 +3,31 @@ if (isset ( $_GET ["restaurant"] ))
 {
     $restaurant = trim(strip_tags($_GET["restaurant"]));
 
-    if (isset ( $_SESSION ["userid"] ))
-        $username = $_SESSION ["userid"];
-    else
-    {
-        echo "ACCESS DENIED : you must be logged in to acess this page";
-        die();
-    }
+	if (isset ( $_SESSION ["userid"] ))
+		$username = $_SESSION ["userid"];
+	else
+		$username = "NULL";
+	
+	if (isset ( $_GET ["errorReview"] ))
+        $errorReview = true;
+	else
+		$errorReview = false;
+
 }
 else
 {
-    echo "ACCESS DENIED : you can't acess this page";
-    die();
+	 echo 'ACCESS DENIED : you must be logged in to acess this page';
+	 die();
 }
-
+  
 ?>
 
 <script language="JavaScript">
-
-    var username = <?php echo json_encode($username) ?>;
-    var restaurant = <?php echo json_encode($restaurant) ?>;
-
-    //coloca a informaçao na página
+	var username = <?php echo json_encode($username) ?>;
+	var restaurant = <?php echo json_encode($restaurant) ?>;
+	var errorReview = <?php echo json_encode($errorReview) ?>;
     function getInfo(){
-        $('#updateRestaurantPicture #val').attr("value", restaurant);
-        $('#updateRestaurantMenu #val').attr("value", restaurant);
-        $('#updateRestaurantPhotos #val').attr("value", restaurant);
-
+		
         if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
         } else {
@@ -37,223 +35,258 @@ else
         }
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                var info = new String(this.responseText);
-                info = info.trim();
-
-                if(info == "INVALID")
-                    return false;
-                else
-                    info = eval("(" + this.responseText + ")");
-
-                var owner = info[11];
-
-                if(owner != username) // nao o deixa aceder a pagina
-                    goBack();
-
+				var info = new String(this.responseText);
+				info = info.trim();
+			
+				if(info == "INVALID")
+					return false;
+				else
+					info = eval("(" + this.responseText + ")"); 
+				
                 _("name").innerHTML = restaurant;
-                $('#r_name').attr("placeholder", restaurant);
-                $('#r_id').attr("value", info[0]);
-                if(info[1] == null) info[1] = "";
-                $('#r_description').attr("placeholder", info[1]);
-                if(info[2] == null) info[2] = "";
-                $('#r_location').attr("placeholder", info[2]);
-
-                if(info[12] == null)
-                    info[12] = "";
-                else
-                {
-                    var res = info[12].split("-");
-                    $('#r_postCode1').attr("placeholder",res[0]);
-                    $('#r_postCode2').attr("placeholder",res[1]);
-                }
-
-                if(info[3] == null) info[3] = "";
-                $('#r_contact').attr("placeholder", info[3]);
-                if(info[4] == null) info[4] = "";
-                $('#r_avgPrice').attr("placeholder", info[4]);
-                if(info[5] == null) info[5] = "";
-                $('#r_schedule').attr("placeholder", info[5]);
-                if(info[6] == null) info[6] = "";
-                $('#r_observations').attr("placeholder", info[6]);
-
-                var menuId = info[7];
-                var photoId = info[8];
-
-                if(photoId != null)
-                {
-                    getPhoto(parseInt(photoId), false, '#main','#menuPhoto', './css/images/');
-                }
-                else
-                    $('#main').prepend('<img src="./css/images/1.jpg" alt="Photo that represents the restaurant">');
-
-                if(menuId != null)
-                {
-                    getPhoto(parseInt(menuId) , true, '#main','#menuPhoto', './css/images/');
-                }
-                else
-                    $('#menuPhoto').html('<img src="./css/Images/defaultRestaurant.jpg" alt="Restaurant\'s Menu">');
-
-                $.get('./database/restaurantPhotos.php',  {restaurant: restaurant}, function(data)
-                    {
-                        var info = new String(data);
-                        info = info.trim();
-
-                        if(info != "INVALID")
-                        {
-                            var photos = eval("(" + data + ")");
-                            for(var i = 0; i < photos.length; i++)
-                            {
-                                if(photos[i] != null)
-                                {
-                                    $('#restaurantPhotos').append('<img src="./css/images/'+ photos[i] + '"alt="Photo of the restaurant"><br>');
-                                    $('#restaurantPhotos').append('<form action="./database/deleteRP.php" method="post">' +
-                                        '<input id="val" type="hidden" name="val" value="' + photos[i] + '"/>' +
-                                        '<input type="hidden" name="restaurant" value="' + restaurant + '"/>' +
-                                        '<input type="submit" value="Delete Photo"></form><br>');
-                                }
-                            }
-                        }
-                    }
-                );
-                return true;
+                _("description").innerHTML = info[1];
+                _("location").innerHTML = info[2];
+                _("contact").innerHTML = info[3];
+                _("avgPrice").innerHTML = info[4];
+                _("schedule").innerHTML = info[5];
+				_("observations").innerHTML = info[6];
+				_("postCode").innerHTML = info[12];
+				
+				var menuId = info[7];
+				var photoId = info[8];
+	
+				if(photoId != null)
+					getPhoto(parseInt(photoId), false, '#res', '#menu', './css/images/');
+				else
+					$('#res').prepend('<img src="./css/images/1.jpg" alt="Photo that represents the restaurant">');
+				
+				if(menuId != null)
+					getPhoto(parseInt(menuId) , true, '#res', '#menu', './css/Images/');
+				else
+					$('#menu').html('<img src="./css/images/1.jpg" alt="Photo that represents the restaurant">');
+				
+				var rating_sum = info[9];
+				var rating_total = info[10];
+				if((rating_sum == 0) || (rating_total == 0))
+					var rating = 0;
+				else
+					var rating = Math.round((parseFloat(rating_sum) / parseFloat(rating_total)) * 100) / 100;
+                _("rating").innerHTML = rating; 
+             
+				var owner = info[11];
+			    _("owner").innerHTML = owner;
+			   
+			    if(username == owner)
+			    	$('#options').html('<li><a href="restaurantProfileEdit.php?restaurant=' + restaurant +'">Edit</a></li>');
+			    else
+					$('#options').html('<li><a id="n_Review" href="#newReview">Leave Review</a></li>');
+				
+				getReviews(owner);
+				getPhotos();
+				
+				if(owner != username)
+				{
+					showNewReview();
+					//$('#newReview').append('<span id=\"r_status\"></span>');
+					if(errorReview)
+					{
+						$('#r_status').html("You need at least to leave a rating if you want to submit a review.");
+					}
+				}
+				
+			   return true;
             }
         };
-
-        xmlhttp.open("GET","database/restaurantInfo.php?restaurant="+ restaurant,true);
+        xmlhttp.open("GET","database/RestaurantInfo.php?restaurant="+ restaurant,true);
         xmlhttp.send();
     }
-
-    function observationsPopUpAnimation() {
-        var popup = document.getElementById('myPopup');
-        popup.classList.toggle('show');
-    }
-
-    function submitChanges()
-    {
-        var name, description, location, postCode1, postCode2, postCode, contact, avgPrice, schedule, observations;
-        var status = _("status");
-
-        name = getVar("r_name");
-        description = getVar("r_description");
-        location = getVar("r_location");
-        postCode1 = getVar("r_postCode1");
-        postCode2 = getVar("r_postCode2");
-        postCode = postCode1 +"-" +postCode2;
-        contact = getVar("r_contact");
-        avgPrice = getVar("r_avgPrice");
-        schedule = getVar("r_schedule");
-        if($('#r_observations').val() == null)
-            observations = $('#r_observations').attr("placeholder");
-        else
-            observations = getVar("r_observations");
-
-        //avaliacao com expressoes regulares dos valores atribuidos
-        if(!is_name(name))
-            status.innerHTML = "Invalid name.";
-        else if(!is_postCode(postCode))
-            status.innerHTML = "Invalid postcode.";
-        else if(!is_price(avgPrice))
-            status.innerHTML = "Invalid average price.";
-        else if(!is_phone_number(contact))
-            status.innerHTML = "Invalid contact.";
-        else {
-            $.get('./database/updateRI.php', {
-                    id: $('#r_id').attr("value"),
-                    name: name,
-                    description: description,
-                    location: location,
-                    contact: contact,
-                    avgPrice: avgPrice,
-                    schedule: schedule,
-                    observation: observations,
-                    postCode: postCode
-                }, function (data) {
-                    var info = new String(data);
-                    info = info.trim();
-
-                    if (info == "0")
-                        console.log("Error updating restaurant information.");
-                    else
-                        window.location = "restaurantProfileEdit.php?restaurant=" + restaurant;
-                }
-            );
-            return true;
+	function getReviews(owner) 
+	{
+		 if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
-        return false;
-    }
-
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+				var info = new String(this.responseText);
+				info = info.trim();
+				
+				if(info == "INVALID")
+					return false;
+				else
+					info = eval("(" + this.responseText + ")"); 
+					
+					
+				for(var i = 0; i < info.length; i++)
+				{		
+					console.log(info[i]);
+					
+					var jsonString = JSON.stringify(info[i]);
+					$.get('./templates/review.php',  {info: jsonString, owner: owner , username: username}, function(data) 
+					{
+						var info = new String(data);
+						info = info.trim();
+				
+						$('#reviews').append(data);
+					}
+					);
+				}
+				return true;	
+            }
+        };
+        xmlhttp.open("GET","database/RestaurantReviews.php?restaurant="+ restaurant,true);
+        xmlhttp.send();
+	}
+	
+	function getPhotos()
+	{
+		$.get('./database/RestaurantPhotos.php',  {restaurant: restaurant}, function(data) 
+		{
+			var info = new String(data);
+            info = info.trim();
+			
+			if(info != "INVALID")
+			{
+				var photos = eval("(" + info + ")"); 
+				for(var i = 0; i < photos.length; i++)
+				{
+					$('#photos').append('<img src="./css/images/'+ photos[i] + '"alt="Photo of the restaurant">');
+				}
+			}
+		}
+	);
+	}
+	
+	function cancelReply(i)
+	{
+		$('#newReview' + i ).val('');
+	}
+	
+	function submitReply(i)
+	{
+		var r = i;
+		var u = username; //owner
+		var t = _("newReview" + i).value;
+		var r_status = _("r_status" + i);
+		if(t == "")
+			r_status.innerHTML = "You can't submit an empty reply.";
+		else
+		{
+			r_status.innerHTML = "";
+		
+			if (window.XMLHttpRequest) {
+				xmlhttp = new XMLHttpRequest();
+			} else {
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+		
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					$('#newReview' + i ).val('');
+				}
+			};
+			
+			xmlhttp.open("GET","database/AddReply.php?id="+r + "&username="+u+"&text="+t,true);
+			xmlhttp.send();
+		}
+	}
+	
+	function radioListCheck(name) 
+	{
+		for (var x = 5; x >= 1; x--) { // 5 é o maior rating
+			if (document.getElementById(name + '-' + x).checked) {
+				return x; // don't know why mas não me dá o valor certo de outra maneira
+			}
+		}
+		return -1;
+	}
+	function submitReview()
+	{
+		$('#newReview #nr_username').attr("value", username);
+		$('#newReview #nr_restaurant').attr("value", restaurant);
+		$('#newReview #nr_text').attr("value", _("review").value);
+		
+		var rat = radioListCheck("star");
+		
+		alert(rat);
+		var r_status = _("r_status");
+	
+		if(rat == -1)
+		{
+			r_status.innerHTML = "You need at least to leave a rating if you want to submit a review.";
+		}
+		else
+			r_status.innerHTML = "";
+		
+		$('#newReview #nr_rating').attr("value", rat);
+		
+		var d = new Date();
+		var month = d.getMonth()+1;
+		var day = d.getDate();
+		var date = d.getFullYear() + '-' + (month<10 ? '0' : '') + month + '-' + (day<10 ? '0' : '') + day;
+		
+		$('#newReview #nr_date').attr("value", date);
+	}
+		
+   function showNewReview()
+   {
+		$.get('./templates/newReview.php', function(data) 
+		{
+			var info = new String(data);
+            info = info.trim();
+			
+			$('#newReview').append(info);
+		}
+		);
+   }
 </script>
 
 <section id="sectionBody">
-<section id="main" >
-    <form id="updateRestaurantPicture" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="method" value="2"/>
-        <input id="val" type="hidden" name="val" value=""/>
-        <input type="file" name="image"/>
-        <input type="submit" value="Change Restaurant Photo">
-    </form>
-    <form id="updateRestaurantPicture" action="./database/deletePP.php" method="post">
-        <input id="val" type="hidden" name="val" value=""/>
-        <input type="hidden" name="mode" value="1"/>
-        <input type="submit" value="Delete Photo">
-    </form>
-    <h2 id="name">Restaurant Name</h2>
+<section id="res" >
+    <h2 id="name">Restaurant Name</h2>  
+    <h3 id="rating">Rating</h3>            
+    <div id ="options"> </div>
 </section>
-<section id="details">
+<section id="Details">
     <ul id="tabs">
         <li id="informations">
-            <a href="#informations">Informations</a>
+            <a href="#">Informations</a>
             <div>
-                <form>
-                    <input id="r_id" type="hidden" value="" maxlength="6">
-                    <label>Restaurant Name: <input id="r_name" type="text" maxlength="60"> </label><br>
-                    <label>Description: <textarea  id="r_description"name="description" cols="60" rows="2"></textarea> </label> <br>
-                    <label>Location:<input id="r_location" type="text" name="location" maxlength="80"></label><br>
-                    <label>PostCode: <input type="text" maxlength="4" name="postCode1"  id="r_postCode1" >
-                        <label> -<input type="text" maxlength="3" name="postCode2" id="r_postCode2" > </label>
-                    </label> <br>
-                    <label>Schedule:<input id="r_schedule" type="text" name="schedule"></label><br>
-                    <label>Average Price Per Person(€):<input id="r_avgPrice" type="text" name="cost" maxlength="4"></label> <br>
-                    <label>Contact:<input id="r_contact" type="tel" name="number" maxlength="9"></label> <br>
-                    <label>Observations: <textarea id="r_observations" name="review" cols="60" rows="2"></textarea></label>
-                    <div class="popup" onclick="observationsPopUpAnimation()">?
-                        <span class="popuptext" id="myPopup">You can allow your customers to know if your restaurant has: wi-fi, takeAway, live music, vegan menu options, wheelchair access, bar, etc.</span>
-                    </div><br>
-                    <span id="status"></span>
-                    <br>
-                    <input type="button" onclick="submitChanges()"/ value="Submit Changes">
-                    <input type="button" onclick="goBack()" value="Cancel"/>
-                </form>
+                <ul id="info">
+					<label>Description: <li id="description"></li></label>
+					<label>Location: <li id = "location"> </li></label> <label>PostCode: <li id = "postCode"> </li></label>
+					<label>Schedule: <li id="schedule"></li></label>
+					<label>Average Price Per Person: <li id = "avgPrice"></li></label>
+                    <label>Contact:<li id = "contact"> </li> </label>
+					<label>Observations: <li id="observations"></li></label>
+					<label>Owner: <li id="owner"></li></label>
+                </ul
             </div>
         </li>
-        <li  id="menu">
+        <li>
             <a href="#menu">Menu</a>
-            <div id="menuPhoto"> </div>
-            <div>
-                <form id="updateRestaurantMenu" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="method" value="5"/>
-                    <input id="val" type="hidden" name="val" value=""/>
-                    <input type="file" name="image"/>
-                    <input type="submit" value="Upload New Menu Photo">
-                </form>
+            <div id = "menu">
             </div>
         </li>
-        <li  id="photos">
-            <a href="#photos">Photos</a>
-            <div id="restaurantPhotos"> </div>
-            <div>
-                <form id="updateRestaurantPhotos" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="method" value="4"/>
-                    <input id="val" type="hidden" name="val" value=""/>
-                    <input type="file" name="image"/>
-                    <input type="submit" value="Upload New Photo">
-                </form>
+        <li>
+            <a href="#reviews">Opiniões</a>
+            <div  id="reviews">
+            </div>
+        </li>
+        <li>
+            <a href="#photos">Fotos</a>
+            <div id="photos">
             </div>
         </li>
     </ul>
 </section>
-</section>
 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"> <!-- para css das estrelas -->
+
+<section id="newReview">
+</section>
+</section>
 <script language="JavaScript">
-    $(document).ready(getInfo());
+	$(document).ready(getInfo());
 </script>

@@ -2,44 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eac5cd96-6c6e-4a8f-891e-bfa2ccc71f19" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/addFriend.php" afterPath="$PROJECT_DIR$/Project/database/addFriend.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/addReply.php" afterPath="$PROJECT_DIR$/Project/database/addReply.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/addRestaurant.php" afterPath="$PROJECT_DIR$/Project/database/addRestaurant.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/addReview.php" afterPath="$PROJECT_DIR$/Project/database/addReview.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/addUser.php" afterPath="$PROJECT_DIR$/Project/database/addUser.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/checkFriends.php" afterPath="$PROJECT_DIR$/Project/database/checkFriends.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/deleteFriend.php" afterPath="$PROJECT_DIR$/Project/database/deleteFriend.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/deletePP.php" afterPath="$PROJECT_DIR$/Project/database/deletePP.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/deleteRP.php" afterPath="$PROJECT_DIR$/Project/database/deleteRP.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/getFriends.php" afterPath="$PROJECT_DIR$/Project/database/getFriends.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/getPhoto.php" afterPath="$PROJECT_DIR$/Project/database/getPhoto.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/getRestaurants.php" afterPath="$PROJECT_DIR$/Project/database/getRestaurants.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/login.php" afterPath="$PROJECT_DIR$/Project/database/login.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/ownerRestaurants.php" afterPath="$PROJECT_DIR$/Project/database/ownerRestaurants.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/restaurantExists.php" afterPath="$PROJECT_DIR$/Project/database/restaurantExists.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/restaurantInfo.php" afterPath="$PROJECT_DIR$/Project/database/restaurantInfo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/restaurantPhotos.php" afterPath="$PROJECT_DIR$/Project/database/restaurantPhotos.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/restaurantReviews.php" afterPath="$PROJECT_DIR$/Project/database/restaurantReviews.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/updatePP.php" afterPath="$PROJECT_DIR$/Project/database/updatePP.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/updateRI.php" afterPath="$PROJECT_DIR$/Project/database/updateRI.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/updateRM.php" afterPath="$PROJECT_DIR$/Project/database/updateRM.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/updateRP.php" afterPath="$PROJECT_DIR$/Project/database/updateRP.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/updateUI.php" afterPath="$PROJECT_DIR$/Project/database/updateUI.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/updateUP.php" afterPath="$PROJECT_DIR$/Project/database/updateUP.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/uploadPicture.php" afterPath="$PROJECT_DIR$/Project/database/uploadPicture.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/userExists.php" afterPath="$PROJECT_DIR$/Project/database/userExists.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/userInfo.php" afterPath="$PROJECT_DIR$/Project/database/userInfo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/userPassword.php" afterPath="$PROJECT_DIR$/Project/database/userPassword.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/userReviews.php" afterPath="$PROJECT_DIR$/Project/database/userReviews.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/userVisitedRest.php" afterPath="$PROJECT_DIR$/Project/database/userVisitedRest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/addRest.php" afterPath="$PROJECT_DIR$/Project/templates/addRest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/restList.php" afterPath="$PROJECT_DIR$/Project/templates/restList.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/restProfileEditT.php" afterPath="$PROJECT_DIR$/Project/templates/restProfileEditT.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/database/database.db" afterPath="$PROJECT_DIR$/Project/database/database.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/restProfileT.php" afterPath="$PROJECT_DIR$/Project/templates/restProfileT.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/review.php" afterPath="$PROJECT_DIR$/Project/templates/review.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/userProfileEditT.php" afterPath="$PROJECT_DIR$/Project/templates/userProfileEditT.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/userProfileT.php" afterPath="$PROJECT_DIR$/Project/templates/userProfileT.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -57,71 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="userProfileT.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Project/templates/userProfileT.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="52" lean-forward="false" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="restProfileT.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="restProfileT.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Project/templates/restProfileT.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="56" lean-forward="false" selection-start-line="3" selection-start-column="56" selection-end-line="3" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="userProfileEditT.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Project/templates/userProfileEditT.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="56" lean-forward="false" selection-start-line="6" selection-start-column="56" selection-end-line="6" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addRest.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Project/templates/addRest.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="60" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="restList.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Project/templates/restList.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="63" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="restProfileEditT.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Project/templates/restProfileEditT.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="review.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Project/templates/review.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="52" />
+            <state relative-caret-position="187">
+              <caret line="11" column="28" lean-forward="false" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -195,10 +100,10 @@
         <option value="$PROJECT_DIR$/Project/templates/addRest.php" />
         <option value="$PROJECT_DIR$/Project/templates/restList.php" />
         <option value="$PROJECT_DIR$/Project/templates/restProfileEditT.php" />
-        <option value="$PROJECT_DIR$/Project/templates/restProfileT.php" />
         <option value="$PROJECT_DIR$/Project/templates/review.php" />
         <option value="$PROJECT_DIR$/Project/templates/userProfileEditT.php" />
         <option value="$PROJECT_DIR$/Project/templates/userProfileT.php" />
+        <option value="$PROJECT_DIR$/Project/templates/restProfileT.php" />
       </list>
     </option>
   </component>
@@ -373,18 +278,18 @@
       <workItem from="1481483192630" duration="165000" />
       <workItem from="1481484780829" duration="246000" />
       <workItem from="1481485896797" duration="3092000" />
-      <workItem from="1481498008494" duration="4324000" />
+      <workItem from="1481498008494" duration="4514000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71301000" />
+    <option name="totallyTimeSpent" value="71491000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1727672" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1727672" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.07097792" sideWeight="0.5087848" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -780,14 +685,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Project/templates/restProfileT.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="56" lean-forward="false" selection-start-line="3" selection-start-column="56" selection-end-line="3" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Project/templates/signUpT.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="952">
@@ -799,7 +696,7 @@
     <entry file="file://$PROJECT_DIR$/Project/templates/review.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="52" />
+          <caret line="6" column="3" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="52" />
           <folding />
         </state>
       </provider>
@@ -840,6 +737,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="52" lean-forward="false" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project/templates/restProfileT.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="28" lean-forward="false" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
           <folding />
         </state>
       </provider>
