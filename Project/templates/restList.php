@@ -1,8 +1,9 @@
 <?php
 if ((isset ( $_GET ["search"] )) && (isset ( $_GET ["mode"] )))
 {
-    $search = $_GET ["search"];
-    $mode = $_GET ["mode"];
+    $search = trim(strip_tags($_GET["search"]));
+    $mode = trim(strip_tags($_GET["mode"]));
+
     if(($mode != 0)&&($mode!= 1))
     {
         echo "ACCESS DENIED : you can't acess this page";

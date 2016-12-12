@@ -4,7 +4,7 @@ if (isset ( $_SESSION ["userid"] ))
     $username = $_SESSION ["userid"];
 
     if (isset ( $_GET ["restaurant"] ))
-        $restaurant = $_GET ["restaurant"];
+        $restaurant = trim(strip_tags($_GET["restaurant"]));
     else
         $restaurant = "NULL";
 }

@@ -3,7 +3,10 @@ include_once('my_database/restaurant.php');
 include_once('my_database/reviews.php');
 include_once('my_database/photo.php');
 
-$username = $_GET["username"];
+if (isset ($_GET["username"] ))
+    $username = trim(strip_tags($_GET["username"]));
+else
+    $username = NULL;
 
 $restaurants = getReviewsByUser($username);
 

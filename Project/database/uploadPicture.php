@@ -1,9 +1,15 @@
 <?php
 include_once('my_database/photo.php');
-global $db;
 
-$method = $_POST['method'];
-$val = $_POST['val'];
+if (isset ($_POST["method"] ))
+    $method = trim(strip_tags($_POST["method"]));
+else
+    $method = NULL;
+
+if (isset ($_POST["val"] ))
+    $val = trim(strip_tags($_POST["val"]));
+else
+    $val = NULL;
 
 if($val == "NULL")
     die(header('Location: ' . $_SERVER["HTTP_REFERER"]));

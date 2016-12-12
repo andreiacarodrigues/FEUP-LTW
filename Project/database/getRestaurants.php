@@ -1,8 +1,15 @@
 <?php
 include_once('my_database/restaurant.php');
 
-$search = $_GET["search"];
-$mode = $_GET["mode"];
+if (isset ($_GET["search"] ))
+    $search = trim(strip_tags($_GET["search"]));
+else
+    $search = NULL;
+
+if (isset ($_GET["mode"] ))
+    $mode = trim(strip_tags($_GET["mode"]));
+else
+    $mode = NULL;
 
 $result = getAllRestaurants();
 

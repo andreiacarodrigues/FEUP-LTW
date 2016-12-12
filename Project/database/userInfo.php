@@ -2,7 +2,10 @@
 include_once('my_database/user.php');
 include_once('my_database/restaurant.php');
 
-$username = $_GET["username"];
+if (isset ($_GET["username"] ))
+    $username = trim(strip_tags($_GET["username"]));
+else
+    $username = NULL;
 
 $info = getUserInfo($username);
 

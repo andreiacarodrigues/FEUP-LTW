@@ -5,8 +5,15 @@ include_once('my_database/restaurant.php');
 include_once('my_database/user.php');
 include_once('my_database/photo.php');
 
-$val = $_POST['val'];
-$mode = $_POST['mode'];
+if (isset ($_POST["val"] ))
+    $val = trim(strip_tags($_POST["val"]));
+else
+    $val = NULL;
+
+if (isset ($_POST["mode"] ))
+    $mode = trim(strip_tags($_POST["mode"]));
+else
+    $mode = NULL;
 
 if($mode)   //restaurant
     $deleteId = getRestaurantsByName($val);

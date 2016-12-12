@@ -3,11 +3,18 @@
 include_once('my_database/restaurant.php');
 include_once('my_database/photo.php');
 
-$val = $_GET['val'];
-$id = $_GET['id'];
+if (isset ($_GET["val"] ))
+    $val = trim(strip_tags($_GET["val"]));
+else
+    $val = NULL;
+
+if (isset ($_GET["id"] ))
+    $id = trim(strip_tags($_GET["id"]));
+else
+    $id = NULL;
+
 
 $deleteId = getRestaurantMenu($val);
-
 $deleteId = $deleteId['menuId'];
 
 if($deleteId != 1)

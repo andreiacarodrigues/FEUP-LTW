@@ -3,7 +3,10 @@ include_once('my_database/restaurant.php');
 include_once('my_database/reviews.php');
 include_once('my_database/photo.php');
 
-$restaurant = $_GET["restaurant"];
+if (isset ($_GET["restaurant"] ))
+    $restaurant = trim(strip_tags($_GET["restaurant"]));
+else
+    $restaurant = NULL;
 
 $restaurantId = getRestaurantId($restaurant);
 

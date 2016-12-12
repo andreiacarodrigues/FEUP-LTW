@@ -1,7 +1,10 @@
 ﻿<?php
 include_once('my_database/restaurant.php');
 
-$name = $_GET["name"];
+if (isset ($_GET["name"] ))
+    $name = trim(strip_tags($_GET["name"]));
+else
+    $name = NULL;
 
 $restaurant = getRestaurantsByName($name);
 

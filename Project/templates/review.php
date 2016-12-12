@@ -1,7 +1,11 @@
 <?php
 $info = json_decode(stripslashes($_GET['info']));
-$owner = $_GET['owner'];
-$username = $_GET['username'];
+
+if ((isset ( $_GET ["owner"] )) && (isset ( $_GET ["username"] )))
+{
+    $owner = trim(strip_tags($_GET["owner"]));
+    $username = trim(strip_tags($_GET["username"]));
+}
 
 $review =
     "<article id=\"" . $info[0] . "\">

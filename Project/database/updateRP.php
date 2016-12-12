@@ -3,8 +3,15 @@
 
 include_once('my_database/restaurant.php');
 
-$val = $_GET['val'];
-$id = $_GET['id'];
+if (isset ($_GET["val"] ))
+    $val = trim(strip_tags($_GET["val"]));
+else
+    $val = NULL;
+
+if (isset ($_GET["id"] ))
+    $id = trim(strip_tags($_GET["id"]));
+else
+    $id = NULL;
 
 $restaurantId = getRestaurantId($val);
 $restaurantId = $restaurantId['restaurantId'];

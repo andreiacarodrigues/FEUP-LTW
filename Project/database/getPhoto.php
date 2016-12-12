@@ -1,7 +1,10 @@
 ﻿<?php
 include_once('my_database/photo.php');
 
-$id = $_GET["id"];
+if (isset ($_GET["id"] ))
+    $id = trim(strip_tags($_GET["id"]));
+else
+    $id = NULL;
 
 $info = getPhoto($id);
 

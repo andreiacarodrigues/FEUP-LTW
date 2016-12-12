@@ -4,7 +4,7 @@ if (isUserLoggedIn ())
 {
     //primeiro, decobrir o username
     if (isset ( $_GET ["username"] )) {
-        $username = $_GET ["username"];
+        $username = trim(strip_tags($_GET["username"]));
     }
     else if (isset ( $_SESSION ["userid"] )) {
         $username = $_SESSION ["userid"];
