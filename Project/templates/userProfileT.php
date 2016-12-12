@@ -244,18 +244,6 @@ else {
         });
     }
 
-	function openTab(tab)
-	{
-		for(var i=0; i < tabList.length; i++)
-		{
-			if(tabList[i] != tab)
-				document.getElementById(tabList[i]).style.display = "none";
-		}
-		document.getElementById(tab).style.display = "inline";
-		
-		
-	}	
-	
 </script>
 
 <section id="sectionBody">
