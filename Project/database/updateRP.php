@@ -11,7 +11,7 @@
         $val = trim(strip_tags($_GET["val"]));
     }
     else
-        die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+        die('ERROR');
 	
 	$stmt = $db->prepare("SELECT restaurantId from Restaurant WHERE name = ?");
 	$stmt->execute(array($val));

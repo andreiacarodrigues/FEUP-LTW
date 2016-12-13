@@ -15,7 +15,7 @@ if (isset($_GET["owner"]) && isset($_GET["name"]) && isset($_GET["description"])
 }
 else
 {
-    die(header('Location: ' . $_SERVER["HTTP_REFERER"] ));
+    die('ERROR');
 }
 
 $info = getRestaurantId($name);

@@ -10,7 +10,7 @@ if (isset ($_POST["val"] ) && isset ($_POST["restaurant"] ))
 }
 else
 {
-    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+    die('ERROR');
 }
 
 $deleteId = getPhotoByFilename($val);

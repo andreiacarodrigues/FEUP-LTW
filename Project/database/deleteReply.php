@@ -14,5 +14,7 @@ if ((isset ($_GET["id"] )) && (isset ($_GET["username"] )) && (isset ($_GET["tex
 	echo "DONE";
 	exit;
 }
+else
+	die('ERROR');
 
 ?>

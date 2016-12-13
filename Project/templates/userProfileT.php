@@ -33,8 +33,13 @@ else {
                 var info = new String(this.responseText);
                 info = info.trim();
 
-                if(info == "INVALID")
+                if(info == "INVALID"){
                     return false;
+                }
+                else if(info == "ERROR") {
+                    alert("ERROR : some variables are not defined");
+                    return false;
+                }
                 else
                     info = eval("(" + this.responseText + ")");
 
@@ -68,7 +73,11 @@ else {
                         var info = new String(data);
                         info = info.trim();
 
-                        if(info == "YES")
+                        if(info == "ERROR") {
+                            alert("ERROR : some variables are not defined");
+                            return false;
+                        }
+                        else if(info == "YES")
 						{
 							 document.getElementById("addFriend").style.display = "none";
 							 document.getElementById("deleteFriend").style.display ="inline";
@@ -103,8 +112,13 @@ else {
                 var info = new String(this.responseText);
                 info = info.trim();
 
-                if(info == "INVALID")
+                if(info == "INVALID"){
                     return false;
+                }
+                else if(info == "ERROR") {
+                    alert("ERROR : some variables are not defined");
+                    return false;
+                }
                 else
                     info = eval("(" + this.responseText + ")");
 
@@ -144,8 +158,13 @@ else {
                 var info = new String(this.responseText);
                 info = info.trim();
 
-                if(info == "INVALID")
+                if(info == "INVALID"){
                     return false;
+                }
+                else if(info == "ERROR") {
+                    alert("ERROR : some variables are not defined");
+                    return false;
+                }
                 else
                     info = eval("(" + this.responseText + ")");
 
@@ -200,7 +219,11 @@ else {
                 var info = new String(this.responseText);
                 info = info.trim();
 
-                if(info == "INVALID"){
+                if(info == "ERROR") {
+                    alert("ERROR : some variables are not defined");
+                    return false;
+                }
+                else if(info == "INVALID"){
                     $('#manageRestaurants').append ('<br><a href="addRestaurant.php">Add Restaurant');
                     return false;
                 }
@@ -244,7 +267,11 @@ else {
             var info = new String(data);
             info = info.trim();
 
-            if(info == "NO FRIENDS")
+            if(info == "ERROR") {
+                alert("ERROR : some variables are not defined");
+                return false;
+            }
+            else if(info == "NO FRIENDS")
                 return false;
             else
             {

@@ -12,7 +12,7 @@ if (isset ($_GET["val"] ) && isset ($_GET["id"] ) && isset ($_GET["method"] ))
     $mode = trim(strip_tags($_GET["method"]));
 }
 else
-    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+    die('ERROR');
 
 
 if(($val != NULL) && ($id != NULL) && ($mode != NULL))

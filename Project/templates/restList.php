@@ -38,6 +38,10 @@ else
                 restaurants = restaurants.trim();
                 console.log(data);
 
+                if(restaurants == "ERROR") {
+                    alert("ERROR : some variables are not defined");
+                    return false;
+                }
                 if(restaurants == "No restaurants match the search.")
                     console.log("Error updating restaurant information."); // meter span com isto
                 else
@@ -65,7 +69,11 @@ else
             var info = new String(data);
             info = info.trim();
 
-            if(info == 'INVALID')
+            if(info == "ERROR") {
+                alert("ERROR : some variables are not defined");
+                return false;
+            }
+            else if(info == 'INVALID')
                 console.log("Error getting restaurant information."); // meter span com isto
             else
             {

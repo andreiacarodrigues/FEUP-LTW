@@ -46,6 +46,11 @@ else{
                 var newResponseText = new String(this.responseText);
                 var newResponseText = newResponseText.trim();
 
+                if(newResponseText == "ERROR") {
+                    alert("ERROR : some variables are not defined");
+                    return false;
+                }
+
                 _("passstatus").innerHTML = newResponseText;
             }
         };
@@ -69,7 +74,11 @@ else{
                 var info = new String(this.responseText);
                 info = info.trim();
 
-                if(info == "INVALID")
+                if(info == "ERROR") {
+                    alert("ERROR : some variables are not defined");
+                    return false;
+                }
+                else if(info == "INVALID")
                     return false;
                 else
                     info = eval("(" + this.responseText + ")");
@@ -131,6 +140,11 @@ else{
                     var info = new String(data);
                     info = info.trim();
 
+                    if(info == "ERROR") {
+                        alert("ERROR : some variables are not defined");
+                        return false;
+                    }
+
                     console.log(data);
                     if(info == "0")
                         console.log("Error updating username information.");
@@ -170,6 +184,11 @@ else{
                     $.get('./database/updateUP.php', {username: username, password: newPass}, function (data) {
                             var info = new String(data);
                             info = info.trim();
+
+                            if(info == "ERROR") {
+                                alert("ERROR : some variables are not defined");
+                                return false;
+                            }
 
                             console.log(data);
                             if (info == "0")

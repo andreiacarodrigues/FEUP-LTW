@@ -48,5 +48,5 @@ if (isset ($_GET["username"] ))
 		echo 'INVALID';
 }
 else
-    echo 'INVALID';
+    die('ERROR');
 ?>

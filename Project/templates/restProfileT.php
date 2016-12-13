@@ -40,7 +40,12 @@ else
             if (this.readyState == 4 && this.status == 200) {
 				var info = new String(this.responseText);
 				info = info.trim();
-			
+
+                if(info == "ERROR") {
+                    alert("ERROR : some variables are not defined");
+                    return false;
+                }
+
 				if(info == "INVALID")
 					return false;
 				else
@@ -122,7 +127,11 @@ else
             if (this.readyState == 4 && this.status == 200) {
 				var info = new String(this.responseText);
 				info = info.trim();
-				
+
+                if(info == "ERROR") {
+                    alert("ERROR : some variables are not defined");
+                    return false;
+                }
 				if(info == "INVALID")
 					return false;
 				else
@@ -155,7 +164,11 @@ else
 		{
 			var info = new String(data);
             info = info.trim();
-			
+
+            if(info == "ERROR") {
+                alert("ERROR : some variables are not defined");
+                return false;
+            }
 			if(info != "INVALID")
 			{
 				var photos = eval("(" + info + ")"); 
@@ -193,8 +206,14 @@ else
 		
 			xmlhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
-					if(this.responseText != null)
-						$('#newReview' + i ).val('');
+                    if(this.responseText != null) {
+                        if (this.responseText == "ERROR") {
+                            alert("ERROR : some variables are not defined");
+                            return false;
+                        }
+                        else
+                            $('#newReview' + i).val('');
+                    }
 				}
 			};
 			
@@ -255,6 +274,10 @@ else
 		$.get('./database/deleteReview.php', {id : id}, function(data) {
 			var info = new String(data);
             info = info.trim();
+            if (info == "ERROR") {
+                alert("ERROR : some variables are not defined");
+                return false;
+            }
 			if(info == "DONE")
 				window.location = "restaurantProfile.php?restaurant=" + restaurant;
 		});

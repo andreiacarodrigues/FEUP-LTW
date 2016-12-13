@@ -26,6 +26,10 @@ if (isset ( $_SESSION ["userid"] ))
                 var newResponseText = new String(this.responseText);
                 var newResponseText = newResponseText.trim();
 
+                if(newResponseText == "ERROR") {
+                    alert("ERROR : some variables are not defined");
+                    return false;
+                }
                 if(newResponseText == "VALID")
                     window.location = 'index.php';
                 else

@@ -7,7 +7,7 @@ if (isset ($_GET["search"] ) && isset ($_GET["mode"] ))
     $mode = trim(strip_tags($_GET["mode"]));
 }
 else
-    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+    die('ERROR');
 
 
 $result = getAllRestaurants();

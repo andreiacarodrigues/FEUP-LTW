@@ -12,7 +12,7 @@ if (isset($_GET["username"]) && isset($_GET["name"]) && isset($_GET["email"]) &&
 }
 else
 {
-    die(header('Location: ' . $_SERVER["HTTP_REFERER"] ));
+    die('ERROR');
 }
 
 $options = ['cost' => 12];

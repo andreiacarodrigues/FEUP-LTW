@@ -12,7 +12,7 @@ if (isset($_GET["name"]) && isset($_GET["email"]) && isset($_GET["birthdate"]) &
     $previousUsername = trim(strip_tags($_GET["previousUsername"]));
 }
 else
-    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+    die('ERROR');
 
 
 if($username != $previousUsername)

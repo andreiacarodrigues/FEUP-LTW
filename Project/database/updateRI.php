@@ -16,7 +16,7 @@ if (isset($_GET["id"]) && isset($_GET["name"]) && isset($_GET["description"]) &&
 
 }
 else
-    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+    die('ERROR');
 
 updateRestaurant($name, $description, $location, $contact, $avgPrice, $schedule, $observation, $postCode, $id);
 ?>

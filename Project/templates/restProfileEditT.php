@@ -98,7 +98,11 @@ else
                         var info = new String(data);
                         info = info.trim();
 
-                        if(info != "INVALID")
+                        if(info == "ERROR") {
+                            alert("ERROR : some variables are not defined");
+                            return false;
+                        }
+                        else if(info != "INVALID")
                         {
                             var photos = eval("(" + data + ")");
                             for(var i = 0; i < photos.length; i++)
@@ -168,6 +172,10 @@ else
                     var info = new String(data);
                     info = info.trim();
 
+                    if(info == "ERROR") {
+                        alert("ERROR : some variables are not defined");
+                        return false;
+                    }
                     if (info == "0")
                         console.log("Error updating restaurant information.");
                     else

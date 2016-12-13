@@ -13,7 +13,7 @@ if (isset($_POST["restaurant"]) && isset($_POST["username"]) && isset($_POST["te
 }
 else
 {
-    die(header('Location: ' . $_SERVER["HTTP_REFERER"] ));
+    die('ERROR');
 }
 
 if($rating == -1)

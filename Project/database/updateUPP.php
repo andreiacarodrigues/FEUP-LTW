@@ -11,7 +11,7 @@ if(isset($_GET["val"]) && isset($_GET["id"]))
     $id = trim(strip_tags($_GET["id"]));
 }
 else
-    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+    die('ERROR');
 
 
 $stmt = $db->prepare("SELECT photoId from User WHERE username = ?");

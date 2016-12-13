@@ -12,7 +12,7 @@ if (isset ($_POST["val"] ) && isset ($_POST["method"] ))
 }
 else
 {
-    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+    die('ERROR');
 }
 
 if($mode == 2)   //restaurant

@@ -11,5 +11,7 @@ if (isset ($_GET["id"] ))
 	echo "DONE";
 	exit;
 }
+else
+	die('ERROR');
 
 ?>

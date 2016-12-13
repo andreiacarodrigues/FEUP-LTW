@@ -4,7 +4,7 @@ include_once('my_database/restaurant.php');
 if (isset ($_GET["name"] ))
     $name = trim(strip_tags($_GET["name"]));
 else
-    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+    die('ERROR');
 
 $restaurant = getRestaurantsByName($name);
 

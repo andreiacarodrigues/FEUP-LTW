@@ -7,7 +7,7 @@ if (isset ($_GET["username"] ) && isset ($_GET["password"] ))
     $password = trim(strip_tags($_GET["password"]));
 }
 else
-    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+    die('ERROR');
 
 
 $user = getUserPassword($username);

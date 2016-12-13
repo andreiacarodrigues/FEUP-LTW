@@ -62,6 +62,11 @@ else
                 {
                     var info = new String(data);
                     info = info.trim();
+
+                    if(info == "ERROR") {
+                        alert("ERROR : some variables are not defined");
+                        return false;
+                    }
                     if(info == "INVALID")
                         console.log("Restaurant with that name already exists.");
                     if(info == "0")
@@ -94,6 +99,12 @@ else
         {
             var info = new String(data);
             info = info.trim();
+
+            if(info == "ERROR") {
+                alert("ERROR : some variables are not defined");
+                return false;
+            }
+
             _("n_span").innerHTML = info;
         });
     }

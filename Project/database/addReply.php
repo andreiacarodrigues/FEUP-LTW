@@ -9,7 +9,7 @@ if (isset ($_GET["id"] ) && isset ($_GET["username"] ) && isset ($_GET["text"] )
 }
 else
 {
-    die(header('Location: ' . $_SERVER["HTTP_REFERER"] ));
+    die('ERROR');
 }
 
 addReviewReply($id, $username, $text);

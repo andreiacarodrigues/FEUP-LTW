@@ -4,7 +4,7 @@ include_once('my_database/photo.php');
 if (isset($_GET["id"]))
     $id = trim(strip_tags($_GET["id"]));
 else
-    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+    die('ERROR');
 
 $info = getPhoto($id);
 
