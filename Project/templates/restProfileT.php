@@ -255,13 +255,13 @@ else
 <section id="res" >
 	 <section id="menuProfile" >
 		<ul>
-		<a href="#informations" onclick="openTab('informations')">Informations</a>
+		<a href="#" onclick="openTab('informations')">Informations</a>
 		<br>
-		<a href="#menu" onclick="openTab('menu')">Menu</a>
+		<a href="#" onclick="openTab('menu')">Menu</a>
 		<br>
-		<a href="#reviews" onclick="openTab('reviews')">Reviews</a>
+		<a href="#" onclick="openTab('reviews')">Reviews</a>
 		<br>
-		<a href="#photos" onclick="openTab('photos')">Photos</a>
+		<a href="#" onclick="openTab('photos')">Photos</a>
 		</ul>
 	</section>
 

@@ -256,21 +256,23 @@ else {
         });
     }
 
+	
+
 </script>
 
 <section id="sectionBody">
 	<section id="profile">
 		 <section id="menuProfile" >
 			<ul>
-				<a href="#main" onclick="openTab('main')">Informations</a>
+				<a href="#" onclick="openTab('main')">Informations</a>
 				<br>
-				<a href="#history" onclick="openTab('history')">History</a>
+				<a href="#" onclick="openTab('history')">History</a>
 				<br>
-				<a href="#visitedPlaces" onclick="openTab('visitedPlaces')">Visited Restaurants</a>
+				<a href="#" onclick="openTab('visitedPlaces')">Visited Restaurants</a>
 				<br>
-				<a href="#friends" onclick="openTab('friends')">Following</a>
+				<a href="#" onclick="openTab('friends')">Following</a>
 				<br>
-				<a class="justForOwner" href="#manageRestaurants" onclick="openTab('manageRestaurants')">Manage Restaurants</a>
+				<a class="justForOwner" href="#" onclick="openTab('manageRestaurants')">Manage Restaurants</a>
 			</ul>
 		</section>
 

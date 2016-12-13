@@ -134,6 +134,9 @@ function openTab(tab)
 	{
 		if(tabList[i] != tab)
 			document.getElementById(tabList[i]).style.display = "none";
+		
+		console.log(document.getElementById(tabList[i]));
+		console.log(tabList[i]);
 	}
 	document.getElementById(tab).style.display = "inline";	
 }	
