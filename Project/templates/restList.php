@@ -93,7 +93,7 @@ else
 
                 $('#result' + i).append('<ul>\n<li><label for="rating">Rating: <span id="rating">' +rating+ ' &#11088</span></label></li>' +
                     '<li><label for="loca">Location: <span id="loca">' +location+ '</span></label></li>' +
-                    '<li><label for="avgPrice">Average Price/Person: <span id="avgPrice">' +avgPrice+ '</span></label></li>' +
+                    '<li><label for="avgPrice">Average Price/Person: <span id="avgPrice">' +avgPrice+ ' euros </span></label></li>' +
                     '<li><label for="schedule">Schedule: <span id="schedule">' +schedule+ '</span></label></li>\n</ul>');
                 $('#list').append('</div>');
             }
