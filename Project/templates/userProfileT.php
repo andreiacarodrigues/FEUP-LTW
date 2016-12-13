@@ -69,9 +69,19 @@ else {
                         info = info.trim();
 
                         if(info == "YES")
-                            document.getElementById("addFriend").style.display = "none";
+						{
+							 document.getElementById("addFriend").style.display = "none";
+							 document.getElementById("deleteFriend").style.display ="inline";
+							 console.log("entrei aqui1");
+						}
+                           
                         else
-                            document.getElementById("deleteFriend").style.display = "none";
+						{
+							 document.getElementById("deleteFriend").style.display = "none";
+							 document.getElementById("addFriend").style.display = "inline";
+							 console.log("entrei aqui2");
+						}
+                           
 
                     });
                 }
@@ -272,10 +282,11 @@ else {
 			<li><label for="name">Email: <span id="email"></span></label></li>
 			<li><label for="name">Birthday: <span id="birthdate"></span></label></li>
 			<li><label for="name">Post-Code: <span id="postCode"></span></label></li>
-            <li id="map"/>
+            <div id="map"/></div>
             <div id="addFriend"></div>
             <div id="deleteFriend"></div>
             <div id="edit"></div>
+			
         </ul>
         <?php
         if (isUserLoggedIn ()){   ?>
@@ -285,6 +296,9 @@ else {
 
                 if(username != sessionUsername)
                 {
+					
+					console.log(username);
+					console.log(sessionUsername);
                     _("addFriend").innerHTML = "<a href=\"./database/addFriend.php?username="+username+"&sessionUsername=" + sessionUsername +"\">Follow</a><br>";
                     _("deleteFriend").innerHTML = "<a href=\"./database/deleteFriend.php?username="+username+"&sessionUsername=" + sessionUsername +"\">Unfollow</a><br>";
                 }

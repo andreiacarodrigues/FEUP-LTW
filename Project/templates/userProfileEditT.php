@@ -111,8 +111,9 @@ else{
         var b = getVar("birthdate");
         var status = _("status");
 
+		console.log(_("unamestatus").innerHTML == "");
         //regex validations
-        if(!is_username(u) || _("unamestatus").innerHTML != "Username accepted!")
+        if(!is_username(u) || !((_("unamestatus").innerHTML == "Username accepted!") || (_("unamestatus").innerHTML == "")))
             status.innerHTML = "Invalid username.";
         else if(!is_name(n))
             status.innerHTML = "Invalid name.";

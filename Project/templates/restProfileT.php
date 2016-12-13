@@ -277,14 +277,12 @@ else
                     <li><label for="description">Description: <span id="description"></span></label></li>
                     <li><label for="location">Location: <span id="location"></span></label></li>
                     <li><label for="postCode">PostCode: <span id="postCode"></span></label></li>
-                    <li id="map"/>
+                    <div id="map"></div>
                     <li><label for="schedule">Schedule: <span id="schedule"></span></label></li>
                     <li><label for="avgPrice">Average Price Per Person: <span id="avgPrice"></span></label></li>
                     <li><label for="contact">Contact: <span id="contact"></span></label></li>
                     <li><label for="observations">Observations: <span id="observations"></span>
-					<div class="popup" onclick="observationsPopUpAnimation()"> ?
-                        <span class="popuptext" id="myPopup">You can allow your customers to know if your restaurant has: wi-fi, takeAway, live music, vegan menu options, wheelchair access, bar, etc.</span>
-                    </div><br></label></li>
+					</label></li>
                     <li><label for="owner">Owner: <span id="owner"></span></label></li>
                 </ul>
             </div>
