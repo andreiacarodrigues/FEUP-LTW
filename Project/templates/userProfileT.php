@@ -293,12 +293,14 @@ else {
 			<li><label for="name">Email: <span id="email"></span></label></li>
 			<li><label for="name">Birthday: <span id="birthdate"></span></label></li>
 			<li><label for="name">Post-Code: <span id="postCode"></span></label></li>
-            <div id="map"/></div>
+           
             <div id="addFriend"></div>
             <div id="deleteFriend"></div>
             <div id="edit"></div>
-			
         </ul>
+		<div id="map"/></div>
+		
+		 
         <?php
         if (isUserLoggedIn ()){   ?>
             <script language="JavaScript">
