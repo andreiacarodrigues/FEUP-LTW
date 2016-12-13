@@ -15,9 +15,6 @@ if (isset ($_POST["method"] ))
 else
     $mode = NULL;
 
-if ($_SESSION['csrf_token'] !== $_POST['csrf_token'])
-    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
-
 if($mode == 2)   //restaurant
     $deleteId = getRestaurantsByName($val);
 else  if($mode == 1)  //user

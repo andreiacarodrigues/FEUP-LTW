@@ -127,7 +127,6 @@ else
 <section id="restaurantPhoto">
     <form id="updateRestaurantPicture" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="method" value="2"/>
-        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
         <input id="val" type="hidden" name="val" value="NULL"/>
         <input type="file" name="image"/>
         <input type="submit" value="Upload Representative Restaurant Photo">
@@ -138,7 +137,6 @@ else
     <div>
         <form id="updateRestaurantMenu" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="method" value="5"/>
-            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
             <input id="val" type="hidden" name="val" value="NULL"/>
             <input type="file" name="image"/>
             <input type="submit" value="Upload Menu Photo">
@@ -150,7 +148,6 @@ else
     <div>
         <form id="updateRestaurantPhotos" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="method" value="4"/>
-            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
             <input id="val" type="hidden" name="val" value="NULL"/>
             <input type="file" name="image"/>
             <input type="submit" value="Upload Restaurant Photo">

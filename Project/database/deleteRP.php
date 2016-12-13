@@ -13,9 +13,6 @@ if (isset ($_POST["restaurant"] ))
 else
     $res = NULL;
 
-if ($_SESSION['csrf_token'] !== $_POST['csrf_token'])
-    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
-
 $deleteId = getPhotoByFilename($val);
 $deleteId = $deleteId['photoId'];
 

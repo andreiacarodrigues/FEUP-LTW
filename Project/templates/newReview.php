@@ -1,8 +1,6 @@
 <?php
-$token = $_SESSION['csrf_token'];
 $newReview ="<div class=\"stars\">
 			<form id=\"newReview\" action=\"./database/addReview.php\" method=\"post\" enctype=\"multipart/form-data\">
-			    <input type=\"hidden\" name=\"csrf_token\" value= " . $token . "/>
 				<input id=\"nr_username\" type=\"hidden\" name=\"username\" value=\"\"/>
 				<input id=\"nr_restaurant\" type=\"hidden\" name=\"restaurant\" value=\"\"/>
 				<input id=\"nr_text\" type=\"hidden\" name=\"text\" value=\"\"/>

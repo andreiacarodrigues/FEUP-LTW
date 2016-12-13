@@ -28,9 +28,6 @@ if (isset ($_POST["date"] ))
 else
     $date = NULL;
 
-if ($_SESSION['csrf_token'] !== $_POST['csrf_token'])
-    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
-
 if($rating == -1)
     die(header('Location: ../restaurantProfile.php?restaurant=' . $restaurant . '&errorReview="1"#newReview'));
 else
