@@ -52,7 +52,7 @@ function addReview($username,$restaurantId,$rating,$text,$date)
 function deleteReview($id)
 {
     global $db;
-    $stmt = $db->prepare("DELETE FROM Review WHERE reviewId = ?;");
+    $stmt = $db->prepare("DELETE FROM Review WHERE reviewId = ?");
     return $stmt->execute(array($id));
 }
 

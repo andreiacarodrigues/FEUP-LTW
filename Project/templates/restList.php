@@ -36,14 +36,13 @@ else
             {
                 var restaurants = new String(data);
                 restaurants = restaurants.trim();
-                console.log(data);
 
                 if(restaurants == "ERROR") {
                     alert("ERROR : some variables are not defined");
                     return false;
                 }
                 if(restaurants == "No restaurants match the search.")
-                    console.log("Error updating restaurant information."); // meter span com isto
+                     stats.innerHTML = "No restaurants match the search.";
                 else
                 {
                     restaurants = eval("(" + data + ")");
@@ -100,9 +99,9 @@ else
                 var schedule = info[5];
 
 
-                $('#result' + i).append('<ul>\n<li><label for="rating">Rating: <span id="rating">' +rating+ '</span></label></li>' +
+                $('#result' + i).append('<ul>\n<li><label for="rating">Rating: <span id="rating">' +rating+ ' &#11088</span></label></li>' +
                     '<li><label for="loca">Location: <span id="loca">' +location+ '</span></label></li>' +
-                    '<li><label for="avgPrice">Average Price/Person: <span id="avgPrice">' +avgPrice+ '</span></label></li>' +
+                    '<li><label for="avgPrice">Average Price/Person: <span id="avgPrice">' +avgPrice+ ' euros </span></label></li>' +
                     '<li><label for="schedule">Schedule: <span id="schedule">' +schedule+ '</span></label></li>\n</ul>');
                 $('#list').append('</div>');
             }

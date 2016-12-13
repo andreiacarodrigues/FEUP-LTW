@@ -1,5 +1,8 @@
 <?php
 include_once('connection.php');
+include_once('my_database/photo.php');
+include_once('my_database/user.php');
+include_once('my_database/reviews.php');
 
 function addRestaurant($name,$description,$location,$postCode,$schedule,$avgPrice,$contact,$observation,$owner)
 {
@@ -7,6 +10,37 @@ function addRestaurant($name,$description,$location,$postCode,$schedule,$avgPric
     $stmt = $db->prepare("INSERT INTO Restaurant VALUES (null, ?, ?, ?, ?, ? ,?, ?, ?, null, null, 0, 0, ?)");
     return $stmt->execute(array($name, $description, $location, $postCode,$schedule, $avgPrice, $contact, $observation, $owner));
 }
+
+function deleteRestaurant($name)
+{
+    global $db;
+	
+	$id =getRestaurantId($name);
+	$idMenu = getRestaurantMenu($name);
+	$idPhotos = getRestaurantPhotos($name);
+	$reviews = getReviewsByRestaurant($id['restaurantId']);
+	
+    $stmt = $db->prepare("DELETE FROM Restaurant WHERE name = ?");
+	$result = $stmt->execute(array($name));
+	
+	if($result)
+	{
+		foreach ($idPhotos as $idPhoto)
+			$result = deletePhoto($idPhoto['photoId']);
+	}
+	
+	if($result)
+		$result = deletePhoto($idMenu['menuId']);
+	
+	if($result)
+	{
+	foreach ($reviews as $review)
+		$result = deleteReview($review['reviewId']);
+	}
+	
+	return $result;
+}
+
 
 function getRestaurantId($name)
 {
@@ -27,7 +61,7 @@ function getRestaurantName($restaurantId)
 function getAllRestaurants()
 {
     global $db;
-    $stmt = $db->prepare("SELECT restaurantId, name, postCode FROM Restaurant");
+    $stmt = $db->prepare("SELECT restaurantId, name, postCode FROM Restaurant ORDER BY rating_total");
     $stmt->execute();
     return $stmt->fetchAll();
 }
@@ -35,7 +69,7 @@ function getAllRestaurants()
 function getRestaurantsByOwner($username)
 {
     global $db;
-    $stmt = $db->prepare('SELECT name, rating_sum, location, photoId FROM Restaurant WHERE owner = ?');
+    $stmt = $db->prepare('SELECT name, rating_sum, rating_total, location, photoId FROM Restaurant WHERE owner = ?');
     $stmt->execute(array($username));
     return $stmt->fetchAll();
 }

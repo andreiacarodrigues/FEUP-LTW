@@ -235,11 +235,18 @@ else {
 
                 for (var i = 0; i < info.length; i++)
                 {
-
+					var rating_sum = info[i][1];
+					var rating_total = info[i][4];
+				
+					if((rating_sum == 0) || (rating_total == 0))
+						var rating = 0;
+					else
+						var rating = Math.round((parseFloat(rating_sum) / parseFloat(rating_total)) * 100) / 100;
+					
                     var name = info[i][0];
                     $('#manageRestaurants').append('<article>\n<ul>' +
                         '\n<a href="./restaurantProfile.php?restaurant='+ name +'">'+ name+'</a><br>' +
-                        '\n<li><label for id="my_rating">Rating: <span id="my_rating">' + info[i][1] + '</span></label></li>' +
+                        '\n<li><label for id="my_rating">Rating: <span id="my_rating">' + rating + ' &#11088</span></label></li>' +
                         '\n<li><label for id="my_local">Location: <span id="my_local">' + info[i][2] + '</span></label></li>\n');
 
                     var photo = info[i][3];
@@ -313,12 +320,14 @@ else {
 			<li><label for="name">Email: <span id="email"></span></label></li>
 			<li><label for="name">Birthday: <span id="birthdate"></span></label></li>
 			<li><label for="name">Post-Code: <span id="postCode"></span></label></li>
-            <div id="map"/></div>
+           
             <div id="addFriend"></div>
             <div id="deleteFriend"></div>
             <div id="edit"></div>
-			
         </ul>
+		<div id="map"/></div>
+		
+		 
         <?php
         if (isUserLoggedIn ()){   ?>
             <script language="JavaScript">

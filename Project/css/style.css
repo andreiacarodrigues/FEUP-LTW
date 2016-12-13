@@ -6,6 +6,9 @@
     background-color: grey;
 }
 
+#main #map{
+    margin-left:2em;
+}
 /* ---------------------------------------------------- Header ------------------------------------------------------ */
 
 header{
@@ -573,6 +576,25 @@ h2{
     text-decoration: none;
 }
 
+.result a{
+    font:0.9em 'Montserrat Alternates';
+    border: none;
+    padding: 8px 15px 8px 15px;
+    background: #12a3cd;
+    color: #fff;
+    box-shadow: 1px 1px 4px #DADADA;
+    -moz-box-shadow: 1px 1px 4px #DADADA;
+    -webkit-box-shadow: 1px 1px 4px #DADADA;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    width: 10em;
+}
+
 /* --------- Manage Restaurants/Visited Places -------- */
 
 #profile #manageRestaurants a,
@@ -777,7 +799,27 @@ article img{
     padding: 5px;
     margin-right: 1em;
 }
+.result img{
+    border: 1px solid #12a3cd;
+    border-radius: 4px;
+    padding: 5px;
+    margin-right: 1em;
+}
+.result img, .result a{
+   margin-left:2em;
+}
 
+.result{
+    margin-bottom:2em;
+}
+
+.searchResults p{
+    color: #167ebc;
+    font:1.2em 'Montserrat Alternates';
+    text-decoration: none;
+    margin-left:2em;
+    margin-bottom:2em;
+}
 
 #res #informations #name{
     margin-left:1.4em;
@@ -863,6 +905,12 @@ article img{
 
 #addRes{
     margin-left:2em;
+}
+
+
+.result li{
+    font:1em 'Montserrat Alternates';
+    list-style: none;
 }
 /* ---------------------------------------------- Pop up container -------------------------------------------------- */
 .popup {
