@@ -5,6 +5,7 @@ include_once ('includes/autentication.php');
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtlcKOkLQmLMaOgjwYcKfpnv1k0HejVow&callback=initMap" defer></script>
 	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <link rel="stylesheet" href="css/stars.css">
 	<link rel="stylesheet" href="css/style.css">
@@ -15,7 +16,7 @@ include_once ('includes/autentication.php');
     <header>
         <h1><a href="./index.php">My WebPage</a></h1>
         <?php
-		
+
             if (isUserLoggedIn()) {
         ?>
         <div class="nav">
@@ -35,7 +36,7 @@ include_once ('includes/autentication.php');
                 <li><a href="./signUp.php">SignUp</a></li>
             </ul>
         </div>
-       
+
         <?php
         }
         ?>

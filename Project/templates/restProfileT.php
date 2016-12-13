@@ -53,6 +53,8 @@ else
                 _("schedule").innerHTML = info[5];
 				_("observations").innerHTML = info[6];
 				_("postCode").innerHTML = info[12];
+
+				initMap(info[12]);
 				
 				var menuId = info[7];
 				var photoId = info[8];
@@ -275,6 +277,7 @@ else
                     <li><label for="description">Description: <span id="description"></span></label></li>
                     <li><label for="location">Location: <span id="location"></span></label></li>
                     <li><label for="postCode">PostCode: <span id="postCode"></span></label></li>
+                    <li id="map"/>
                     <li><label for="schedule">Schedule: <span id="schedule"></span></label></li>
                     <li><label for="avgPrice">Average Price Per Person: <span id="avgPrice"></span></label></li>
                     <li><label for="contact">Contact: <span id="contact"></span></label></li>

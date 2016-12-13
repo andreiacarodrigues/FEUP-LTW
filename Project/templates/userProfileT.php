@@ -17,11 +17,11 @@ else {
     var sessionUsername = <?php echo json_encode($_SESSION ["userid"]) ?>;
 
 	var tabList = ['main', 'friends', 'manageRestaurants', 'visitedPlaces', 'history'];
-	
+
     function getInfo(){
-		
+
 		 openTab('main');
-		
+
         if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
         } else {
@@ -43,6 +43,8 @@ else {
                 _("email").innerHTML = info[1];
                 _("birthdate").innerHTML = info[2];
                 _("postCode").innerHTML = info[3];
+
+                initMap(info[3]);
 
                 var photoId = info[4];
                 if(photoId != null)
@@ -198,7 +200,7 @@ else {
 
                 for (var i = 0; i < info.length; i++)
                 {
-	
+
                     var name = info[i][0];
                     $('#manageRestaurants').append('<article>\n<ul>' +
                         '\n<a href="./restaurantProfile.php?restaurant='+ name +'">'+ name+'</a><br>' +
@@ -270,7 +272,7 @@ else {
 			<li><label for="name">Email: <span id="email"></span></label></li>
 			<li><label for="name">Birthday: <span id="birthdate"></span></label></li>
 			<li><label for="name">Post-Code: <span id="postCode"></span></label></li>
-         
+            <li id="map"/>
             <div id="addFriend"></div>
             <div id="deleteFriend"></div>
             <div id="edit"></div>
@@ -294,7 +296,7 @@ else {
             </script>
         <?php  }   ?>
     </section>
-	
+
     <section id="dashboard" >
         <ul>
             <li id="history"><h2>History</h2></li>  <!-- conjunto das reviews feitas pelo utilizador -->

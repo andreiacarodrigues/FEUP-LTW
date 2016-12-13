@@ -147,3 +147,70 @@ function openReply(index)
 	else
 		document.getElementById("reply"+ index).style.display = "none";		
 }
+
+function initMap(myadress)
+{
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({
+        'address': myadress
+    }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            var myOptions = {
+                zoom: 16,
+                center: results[0].geometry.location,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+
+            var map = new google.maps.Map(_("map"), myOptions);
+
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+        }
+    });
+}
+/*
+
+ //codigo para saber a localizacao atual
+
+ function initMap() {
+ // Create a map object and specify the DOM element for display.
+ var uluru = {lat: -25.363, lng: 131.044};
+ var map = new google.maps.Map(document.getElementById('map'), {
+ zoom: 12,
+ center: uluru
+ });
+ var marker = new google.maps.Marker({
+ position: uluru,
+ map: map
+ });
+ var infoWindow = new google.maps.InfoWindow({map: map});
+
+ // Try HTML5 geolocation.
+ if (navigator.geolocation) {
+ navigator.geolocation.getCurrentPosition(function(position) {
+ var pos = {
+ lat: position.coords.latitude,
+ lng: position.coords.longitude
+ };
+
+ infoWindow.setPosition(pos);
+ infoWindow.setContent('Location found.');
+ map.setCenter(pos);
+ }, function() {
+ handleLocationError(true, infoWindow, map.getCenter());
+ });
+ } else {
+ // Browser doesn't support Geolocation
+ handleLocationError(false, infoWindow, map.getCenter());
+ }
+ }
+
+ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+ infoWindow.setPosition(pos);
+ infoWindow.setContent(browserHasGeolocation ?
+ 'Error: The Geolocation service failed.' :
+ 'Error: Your browser doesn\'t support geolocation.');
+ }
+ */

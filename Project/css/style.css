@@ -1,5 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat+Alternates);
 
+#map {
+    width: 600px;
+    height: 300px;
+    background-color: grey;
+}
+
 /* ---------------------------------------------------- Header ------------------------------------------------------ */
 
 header{
@@ -644,7 +650,7 @@ article img{
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
-    from {opacity: 0;} 
+    from {opacity: 0;}
     to {opacity: 1;}
 }
 
