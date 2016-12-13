@@ -288,6 +288,8 @@ else
                     <li><label for="owner">Owner: <span id="owner"></span></label></li>
                 </ul>
             </div>
+			<section id="newReview">
+			</section>
         </li>
         
         <div id = "menu">
@@ -307,8 +309,6 @@ else
 
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"> <!-- para css das estrelas -->
 
-<section id="newReview">
-</section>
 </section>
 <script language="JavaScript">
 	$(document).ready(getInfo());

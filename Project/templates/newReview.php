@@ -19,15 +19,19 @@ $newReview ="<div class=\"stars\">
 					<label class=\"star star-1\" for=\"star-1\"></label>
 				</label><br>
 				<label>
-					Opinion:
+					Opinion: <br>
 					<textarea id=\"review\" name=\"review\" col=\"30\" rows=\"5\"></textarea>
 				</label>
+				<div id=\"submitReview\">
 				</br>
-				<label>
-					 Select image: <input type=\"file\" name=\"image\" id=\"reviewPic\">
-				</label> <br>
+				 <input type=\"file\" name=\"image\" id=\"reviewPic\" class=\"inputfile\" />
+				<label for=\"reviewPic\">Select Image</label>
+				 <br>
+				 <div id=\"buttonSubmitReview\">
 				<input type=\"submit\" onclick=\"submitReview()\" value=\"Submit Review\" > <!-- erro aqui -->
 				<br>
+				</div>
+				</div>
 			</form>
 		</div>
 		<span id=\"r_status\"></span>";

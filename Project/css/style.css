@@ -173,6 +173,12 @@ h2{
     font:1em 'Montserrat Alternates';
 }
 
+#newReview{
+
+    /*padding: 5px 12px 10px 20px;*/
+    font:1em 'Montserrat Alternates';
+}
+
 #resEdit label{
     max-width: 900px;
     /*padding: 5px 12px 10px 20px;*/
@@ -284,7 +290,7 @@ h2{
     outline: none;
 }
 
-.reply textarea
+.reply textarea, #newReview textarea
 {
     margin-top:0.7em;
     box-sizing: border-box;
@@ -346,7 +352,8 @@ h2{
 #resEdit input[type=submit],
 #resEdit input[type=button],
 #addRes input[type=submit],
-#addRes input[type=button]{
+#addRes input[type=button],
+#newReview input[type=submit]{
     font:0.9em 'Montserrat Alternates';
     border: none;
     padding: 8px 15px 8px 15px;
@@ -358,6 +365,14 @@ h2{
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
+}
+
+#buttonSubmitReview{
+    margin-top:0.5em;
+}
+
+#newReview{
+    margin-left:1.5em;
 }
 
 .inputfile + label{
