@@ -21,13 +21,16 @@ function deletePhoto($deleteId)
 {
     global $db;
 	
-	unlink("../../css/images/$deleteId.jpg");
-    unlink("../../css/images_small/$deleteId.jpg");
-    unlink("../../css/images_medium/$deleteId.jpg");
-	
     $stmt = $db->prepare("DELETE FROM Photo WHERE photoId = ?");
-    return $stmt->execute(array($deleteId));
-
+    $result = $stmt->execute(array($deleteId));
+	
+	if($result)
+	{
+		unlink("../../css/images/$deleteId.jpg");
+		unlink("../../css/images_small/$deleteId.jpg");
+		unlink("../../css/images_medium/$deleteId.jpg");
+	}
+	return $result;
 }
 
 function addPhoto()

@@ -18,7 +18,7 @@ function deleteRestaurant($name)
 	$id =getRestaurantId($name);
 	$idMenu = getRestaurantMenu($name);
 	$idPhotos = getRestaurantPhotos($name);
-	$reviews = getReviewsByRestaurant($id);
+	$reviews = getReviewsByRestaurant($id['restaurantId']);
 	
     $stmt = $db->prepare("DELETE FROM Restaurant WHERE name = ?");
 	$result = $stmt->execute(array($name));
