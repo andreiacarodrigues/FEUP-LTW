@@ -72,14 +72,12 @@ else {
 						{
 							 document.getElementById("addFriend").style.display = "none";
 							 document.getElementById("deleteFriend").style.display ="inline";
-							 console.log("entrei aqui1");
 						}
                            
                         else
 						{
 							 document.getElementById("deleteFriend").style.display = "none";
 							 document.getElementById("addFriend").style.display = "inline";
-							 console.log("entrei aqui2");
 						}
                            
 
@@ -116,9 +114,13 @@ else {
                 for(var i = 0; i < info.length; i++)
                 {
                     var jsonString = JSON.stringify(info[i]);
-                    $.get('./templates/review.php',  {info: jsonString, owner: owner , username: username}, function(data)
+					
+					console.log(username);
+                    $.get('./templates/review.php',  {info: jsonString, username: username}, function(data)
                         {
-                            $('#history').append(data);
+							 var info = new String(data);
+							info = info.trim();
+                            $('#history').append(info);
                         }
                     );
                 }

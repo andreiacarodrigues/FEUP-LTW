@@ -24,6 +24,13 @@ function getReviewReply($review)
     return $stmt->fetchAll();
 }
 
+function deleteReviewReply($id, $username, $text)
+{
+    global $db;
+    $stmt = $db->prepare('DELETE FROM ReviewReply WHERE reviewId = ? AND username = ? AND text = ?');
+    return $stmt->execute(array($id, $username, $text));
+}
+
 //----------------------------------------
 
 function addReview($username,$restaurantId,$rating,$text,$date)
@@ -31,6 +38,13 @@ function addReview($username,$restaurantId,$rating,$text,$date)
     global $db;
     $stmt = $db->prepare("INSERT INTO Review VALUES (null, ?, ?, ?, ?, ?)");
     $stmt->execute(array($username, $restaurantId, $rating, $text, $date));
+}
+
+function deleteReview($id)
+{
+    global $db;
+    $stmt = $db->prepare("DELETE FROM Review WHERE reviewId = ?;");
+    return $stmt->execute(array($id));
 }
 
 function getFirstReviewId()

@@ -134,9 +134,6 @@ function openTab(tab)
 	{
 		if(tabList[i] != tab)
 			document.getElementById(tabList[i]).style.display = "none";
-		
-		console.log(document.getElementById(tabList[i]));
-		console.log(tabList[i]);
 	}
 	document.getElementById(tab).style.display = "inline";	
 }	
@@ -154,8 +151,6 @@ function openReply(index)
 function openChangePassword()
 {
     var style = document.getElementById("changePassword").style.display;
-
-    console.log(style);
 
     if(!(style == "") && !(style == "inline"))
         document.getElementById("changePassword").style.display = "inline";
@@ -185,6 +180,8 @@ function initMap(myadress)
         }
     });
 }
+
+
 /*
 
  //codigo para saber a localizacao atual

@@ -26,7 +26,8 @@ else
 	var username = <?php echo json_encode($username) ?>;
 	var restaurant = <?php echo json_encode($restaurant) ?>;
 	var errorReview = <?php echo json_encode($errorReview) ?>;
-    function getInfo(){
+   
+   function getInfo(){
 		
 		openTab('informations');
 		
@@ -78,7 +79,8 @@ else
                 _("rating").innerHTML = "Rating: " + rating +  ' ⭐'; 
              
 				var owner = info[11];
-			    _("owner").innerHTML = owner;
+			    //_("owner").innerHTML = owner;
+			   _("owner").innerHTML = '<a href="userProfile.php?username=' + owner +'">' + owner + '</a>';
 			   
 			    if(username == owner)
 			    	$('#options').html('<li><a href="restaurantProfileEdit.php?restaurant=' + restaurant +'">Edit</a></li>');
@@ -91,20 +93,22 @@ else
 				if(owner != username)
 				{
 					showNewReview();
-					//$('#newReview').append('<span id=\"r_status\"></span>');
+					
 					if(errorReview)
 					{
 						$('#r_status').html("You need at least to leave a rating if you want to submit a review.");
 					}
 				}
 				
-				console.log(document.getElementById("menu").innerHTML);
+				
+				
 			   return true;
             }
         };
         xmlhttp.open("GET","database/restaurantInfo.php?restaurant="+ restaurant,true);
         xmlhttp.send();
     }
+	
 	function getReviews(owner) 
 	{
 		 if (window.XMLHttpRequest) {
@@ -121,22 +125,20 @@ else
 					return false;
 				else
 					info = eval("(" + this.responseText + ")"); 
-					
-					
+
 				for(var i = 0; i < info.length; i++)
-				{		
-					console.log(info[i]);
-					
+				{					
 					var jsonString = JSON.stringify(info[i]);
-					//$.get('./templates/review.php',  {info: jsonString, owner: owner , username: username}, function(data)
-					$.get('./templates/review.php',  {info: jsonString}, function(data)
+					$.get('./templates/review.php',  {info: jsonString, username: username}, function(data)
 					{
 						var info = new String(data);
 						info = info.trim();
-				
+						
+						console.log(data);
 						$('#reviews').append(data);
 					}
 					);
+					console.log(document.getElementById('reviews').innerHTML);
 				}
 				return true;	
             }
@@ -189,7 +191,8 @@ else
 		
 			xmlhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
-					$('#newReview' + i ).val('');
+					if(this.responseText != null)
+						$('#newReview' + i ).val('');
 				}
 			};
 			
@@ -200,13 +203,14 @@ else
 	
 	function radioListCheck(name) 
 	{
-		for (var x = 5; x >= 1; x--) { // 5 é o maior rating
+		for (var x = 5; x >= 1; x--) { 
 			if (document.getElementById(name + '-' + x).checked) {
-				return x; // don't know why mas não me dá o valor certo de outra maneira
+				return x; 
 			}
 		}
 		return -1;
 	}
+	
 	function submitReview()
 	{
 		$('#newReview #nr_username').attr("value", username);
@@ -214,8 +218,6 @@ else
 		$('#newReview #nr_text').attr("value", _("review").value);
 		
 		var rat = radioListCheck("star");
-		
-		alert(rat);
 		var r_status = _("r_status");
 	
 		if(rat == -1)
@@ -241,11 +243,34 @@ else
 		{
 			var info = new String(data);
             info = info.trim();
-			
 			$('#newReview').append(info);
 		}
 		);
    }
+   
+   function deleteReview(id)
+   {
+		$.get('./database/deleteReview.php', {id : id}, function(data) {
+			var info = new String(data);
+            info = info.trim();
+			if(info == "DONE")
+				window.location = "restaurantProfile.php?restaurant=" + restaurant;
+		});
+   }
+   
+   function deleteReviewReply(id, username, text)
+   {
+	   console.log("cheguei á função");
+		$.get('./database/deleteReply.php', {id : parseInt(id), username: username, text: text}, function(data) {
+			var info = new String(data);
+            info = info.trim();
+			console.log(info);
+			if(info == "DONE")
+				window.location = "restaurantProfile.php?restaurant=" + restaurant;
+		});
+   }
+  
+   
    
    var tabList = ['informations', 'menu', 'reviews', 'photos'];
 </script>
