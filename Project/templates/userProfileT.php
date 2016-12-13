@@ -286,7 +286,7 @@ else {
 
                 for(var i = 0; i < info.length; i++)
                 {
-                    $('#friends').append('<a href="./userProfile.php?username='+ info[i] +'">'+ info[i]+'</a><br>');
+                    $('#friends').append('<li><a href="./userProfile.php?username='+ info[i] +'">'+ info[i]+'</a></li>');
                 }
             }
         });
