@@ -28,7 +28,7 @@ $newReview ="<div class=\"stars\">
 				<label for=\"reviewPic\">Select Image</label>
 				 <br>
 				 <div id=\"buttonSubmitReview\">
-				<input type=\"submit\" onclick=\"submitReview()\" value=\"Submit Review\" > <!-- erro aqui -->
+				<input type=\"submit\" onclick=\"submitReview()\" value=\"Submit Review\" > 
 				<br>
 				</div>
 				</div>

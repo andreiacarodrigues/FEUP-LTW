@@ -36,8 +36,8 @@ else
     $restaurantId = getRestaurantId($restaurant);
 
     // Review
-    addReview($username,$restaurantId['restaurantId'],$rating,$text,$date);
-
+    $oi = addReview($username,$restaurantId['restaurantId'],$rating,$text,$date);
+	
     $reviewId = getFirstReviewId();
 
     $photo = null;

@@ -72,6 +72,8 @@ else
 				
 				var rating_sum = info[9];
 				var rating_total = info[10];
+				
+				console.log(rating_sum);console.log(rating_total);
 				if((rating_sum == 0) || (rating_total == 0))
 					var rating = 0;
 				else
