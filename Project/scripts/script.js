@@ -148,6 +148,18 @@ function openReply(index)
 		document.getElementById("reply"+ index).style.display = "none";		
 }
 
+function openChangePassword()
+{
+    var style = document.getElementById("changePassword").style.display;
+
+    console.log(style);
+
+    if(!(style == "") && !(style == "inline"))
+        document.getElementById("changePassword").style.display = "inline";
+    else
+        document.getElementById("changePassword").style.display = "none";
+}
+
 function initMap(myadress)
 {
     var geocoder = new google.maps.Geocoder();

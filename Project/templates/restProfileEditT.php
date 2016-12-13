@@ -182,6 +182,7 @@ else
 </script>
 
 <section id="sectionBody">
+<section id="resEdit">
 <section id="main" >
     <form id="updateRestaurantPicture" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="method" value="2"/>
@@ -206,15 +207,15 @@ else
                     <label>Description: <textarea  id="r_description"name="description" cols="60" rows="2"></textarea> </label> <br>
                     <label>Location:<input id="r_location" type="text" name="location" maxlength="80"></label><br>
                     <label>PostCode: <input type="text" maxlength="4" name="postCode1"  id="r_postCode1" >
-                        <label> -<input type="text" maxlength="3" name="postCode2" id="r_postCode2" > </label>
+                       -<input type="text" maxlength="3" name="postCode2" id="r_postCode2" > </label>
                     </label> <br>
                     <label>Schedule:<input id="r_schedule" type="text" name="schedule"></label><br>
                     <label>Average Price Per Person(€):<input id="r_avgPrice" type="text" name="cost" maxlength="4"></label> <br>
-                    <label>Contact:<input id="r_contact" type="tel" name="number" maxlength="9"></label> <br>
-                    <label>Observations: <textarea id="r_observations" name="review" cols="60" rows="2"></textarea></label>
-                    <div class="popup" onclick="observationsPopUpAnimation()">?
+                    <label>Contact:<input id="r_contact" type="text" name="number" maxlength="9"></label> <br>
+                    <label>Observations: <textarea id="r_observations" name="review" cols="60" rows="2"></textarea>
+                    <div class="popup" onclick="observationsPopUpAnimation()"> ?
                         <span class="popuptext" id="myPopup">You can allow your customers to know if your restaurant has: wi-fi, takeAway, live music, vegan menu options, wheelchair access, bar, etc.</span>
-                    </div><br>
+                    </div><br></label>
                     <span id="status"></span>
                     <br>
                     <input type="button" onclick="submitChanges()"/ value="Submit Changes">
@@ -247,6 +248,7 @@ else
             </div>
         </li>
     </ul>
+</section>
 </section>
 </section>
 

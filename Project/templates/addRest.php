@@ -101,22 +101,23 @@ else
 </script>
 
 <section id="sectionBody">
+<section id="addRes">
 <h2>Add Restaurant</h2>
 <section id="informations">
     <form>
         <label>Restaurant Name: <input id="r_name" type="text" onblur="restaurantExists();" maxlength="60" onfocus="emptyElement('n_span');" required> </label><br>
-        <span id="n_span"></span><br>
+        <p id="n_span"></p><br>
         <label>Description: <textarea  id="r_description"name="description" cols="60" rows="2"></textarea> </label> <br>
         <label>Location:<input id="r_location" type="text" name="location" maxlength="80" onfocus="emptyElement('status');"></label>
         <label>PostCode: <input type="text" maxlength="8" name="postCode" id="r_postCode" onfocus="emptyElement('status');" ></label><br>
         <label>Schedule:<input id="r_schedule" type="text" name="schedule"></label><br>
         <label>Average Price Per Person(€):<input id="r_avgPrice" type="text" name="cost" maxlength="6" onfocus="emptyElement('status');"></label> <br>
         <label>Contact:<input id="r_contact" type="tel" name="number" maxlength="9" onfocus="emptyElement('status');"></label> <br>
-        <label>Observations: <textarea id="r_observations" name="review" cols="60" rows="2"></textarea></label>
-        <div class="popup" onclick="observationsPopUpAnimation()">?
+        <label>Observations: <textarea id="r_observations" name="review" cols="60" rows="2"></textarea>
+       <div class="popup" onclick="observationsPopUpAnimation()"> ?
             <span class="popuptext" id="myPopup">You can allow your customers to know if your restaurant has: wi-fi, takeAway, live music, vegan menu options, wheelchair access, bar, etc.</span>
-        </div><br>
-        <span id="status"></span>
+        </div></label><br>
+        <p id="status"></p>
         <br>
         <input type="button" onclick="submitInfo()" value="Submit Informations">
         <input type="button" onclick="goback()" value="Cancel">
@@ -152,6 +153,7 @@ else
             <input type="submit" value="Upload Restaurant Photo">
         </form>
     </div>
+</section>
 </section>
 </section>
 

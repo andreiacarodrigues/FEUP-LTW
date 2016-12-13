@@ -188,6 +188,8 @@ else{
 
 </script>
 <section id="sectionBody">
+<h2> Edit User Profile </h2>
+<section id="userEdit" >
 <section id="main" >
     <form id="updateProfilePicture" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="method" value="1"/>
@@ -207,41 +209,37 @@ else{
         <li id="userInformations">
             <div>
                 <form>
-                    <label>Username:<input id="username" type="text" name="username" onblur="checkUsername();" onkeyup="restrict('username');" maxlength="16"></label> <br>
-                    <span id="unamestatus"></span>
+                   <label for="username">Username:<input id="username" type="text" name="username" onblur="checkUsername();" onkeyup="restrict('username');" maxlength="16"></label> <br>
+                    <p id="unamestatus"></p>
                     <br>
-                    <!-- <br>
-                     <label>My information:
-                         <textarea id="my_info" name="info" cols="40" rows="5"></textarea>
-                     </label>-->
-                    <br>
-                    <label>Name:<input id="name" type="text" name="name" maxlength="88"></label><br>
-                    <label>Email: <input id="email" type="e-mail" name="email" maxlength="30"> </label> <br>
-                    <label>PostCode: <input id="postCode1" type="text" maxlength="4"  name="postCode1"> <!-- javascript tem de ver se é numero -->
-                        <label> -<input id="postCode2" type="text" maxlength="3" name="postCode2"></label>
+                    <label for="name">Name:<input id="name" type="text" name="name" maxlength="88"></label><br>
+                    <label for="email">Email: <input id="email" type="email" name="email" maxlength="30"> </label> <br>
+                    <label for="postCode1">PostCode: <input id="postCode1" type="text" maxlength="4"  name="postCode1"> -<input id="postCode2" type="text" maxlength="3" name="postCode2"></label>
                     </label><br>
-                    <label>Birthdate:<input id="birthdate" type="date" name="birthdate"></label><br>
+                    <label for="birthdate">Birthdate:<input id="birthdate" type="date" name="birthdate"></label><br>
                     <input type="button" onclick="submitInfo();" value="Submit Information">
                     <input type="button" onclick="goBack();" value="Cancel">
                     <p id="status"></p>
                 </form>
             </div>
-            <a href="#changePassword">Change Password</a><br>   <!-- clica e abre a opcao de mudar a password, no entanto pertence ao mesmo form-->
+            
         </li>
-        <li id="changePassword">
+		<a href="#changePassword" onclick="openChangePassword()">Change Password</a> 
+        <li id="changePassword" style="display: none">
             <div>
                 <form>
-                    <label>Current Password:<input id="password" type="password" name="password" placeholder="Insert your current password.." onblur="checkPassword();" maxlength="30"></label><br>
+                    <label>Current Password:<input id="password" type="password" name="password" placeholder="" onblur="checkPassword();" maxlength="30"></label><br>
                     <span id="passstatus"></span><br>
-                    <label>New Password:<input id="new_pass" type="password" name="password" placeholder="Insert new password.." maxlength="30"></label><br>
-                    <label>Confirm New Password:<input id="confirm_pass" type="password" name="confirmPassword" placeholder="Insert again you new password.." maxlength="30"></label><br>
+                    <label>New Password:<input id="new_pass" type="password" name="password" placeholder="" maxlength="30"></label><br>
+                    <label>Confirm New Password:<input id="confirm_pass" type="password" name="confirmPassword" placeholder="" maxlength="30"></label><br>
                     <input type="button" onclick="submitPassword();" value="Submit New Password">
-                    <input type="button" onclick="goBack();" value="Cancel">
+                    <input type="button" onclick="openChangePassword();" value="Cancel">
                     <p id="p_status"></p>
                 </form>
             </div>
         </li>
     </ul>
+</section>
 </section>
 </section>
 <script language="JavaScript">
