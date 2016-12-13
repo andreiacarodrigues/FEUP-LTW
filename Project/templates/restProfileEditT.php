@@ -106,7 +106,11 @@ else
                                 if(photos[i] != null)
                                 {
                                     $('#restaurantPhotos').append('<img src="./css/images/'+ photos[i] + '"alt="Photo of the restaurant"><br>');
-                                    $('#restaurantPhotos').append('<form action="./database/deleteRP.php" method="post"><input id="val" type="hidden" name="val" value="' + photos[i] + '"/><input type="hidden" name="restaurant" value="' + restaurant + '"/><input type="submit" value="Delete Photo"></form><br>');
+                                    $('#restaurantPhotos').append('<form action="./database/deleteRP.php" method="post">' +
+                                        '<input id="val" type="hidden" name="val" value="' + photos[i] + '"/>' +
+                                        '<input type="hidden" name="csrf_token" value='+ <?php echo $_SESSION['csrf_token']; ?>+ '/>'+
+                                        '<input type="hidden" name="restaurant" value="' + restaurant + '"/>' +
+                                        '<input type="submit" value="Delete Photo"></form><br>');
                                 }
                             }
                         }
@@ -185,6 +189,7 @@ else
 <section id="resEdit">
 <section id="main" >
     <form id="updateRestaurantPicture" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
         <input type="hidden" name="method" value="2"/>
         <input id="val" type="hidden" name="val" value=""/>
 		<input type="file" name="image" id="file1" class="inputfile" />
@@ -192,6 +197,7 @@ else
         <input type="submit" value="Change Restaurant Photo">
     </form>
     <form id="updateRestaurantPicture" action="./database/deletePP.php" method="post">
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
         <input type="hidden" name="method" value="2"/>
 		<input id="val" type="hidden" name="val" value=""/>
         <input type="submit" value="Delete Photo">
@@ -230,6 +236,7 @@ else
             <div id="menuPhoto"> </div>
             <div>
                 <form id="updateRestaurantMenu" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
                     <input type="hidden" name="method" value="5"/>
                     <input id="val" type="hidden" name="val" value=""/>
                     <input type="file" name="image" id="file2" class="inputfile" />
@@ -243,6 +250,7 @@ else
             <div id="restaurantPhotos"> </div>
             <div>
                 <form id="updateRestaurantPhotos" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
                     <input type="hidden" name="method" value="4"/>
                     <input id="val" type="hidden" name="val" value=""/>
                      <input type="file" name="image" id="file3" class="inputfile" />
