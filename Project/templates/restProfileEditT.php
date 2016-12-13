@@ -187,11 +187,13 @@ else
     <form id="updateRestaurantPicture" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="method" value="2"/>
         <input id="val" type="hidden" name="val" value=""/>
-        <input type="file" name="image"/>
+		<input type="file" name="image" id="file1" class="inputfile" />
+		<label for="file1">Choose a file</label>
         <input type="submit" value="Change Restaurant Photo">
     </form>
-    <form id="updateRestaurantPicture" action="./database/deleteRPP.php" method="post">
-        <input id="val" type="hidden" name="val" value=""/>
+    <form id="updateRestaurantPicture" action="./database/deletePP.php" method="post">
+        <input type="hidden" name="method" value="2"/>
+		<input id="val" type="hidden" name="val" value=""/>
         <input type="submit" value="Delete Photo">
     </form>
     <h2 id="name">Restaurant Name</h2>
@@ -230,7 +232,8 @@ else
                 <form id="updateRestaurantMenu" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="method" value="5"/>
                     <input id="val" type="hidden" name="val" value=""/>
-                    <input type="file" name="image"/>
+                    <input type="file" name="image" id="file2" class="inputfile" />
+					<label for="file2">Choose a file</label>
                     <input type="submit" value="Upload New Menu Photo">
                 </form>
             </div>
@@ -242,7 +245,8 @@ else
                 <form id="updateRestaurantPhotos" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="method" value="4"/>
                     <input id="val" type="hidden" name="val" value=""/>
-                    <input type="file" name="image"/>
+                     <input type="file" name="image" id="file3" class="inputfile" />
+					<label for="file3">Choose a file</label>
                     <input type="submit" value="Upload New Photo">
                 </form>
             </div>

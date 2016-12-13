@@ -10,30 +10,30 @@ if (isset ($_POST["val"] ))
 else
     $val = NULL;
 
-if (isset ($_POST["mode"] ))
-    $mode = trim(strip_tags($_POST["mode"]));
+if (isset ($_POST["method"] ))
+    $mode = trim(strip_tags($_POST["method"]));
 else
     $mode = NULL;
 
-if($mode)   //restaurant
+if($mode == 2)   //restaurant
     $deleteId = getRestaurantsByName($val);
-else    //user
+else  if($mode == 1)  //user
     $deleteId = getUserPhoto($val);
 
 $deleteId = $deleteId['photoId'];
 
 if($deleteId != null)   //falta condicao para ver se nao esta a eliminar as fotos default
 {
-    if($mode)
+    if($mode == 2)
         updateRestaurantPPhoto(NULL,$val);
-    else
+    else if($mode == 1)
         updateUserPhoto(NULL,$val);
     deletePhoto($deleteId);
 }
 
-if($mode)
+if($mode == 2)
     header('Location: ../restaurantProfileEdit.php?restaurant=' . $val);
-else
+else if($mode == 1)
     header('Location: ../userProfileEdit.php?user=' . $val);
 
 exit;

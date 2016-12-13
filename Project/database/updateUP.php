@@ -1,18 +1,15 @@
 ﻿<?php
-include_once('my_database/user.php');
+ include_once('my_database/connection.php');
+
 // User Password
 
-if (isset ($_GET["username"] ))
-    $username = trim(strip_tags($_GET["username"]));
-else
-    $username = NULL;
-
-if (isset ($_GET["password"] ))
-    $password = trim(strip_tags($_GET["password"]));
-else
-    $password = NULL;
-
-$options = ['cost' => 12];
-
-updateUserPassword($password,$options,$username);
+	global $db;
+	$username = $_GET["username"];
+	$password = $_GET["password"];
+	
+	$options = ['cost' => 12];
+	
+	$stmt = $db->prepare("UPDATE User SET password = ? WHERE username = ?");
+	echo $stmt->execute(array(password_hash($password, PASSWORD_DEFAULT, $options) , $username));
+	
 ?>

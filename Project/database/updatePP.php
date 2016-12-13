@@ -15,29 +15,51 @@ if (isset ($_GET["id"] ))
 else
     $id = NULL;
 
-if (isset ($_GET["mode"] ))
-    $mode = trim(strip_tags($_GET["mode"]));
+if (isset ($_GET["method"] ))
+    $mode = trim(strip_tags($_GET["method"]));
 else
     $mode = NULL;
 
-if($mode)   //user
-    $deleteId = getUserPhoto($val);
-else    //restaurant
-    $deleteId = getRestaurantPPhoto($val);
-
-$deleteId = $deleteId['photoId'];
-if($deleteId != null)   //mudar isto para não eliminar as fotos default
-    deletePhoto($deleteId);
-
-if($mode)
+if(($val != NULL) && ($id != NULL) && ($mode != NULL))
 {
-    updateUserPhoto($id,$val);
-    header('Location: ../userProfileEdit.php?username=' . $val);
+	if(($val == "") && ($id != NULL) && ($mode != NULL))
+	{
+		if($mode == 1)
+		{
+			updateUserPhoto($id,$val);
+			header('Location: ../userProfileEdit.php?username=' . $val);
+		}
+		else if($mode == 2)
+		{
+			updateRestaurantPPhoto($id,$val);
+			header('Location: ../restaurantProfileEdit.php?restaurant=' . $val);
+		}
+		exit;
+	}
+else{
+	
+	if($mode == 1)   //user
+		$deleteId = getUserPhoto($val);
+	else if($mode == 2)    //restaurant
+		$deleteId = getRestaurantPPhoto($val);
+
+	$deleteId = $deleteId['photoId'];
+	if($deleteId != null)   //mudar isto para não eliminar as fotos default
+		deletePhoto($deleteId);
+
+	if($mode == 1)
+	{
+		updateUserPhoto($id,$val);
+		header('Location: ../userProfileEdit.php?username=' . $val);
+	}
+	else if($mode == 2)
+	{
+		updateRestaurantPPhoto($id,$val);
+		header('Location: ../restaurantProfileEdit.php?restaurant=' . $val);
+	}
+	exit;
 }
-else
-{
-    updateRestaurantPPhoto($id,$val);
-    header('Location: ../restaurantProfileEdit.php?restaurant=' . $val);
-}
-exit;
+}else
+	die(header('Location: ../index.php'));
+
 ?>

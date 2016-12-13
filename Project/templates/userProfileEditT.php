@@ -194,11 +194,13 @@ else{
     <form id="updateProfilePicture" action="./database/uploadPicture.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="method" value="1"/>
         <input id="val" type="hidden" name="val" value=""/>
-        <input type="file" name="image"/>
+        <input type="file" name="image" id="file1" class="inputfile" />
+		<label for="file1">Choose a file</label>
         <input type="submit" value="Upload New Photo">
     </form>
     <form id="updateProfilePicture" action="./database/deletePP.php" method="post">
         <input id="val" type="hidden" name="val" value=""/>
+		 <input type="hidden" name="method" value="1"/>
         <input name="mode" type="hidden" value="0"/>
         <input type="submit" value="Delete Photo">
     </form>

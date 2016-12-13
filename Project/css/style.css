@@ -360,6 +360,35 @@ h2{
     -moz-border-radius: 10px;
 }
 
+.inputfile + label{
+    font:0.8em 'Montserrat Alternates';
+    border: none;
+    padding: 8px 10px 8px 10px;
+    background: #12a3cd;
+    color: #fff;
+    box-shadow: 1px 1px 4px #DADADA;
+    -moz-box-shadow: 1px 1px 4px #DADADA;
+    -webkit-box-shadow: 1px 1px 4px #DADADA;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    width:8em;
+    text-align: center;
+}
+
+#updateRestaurantPicture, #updateProfilePicture{
+    margin-top:0.1em;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
 .reply input[type=button]{
     font:0.9em 'Montserrat Alternates';
     border: none;
@@ -389,7 +418,8 @@ h2{
 #resEdit input[type=submit]:hover,
 #resEdit input[type=button]:hover,
 #addRes input[type=submit]:hover,
-#addRes input[type=button]:hover{
+#addRes input[type=button]:hover,
+.inputfile + label:hover{
     background: #1293bc;
     color: #fff;
 }
