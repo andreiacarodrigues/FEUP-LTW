@@ -6,7 +6,7 @@ include_once('my_database/photo.php');
 if (isset ($_GET["restaurant"] ))
     $restaurant = trim(strip_tags($_GET["restaurant"]));
 else
-    $restaurant = NULL;
+    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
 
 $restaurantId = getRestaurantId($restaurant);
 

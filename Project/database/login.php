@@ -4,15 +4,13 @@ include_once('my_database/user.php');
 session_start();
 session_regenerate_id(true);
 
-if (isset ($_GET["username"] ))
+if (isset ($_GET["username"] ) && isset ($_GET["password"] ))
+{
     $username = trim(strip_tags($_GET["username"]));
-else
-    $username = NULL;
-
-if (isset ($_GET["password"] ))
     $password = trim(strip_tags($_GET["password"]));
+}
 else
-    $password = NULL;
+    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
 
 $user = getUserPassword($username);
 

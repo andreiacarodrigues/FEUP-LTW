@@ -4,8 +4,15 @@
 // User Password
 
 	global $db;
-	$username = $_GET["username"];
-	$password = $_GET["password"];
+
+    if(isset($_GET["username"]) && isset($_GET["password"]))
+    {
+        $username = trim(strip_tags($_GET["username"]));
+        $password = trim(strip_tags($_GET["password"]));
+    }
+    else
+        die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+
 	
 	$options = ['cost' => 12];
 	

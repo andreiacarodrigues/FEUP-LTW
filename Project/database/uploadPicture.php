@@ -6,11 +6,18 @@
   $errors = array(1 => 'php.ini max file size exceeded', 
                 2 => 'html form max file size exceeded', 
                 3 => 'file upload was only partial', 
-                4 => 'no file was attached'); 
-				
-  $method = $_POST['method'];
-  $val = $_POST['val'];
-  
+                4 => 'no file was attached');
+
+  if (isset($_POST["method"]) && isset($_POST["val"]) )
+  {
+      $method = trim(strip_tags($_POST["method"]));
+      $val = trim(strip_tags($_POST["val"]));
+  }
+  else
+  {
+      die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+  }
+
   $filePath = realpath($_FILES["image"]["tmp_name"]);
 	 
   echo $_FILES['image']['name'];

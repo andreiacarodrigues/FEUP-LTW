@@ -5,8 +5,13 @@
 
 	global $db;
 
-    $val = $_GET['val'];
-	$id = $_GET['id'];
+    if(isset($_GET["id"]) && isset($_GET["val"]))
+    {
+        $id = trim(strip_tags($_GET["id"]));
+        $val = trim(strip_tags($_GET["val"]));
+    }
+    else
+        die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
 	
 	$stmt = $db->prepare("SELECT restaurantId from Restaurant WHERE name = ?");
 	$stmt->execute(array($val));

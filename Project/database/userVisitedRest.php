@@ -6,7 +6,7 @@ include_once('my_database/photo.php');
 if (isset ($_GET["username"] ))
     $username = trim(strip_tags($_GET["username"]));
 else
-    $username = NULL;
+    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
 
 $reviews = getReviewsByUser($username);
 

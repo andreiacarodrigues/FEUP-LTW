@@ -5,15 +5,15 @@ include_once('my_database/restaurant.php');
 include_once('my_database/user.php');
 include_once('my_database/photo.php');
 
-if (isset ($_POST["val"] ))
+if (isset ($_POST["val"] ) && isset ($_POST["method"] ))
+{
     $val = trim(strip_tags($_POST["val"]));
-else
-    $val = NULL;
-
-if (isset ($_POST["method"] ))
     $mode = trim(strip_tags($_POST["method"]));
+}
 else
-    $mode = NULL;
+{
+    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+}
 
 if($mode == 2)   //restaurant
     $deleteId = getRestaurantsByName($val);

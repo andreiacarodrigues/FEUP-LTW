@@ -3,33 +3,21 @@ include_once('my_database/restaurant.php');
 include_once('my_database/reviews.php');
 include_once('my_database/photo.php');
 
-if (isset ($_POST["restaurant"] ))
+if (isset($_POST["restaurant"]) && isset($_POST["username"]) && isset($_POST["text"]) && isset($_POST["rating"]) && isset($_POST["date"]))
+{
     $restaurant = trim(strip_tags($_POST["restaurant"]));
-else
-    $restaurant = NULL;
-
-if (isset ($_POST["username"] ))
     $username = trim(strip_tags($_POST["username"]));
-else
-    $username = NULL;
-
-if (isset ($_POST["text"] ))
     $text = trim(strip_tags($_POST["text"]));
-else
-    $text = NULL;
-
-if (isset ($_POST["rating"] ))
     $rating = trim(strip_tags($_POST["rating"]));
-else
-    $rating = NULL;
-
-if (isset ($_POST["date"] ))
     $date = trim(strip_tags($_POST["date"]));
+}
 else
-    $date = NULL;
+{
+    die(header('Location: ' . $_SERVER["HTTP_REFERER"] ));
+}
 
 if($rating == -1)
-    die(header('Location: ../restaurantProfile.php?restaurant=' . $restaurant . '&errorReview="1"#newReview'));
+    die(header('Location: ../restaurantProfile.php?restaurant=' . $restaurant ));
 else
 {
     // Restaurant ID

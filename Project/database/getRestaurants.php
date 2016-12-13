@@ -1,15 +1,14 @@
 <?php
 include_once('my_database/restaurant.php');
 
-if (isset ($_GET["search"] ))
+if (isset ($_GET["search"] ) && isset ($_GET["mode"] ))
+{
     $search = trim(strip_tags($_GET["search"]));
-else
-    $search = NULL;
-
-if (isset ($_GET["mode"] ))
     $mode = trim(strip_tags($_GET["mode"]));
+}
 else
-    $mode = NULL;
+    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+
 
 $result = getAllRestaurants();
 

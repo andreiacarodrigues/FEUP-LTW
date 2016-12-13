@@ -5,20 +5,15 @@ include_once('my_database/photo.php');
 include_once('my_database/user.php');
 include_once('my_database/restaurant.php');
 
-if (isset ($_GET["val"] ))
+if (isset ($_GET["val"] ) && isset ($_GET["id"] ) && isset ($_GET["method"] ))
+{
     $val = trim(strip_tags($_GET["val"]));
-else
-    $val = NULL;
-
-if (isset ($_GET["id"] ))
     $id = trim(strip_tags($_GET["id"]));
-else
-    $id = NULL;
-
-if (isset ($_GET["method"] ))
     $mode = trim(strip_tags($_GET["method"]));
+}
 else
-    $mode = NULL;
+    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+
 
 if(($val != NULL) && ($id != NULL) && ($mode != NULL))
 {

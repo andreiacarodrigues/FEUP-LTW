@@ -5,8 +5,14 @@
 
 global $db;
 
-$val = $_GET['val'];
-$id = $_GET['id'];
+if(isset($_GET["val"]) && isset($_GET["id"]))
+{
+    $val = trim(strip_tags($_GET["val"]));
+    $id = trim(strip_tags($_GET["id"]));
+}
+else
+    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+
 
 $stmt = $db->prepare("SELECT photoId from User WHERE username = ?");
 $stmt->execute(array($val));

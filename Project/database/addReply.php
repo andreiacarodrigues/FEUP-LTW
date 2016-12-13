@@ -1,20 +1,16 @@
 ﻿<?php
 include_once('my_database/reviews.php');
 
-if (isset ($_GET["id"] ))
+if (isset ($_GET["id"] ) && isset ($_GET["username"] ) && isset ($_GET["text"] ))
+{
     $id = trim(strip_tags($_GET["id"]));
-else
-    $id = NULL;
-
-if (isset ($_GET["username"] ))
     $username = trim(strip_tags($_GET["username"]));
-else
-    $username = NULL;
-
-if (isset ($_GET["text"] ))
     $text = trim(strip_tags($_GET["text"]));
+}
 else
-    $text = NULL;
+{
+    die(header('Location: ' . $_SERVER["HTTP_REFERER"] ));
+}
 
 addReviewReply($id, $username, $text);
 

@@ -2,35 +2,18 @@
 include_once('my_database/user.php');
 
 // User Info
-if (isset ($_GET["name"] ))
+if (isset($_GET["name"]) && isset($_GET["email"]) && isset($_GET["birthdate"]) && isset($_GET["postCode"]) && isset($_GET["username"]) && isset($_GET["previousUsername"]))
+{
     $name = trim(strip_tags($_GET["name"]));
-else
-    $name = NULL;
-
-if (isset ($_GET["email"] ))
     $email = trim(strip_tags($_GET["email"]));
-else
-    $email = NULL;
-
-if (isset ($_GET["birthdate"] ))
     $birthdate = trim(strip_tags($_GET["birthdate"]));
-else
-    $birthdate = NULL;
-
-if (isset ($_GET["postCode"] ))
     $postCode = trim(strip_tags($_GET["postCode"]));
-else
-    $postCode = NULL;
-
-if (isset ($_GET["username"] ))
     $username = trim(strip_tags($_GET["username"]));
-else
-    $username = NULL;
-
-if (isset ($_GET["previousUsername"] ))
     $previousUsername = trim(strip_tags($_GET["previousUsername"]));
+}
 else
-    $previousUsername = NULL;
+    die(header('Location: ' . $_SERVER["HTTP_REFERER"]));
+
 
 if($username != $previousUsername)
 {
