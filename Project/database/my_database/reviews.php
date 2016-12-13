@@ -38,6 +38,15 @@ function addReview($username,$restaurantId,$rating,$text,$date)
     global $db;
     $stmt = $db->prepare("INSERT INTO Review VALUES (null, ?, ?, ?, ?, ?)");
     $stmt->execute(array($username, $restaurantId, $rating, $text, $date));
+	
+	$stmt = $db->prepare("SELECT rating_sum, rating_total FROM Restaurant WHERE restaurantId = ? ");
+	$stmt->execute(array($restaurantId));
+	$restaurantInfo = $stmt->fetch();
+	
+	$stmt = $db->prepare("UPDATE Restaurant SET rating_total = ? , rating_sum = ? WHERE restaurantId = ?");
+    $stmt->execute(array($restaurantInfo['rating_total'] + 1, $restaurantInfo['rating_sum'] + $rating, $restaurantId));
+	
+	return $restaurantInfo;
 }
 
 function deleteReview($id)
