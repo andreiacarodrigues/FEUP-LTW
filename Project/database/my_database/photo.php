@@ -20,12 +20,14 @@ function getPhotoByFilename($filename)
 function deletePhoto($deleteId)
 {
     global $db;
-    $stmt = $db->prepare("DELETE FROM Photo WHERE photoId = ?");
-    $stmt->execute(array($deleteId));
-
-    unlink("../../css/images/$deleteId.jpg");
+	
+	unlink("../../css/images/$deleteId.jpg");
     unlink("../../css/images_small/$deleteId.jpg");
     unlink("../../css/images_medium/$deleteId.jpg");
+	
+    $stmt = $db->prepare("DELETE FROM Photo WHERE photoId = ?");
+    return $stmt->execute(array($deleteId));
+
 }
 
 function addPhoto()

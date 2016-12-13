@@ -186,6 +186,22 @@ else{
         return false;
     }
 
+	function deleteAccount()
+	{
+		 $.get('./database/deleteUser.php',  {username: username}, function(data)
+                {
+                    var info = new String(data);
+                    info = info.trim();
+
+                    if(info == "0")
+                        alert("Error deleting username information.");
+                    else
+                    {
+                       window.location = "logout.php";
+                    }
+                }
+            );
+	}
 
 </script>
 <section id="sectionBody">
@@ -241,6 +257,7 @@ else{
                 </form>
             </div>
         </li>
+		<li> <input type="button" onclick="deleteAccount();" value="Delete Account"> <li>
     </ul>
 </section>
 </section>

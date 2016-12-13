@@ -8,6 +8,14 @@ function addUser($name, $email, $birthdate,$postCode, $username, $password, $opt
     $stmt->execute(array($name, $email, $birthdate, $postCode,$username, password_hash($password, PASSWORD_DEFAULT, $options)));
 }
 
+function deleteUser($name)
+{
+    global $db;
+    $stmt = $db->prepare("DELETE FROM User WHERE username = ?");
+    return $stmt->execute(array($name));
+}
+
+
 function getUserPassword($username)
 {
     global $db;

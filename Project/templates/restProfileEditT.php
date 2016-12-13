@@ -178,6 +178,24 @@ else
         }
         return false;
     }
+	
+	function deleteRestaurant()
+	{
+		 $.get('./database/deleteRestaurant.php',  {restaurant: restaurant}, function(data)
+                {
+                    var info = new String(data);
+                    info = info.trim();
+
+                    console.log(data);
+                    if(info == "0")
+                        console.log("Error updating username information.");
+                    else
+                    {
+                       window.location = "index.php";
+                    }
+                }
+            );
+	}
 
 </script>
 
@@ -251,6 +269,7 @@ else
                 </form>
             </div>
         </li>
+		<li> <input type="button" onclick="deleteRestaurant();" value="Delete Account"> <li>
     </ul>
 </section>
 </section>
