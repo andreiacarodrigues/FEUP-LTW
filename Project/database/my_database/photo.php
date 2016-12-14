@@ -30,6 +30,11 @@ function deletePhoto($deleteId)
 		unlink("../../css/images_small/$deleteId.jpg");
 		unlink("../../css/images_medium/$deleteId.jpg");
 	}
+	
+	
+	$stmt = $db->prepare("DELETE FROM RestaurantPhoto WHERE photoId = ?");
+    $result = $stmt->execute(array($deleteId));
+	
 	return $result;
 }
 

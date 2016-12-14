@@ -109,7 +109,7 @@ else
                             {
                                 if(photos[i] != null)
                                 {
-                                    $('#restaurantPhotos').append('<img src='+normal_path+ photos[i] + ' alt="Photo of the restaurant"><br>');
+                                    $('#restaurantPhotos').append('<img src='+medium_path+ photos[i] + ' alt="Photo of the restaurant"><br>');
                                     $('#restaurantPhotos').append('<form action="./database/deleteRP.php" method="post"><input id="val" type="hidden" name="val" value="' + photos[i] + '"/><input type="hidden" name="restaurant" value="' + restaurant + '"/><input type="submit" value="Delete Photo"></form><br>');
                                 }
                             }
@@ -210,6 +210,11 @@ else
                 }
             );
 	}
+	
+	function goToRestaurant()
+	{
+		window.location = "restaurantProfile.php?restaurant=" + restaurant;
+	}
 
 </script>
 
@@ -253,7 +258,7 @@ else
                     <span id="status"></span>
                     <br>
                     <input type="button" onclick="submitChanges()"/ value="Submit Changes">
-                    <input type="button" onclick="goBack()" value="Cancel"/>
+                    <input type="button" onclick="goToRestaurant()" value="Cancel"/>
                 </form>
             </div>
         </li>

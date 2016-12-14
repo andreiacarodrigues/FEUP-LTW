@@ -12,7 +12,7 @@ function is_name($element) {
 }
 
 function is_username($element){
-	return preg_match("#^[a-zA-Z][\w]{3,8}[a-zA-Z]$#",$element);
+	return preg_match("#^[a-zA-Z][\w]{3,20}[a-zA-Z]$#",$element);
 }
 
 function is_postCode($element){

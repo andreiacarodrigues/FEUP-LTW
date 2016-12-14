@@ -103,7 +103,7 @@ function is_name(element) {
 
 function is_username(element)
 {
-    return /^[a-zA-Z][\w]{3,8}[a-zA-Z]$/.test(element);
+    return /^[a-zA-Z][\w]{3,20}[a-zA-Z]$/.test(element);
 }
 
 function is_postCode(element)
