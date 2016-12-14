@@ -12,6 +12,9 @@
   {
       $method = trim(strip_tags($_POST["method"]));
       $val = trim(strip_tags($_POST["val"]));
+	  
+	  if(($method < 1) || ($method > 5))
+		  die('ERROR');
   }
   else
   {

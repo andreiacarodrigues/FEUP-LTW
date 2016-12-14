@@ -9,6 +9,9 @@ if (isset ($_POST["val"] ) && isset ($_POST["method"] ))
 {
     $val = trim(strip_tags($_POST["val"]));
     $mode = trim(strip_tags($_POST["method"]));
+	
+	if(!(is_username($val) && (($mode == 1) || ($mode == 2))))
+		die('ERROR');
 }
 else
 {

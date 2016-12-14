@@ -11,6 +11,9 @@ if (isset($_GET["name"]) && isset($_GET["email"]) && isset($_GET["birthdate"]) &
 	$location = trim(strip_tags($_GET["location"]));
     $username = trim(strip_tags($_GET["username"]));
     $previousUsername = trim(strip_tags($_GET["previousUsername"]));
+	
+	if(!(is_username($username) && is_email($email) && is_postCode($postCode) && is_text($location) && is_username($previousUsername))
+		die('ERROR');
 }
 else
     die('ERROR');

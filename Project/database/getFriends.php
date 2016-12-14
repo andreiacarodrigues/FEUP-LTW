@@ -6,6 +6,9 @@ if (isset ($_GET["username"] ))
 else
     die('ERROR');
 
+if(!is_username($username))
+	die('ERROR');
+
 $result = getFriends($username);
 
 if(!empty($result))

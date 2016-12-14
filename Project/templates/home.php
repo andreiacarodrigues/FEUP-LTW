@@ -5,7 +5,7 @@
         var status = _("pc_status");
         var search = $('#searchPost').val();
 
-        if(is_postCode(search))
+        if(is_postCode(search) || is_text(search))
         {
             status.innerHTML ="";
             window.location =  "restaurantSearch.php?search=" + search + "&mode=1";

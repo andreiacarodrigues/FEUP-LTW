@@ -24,11 +24,13 @@ foreach($result as $row)
     if($mode)        //estamos a procura do codigo de postal
     {
         $postCode = $row['postCode'];
+		$location = $row['location'];
+		
 
         $searchPostCode = substr($search,0, 4);
         $zip = substr($postCode,0, 4);
 
-        if(preg_match("#$searchPostCode#i",$zip))
+        if(preg_match("#$searchPostCode#i",$zip) || preg_match("#$search#i", $location))
             $selected_restaurants[] = $row['name'];
     }
     else   //estamos a procura do nome

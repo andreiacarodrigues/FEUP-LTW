@@ -10,6 +10,9 @@ if (isset($_GET["username"]) && isset($_GET["name"]) && isset($_GET["email"]) &&
     $postCode = trim(strip_tags($_GET["postCode"]));
 	$location = trim(strip_tags($_GET["location"]));
     $password = trim(strip_tags($_GET["password"]));
+	
+	if(!(is_username($username) && is_email($email) && is_postCode($postCode) && is_text($location) && is_password($password)))
+		die('ERROR');
 }
 else
 {

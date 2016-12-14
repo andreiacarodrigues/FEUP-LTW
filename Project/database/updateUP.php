@@ -9,6 +9,9 @@
     {
         $username = trim(strip_tags($_GET["username"]));
         $password = trim(strip_tags($_GET["password"]));
+		
+		if(!(is_username($username) && is_password($password)))
+			die('ERROR');
     }
     else
         die('ERROR');

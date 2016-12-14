@@ -6,6 +6,9 @@ if (isset ($_GET["id"] ) && isset ($_GET["username"] ) && isset ($_GET["text"] )
     $id = trim(strip_tags($_GET["id"]));
     $username = trim(strip_tags($_GET["username"]));
     $text = trim(strip_tags($_GET["text"]));
+	
+	if(!(is_username($username) && is_text($text)))
+		die('ERROR');
 }
 else
 {

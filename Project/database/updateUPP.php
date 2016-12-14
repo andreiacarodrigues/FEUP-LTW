@@ -9,6 +9,9 @@ if(isset($_GET["val"]) && isset($_GET["id"]))
 {
     $val = trim(strip_tags($_GET["val"]));
     $id = trim(strip_tags($_GET["id"]));
+	
+	if(!is_username($val))
+		die('ERROR');
 }
 else
     die('ERROR');
