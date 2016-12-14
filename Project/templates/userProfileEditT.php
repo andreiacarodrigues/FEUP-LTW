@@ -99,10 +99,10 @@ else{
                 var photoId = info[4];
                 if(photoId != null)
                 {
-                    getPhoto(parseInt(photoId), false, '#main','', './css/images/');
+                    getPhoto(parseInt(photoId), false, '#main','', small_path);
                 }
                 else
-                    $('#main').prepend('<img src="./css/images/1.jpg" alt="Photo that represents the restaurant">');
+                    $('#main').prepend('<img src='+default_user+' alt="Photo that represents the restaurant">');
             }
         };
 

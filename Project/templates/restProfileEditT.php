@@ -81,17 +81,17 @@ else
 
                 if(photoId != null)
                 {
-                    getPhoto(parseInt(photoId), false, '#main','#menuPhoto', './css/images/');
+                    getPhoto(parseInt(photoId), false, '#main','#menuPhoto', small_path);
                 }
                 else
-                    $('#main').prepend('<img src="./css/images/1.jpg" alt="Photo that represents the restaurant">');
+                    $('#main').prepend('<img src='+default_restaurant+' alt="Photo that represents the restaurant">');
 
                 if(menuId != null)
                 {
-                    getPhoto(parseInt(menuId) , true, '#main','#menuPhoto', './css/images/');
+                    getPhoto(parseInt(menuId) , true, '#main','#menuPhoto', normal_path);
                 }
                 else
-                    $('#menuPhoto').html('<img src="./css/Images/defaultRestaurant.jpg" alt="Restaurant\'s Menu">');
+                    $('#menuPhoto').html('<img src='+default_menu+' alt="Restaurant\'s Menu">');
 
                 $.get('./database/restaurantPhotos.php',  {restaurant: restaurant}, function(data)
                     {
@@ -109,7 +109,7 @@ else
                             {
                                 if(photos[i] != null)
                                 {
-                                    $('#restaurantPhotos').append('<img src="./css/images/'+ photos[i] + '"alt="Photo of the restaurant"><br>');
+                                    $('#restaurantPhotos').append('<img src='+normal_path+ photos[i] + ' alt="Photo of the restaurant"><br>');
                                     $('#restaurantPhotos').append('<form action="./database/deleteRP.php" method="post"><input id="val" type="hidden" name="val" value="' + photos[i] + '"/><input type="hidden" name="restaurant" value="' + restaurant + '"/><input type="submit" value="Delete Photo"></form><br>');
                                 }
                             }

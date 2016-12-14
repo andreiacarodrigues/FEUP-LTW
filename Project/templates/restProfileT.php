@@ -66,14 +66,14 @@ else
 				var photoId = info[8];
 	
 				if(photoId != null)
-					getPhoto(parseInt(photoId), false, '#informations', '#menu', './css/images/');
+					getPhoto(parseInt(photoId), false, '#informations', '#menu', small_path);
 				else
-					$('#informations').prepend('<img src="./css/images/1.jpg" alt="Photo that represents the restaurant">');
+					$('#informations').prepend('<img src='+default_restaurant+' alt="Photo that represents the restaurant">');
 				
 				if(menuId != null)
-					getPhoto(parseInt(menuId) , true, '#informations', '#menu', './css/images/');
+					getPhoto(parseInt(menuId) , true, '#informations', '#menu', normal_path);
 				else
-					$('#menu').html('<img src="./css/images/1.jpg" alt="Photo that represents the restaurant">');
+					$('#menu').html('<img src='+default_menu+' alt="Photo that represents the restaurant">');
 				
 				var rating_sum = info[9];
 				var rating_total = info[10];
@@ -173,7 +173,7 @@ else
 				var photos = eval("(" + info + ")"); 
 				for(var i = 0; i < photos.length; i++)
 				{
-					$('#photos').append('<img src="./css/images/'+ photos[i] + '"alt="Photo of the restaurant">');
+					$('#photos').append('<img src='+normal_path+ photos[i] + '"alt="Photo of the restaurant">');
 				}
 			}
 		}

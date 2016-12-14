@@ -1,4 +1,12 @@
-﻿function getPhoto(id, isMenu, idPhoto, idMenu, path)
+﻿var small_path = "css/images_small/";
+var medium_path = "css/images_medium/";
+var normal_path = "css/images/";
+
+var default_user = "css/images_small/1.jpg";
+var default_restaurant = "css/images_small/2.jpg";
+var default_menu = "css/images_small/3.jpg";
+
+function getPhoto(id, isMenu, idPhoto, idMenu, path)
 {
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();

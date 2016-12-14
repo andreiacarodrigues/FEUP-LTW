@@ -83,9 +83,9 @@ else
                 var photoId = info[8];
                 console.log(photoId);
                 if(photoId != null)
-                    getPhoto(parseInt(photoId), false, '#result' + i, '#menu', './css/images_small/');
+                    getPhoto(parseInt(photoId), false, '#result' + i, '#menu', small_path);
                 else
-                    $('#result' + i).append('<img src="./css/images_small/1.jpg" alt="Photo that represents the restaurant">');
+                    $('#result' + i).append('<img src='+default_restaurant+' alt="Photo that represents the restaurant">');
 
                 $('#result' + i).append('<br><a href="./restaurantProfile.php?restaurant='+ restaurant +'">' + restaurant + '</a><br>');
 
