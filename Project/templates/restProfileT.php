@@ -144,11 +144,9 @@ else
 						var info = new String(data);
 						info = info.trim();
 						
-						console.log(data);
 						$('#reviews').append(data);
 					}
 					);
-					console.log(document.getElementById('reviews').innerHTML);
 				}
 				return true;	
             }
@@ -212,6 +210,8 @@ else
                         }
                         else
                             $('#newReview' + i).val('');
+						
+						window.location = "restaurantProfile.php?restaurant=" + restaurant;
                     }
 				}
 			};
