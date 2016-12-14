@@ -41,9 +41,7 @@
             <input type="text" id="searchPost" placeholder="Post Code Search">
             <input type="button" value="Search" onclick="searchPostCode();">
         </div>
-		<div class="p">
-		  <p id="pc_status"> </p>
-		  </div>
+		 <p id="pc_status" style="font:0.9em 'Montserrat Alternates'; color:red; text-align:center;"> </p>
     </div>
     <div class="homeform">
         <p class="searchFormTitle">Search by Restaurant Name:</p>
@@ -51,8 +49,6 @@
             <input type="text" id="searchName" placeholder="Restaurant Name Search" >
             <input type="button" value="Search" onclick="searchRestaurantName();">
         </div>
-		<div class="p">
-		<p id="rn_status"> </p>
-				  </div>
+		<p id="rn_status" style="font:0.9em 'Montserrat Alternates'; color:red; text-align:center;"> </p>
     </div>
 </section>
