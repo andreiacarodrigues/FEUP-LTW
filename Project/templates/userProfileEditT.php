@@ -112,8 +112,6 @@ else{
 
     function submitInfo(){
 
-        var previousUsername = username;
-        var u = getVar("username");
         var n =  getVar("name");
         var e = getVar("email");
         var p1 = getVar("postCode1");
@@ -122,12 +120,9 @@ else{
 		var l = getVar("location");
         var b = getVar("birthdate");
         var status = _("status");
-
-		console.log(l);
+		
         //regex validations
-        if(!is_username(u) || !((_("unamestatus").innerHTML == "Username accepted!") || (_("unamestatus").innerHTML == "")))
-            status.innerHTML = "Invalid username.";
-        else if(!is_name(n))
+         if(!is_name(n))
             status.innerHTML = "Invalid name.";
         else if(!is_email(e))
             status.innerHTML = "Invalid email.";
@@ -140,7 +135,7 @@ else{
             status.innerHTML = "";
             var postCode = p1 + "-" + p2;
 
-            $.get('./database/updateUI.php',  {username: u, name: n, email: e, postCode: postCode, location: l, birthdate: b, previousUsername: previousUsername}, function(data)
+            $.get('./database/updateUI.php',  {username: username, name: n, email: e, postCode: postCode, location: l, birthdate: b}, function(data)
                 {
                     var info = new String(data);
                     info = info.trim();
@@ -155,7 +150,7 @@ else{
                         console.log("Error updating username information.");
                     else
                     {
-                        window.location = 'userProfile.php?username='+u;
+                        window.location = 'userProfile.php?username='+username;
                     }
                 }
             );
@@ -252,9 +247,7 @@ else{
         <li id="userInformations">
             <div>
                 <form>
-                   <label for="username">Username:<input id="username" type="text" name="username" onblur="checkUsername();" onkeyup="restrict('username');" maxlength="16"></label> <br>
-                    <p id="unamestatus"></p>
-                    <br>
+                   <label for="username">Username:<input id="username" type="text" name="username" onkeyup="restrict('username');" readonly maxlength="20"></label> <br>
                     <label for="name">Name:<input id="name" type="text" name="name" maxlength="88"></label><br>
                     <label for="email">Email: <input id="email" type="email" name="email" maxlength="30"> </label> <br>
                     <label for="postCode1">PostCode: <input id="postCode1" type="text" maxlength="4"  name="postCode1"> -<input id="postCode2" type="text" maxlength="3" name="postCode2"></label>

@@ -40,11 +40,11 @@ function getUserPhoto($name)
     return $stmt->fetch();
 }
 
-function updateUser($name, $email, $birthdate, $postCode, $location, $username, $previousUsername)
+function updateUser($name, $email, $birthdate, $postCode, $location, $username)
 {
     global $db;
-    $stmt = $db->prepare("UPDATE User SET name = ? , email = ? , birthdate = ? , postCode = ?, location = ?, username = ? WHERE username = ?");
-    $stmt->execute(array($name, $email, $birthdate, $postCode, $location, $username, $previousUsername));
+    $stmt = $db->prepare("UPDATE User SET name = ? , email = ? , birthdate = ? , postCode = ?, location = ? WHERE username = ?");
+    $stmt->execute(array($name, $email, $birthdate, $postCode, $location, $username));
 }
 
 function updateUserPassword($password,$options,$username)

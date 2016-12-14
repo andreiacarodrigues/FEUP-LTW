@@ -72,7 +72,7 @@ if(isset($_SESSION["userid"])){
 	<h2>SignUp</h2>
 	<div class="signUp">
 		<form>
-			<label>Username:<input type="text" name="username" id="username" onblur="checkUsername();" onkeyup="restrict('username');" maxlength="16"> </label> <br>
+			<label>Username:<input type="text" name="username" id="username" onblur="checkUsername();" onkeyup="restrict('username');" maxlength="20"> </label> <br>
 			<p id="unamestatus"></p> <br>
 			<label>Name: <input type="text" name="name" id="name" onfocus="emptyElement('status');" maxlength="88"></label> <br>
 			<label>Email:<input type="email" name="email" id="email" placeholder="" onfocus="emptyElement('status');" maxlength="30" > </label><br>
