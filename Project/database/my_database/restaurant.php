@@ -61,7 +61,7 @@ function getRestaurantName($restaurantId)
 function getAllRestaurants()
 {
     global $db;
-    $stmt = $db->prepare("SELECT restaurantId, name, postCode FROM Restaurant ORDER BY rating_total");
+    $stmt = $db->prepare("SELECT restaurantId, name, postCode, location FROM Restaurant ORDER BY rating_total");
     $stmt->execute();
     return $stmt->fetchAll();
 }

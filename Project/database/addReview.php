@@ -10,6 +10,12 @@ if (isset($_POST["restaurant"]) && isset($_POST["username"]) && isset($_POST["te
     $text = trim(strip_tags($_POST["text"]));
     $rating = trim(strip_tags($_POST["rating"]));
     $date = trim(strip_tags($_POST["date"]));
+	
+	if(!(is_text($restaurant) && is_username($username) && is_text($date)))
+		die('ERROR');
+	if($text != "")
+		if(!is_text($text))
+			die('ERROR');
 }
 else
 {

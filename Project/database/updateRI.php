@@ -13,6 +13,9 @@ if (isset($_GET["id"]) && isset($_GET["name"]) && isset($_GET["description"]) &&
     $avgPrice = trim(strip_tags($_GET["avgPrice"]));
     $schedule = trim(strip_tags($_GET["schedule"]));
     $observation = trim(strip_tags($_GET["observation"]));
+	
+	if(!(is_name($name) && is_text($description) && is_text($location) && is_text($schedule) && is_postCode($postCode) && is_phone_number($contact) &&  is_text($observation)))
+		echo('ERROR');
 
 }
 else

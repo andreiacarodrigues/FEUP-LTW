@@ -110,7 +110,7 @@ function is_password(element)
 
 function is_text(element)
 {
-    return /^[a-zA-Z0-9\s\n\\\.\?\!\+\(\)\;\:\,]+$/.test(element);
+    return /^[a-zA-Z0-9\s\n\\\.\?\!\+\(\)\;\:\,\-]+$/.test(element);
 }
 
 function is_email(element) {

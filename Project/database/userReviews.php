@@ -7,6 +7,9 @@ include_once('my_database/photo.php');
 if (isset ($_GET["username"] ))
 {
     $username = trim(strip_tags($_GET["username"]));
+	
+	if(!is_username($username))
+		die('ERROR');
 
 	$reviews = getReviewsByUser($username);
 

@@ -7,6 +7,9 @@ if (isset ($_GET["username"] ))
 else
     die('ERROR');
 
+if(!is_username($username))
+	die('ERROR');
+
 $restaurants = getRestaurantsByOwner($username);
 
 $result = array();

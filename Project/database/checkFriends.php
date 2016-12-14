@@ -5,6 +5,9 @@ if (isset ($_GET["sessionUsername"] ) && isset ($_GET["username"] ))
 {
     $sessionUsername = trim(strip_tags($_GET["sessionUsername"]));
     $username = trim(strip_tags($_GET["username"]));
+	
+	if(!(is_username($username) && is_username($sessionUsername)))
+		die('ERROR');
 }
 else
     die('ERROR');

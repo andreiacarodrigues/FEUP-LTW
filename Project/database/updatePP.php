@@ -10,6 +10,9 @@ if (isset ($_GET["val"] ) && isset ($_GET["id"] ) && isset ($_GET["method"] ))
     $val = trim(strip_tags($_GET["val"]));
     $id = trim(strip_tags($_GET["id"]));
     $mode = trim(strip_tags($_GET["method"]));
+	
+	if(!((($mode ==1)&&is_username($val)) || ($mode == 2)))
+		die('ERROR');
 }
 else
     die('ERROR');

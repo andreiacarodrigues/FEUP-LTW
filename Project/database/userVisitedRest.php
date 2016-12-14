@@ -8,6 +8,9 @@ if (isset ($_GET["username"] ))
 else
     die('ERROR');
 
+if(!is_username($username))
+	die('ERROR');
+
 $reviews = getReviewsByUser($username);
 
 $result = array();
