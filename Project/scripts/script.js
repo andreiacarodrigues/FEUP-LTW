@@ -108,6 +108,11 @@ function is_password(element)
     return /^[a-zA-Z0-9]{6,}$/.test(element);
 }
 
+function is_text(element)
+{
+    return /^[a-zA-Z0-9\s\n\\\.\?\!\+\(\)\;\:\,]+$/.test(element);
+}
+
 function is_email(element) {
     var re =/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(element);

@@ -157,6 +157,12 @@ else
             status.innerHTML = "Invalid average price.";
         else if(!is_phone_number(contact))
             status.innerHTML = "Invalid contact.";
+		else if(!is_text(location))
+			status.innerHTML = "Invalid location.";
+		else if(!is_text(description))
+			status.innerHTML = "Invalid description.";
+		else if(!is_text(schedule))
+			status.innerHTML = "Invalid schedule.";
         else {
             $.get('./database/updateRI.php', {
                     id: $('#r_id').attr("value"),

@@ -29,7 +29,7 @@ else{
 <script language="JavaScript">
 
     var username = <?php echo json_encode($username) ?>;
-
+	
     function checkPassword(){
         var p = _("password").value;
 
@@ -93,6 +93,8 @@ else{
                 var res = info[3].split("-");
                 $('#postCode1').attr("placeholder",res[0]);
                 $('#postCode2').attr("placeholder",res[1]);
+				
+				 $('#location').attr("placeholder",info[6]);
 
                 var photoId = info[4];
                 if(photoId != null)
@@ -117,10 +119,11 @@ else{
         var p1 = getVar("postCode1");
         var p2 = getVar("postCode2");
         var postcode = p1+"-"+p2;
+		var l = getVar("location");
         var b = getVar("birthdate");
         var status = _("status");
 
-		console.log(_("unamestatus").innerHTML == "");
+		console.log(l);
         //regex validations
         if(!is_username(u) || !((_("unamestatus").innerHTML == "Username accepted!") || (_("unamestatus").innerHTML == "")))
             status.innerHTML = "Invalid username.";
@@ -130,12 +133,14 @@ else{
             status.innerHTML = "Invalid email.";
         else if(!is_postCode(postcode))
             status.innerHTML = "Invalid postcode.";
+		else if(!is_text(l))
+			 status.innerHTML = "Invalid location.";
         else
         {
             status.innerHTML = "";
             var postCode = p1 + "-" + p2;
 
-            $.get('./database/updateUI.php',  {username: u, name: n, email: e, postCode: postCode, birthdate: b, previousUsername: previousUsername}, function(data)
+            $.get('./database/updateUI.php',  {username: u, name: n, email: e, postCode: postCode, location: l, birthdate: b, previousUsername: previousUsername}, function(data)
                 {
                     var info = new String(data);
                     info = info.trim();
@@ -254,6 +259,7 @@ else{
                     <label for="email">Email: <input id="email" type="email" name="email" maxlength="30"> </label> <br>
                     <label for="postCode1">PostCode: <input id="postCode1" type="text" maxlength="4"  name="postCode1"> -<input id="postCode2" type="text" maxlength="3" name="postCode2"></label>
                     </label><br>
+					<label for="location">Location:<input id="location" type="text" name="location" maxlength="88"></label><br>
                     <label for="birthdate">Birthdate:<input id="birthdate" type="date" name="birthdate"></label><br>
                     <input type="button" onclick="submitInfo();" value="Submit Information">
                     <input type="button" onclick="goBack();" value="Cancel">

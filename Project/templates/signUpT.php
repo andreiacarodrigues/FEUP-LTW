@@ -15,6 +15,7 @@ if(isset($_SESSION["userid"])){
         var p1 = _("postCode1").value;
         var p2 = _("postCode2").value;
         var postCode = p1+"-"+p2;
+		var l = _("location").value;
         var b = _("birthdate").value;
         var pass1 = _("password").value;
         var pass2 = _("confirmPassword").value;
@@ -36,6 +37,8 @@ if(isset($_SESSION["userid"])){
                 "Passwords must have at least 6 alphanumeric characters.";
         else if(pass1 != pass2)
             status.innerHTML = "Your password fields do not match.";
+		 else if(!is_text(l))
+            status.innerHTML = "Invalid location.";
         else
         {
             status.innerHTML = "";
@@ -54,7 +57,7 @@ if(isset($_SESSION["userid"])){
                     goHomePage();
                 }
             };
-            xmlhttp.open("GET","database/addUser.php?username="+u + "&name="+n+"&email="+e+"&postCode="+postCode+"&birthdate="+b+"&password="+pass1,true);
+            xmlhttp.open("GET","database/addUser.php?username="+u + "&name="+n+"&email="+e+"&postCode="+postCode+"&location="+l+"&birthdate="+b+"&password="+pass1,true);
             xmlhttp.send();
 
             return true;
@@ -75,6 +78,7 @@ if(isset($_SESSION["userid"])){
 			<label>Email:<input type="email" name="email" id="email" placeholder="" onfocus="emptyElement('status');" maxlength="30" > </label><br>
 			<label>PostCode: <input type="text" maxlength="4" name="postCode1"  id="postCode1" > -<input type="text" maxlength="3" name="postCode2" id="postCode2" onfocus="emptyElement('status');" > </label>
 			</label> <br>
+			<label>Location: <input type="text" name="location" id="location" onfocus="emptyElement('status');" maxlength="88"></label> <br>
 			<label>Birthdate:<input type="date" name="birthdate"  id="birthdate" onfocus="emptyElement('status');"></label> <br>
 			<label>Password:<input type="password" name="password" id="password" onfocus="emptyElement('status');" maxlength="30"></label><br>
 			<label>Confirm Password: <input type="password" name="confirmPassword"  id="confirmPassword" onfocus="emptyElement('status');" maxlength="30"> </label><br>

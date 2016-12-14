@@ -60,7 +60,7 @@ else
 				_("observations").innerHTML = info[6];
 				_("postCode").innerHTML = info[12];
 
-				initMap(info[12]);
+				initMap(info[12] + ' ' + info[2]);
 				
 				var menuId = info[7];
 				var photoId = info[8];

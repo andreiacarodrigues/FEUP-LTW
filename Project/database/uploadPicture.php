@@ -69,11 +69,10 @@
 	  $mediumwidth = $width;
 	  $mediumheight = $height;
 
-	  if ($mediumwidth > 400) {
-		$mediumwidth = 400;
+	  if ($mediumwidth > 800) {
+		$mediumwidth = 800;
 		$mediumheight = $mediumheight * ( $mediumwidth / $width );
 	  }
-
 	  $medium = imagecreatetruecolor($mediumwidth, $mediumheight); 
 	  imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumwidth, $mediumheight, $width, $height);
 	  imagejpeg($medium, $mediumFileName);

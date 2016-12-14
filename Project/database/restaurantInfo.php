@@ -24,7 +24,6 @@ if(!empty($info))
         11 => $info['owner'],
         12 => $info['postCode']
     );
-
     echo json_encode($infoArray);
 }
 else

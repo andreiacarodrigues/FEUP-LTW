@@ -21,7 +21,8 @@ $infoArray = array(0 => $info['name'],
     2 => $info['birthdate'],
     3 => $info['postCode'],
     4 => $info['photoId'],
-    5 => $isOwner);
+    5 => $isOwner,
+	6 => $info['location']);
 
 if(!empty($info))
     echo json_encode($infoArray);

@@ -53,6 +53,14 @@ else
             status.innerHTML = "Invalid average price.";
         else if(!is_phone_number(contact))
             status.innerHTML = "Invalid contact.";
+		else if(!is_name(description))
+            status.innerHTML = "Invalid description.";
+		else if(!is_text(schedule))
+            status.innerHTML = "Invalid schedule.";
+		else if(!is_text(location))
+            status.innerHTML = "Invalid location.";
+		else if(!is_text(observations))
+            status.innerHTML = "Invalid observations.";
         else
         {
             //passou todas as expressoes regulares, adiciona o restaurante

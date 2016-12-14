@@ -48,8 +48,9 @@ else {
                 _("email").innerHTML = info[1];
                 _("birthdate").innerHTML = info[2];
                 _("postCode").innerHTML = info[3];
+				_("location").innerHTML = info[6];
 
-                initMap(info[3]);
+                initMap(info[3] + " " + info[6]);
 
                 var photoId = info[4];
                 if(photoId != null)
@@ -320,6 +321,7 @@ else {
 			<li><label for="name">Email: <span id="email"></span></label></li>
 			<li><label for="name">Birthday: <span id="birthdate"></span></label></li>
 			<li><label for="name">Post-Code: <span id="postCode"></span></label></li>
+			<li><label for="name">Location: <span id="location"></span></label></li>
            
             <div id="addFriend"></div>
             <div id="deleteFriend"></div>

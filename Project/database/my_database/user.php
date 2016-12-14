@@ -1,11 +1,11 @@
 ﻿<?php
 include_once('connection.php');
 
-function addUser($name, $email, $birthdate,$postCode, $username, $password, $options)
+function addUser($name, $email, $birthdate,$postCode, $location, $username, $password, $options)
 {
     global $db;
-    $stmt = $db->prepare("INSERT INTO user VALUES (null, ?, ?, ?, ?, ? ,?, null)");
-    $stmt->execute(array($name, $email, $birthdate, $postCode,$username, password_hash($password, PASSWORD_DEFAULT, $options)));
+    $stmt = $db->prepare("INSERT INTO user VALUES (null, ?, ?, ?, ?, ?, ? ,?, null)");
+    $stmt->execute(array($name, $email, $birthdate, $postCode, $location, $username, password_hash($password, PASSWORD_DEFAULT, $options)));
 }
 
 function deleteUser($name)
@@ -27,7 +27,7 @@ function getUserPassword($username)
 function getUserInfo($username)
 {
     global $db;
-    $stmt = $db->prepare("SELECT name, email, birthdate, postCode, photoId FROM User WHERE username = ?");
+    $stmt = $db->prepare("SELECT name, email, birthdate, postCode, location, photoId FROM User WHERE username = ?");
     $stmt->execute(array($username));
     return $stmt->fetch();
 }
@@ -40,11 +40,11 @@ function getUserPhoto($name)
     return $stmt->fetch();
 }
 
-function updateUser($name, $email, $birthdate, $postCode, $username, $previousUsername)
+function updateUser($name, $email, $birthdate, $postCode, $location, $username, $previousUsername)
 {
     global $db;
-    $stmt = $db->prepare("UPDATE User SET name = ? , email = ? , birthdate = ? , postCode = ?, username = ? WHERE username = ?");
-    $stmt->execute(array($name, $email, $birthdate, $postCode, $username, $previousUsername));
+    $stmt = $db->prepare("UPDATE User SET name = ? , email = ? , birthdate = ? , postCode = ?, location = ?, username = ? WHERE username = ?");
+    $stmt->execute(array($name, $email, $birthdate, $postCode, $location, $username, $previousUsername));
 }
 
 function updateUserPassword($password,$options,$username)
