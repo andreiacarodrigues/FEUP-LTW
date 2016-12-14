@@ -54,9 +54,9 @@ else {
 
                 var photoId = info[4];
                 if(photoId != null)
-                    getPhoto(parseInt(photoId), false, '#informacoes', '', './css/Images/');
+                    getPhoto(parseInt(photoId), false, '#informacoes', '', small_path);
                 else
-                    $('#informacoes').prepend('<img src="./css/images/1.jpg" alt="Photo that represents the user">');
+                    $('#informacoes').prepend('<img src='+default_user+' alt="Photo that represents the user">');
 
                 //qualquer pessoa pode ver as minhas reviews, os restaurantes que visitei, e os restaurantes que eu sou dono
                 if(info[5])
@@ -181,10 +181,10 @@ else {
 
                     var photo = info[i][3];
                     if(photo != null){
-                        $('#visitedPlaces').append('<img src="./css/images_small/'+photo+'" alt="Photo that represents the restaurant">');
+                        $('#visitedPlaces').append('<img src='+small_path+photo+' alt="Photo that represents the restaurant">');
                     }
                     else{
-                        $('#visitedPlaces').append('<img src="./css/images_small/defaultRestaurant.jpg" alt="Photo that represents the restaurant">');
+                        $('#visitedPlaces').append('<img src='+default_restaurant+' alt="Photo that represents the restaurant">');
                     }
 
                     $('#visitedPlaces').append('\n</ul>\n</article>');
@@ -252,10 +252,10 @@ else {
 
                     var photo = info[i][3];
                     if(photo != null){
-                        $('#manageRestaurants').append('<img src="./css/images_small/'+photo+'" alt="Photo that represents the restaurant">');
+                        $('#manageRestaurants').append('<img src='+small_path+photo+' alt="Photo that represents the restaurant">');
                     }
                     else{
-                        $('#manageRestaurants').append('<img src="./css/images_small/defaultRestaurant.jpg" alt="Photo that represents the restaurant">');
+                        $('#manageRestaurants').append('<img src='+default_restaurant+' alt="Photo that represents the restaurant">');
                     }
 
                     $('#manageRestaurants').append('\n</ul>\n</article>');
