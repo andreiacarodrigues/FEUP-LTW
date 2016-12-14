@@ -23,7 +23,8 @@ foreach ($reviews as $review)
     $infoArray = array(0 => $name['name'],
         1 => $restaurant['rating_sum'],
         2 => $restaurant['location'],
-        3 => $photo['filename']);
+        3 => $photo['filename'],
+		4=> $restaurant['rating_total']);
 
     $result[] = $infoArray;
 }

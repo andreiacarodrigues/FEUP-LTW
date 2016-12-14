@@ -9,6 +9,12 @@
 #main #map{
     margin-left:2em;
 }
+
+.homeform .p {
+    font: 0.9em 'Montserrat Alternates';
+    color: red;
+    text-align: center;
+}
 /* ---------------------------------------------------- Header ------------------------------------------------------ */
 
 header{
@@ -915,6 +921,8 @@ article img{
     font:1em 'Montserrat Alternates';
     list-style: none;
 }
+
+
 /* ---------------------------------------------- Pop up container -------------------------------------------------- */
 .popup {
     position: relative;

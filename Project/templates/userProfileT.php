@@ -172,9 +172,16 @@ else {
                 for (var i = 0; i < info.length; i++)
                 {
 					var name = info[i][0];
+					if((info[i][1] == 0) || (info[i][4] == 0))
+						var rating = 0;
+					else
+						var rating = (parseFloat(info[i][1]) / parseFloat(info[i][4]));
+				
+					rating = parseFloat(Math.round(rating * 100) / 100).toFixed(1);
+	
                     $('#visitedPlaces').append('<article>\n<ul>' +
                         '\n<a href="./restaurantProfile.php?restaurant='+ name +'">'+ name+'</a><br>' +
-                        '\n<li><label for="vis_rating">Rating: <span id="vis_rating">' + info[i][1] + '</span></label></li>' +
+                        '\n<li><label for="vis_rating">Rating: <span id="vis_rating">' + rating + '</span></label></li>' +
                         '\n<li><label for="vis_local">Location: <span id="vis_local">' + info[i][2] + '</span></label></li>\n');
 
                     var photo = info[i][3];

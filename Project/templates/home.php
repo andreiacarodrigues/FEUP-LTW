@@ -11,7 +11,7 @@
             window.location =  "restaurantSearch.php?search=" + search + "&mode=1";
         }
         else
-            status.innerHTML = 'The searched post/zip code is not valid. It should contain 4 digits followed or not by 3 other digits.';
+            status.innerHTML = 'The searched post code/location is not valid. It should contain 4 digits followed or not by 3 other digits or only contain characters and digits.';
     }
 
     function searchRestaurantName()
@@ -28,7 +28,6 @@
             else
                 status.innerHTML = 'The searched name is not valid. It should only contain characters and whitespace characters.';
         }
-        // faz o get
         else
             status.innerHTML = 'The searched name is not valid. It should only contain characters and whitespace characters.';
     }
@@ -37,20 +36,23 @@
 
 <section id="sectionBody">
     <div class="homeform">
-        <p class="searchFormTitle">Search by Zip Code/Post Code:</p>
+        <p class="searchFormTitle">Search by Post Code/Location:</p>
         <div class="field">
             <input type="text" id="searchPost" placeholder="Post Code Search">
             <input type="button" value="Search" onclick="searchPostCode();">
-            <span id="pc_status"> </span>
-            <br>
         </div>
+		<div class="p">
+		  <p id="pc_status"> </p>
+		  </div>
     </div>
     <div class="homeform">
         <p class="searchFormTitle">Search by Restaurant Name:</p>
         <div class="field">
             <input type="text" id="searchName" placeholder="Restaurant Name Search" >
             <input type="button" value="Search" onclick="searchRestaurantName();">
-            <span id="rn_status"> </span>
         </div>
+		<div class="p">
+		<p id="rn_status"> </p>
+				  </div>
     </div>
 </section>
