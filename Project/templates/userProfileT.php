@@ -135,14 +135,10 @@ else {
                 else
                     info = eval("(" + this.responseText + ")");
 
-                console.log("reviews : ");
-                console.log(info);
-
                 for(var i = 0; i < info.length; i++)
                 {
                     var jsonString = JSON.stringify(info[i]);
 					
-					console.log(username);
                     $.get('./templates/review.php',  {info: jsonString, username: username, isRestaurant: 0}, function(data)
                         {
 							 var info = new String(data);
@@ -222,7 +218,7 @@ else {
             for (var i = 0; i < elements.length; i++) {
                 elements[i].style.display = "none";
             }
-            console.log("hello");
+            
             return;
         }
 
@@ -247,9 +243,6 @@ else {
                 }
                 else
                     info = eval("(" + this.responseText + ")");
-
-                console.log("my restaurants : ");
-                console.log(info);
 
                 for (var i = 0; i < info.length; i++)
                 {
@@ -356,8 +349,6 @@ else {
                 if(username != sessionUsername)
                 {
 					
-					console.log(username);
-					console.log(sessionUsername);
                     _("addFriend").innerHTML = "<a href=\"./database/addFriend.php?username="+username+"&sessionUsername=" + sessionUsername +"\">Follow</a><br>";
                     _("deleteFriend").innerHTML = "<a href=\"./database/deleteFriend.php?username="+username+"&sessionUsername=" + sessionUsername +"\">Unfollow</a><br>";
                 }
