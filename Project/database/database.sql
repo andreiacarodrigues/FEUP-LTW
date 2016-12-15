@@ -86,9 +86,9 @@ INSERT INTO User VALUES (NULL, 'Andreia Rodrigues', 'andreiacarodrigues@gmail.co
 INSERT INTO User VALUES (NULL, 'Ines Gomes', 'ines@gmail.com', '08-08-1996', '5101-909', 'Lamego, Portugal', 'InesGomes','$2y$12$3que10ZnlZeQG97yWQRfB.tQAzGITNYc/8kUnvlrkpsEpDR0rp0Ku', 1); /* pass = ines123 */
 INSERT INTO User VALUES (NULL, 'Eduardo Leite', 'edu@gmail.com', '20-01-1993', '4350-334', 'Porto, Portugal', 'Eduardo', '$2y$12$tBJEp7bEuP1UQusQuYpJB.l4PCF0mnh.XX35flB.nbr7.N.F2ZnJG', 1); /* pass = 123456 */
 
-INSERT INTO Restaurant VALUES (1,'Montaditos - Porto','As famosas tapas espanholas a um preco acessivel.','Porto','5101-123','921425785','7.5','Todos os dias da semana, das  12:00 as 24:00','Tem take away, bar completo, wi-fi, opcoes vegetarianas, self service e vinho a copo.',2,1,4,4,'Andreia');
-INSERT INTO Restaurant VALUES (2,'Mcdonalds - Lisboa','Com classicos desde o Happy Meal ao Big Mac, o McDonalds e um marco da Fast-Food frequentado por todas as idades.','Lisboa','1300-472 ','214418895','5','Todos os dias da semana, 24h por dia','Pequeno-almoco, tem take away, tem wifi e esplanada',2,1,3,3,'Andre');
-INSERT INTO Restaurant VALUES (3,'Pizza Hut - Lisboa','As melhores pizzas de sempre!','Lisboa','1300-036','707221122','25','De segunda a domingo, das 12h as 24h. Encerra aos feriados.','Tem take away, bar completo, zona de fumadores, tem wifi',2,1,3,3,'Andreia');
+INSERT INTO Restaurant VALUES (1,'Montaditos - Porto','As famosas tapas espanholas a um preco acessivel.','Porto','5101-123','921425785','7.5','Todos os dias da semana, das  12:00 as 24:00','Tem take away, bar completo, wi-fi, opcoes vegetarianas, self service e vinho a copo.',2,1,0,0,'Andreia');
+INSERT INTO Restaurant VALUES (2,'Mcdonalds - Lisboa','Com classicos desde o Happy Meal ao Big Mac, o McDonalds e um marco da Fast-Food frequentado por todas as idades.','Lisboa','1300-472 ','214418895','5','Todos os dias da semana, 24h por dia','Pequeno-almoco, tem take away, tem wifi e esplanada',2,1,0,0,'Andre');
+INSERT INTO Restaurant VALUES (3,'Pizza Hut - Lisboa','As melhores pizzas de sempre!','Lisboa','1300-036','707221122','25','De segunda a domingo, das 12h as 24h. Encerra aos feriados.','Tem take away, bar completo, zona de fumadores, tem wifi',2,1,0,0,'Andreia');
 
 INSERT INTO Friend VALUES ('InesGomes','Andreia');
 INSERT INTO Friend VALUES ('Andreia','InesGomes');

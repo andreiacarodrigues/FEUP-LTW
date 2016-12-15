@@ -171,7 +171,7 @@ else
 				var photos = eval("(" + info + ")"); 
 				for(var i = 0; i < photos.length; i++)
 				{
-					$('#photos').append('<img src="'+small_path + photos[i] + '" alt="Photo of the restaurant">');
+					$('#photos').append('<img src="'+normal_path + photos[i] + '" alt="Photo of the restaurant">');
 				}
 			}
 		}
