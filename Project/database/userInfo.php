@@ -12,6 +12,9 @@ if(!is_username($username))
 
 $info = getUserInfo($username);
 
+if(empty($info))
+    die("USER ERROR");
+
 $myRest = getRestaurantsByOwner($username);
 
 if(empty($myRest))

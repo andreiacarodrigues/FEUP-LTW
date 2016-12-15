@@ -40,6 +40,11 @@ else {
                     alert("ERROR : some variables are not defined");
                     return false;
                 }
+                else if(info == "USER ERROR") {
+                    alert("ERROR : the user requested is no longer active");
+                    document.location='index.php';
+                    return false;
+                }
                 else
                     info = eval("(" + this.responseText + ")");
 
@@ -131,7 +136,7 @@ else {
                     var jsonString = JSON.stringify(info[i]);
 					
 					console.log(username);
-                    $.get('./templates/review.php',  {info: jsonString, username: username}, function(data)
+                    $.get('./templates/review.php',  {info: jsonString, username: username, isRestaurant: 0}, function(data)
                         {
 							 var info = new String(data);
 							info = info.trim();

@@ -2,19 +2,25 @@
 $info = json_decode(stripslashes($_GET['info']));
 
 
-if (isset ( $_GET ["username"] ))
+if (isset ( $_GET ["username"] ) && isset ( $_GET ["isRestaurant"] ))
 {
 
 	$username = trim(strip_tags($_GET["username"]));
+	$isRestaurant = trim(strip_tags($_GET["isRestaurant"]));
 
 	$review =
 		"<article id=\"" . $info[0] . "\">
-			<ul>
-				<a href=\"restaurantProfile.php?restaurant=" . $info[1] . "\" id=\"rev_username\">" . $info[1] . "</a><br>
-				<li><label for=\"rev_rating\">Rating: <span id=\"rev_rating\">" . $info[2]. "</span></label></li>";
-				
-		if($info[3] != "")
-			$review = $review ."<li><label for=\"rev_opinion\">Review: <span id=\"rev_opinion\">" . $info[3] . "</span></label></li>";
+			<ul>";
+
+	if($isRestaurant)
+        $review = $review . "<a href=\"userProfile.php?username=" . $info[1] . "\" id=\"rev_username\">" . $info[1] . "</a><br>
+				    <li><label for=\"rev_rating\">Rating: <span id=\"rev_rating\">" . $info[2]. "</span></label></li>";
+	else
+        $review = $review . "<a href=\"restaurantProfile.php?restaurant=" . $info[1] . "\" id=\"rev_username\">" . $info[1] . "</a><br>
+				    <li><label for=\"rev_rating\">Rating: <span id=\"rev_rating\">" . $info[2]. "</span></label></li>";
+
+    if($info[3] != "")
+		$review = $review ."<li><label for=\"rev_opinion\">Review: <span id=\"rev_opinion\">" . $info[3] . "</span></label></li>";
 
 	if(count($info[4]) != 0)
 	{
