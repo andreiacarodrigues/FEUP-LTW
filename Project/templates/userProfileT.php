@@ -14,7 +14,13 @@ else {
 <script language="JavaScript">
 
     var username = <?php echo json_encode($username) ?>;
+	
+	<?php if(isUserLoggedIn()) { ?>
     var sessionUsername = <?php echo json_encode($_SESSION ["userid"]) ?>;
+	<?php }
+	else{?>
+	var sessionUsername = "";
+	<?php } ?>
 
 	var tabList = ['main', 'friends', 'manageRestaurants', 'visitedPlaces', 'history'];
 
@@ -73,7 +79,8 @@ else {
                 getFriends();
                 getMyRestaurants();
 
-                if(username != sessionUsername)
+
+                if((username != sessionUsername) && (sessionUsername != ""))
                 {
                     $.get('./database/checkFriends.php',  {sessionUsername: sessionUsername, username: username}, function(data){
                         var info = new String(data);
