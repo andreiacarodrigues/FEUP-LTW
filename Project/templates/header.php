@@ -10,11 +10,11 @@ include_once ('includes/autentication.php');
     <link rel="stylesheet" href="css/stars.css">
 	<link rel="stylesheet" href="css/style.css">
 	<script src="scripts/script.js"></script>
-    <title>My WebPage</title>
+    <title>Perfect Meal</title>
 </head>
 <body>
     <header>
-        <h1><a href="./index.php">My WebPage</a></h1>
+        <h1><a href="./index.php">Perfect Meal</a></h1>
         <?php
 
             if (isUserLoggedIn()) {
