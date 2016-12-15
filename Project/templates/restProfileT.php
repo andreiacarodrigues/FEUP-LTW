@@ -139,7 +139,7 @@ else
 				for(var i = 0; i < info.length; i++)
 				{					
 					var jsonString = JSON.stringify(info[i]);
-					$.get('./templates/review.php',  {info: jsonString, username: username}, function(data)
+					$.get('./templates/review.php',  {info: jsonString, username: username, isRestaurant: 1}, function(data)
 					{
 						var info = new String(data);
 						info = info.trim();
