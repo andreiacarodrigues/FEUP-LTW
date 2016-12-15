@@ -9,17 +9,20 @@ if (isset ($_POST["val"] ) && isset ($_POST["method"] ))
 {
     $val = trim(strip_tags($_POST["val"]));
     $mode = trim(strip_tags($_POST["method"]));
-	
-	if(!(is_username($val) && (($mode == 1) || ($mode == 2))))
-		die('ERROR');
+
+    if(!(($mode == 1) || ($mode == 2)))
+        die('ERROR receiving parameters');
+	//if(!(is_username($val)))
+	//	die('ERROR 1');
 }
 else
 {
     die('ERROR');
 }
 
-if($mode == 2)   //restaurant
-    $deleteId = getRestaurantsByName($val);
+if($mode == 2){
+    $deleteId = getRestaurantPPhoto($val);
+}   //restaurant
 else  if($mode == 1)  //user
     $deleteId = getUserPhoto($val);
 

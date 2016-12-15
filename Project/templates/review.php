@@ -10,7 +10,7 @@ if (isset ( $_GET ["username"] ))
 	$review =
 		"<article id=\"" . $info[0] . "\">
 			<ul>
-				<a href=\"userProfile.php?username=" . $info[1] . "\" id=\"rev_username\">" . $info[1] . "</a><br>
+				<a href=\"restaurantProfile.php?restaurant=" . $info[1] . "\" id=\"rev_username\">" . $info[1] . "</a><br>
 				<li><label for=\"rev_rating\">Rating: <span id=\"rev_rating\">" . $info[2]. "</span></label></li>";
 				
 		if($info[3] != "")
