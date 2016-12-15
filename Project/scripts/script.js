@@ -4,7 +4,7 @@ var normal_path = "css/images/";
 
 var default_user = "css/images_small/1.jpg";
 var default_restaurant = "css/images_small/2.jpg";
-var default_menu = "css/images_small/3.jpg";
+var default_menu = "css/images_small/2.jpg";
 
 function getPhoto(id, isMenu, idPhoto, idMenu, path)
 {
